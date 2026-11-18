@@ -246,7 +246,9 @@ export function CapabilityRow({
 			<div className="ap-row-actions">
 				{state === "enabled" ? (
 					<>
-						<Badge tone="success">Enabled</Badge>
+						<Badge tone={enabled ? "success" : "neutral"}>
+							{enabled ? "Enabled" : "Disabled"}
+						</Badge>
 						<Button variant="ghost" disabled={disabled} onClick={onConfigure}>
 							Configure
 						</Button>
@@ -272,6 +274,8 @@ export function VersionRow({
 	title,
 	meta,
 	current = true,
+	status,
+	actionLabel = "View",
 	onView,
 	className,
 }: {
@@ -279,6 +283,8 @@ export function VersionRow({
 	title: string;
 	meta: string;
 	current?: boolean;
+	status?: "Current draft" | "Live version" | "Draft";
+	actionLabel?: string;
 	onView?: () => void;
 	className?: string;
 }) {
@@ -290,9 +296,13 @@ export function VersionRow({
 				<p className="ap-row-description">{meta}</p>
 			</div>
 			<div className="ap-row-actions">
-				{current && <Badge>Current draft</Badge>}
+				{(status || current) && (
+					<Badge tone={status === "Live version" ? "success" : "neutral"}>
+						{status ?? "Current draft"}
+					</Badge>
+				)}
 				<Button variant="ghost" onClick={onView}>
-					View
+					{actionLabel}
 				</Button>
 			</div>
 		</div>

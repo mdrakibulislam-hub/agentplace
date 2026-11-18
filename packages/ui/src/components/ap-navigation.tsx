@@ -241,6 +241,8 @@ export function ProjectToolbar({
 	status = "draft",
 	saved = true,
 	publishing = false,
+	publishDisabled,
+	publishControl,
 	onPublish,
 	className = "",
 }: {
@@ -248,6 +250,8 @@ export function ProjectToolbar({
 	status?: "draft" | "published" | "changes";
 	saved?: boolean;
 	publishing?: boolean;
+	publishDisabled?: boolean;
+	publishControl?: ReactNode;
 	onPublish?: () => void;
 	className?: string;
 }) {
@@ -263,9 +267,16 @@ export function ProjectToolbar({
 				{saved && <Icon name="check" />}
 				{saved ? "All changes saved" : "Unsaved changes"}
 			</span>
-			<Button variant="default" loading={publishing} onClick={onPublish}>
-				{status === "draft" ? "Publish" : "Manage publish"}
-			</Button>
+			{publishControl ?? (
+				<Button
+					variant="default"
+					loading={publishing}
+					disabled={publishDisabled}
+					onClick={onPublish}
+				>
+					{status === "draft" ? "Publish" : "Manage publish"}
+				</Button>
+			)}
 		</div>
 	);
 }

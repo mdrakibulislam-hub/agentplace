@@ -554,3 +554,10 @@ button.ap-project-cover {
 .ap-project-name-status h3 {
 	width: calc-size(max-content, round(up, size, 1px));
 }
+
+.ap-builder-agent-bolt {
+	width: 16px;
+	height: 16px;
+	mask: url("../assets/builder-agent-zap.svg") center / contain no-repeat;
+	background: currentColor;
+}

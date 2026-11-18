@@ -2,6 +2,7 @@ import {
 	type CSSProperties,
 	type FormEvent,
 	type KeyboardEvent,
+	type ReactNode,
 	useId,
 	useRef,
 	useState,
@@ -29,6 +30,7 @@ export interface ProjectCoverProps {
 	canEdit?: boolean;
 	onEdit?: () => void;
 	presentation?: CoverPresentation;
+	emptyLabel?: string;
 	className?: string;
 }
 export function coverPresentation(
@@ -49,6 +51,7 @@ export function ProjectCover({
 	canEdit = false,
 	onEdit,
 	presentation,
+	emptyLabel = "Add a project cover",
 	className = "",
 }: ProjectCoverProps) {
 	const [hovered, setHovered] = useState(false);
@@ -65,7 +68,7 @@ export function ProjectCover({
 				aria-hidden={state !== "empty"}
 			>
 				<Icon name="upload" />
-				<span>Add a project cover</span>
+				<span>{emptyLabel}</span>
 			</span>
 			<span
 				className="ap-cover-art ap-cover-mascot"
@@ -315,11 +318,13 @@ export function ChatComposer({
 	error,
 	placeholder = "Describe a change to your agent…",
 	model = "Model",
+	modelControl,
 	className = "",
 }: ComposerProps & {
 	onModel?: () => void;
 	placeholder?: string;
 	model?: string;
+	modelControl?: ReactNode;
 }) {
 	const [internalValue, setInternalValue] = useState(defaultValue);
 	const value = controlledValue ?? internalValue;
@@ -392,15 +397,17 @@ export function ChatComposer({
 					>
 						<Icon name="paperclip" />
 					</button>
-					<Button
-						type="button"
-						variant="ghost"
-						onClick={onModel}
-						icon={<Icon name="chevron-down" />}
-						disabled={busy}
-					>
-						{model}
-					</Button>
+					{modelControl ?? (
+						<Button
+							type="button"
+							variant="ghost"
+							onClick={onModel}
+							icon={<Icon name="chevron-down" />}
+							disabled={busy}
+						>
+							{model}
+						</Button>
+					)}
 					<div className="ap-builder-spacer" />
 					<button
 						type="submit"
@@ -430,6 +437,10 @@ export interface AgentPreviewProps {
 	description: string;
 	suggestions: string[];
 	coverImage?: string | null;
+	showCover?: boolean;
+	device?: "Desktop" | "Mobile";
+	mode?: "test" | "standalone" | "public";
+	children?: ReactNode;
 	onSuggestion?: (question: string) => void;
 	onSend?: (message: string) => void | Promise<void>;
 	onCall?: () => void;
@@ -446,6 +457,10 @@ export function AgentPreview({
 	description,
 	suggestions,
 	coverImage,
+	showCover = true,
+	device = "Desktop",
+	mode = "test",
+	children,
 	onSuggestion,
 	onSend,
 	onCall,
@@ -485,29 +500,33 @@ export function AgentPreview({
 	return (
 		<section
 			className={`ap-agent-preview ${className}`}
-			aria-label="Agent preview"
+			aria-label={mode === "test" ? "Agent preview" : "Visitor experience"}
 		>
-			<div className="ap-preview-diffusion" aria-hidden="true" />
-			<div className="ap-preview-toolbar">
-				<Icon name="eye" />
-				<span>Test as a visitor</span>
-				<div className="ap-builder-spacer" />
-				<Button
-					variant="ghost"
-					icon={<Icon name="monitor" />}
-					onClick={onDevice}
-				>
-					Desktop
-				</Button>
-				<button
-					type="button"
-					aria-label="Open preview in new window"
-					className="ap-composer-icon"
-					onClick={onOpenExternal}
-				>
-					<Icon name="external-link" />
-				</button>
-			</div>
+			{mode === "test" && (
+				<>
+					<div className="ap-preview-diffusion" aria-hidden="true" />
+					<div className="ap-preview-toolbar">
+						<Icon name="eye" />
+						<span>Test as a visitor</span>
+						<div className="ap-builder-spacer" />
+						<Button
+							variant="ghost"
+							icon={<Icon name="monitor" />}
+							onClick={onDevice}
+						>
+							{device}
+						</Button>
+						<button
+							type="button"
+							aria-label="Open preview in new window"
+							className="ap-composer-icon"
+							onClick={onOpenExternal}
+						>
+							<Icon name="external-link" />
+						</button>
+					</div>
+				</>
+			)}
 			<div className="ap-visitor-experience">
 				<div className="ap-preview-company">
 					<Avatar
@@ -518,9 +537,11 @@ export function AgentPreview({
 					/>
 					<span>{company}</span>
 				</div>
-				<div className="ap-preview-cover">
-					{coverImage && <img src={coverImage} alt="" />}
-				</div>
+				{showCover && (
+					<div className="ap-preview-cover">
+						{coverImage && <img src={coverImage} alt="" />}
+					</div>
+				)}
 				<h1>
 					<span className="ap-glyph-heading-xl">{title}</span>
 				</h1>
@@ -543,12 +564,15 @@ export function AgentPreview({
 						</button>
 					))}
 				</div>
+				{children}
 				<div className="ap-builder-spacer" />
 				<div className="ap-visitor-footer">
-					<p className="ap-preview-test-mode">
-						<Icon name="shield-check" />
-						Test mode · No live enquiries are created
-					</p>
+					{mode !== "public" && (
+						<p className="ap-preview-test-mode">
+							<Icon name="shield-check" />
+							Test mode · No live enquiries are created
+						</p>
+					)}
 					<div className="ap-visitor-input-call">
 						<form className="ap-visitor-input" onSubmit={send}>
 							<input

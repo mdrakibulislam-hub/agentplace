@@ -804,5 +804,16 @@
 			"height": "16.4254",
 			"viewBox": "0 0 11.7048 16.4254"
 		}
+	},
+	{
+		"name": "builder-agent-zap.svg",
+		"nodeId": "54:1759",
+		"kind": "figma-product-instance",
+		"sha256": "9950210520c3ade956f714be5920c093d88efb990fbfe84b8e5c953a90761f6f",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		}
 	}
 ]
