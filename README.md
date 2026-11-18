@@ -29,6 +29,8 @@ Setup creates local environment files with a random authentication secret and an
 - Web: http://localhost:4101
 - API: http://localhost:4100
 
+To run the product prototype without the API after setup, use `bun run dev:web`. Start at the web URL and sign in to explore sample projects, or create an account to see an empty workspace. Verification accepts any six digits locally. Projects, saved drafts, published snapshots, and workspace settings are scoped to this browser. Published links are for reviewing that browser's saved prototype data.
+
 In another terminal:
 
 ```sh
@@ -41,7 +43,7 @@ Storybook opens at http://localhost:6006. The web server uses a fixed port so au
 
 | Path              | Purpose                                                                          |
 | ----------------- | -------------------------------------------------------------------------------- |
-| `apps/web`        | React application, file routes, login/signup, protected dashboard, and Storybook |
+| `apps/web`        | React product prototype, TanStack Router routes, and Storybook                   |
 | `apps/server`     | Hono API, Better Auth endpoints, and tRPC transport                              |
 | `packages/api`    | Shared tRPC router, context, and authenticated procedures                        |
 | `packages/auth`   | Better Auth configuration and Drizzle adapter                                    |
@@ -57,7 +59,7 @@ Storybook includes all **395 variables, 25 typography styles, 97 component defin
 
 For local SF Pro design review, run `bun run setup:fonts`; see [the font setup and usage terms](docs/storybook-fonts.md). Font binaries are ignored by Git. A static build can contain a locally prepared font, so review its usage terms before publishing that output.
 
-Stories live in `apps/web/src/stories`, and reusable components live in `packages/ui/src/components`. `bun run audit:storybook` verifies the source mapping and asset provenance. [The coverage audit](docs/storybook-coverage-audit.md) distinguishes source coverage from executed interaction and rendered-comparison evidence; counts alone are not a pixel-identity certificate. Storybook fixtures do not call live generation, upload, billing, or publishing services.
+Reusable components live in `packages/ui/src/components`. The Storybook **Product** group presents the Figma screens using the same React compositions as the app, with isolated demo state for each scene. Component stories live in `apps/web/src/stories`, and product stories also live alongside their code in `apps/web/src/product`. `bun run audit:storybook` verifies the component source mapping and asset provenance. See the [component coverage audit](docs/storybook-coverage-audit.md) and the [prototype design audit](docs/prototype-design-audit.md) for rendered comparisons and interaction checks.
 
 ## Commands
 
@@ -79,4 +81,4 @@ Stories live in `apps/web/src/stories`, and reusable components live in `package
 
 Husky runs lint-staged on commits. Database files and local secrets are ignored by Git. `.env.example` files document the configuration; `.env.schema` files validate it and generate types through Varlock. The scaffold currently uses the matching Drizzle ORM and Drizzle Kit `1.0.0-rc.5` versions; keep them aligned when upgrading.
 
-The environment includes working email/password authentication, a protected dashboard, and a tRPC health check. AI providers, agent execution, calendar booking, support integrations, payments, and service delivery workflows still need implementation. Public deployment also needs production origins, secrets, durable database storage, and an email verification/recovery setup.
+The product routes simulate authentication, agent creation and testing, publishing, credits, plugin connections, and staff workflows. The existing Better Auth scaffold and tRPC health check remain available on the API. Live agent execution and workspace services require backend integration.

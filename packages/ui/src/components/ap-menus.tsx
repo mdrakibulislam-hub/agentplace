@@ -109,7 +109,9 @@ function moveMenuFocus(event: KeyboardEvent<HTMLElement>) {
 				? items.length - 1
 				: event.key === "ArrowDown"
 					? (current + 1) % items.length
-					: (current - 1 + items.length) % items.length;
+					: current <= 0
+						? items.length - 1
+						: current - 1;
 	event.preventDefault();
 	items[next]?.focus();
 }
@@ -265,10 +267,12 @@ function MenuSearch({
 	onChange: (value: string) => void;
 	id: string;
 }) {
+	const input = useRef<HTMLInputElement>(null);
 	return (
 		<label className="ap-menu-search">
 			<Icon name="search" />
 			<input
+				ref={input}
 				aria-label="Search projects"
 				role="combobox"
 				aria-expanded="true"
@@ -283,7 +287,10 @@ function MenuSearch({
 					type="button"
 					className="ap-menu-close"
 					aria-label="Clear search"
-					onClick={() => onChange("")}
+					onClick={() => {
+						onChange("");
+						input.current?.focus();
+					}}
 				>
 					<Icon name="close" />
 				</button>
@@ -322,8 +329,9 @@ export function ProjectSwitcher({
 		setQuery(next);
 		onQueryChange?.(next);
 	}
+	const needle = value.trim().toLocaleLowerCase();
 	const results = projects.filter((project) =>
-		project.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()),
+		project.name.toLocaleLowerCase().includes(needle),
 	);
 	const search = mode === "search";
 	return (
@@ -342,7 +350,7 @@ export function ProjectSwitcher({
 				id={id}
 				role="listbox"
 				aria-label="Projects"
-				className="ap-menu-list"
+				className="ap-menu-list ap-menu-project-list"
 				style={results.length === 0 ? { display: "none" } : undefined}
 			>
 				{results.map((project) => (

@@ -154,6 +154,10 @@
 	flex-direction: column;
 	gap: 4px;
 }
+.ap-menu-project-list {
+	max-height: min(384px, 48svh);
+	overflow-y: auto;
+}
 .ap-menu-divider {
 	height: 1px;
 	background: var(--border-default);
