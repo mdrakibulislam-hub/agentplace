@@ -67,47 +67,49 @@ export function PluginSettings({
 				}
 			/>
 			<div className="product-settings-split">
-				<Surface className="product-settings-card product-settings-plugin-list">
+				<Surface className="product-settings-card">
 					<h2>Installed connections</h2>
-					{connections.map((connection) => (
-						<div
-							className="product-settings-connection-row"
-							key={connection.id}
-							data-disconnected={!connection.connected || undefined}
-						>
-							<RichMenuItem
-								ref={(element) => {
-									connectionButtons.current[connection.id] = element;
-								}}
-								label={connection.name}
-								description={
-									connection.connected ? "Connected" : "Not connected"
-								}
-								icon={
-									<Icon
-										className="product-settings-muted"
-										name={connection.icon}
-									/>
-								}
-								tag={connection.connected ? <Badge>Active</Badge> : undefined}
-								state={connection.id === selectedId ? "selected" : "default"}
-								aria-pressed={connection.id === selectedId}
-								onClick={() => select(connection.id)}
-							/>
-							{!connection.connected && (
-								<Button
-									variant="secondary"
-									onClick={() => {
-										select(connection.id);
-										setDialog("connect");
+					<div className="product-settings-list-options">
+						{connections.map((connection) => (
+							<div
+								className="product-settings-connection-row"
+								key={connection.id}
+								data-disconnected={!connection.connected || undefined}
+							>
+								<RichMenuItem
+									ref={(element) => {
+										connectionButtons.current[connection.id] = element;
 									}}
-									aria-label={`Connect ${connection.name}`}
-								>
-									Connect
-								</Button>
-							)}
-						</div>
-					))}
+									label={connection.name}
+									description={
+										connection.connected ? "Connected" : "Not connected"
+									}
+									icon={
+										<Icon
+											className="product-settings-muted"
+											name={connection.icon}
+										/>
+									}
+									tag={connection.connected ? <Badge>Active</Badge> : undefined}
+									state={connection.id === selectedId ? "selected" : "default"}
+									aria-pressed={connection.id === selectedId}
+									onClick={() => select(connection.id)}
+								/>
+								{!connection.connected && (
+									<Button
+										variant="secondary"
+										onClick={() => {
+											select(connection.id);
+											setDialog("connect");
+										}}
+										aria-label={`Connect ${connection.name}`}
+									>
+										Connect
+									</Button>
+								)}
+							</div>
+						))}
+					</div>
 					<div className="product-settings-panel-actions">
 						<SettingsNote title="Connect once, control access">
 							Choose which projects can use each connection.

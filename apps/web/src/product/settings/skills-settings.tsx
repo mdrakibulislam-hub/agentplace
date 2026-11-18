@@ -140,7 +140,7 @@ export function SkillsSettings({
 						onChange={(event) => setQuery(event.currentTarget.value)}
 					/>
 					{filteredSkills.length ? (
-						<div className="product-settings-skill-options">
+						<div className="product-settings-list-options">
 							{filteredSkills.map((skill) => {
 								const count = assigned(skill).length;
 								const selected = skill.id === selectedId;

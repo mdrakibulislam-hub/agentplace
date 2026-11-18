@@ -2,6 +2,8 @@
 
 A foundation for AI agents that answer questions, book appointments, handle customer service, and deliver services online.
 
+[Open the live Agentplace prototype](https://agentplace.rakibulislamborkan.workers.dev/)
+
 ## Current product and design handoff
 
 The approved experience is a **project-based AI agent builder**. Before development, read [AGENTS.md](AGENTS.md) and [the current development context](docs/DEVELOPMENT_CONTEXT.md). They connect the existing scaffold to the latest Figma flows, product decisions, cover behavior, motion, shadows, and implementation requirements.
