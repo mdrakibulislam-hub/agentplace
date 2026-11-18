@@ -15,6 +15,10 @@ const sourceUrl =
 const metricTokens =
 	tokenCollections.find((collection) => collection.name === "AP / Metrics")
 		?.tokens ?? [];
+const variableCount = tokenCollections.reduce(
+	(count, collection) => count + collection.tokens.length,
+	0,
+);
 
 function Heading({ title, children }: { title: string; children: ReactNode }) {
 	return (
@@ -154,8 +158,7 @@ const meta = {
 		design: { type: "figma", url: sourceUrl },
 		docs: {
 			description: {
-				component:
-					"The complete AP foundation library: **395 variables, 25 named SF Pro text styles, and three layered elevation styles**. Values and aliases were checked against the live Figma file. Use semantic roles in components; source values and primitives remain available for inspection. The Overview preserves the canonical 1600 × 2500 specimen board. Typography is SF Pro at 400/510/590/700; the locally provisioned original Apple font is served for design review; see docs/storybook-fonts.md for setup and distribution boundaries.",
+				component: `The complete AP foundation library: **${variableCount} variables, 25 named SF Pro text styles, and three layered elevation styles**. Values and aliases were checked against the live Figma file. Use semantic roles in components; source values and primitives remain available for inspection. The Overview preserves the canonical 1600 × 2500 specimen board. Typography is SF Pro at 400/510/590/700; the locally provisioned original Apple font is served for design review; see docs/storybook-fonts.md for setup and distribution boundaries.`,
 			},
 		},
 	},

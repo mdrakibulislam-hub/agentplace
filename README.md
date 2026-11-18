@@ -55,7 +55,7 @@ Storybook opens at http://localhost:6006. The web server uses a fixed port so au
 
 The shared AP library implements the Figma foundation and component definitions. Semantic colors, primitives, metrics, typography, and the three elevation stacks live in `packages/ui/src/styles`; both the app and Storybook use these same sources. The typed token catalog is exported from `@agentplace/ui/foundations`.
 
-Storybook includes all **395 variables, 25 typography styles, 97 component definitions, and 169 authored variants**, with original SVG artwork, interaction guides, light/dark modes, and reduced-motion inspection. `Guides/Start here` explains navigation and keyboard/async contracts. Source links are available beside the live component docs. Historical Figma QA boards are reference material, not extra component masters.
+Storybook includes **401 variables, 25 typography styles, 97 component definitions, and 169 authored variants**, with original SVG artwork, interaction guides, light/dark modes, and reduced-motion inspection. `Guides/Start here` explains navigation and keyboard/async contracts. Source links are available beside the live component docs. Historical Figma QA boards are reference material, not extra component masters.
 
 For local SF Pro design review, run `bun run setup:fonts`; see [the font setup and usage terms](docs/storybook-fonts.md). Font binaries are ignored by Git. A static build can contain a locally prepared font, so review its usage terms before publishing that output.
 

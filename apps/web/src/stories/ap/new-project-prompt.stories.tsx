@@ -12,7 +12,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"768 × 144 prompt with 24px padding and no shadow. Create project uses 16px left and right padding. Enter submits once; Shift+Enter inserts a line. Empty prompts are blocked. Loading locks the request and keeps layout stable; a rejected callback preserves input and displays its error. Suggestions insert editable text. Website/file attachment is an explicit callback.",
+					"768 × 144 prompt with 24px padding and no shadow. Create project uses 16px left and right padding. Enter submits once and Shift+Enter inserts a line. Empty prompts are blocked. Long prompts scroll within the text area with the scrollbar hidden. Loading locks the request and keeps layout stable. A rejected callback preserves input and displays its error. Suggestions insert editable text. Website/file attachment is an explicit callback.",
 			},
 		},
 	},
@@ -23,6 +23,13 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const Filled: Story = {
 	args: { defaultValue: "Build an AI advisor for our design studio" },
+};
+export const LongPrompt: Story = {
+	globals: { theme: "dark" },
+	args: {
+		defaultValue:
+			"Build an agent that introduces our design studio and answers common questions.\nExplain our services, typical timelines, and how projects are scoped.\nWhen someone is ready to get in touch, collect a short project brief.\nUse our website as the source for service and contact details.",
+	},
 };
 export const Submitting: Story = {
 	args: {

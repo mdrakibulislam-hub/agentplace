@@ -1,4 +1,4 @@
-/** Values mirror the AP Figma library. All 395 variables were checked against the live file. */
+/** Foundation values and aliases mirror the AP Figma library. */
 export interface FoundationToken {
 	id: string;
 	name: string;
@@ -2001,6 +2001,33 @@ export const tokenCollections: TokenCollection[] = [
 				},
 				aliases: {},
 			},
+			{
+				id: "VariableID:382:3000",
+				name: "color/193a2f",
+				cssVariable: "--ap-primitive-color-193a2f",
+				type: "COLOR",
+				webSyntax: "var(--ap-primitive-color-193a2f)",
+				values: { light: "#193a2f", dark: "#193a2f" },
+				aliases: {},
+			},
+			{
+				id: "VariableID:382:3002",
+				name: "color/132f3c",
+				cssVariable: "--ap-primitive-color-132f3c",
+				type: "COLOR",
+				webSyntax: "var(--ap-primitive-color-132f3c)",
+				values: { light: "#132f3c", dark: "#132f3c" },
+				aliases: {},
+			},
+			{
+				id: "VariableID:382:3004",
+				name: "color/192f42",
+				cssVariable: "--ap-primitive-color-192f42",
+				type: "COLOR",
+				webSyntax: "var(--ap-primitive-color-192f42)",
+				values: { light: "#192f42", dark: "#192f42" },
+				aliases: {},
+			},
 		],
 	},
 	{
@@ -3508,11 +3535,11 @@ export const tokenCollections: TokenCollection[] = [
 				webSyntax: "var(--border-default)",
 				values: {
 					light: "#e5e7eb",
-					dark: "#3f3f46",
+					dark: "#313135",
 				},
 				aliases: {
 					light: "--ap-primitive-color-e5e7eb",
-					dark: "--ap-primitive-color-3f3f46",
+					dark: "--ap-primitive-color-313135",
 				},
 			},
 			{
@@ -3873,6 +3900,42 @@ export const tokenCollections: TokenCollection[] = [
 				aliases: {
 					light: "--ap-primitive-color-a4deff",
 					dark: "--ap-primitive-color-244a68",
+				},
+			},
+			{
+				id: "VariableID:382:3001",
+				name: "cover/mint",
+				cssVariable: "--cover-mint",
+				type: "COLOR",
+				webSyntax: "var(--cover-mint)",
+				values: { light: "#cffac9", dark: "#193a2f" },
+				aliases: {
+					light: "--ap-primitive-color-cffac9",
+					dark: "--ap-primitive-color-193a2f",
+				},
+			},
+			{
+				id: "VariableID:382:3003",
+				name: "cover/cyan",
+				cssVariable: "--cover-cyan",
+				type: "COLOR",
+				webSyntax: "var(--cover-cyan)",
+				values: { light: "#84e8ff", dark: "#132f3c" },
+				aliases: {
+					light: "--ap-primitive-color-84e8ff",
+					dark: "--ap-primitive-color-132f3c",
+				},
+			},
+			{
+				id: "VariableID:382:3005",
+				name: "cover/sky",
+				cssVariable: "--cover-sky",
+				type: "COLOR",
+				webSyntax: "var(--cover-sky)",
+				values: { light: "#a4deff", dark: "#192f42" },
+				aliases: {
+					light: "--ap-primitive-color-a4deff",
+					dark: "--ap-primitive-color-192f42",
 				},
 			},
 		],

@@ -169,6 +169,9 @@
 	--ap-primitive-color-164e63: #164e63;
 	--ap-primitive-color-a4deff: #a4deff;
 	--ap-primitive-color-244a68: #244a68;
+	--ap-primitive-color-193a2f: #193a2f;
+	--ap-primitive-color-132f3c: #132f3c;
+	--ap-primitive-color-192f42: #192f42;
 	/* AP / Source colors */
 	--ap-source-accent: var(--ap-primitive-color-f3f4f6);
 	--ap-source-accent-foreground: var(--ap-primitive-color-111827);
@@ -295,6 +298,9 @@
 	--ambient-mint: var(--ap-primitive-color-cffac9);
 	--ambient-cyan: var(--ap-primitive-color-84e8ff);
 	--ambient-sky: var(--ap-primitive-color-a4deff);
+	--cover-mint: var(--ap-primitive-color-cffac9);
+	--cover-cyan: var(--ap-primitive-color-84e8ff);
+	--cover-sky: var(--ap-primitive-color-a4deff);
 	/* AP / Metrics */
 	--space-0: calc(var(--ap-primitive-number-0) * 1px);
 	--space-2: calc(var(--ap-primitive-number-2) * 1px);
@@ -524,7 +530,7 @@
 	--status-warning-indicator: var(--ap-primitive-color-fa7c55);
 	--status-error-indicator: var(--ap-primitive-color-e05252);
 	--foreground-muted: var(--ap-primitive-color-b3b3b3);
-	--border-default: var(--ap-primitive-color-3f3f46);
+	--border-default: var(--ap-primitive-color-313135);
 	--border-strong: var(--ap-primitive-color-71717a);
 	--border-interactive: var(--ap-primitive-color-71717a);
 	--focus-ring: var(--ap-primitive-color-a5b4fc);
@@ -549,6 +555,9 @@
 	--ambient-mint: var(--ap-primitive-color-245a43);
 	--ambient-cyan: var(--ap-primitive-color-164e63);
 	--ambient-sky: var(--ap-primitive-color-244a68);
+	--cover-mint: var(--ap-primitive-color-193a2f);
+	--cover-cyan: var(--ap-primitive-color-132f3c);
+	--cover-sky: var(--ap-primitive-color-192f42);
 }
 :root,
 .light,

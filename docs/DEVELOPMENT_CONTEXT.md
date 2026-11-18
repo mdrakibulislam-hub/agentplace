@@ -116,7 +116,7 @@ On leave/blur, recompute from the **current** asset and context. Hover never rem
 
 Use keyboard parity, an explicit touch action and edit permissions. A cover-edit click must not bubble into Open project. Read-only cards, public visitor previews and picker thumbnails do not expose upload affordances. Crossfade about 120ms; reduced motion changes immediately. The existing Added sample is not a real uploaded file; actual implementation must bind the real asset and preserve crop/focal point.
 
-The home card masters were updated to mascot fallback; 24 card instances across the design inherited it. The fallback uses the shared mint, cyan, and sky stops, with deeper colors in dark mode. Branding empty remains Empty, and uploaded branding examples remain Added with scoped hover transitions. See the [dark project card](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=378-2) and [cover presentation matrix](design-handoff/cover-presentation.json).
+The home card masters were updated to the mascot fallback, which 24 card instances across the design inherited. The thumbnail and cover use the 8px `radius/sm` token. The fallback uses `cover/mint`, `cover/cyan`, and `cover/sky`, with quieter tones in Dark. The `border/default` Dark alias is `color/313135`. Branding uses Empty for a missing cover and Added for an uploaded image, with scoped hover transitions. See the [dark project card](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=378-2) and [cover presentation matrix](design-handoff/cover-presentation.json).
 
 ## Motion, ambient color and elevation
 

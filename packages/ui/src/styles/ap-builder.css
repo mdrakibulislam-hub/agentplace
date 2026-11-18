@@ -13,7 +13,7 @@
 	padding: 0;
 	overflow: hidden;
 	border: 0;
-	border-radius: var(--radius-lg);
+	border-radius: var(--radius-sm);
 	background: var(--muted-background);
 	font: inherit;
 	color: var(--foreground-muted);
@@ -29,6 +29,7 @@ button.ap-project-cover {
 	opacity: 0;
 	transition: opacity 120ms;
 	box-sizing: border-box;
+	border-radius: inherit;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -46,9 +47,9 @@ button.ap-project-cover {
 	justify-content: flex-end;
 	background: linear-gradient(
 		90deg,
-		var(--ambient-mint) 0%,
-		var(--ambient-cyan) 50%,
-		var(--ambient-sky) 100%
+		var(--cover-mint) 0%,
+		var(--cover-cyan) 50%,
+		var(--cover-sky) 100%
 	);
 }
 .ap-cover-added {
@@ -541,6 +542,11 @@ button.ap-project-cover {
 .ap-new-project-prompt textarea {
 	--ap-glyph-baseline-body-base: 1px;
 	padding-top: var(--ap-glyph-baseline-body-base);
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+.ap-new-project-prompt textarea::-webkit-scrollbar {
+	display: none;
 }
 
 .ap-project-name-status h3 {
