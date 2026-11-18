@@ -12,7 +12,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"352px card, 320 × 124 cover, name/status on one row and edited time below. The default mascot cover loops the original blink and gentle hop, respecting reduced motion and visibility. Publication and cover state are independent. Open project, edit cover and overflow actions are separate buttons bound to the correct project ID. Hover/focus temporarily reveals upload without deleting the current asset. Read-only cards never expose cover editing. Sample names and IDs exist only in stories.",
+					"352px card, 320 × 124 cover, name/status on one row and edited time below. Flat at rest; hover or keyboard focus within the card reveals the shared Resting shadow with a 140ms ease-out transition (immediate with reduced motion). The default mascot cover loops the original blink and gentle hop, respecting reduced motion and visibility. Publication and cover state are independent. Open project, edit cover and overflow actions are separate buttons bound to the correct project ID. Hover/focus temporarily reveals upload without deleting the current asset. Read-only cards never expose cover editing. Sample names and IDs exist only in stories.",
 			},
 		},
 	},

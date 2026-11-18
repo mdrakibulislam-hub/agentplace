@@ -12,7 +12,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"768 × 144 prompt with 24px padding. Enter submits once; Shift+Enter inserts a line. Empty prompts are blocked. Loading locks the request and keeps layout stable; a rejected callback preserves input and displays its error. Suggestions in the product should insert editable text instead of silently submitting. Website/file attachment is an explicit callback.",
+					"768 × 144 prompt with 24px padding and no shadow. Enter submits once; Shift+Enter inserts a line. Empty prompts are blocked. Loading locks the request and keeps layout stable; a rejected callback preserves input and displays its error. Suggestions in the product should insert editable text instead of silently submitting. Website/file attachment is an explicit callback.",
 			},
 		},
 	},
