@@ -38,6 +38,7 @@ import {
 	ReviewPublish,
 	UnpublishAgent,
 } from "./builder-publishing";
+import { BuilderSplit, defaultPreviewShare } from "./builder-split";
 import { BuilderVisitorPreview } from "./visitor-experience";
 import "./builder.css";
 
@@ -51,6 +52,7 @@ type BuilderOverlay =
 export interface BuilderExperienceProps {
 	project: PrototypeProject;
 	onProjectChange: (updates: Partial<PrototypeProject>) => void;
+	onSaveDraft: (updates: Partial<PrototypeProject>) => void | Promise<void>;
 	onBack: () => void;
 	onSettings: (section?: SettingsNavValue) => void;
 	onOpenVisitor?: (projectId: string, published: boolean) => void;
@@ -58,13 +60,12 @@ export interface BuilderExperienceProps {
 	initialPublishAction?: PublishAction;
 	initialManagePublish?: boolean;
 	initialCoverMenu?: boolean;
-	demoCover?: boolean;
-	staffCount?: number;
 }
 
 export function BuilderExperience({
 	project,
 	onProjectChange,
+	onSaveDraft,
 	onBack,
 	onSettings,
 	onOpenVisitor,
@@ -72,14 +73,12 @@ export function BuilderExperience({
 	initialPublishAction,
 	initialManagePublish = false,
 	initialCoverMenu = false,
-	demoCover = false,
-	staffCount,
 }: BuilderExperienceProps) {
 	const [workspace, setWorkspace] = useSettingsState();
 	const [section, setSection] = useState(initialSection);
 	const [conversationId, setConversationId] = useState("build");
 	const [view, setView] = useState("editor");
-	const [demoCoverVisible, setDemoCoverVisible] = useState(demoCover);
+	const [previewShare, setPreviewShare] = useState(defaultPreviewShare);
 	const [overlay, setOverlay] = useState<BuilderOverlay | undefined>(
 		initialPublishAction ? { type: initialPublishAction } : undefined,
 	);
@@ -116,13 +115,6 @@ export function BuilderExperience({
 	const catalog = workspace.skills.map(
 		(skill) => skills.find((authored) => authored.id === skill.id) ?? skill,
 	);
-	const projectStaff =
-		staffCount ??
-		workspace.members.filter(
-			(member) =>
-				!member.invited &&
-				(member.role !== "Member" || member.access[project.id]),
-		).length;
 
 	function showSection(next: ProjectNavValue) {
 		setSection(next);
@@ -152,7 +144,7 @@ export function BuilderExperience({
 		});
 	}
 
-	function saveBranding() {
+	async function saveBranding() {
 		if (!data.stagedBranding) return;
 		const branding = {
 			...stagedBranding,
@@ -160,15 +152,17 @@ export function BuilderExperience({
 			company: stagedBranding.company.trim(),
 		};
 		if (!branding.name || !branding.company) return;
-		save(
-			{ ...data, branding, stagedBranding: undefined },
-			"Updated company branding",
-			{
-				name: branding.name,
-				company: branding.company,
-				cover: branding.cover,
-			},
-		);
+		await onSaveDraft({
+			builder: recordVersion(
+				{ ...data, branding, stagedBranding: undefined },
+				"Updated branding",
+			),
+			published,
+			updated: "Edited just now",
+			name: branding.name,
+			company: branding.company,
+			cover: branding.cover,
+		});
 	}
 
 	function selectConversation(id: string) {
@@ -182,7 +176,7 @@ export function BuilderExperience({
 			...data,
 			conversations: [
 				...data.conversations,
-				{ id, title: "New conversation", messages: [] },
+				{ id, title: "New chat", messages: [] },
 			],
 		});
 		selectConversation(id);
@@ -196,7 +190,7 @@ export function BuilderExperience({
 				...conversation,
 				title: conversation.messages.length
 					? conversation.title
-					: text.slice(0, 40),
+					: text.split("\n", 1)[0]?.trim() || conversation.title,
 				messages: [
 					...conversation.messages,
 					{ id: crypto.randomUUID(), role: "you" as const, text },
@@ -312,11 +306,9 @@ export function BuilderExperience({
 				onNewConversation={newConversation}
 				onManageAccess={() => onSettings("Staff & roles")}
 				onConversation={selectConversation}
-				staffCount={projectStaff}
 				conversations={data.conversations.map((conversation) => ({
 					id: conversation.id,
 					title: conversation.title,
-					detail: `Today · ${conversation.messages.length + (conversation.id === "build" && project.prompt ? 3 : 0)} messages`,
 					selected:
 						section === "Chat" && conversation.id === activeConversation?.id,
 				}))}
@@ -331,14 +323,18 @@ export function BuilderExperience({
 						}
 					>
 						{(dismiss) => (
-							<MenuPanel title="Conversations" onClose={dismiss}>
+							<MenuPanel
+								title="Conversations"
+								className="ap-builder-conversation-menu"
+								onClose={dismiss}
+							>
 								<div
 									className="ap-menu-list"
 									role="menu"
 									aria-label="Project conversations"
 								>
 									<MenuItem
-										label="New conversation"
+										label="New chat"
 										icon="plus"
 										role="menuitem"
 										data-menu-choice
@@ -351,6 +347,7 @@ export function BuilderExperience({
 										<MenuItem
 											key={conversation.id}
 											label={conversation.title}
+											title={conversation.title}
 											icon="message-square"
 											role="menuitem"
 											data-menu-choice
@@ -369,7 +366,7 @@ export function BuilderExperience({
 						icon={<Icon name="users" />}
 						onClick={() => onSettings("Staff & roles")}
 					>
-						Manage access
+						Project access
 					</Button>
 				</div>
 				<ProjectToolbar
@@ -405,7 +402,26 @@ export function BuilderExperience({
 								onChange={setView}
 							/>
 						</div>
-						<div className="ap-builder-split" data-view={view}>
+						<BuilderSplit
+							view={view}
+							previewShare={previewShare}
+							onPreviewShareChange={setPreviewShare}
+							preview={
+								section === "Chat" && working ? (
+									<BuilderProgress
+										onReady={completeFirstDraft}
+										usesWebsite={usesWebsite}
+									/>
+								) : (
+									<BuilderVisitorPreview
+										branding={
+											section === "Branding" ? stagedBranding : data.branding
+										}
+										onOpenExternal={() => openVisitor(false)}
+									/>
+								)
+							}
+						>
 							{section === "Chat" ? (
 								<BuilderChat
 									key={activeConversation?.id}
@@ -427,31 +443,13 @@ export function BuilderExperience({
 								<BuilderBranding
 									branding={stagedBranding}
 									initialCoverMenu={initialCoverMenu}
-									demoCover={demoCoverVisible}
-									onClearDemoCover={() => setDemoCoverVisible(false)}
 									saved={!data.stagedBranding}
 									onChange={stageBranding}
 									onSave={saveBranding}
 									onBack={() => showSection("Chat")}
 								/>
 							)}
-							{section === "Chat" && working ? (
-								<BuilderProgress
-									onReady={completeFirstDraft}
-									usesWebsite={usesWebsite}
-								/>
-							) : (
-								<BuilderVisitorPreview
-									branding={
-										section === "Branding" ? stagedBranding : data.branding
-									}
-									showCover={
-										section === "Chat" || demoCoverVisible ? true : undefined
-									}
-									onOpenExternal={() => openVisitor(false)}
-								/>
-							)}
-						</div>
+						</BuilderSplit>
 					</>
 				)}
 				{section === "Instructions.md" && (
@@ -681,7 +679,7 @@ export function BuilderExperience({
 }
 
 function sameBranding(left: BrandingDraft, right: BrandingDraft) {
-	return Object.keys(right).every(
+	return Object.keys({ ...left, ...right }).every(
 		(key) =>
 			left[key as keyof BrandingDraft] === right[key as keyof BrandingDraft],
 	);

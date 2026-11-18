@@ -48,7 +48,7 @@ export function Logo({
 			return animate(
 				lid,
 				{
-					scaleY: [1, 1, 1250, 1250, 1, 1],
+					scaleY: [0.001, 0.001, 1.25, 1.25, 0.001, 0.001],
 					y: [0, 0, direction * 0.906, direction * 0.906, 0, 0],
 				},
 				{

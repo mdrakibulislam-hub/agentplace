@@ -1,3 +1,4 @@
+import { AmbientBottomGradient } from "@agentplace/ui/components/ap-ambient";
 import { ChatComposer } from "@agentplace/ui/components/ap-builder";
 import { Badge, Spinner } from "@agentplace/ui/components/ap-data";
 import { Icon } from "@agentplace/ui/components/ap-icon";
@@ -249,7 +250,7 @@ export function BuilderProgress({
 }) {
 	return (
 		<section className="ap-builder-progress" aria-label="Build progress">
-			<div className="ap-preview-diffusion" aria-hidden="true" />
+			<AmbientBottomGradient variant="preview" />
 			<div className="ap-builder-progress-card">
 				<Badge tone="info">In progress</Badge>
 				<h2>Your project is saved</h2>

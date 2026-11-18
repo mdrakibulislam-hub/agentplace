@@ -8,11 +8,13 @@ import "../styles/ap-ambient.css";
 export function AmbientBottomGradient({
 	motion = "Flow",
 	phase = 0,
+	variant = "reference",
 	className,
 	style,
 }: {
 	motion?: "Flow" | "Still";
 	phase?: 0 | 1 | 2 | 3;
+	variant?: "reference" | "page" | "preview";
 	className?: string;
 	style?: CSSProperties;
 }) {
@@ -25,6 +27,7 @@ export function AmbientBottomGradient({
 			className={cn("ap-ambient", environment.paused && "is-paused", className)}
 			data-motion={environment.reduced ? "still" : "flow"}
 			data-phase={phase}
+			data-variant={variant}
 			style={
 				{ "--ap-ambient-delay": `${phase * -8}s`, ...style } as CSSProperties
 			}

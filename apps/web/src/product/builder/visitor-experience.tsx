@@ -18,13 +18,11 @@ type VisitorBranding = BrandingDraft | PublishedSnapshot;
 
 export function BuilderVisitorPreview({
 	branding,
-	showCover,
 	standalone = false,
 	published = false,
 	onOpenExternal,
 }: {
 	branding: VisitorBranding;
-	showCover?: boolean;
 	standalone?: boolean;
 	published?: boolean;
 	onOpenExternal?: () => void;
@@ -74,7 +72,6 @@ export function BuilderVisitorPreview({
 				description={previewDescription(displayName)}
 				suggestions={previewSuggestions()}
 				coverImage={branding.cover}
-				showCover={showCover ?? Boolean(branding.cover)}
 				device={mobile ? "Mobile" : "Desktop"}
 				mode={published ? "public" : standalone ? "standalone" : "test"}
 				onDevice={() => setMobile((current) => !current)}

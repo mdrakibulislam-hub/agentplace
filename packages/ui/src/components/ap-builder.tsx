@@ -7,6 +7,7 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { AmbientBottomGradient } from "./ap-ambient";
 import { Mascot } from "./ap-brand";
 import { ProjectActions } from "./ap-controls";
 import { Avatar, Badge } from "./ap-data";
@@ -291,6 +292,7 @@ export function NewProjectPrompt({
 					<Button
 						type="submit"
 						variant="default"
+						className="ap-create-project-button"
 						icon={<Icon name="arrow-right" />}
 						loading={busy}
 					>
@@ -437,7 +439,6 @@ export interface AgentPreviewProps {
 	description: string;
 	suggestions: string[];
 	coverImage?: string | null;
-	showCover?: boolean;
 	device?: "Desktop" | "Mobile";
 	mode?: "test" | "standalone" | "public";
 	children?: ReactNode;
@@ -457,7 +458,6 @@ export function AgentPreview({
 	description,
 	suggestions,
 	coverImage,
-	showCover = true,
 	device = "Desktop",
 	mode = "test",
 	children,
@@ -504,7 +504,7 @@ export function AgentPreview({
 		>
 			{mode === "test" && (
 				<>
-					<div className="ap-preview-diffusion" aria-hidden="true" />
+					<AmbientBottomGradient variant="preview" />
 					<div className="ap-preview-toolbar">
 						<Icon name="eye" />
 						<span>Test as a visitor</span>
@@ -528,18 +528,19 @@ export function AgentPreview({
 				</>
 			)}
 			<div className="ap-visitor-experience">
-				<div className="ap-preview-company">
-					<Avatar
-						initials={companyInitials}
-						src={companyLogo}
-						alt={company}
-						size="large"
-					/>
-					<span>{company}</span>
-				</div>
-				{showCover && (
+				{coverImage ? (
 					<div className="ap-preview-cover">
-						{coverImage && <img src={coverImage} alt="" />}
+						<img src={coverImage} alt={company} />
+					</div>
+				) : (
+					<div className="ap-preview-company">
+						<Avatar
+							initials={companyInitials}
+							src={companyLogo}
+							alt={company}
+							size="large"
+						/>
+						<span>{company}</span>
 					</div>
 				)}
 				<h1>

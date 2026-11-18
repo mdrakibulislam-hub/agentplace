@@ -1,0 +1,118 @@
+.ap-source-dialog {
+	position: fixed;
+	z-index: 1001;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-24);
+	width: 480px;
+	max-width: calc(100vw - 32px);
+	max-height: calc(100dvh - 32px);
+	overflow-y: auto;
+	padding: var(--space-24);
+	border: 0;
+	border-radius: var(--radius-xl);
+	background: var(--card-background);
+	box-shadow: var(--shadow-overlay);
+	color: var(--foreground-default);
+	outline: none;
+	font-size: 14px;
+	line-height: 20px;
+}
+.ap-source-dialog > * {
+	flex-shrink: 0;
+}
+.ap-source-website {
+	display: grid;
+	gap: var(--space-8);
+}
+.ap-source-website label {
+	font-weight: 510;
+}
+.ap-source-website-field {
+	position: relative;
+	display: grid;
+}
+.ap-source-website-field:has(.ap-spinner) .ap-input {
+	padding-inline-end: var(--space-40);
+}
+.ap-source-website-field .ap-spinner {
+	position: absolute;
+	inset-block: 0;
+	inset-inline-end: var(--space-12);
+	margin-block: auto;
+	height: max-content;
+	pointer-events: none;
+}
+.ap-source-divider {
+	display: flex;
+	align-items: center;
+	gap: var(--space-12);
+	color: var(--foreground-muted);
+	font-size: 12px;
+	line-height: 16px;
+}
+.ap-source-divider::before,
+.ap-source-divider::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: var(--border-default);
+}
+.ap-source-file {
+	display: grid;
+	gap: var(--space-8);
+}
+.ap-source-dropzone {
+	appearance: none;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-8);
+	width: 100%;
+	min-height: 128px;
+	padding: var(--space-16);
+	border: 1px dashed var(--border-default);
+	border-radius: var(--radius-md);
+	background: var(--muted-background);
+	color: var(--foreground-default);
+	font: inherit;
+	text-align: center;
+	cursor: pointer;
+}
+.ap-source-drop-title {
+	font-weight: 510;
+}
+.ap-source-drop-title > span {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+.ap-source-file-hint {
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--foreground-muted);
+}
+.ap-source-dropzone:hover {
+	background: var(--muted-hover);
+	border-color: var(--border-strong);
+}
+.ap-source-dropzone[data-dragging],
+.ap-source-dropzone:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-source-dropzone:disabled {
+	cursor: wait;
+	opacity: 0.6;
+}
+.ap-source-error {
+	margin: 0;
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--status-error-foreground);
+}

@@ -222,9 +222,14 @@ button.ap-project-cover {
 .ap-chat-composer .ap-prompt-actions {
 	gap: 8px;
 }
-.ap-new-project-prompt .ap-prompt-actions > .ap-button:first-child {
+.ap-new-project-prompt .ap-prompt-actions > .ap-button-ghost {
+	--ap-button-hover: var(--transparent);
 	padding-left: 4px;
 	padding-right: 4px;
+}
+.ap-new-project-prompt .ap-create-project-button {
+	padding-left: var(--space-16);
+	padding-right: var(--space-16);
 }
 .ap-chat-composer .ap-prompt-actions > .ap-button {
 	padding-left: 6px;
@@ -278,24 +283,6 @@ button.ap-project-cover {
 	font-size: 14px;
 	line-height: 20px;
 	isolation: isolate;
-}
-.ap-preview-diffusion {
-	position: absolute;
-	z-index: -1;
-	left: calc(50% - 1px);
-	bottom: -0.29px;
-	transform: translateX(-50%);
-	width: 712px;
-	height: 57.588px;
-	background: linear-gradient(
-		90deg,
-		var(--ambient-mint),
-		var(--ambient-cyan) 50%,
-		var(--ambient-sky)
-	);
-	filter: blur(39.329px);
-	opacity: 0.47;
-	pointer-events: none;
 }
 .ap-preview-toolbar {
 	display: flex;

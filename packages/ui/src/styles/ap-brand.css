@@ -64,9 +64,11 @@
 .ap-logo-lid {
 	position: absolute;
 	width: 3.846px;
-	height: 0.001px;
+	/* Browsers round the native 0.001px layout height to zero. */
+	height: 1px;
 	background: currentColor;
 	transform-origin: 50% 50%;
+	transform: scaleY(0.001);
 	pointer-events: none;
 }
 .ap-logo-lid-left {
@@ -76,10 +78,10 @@
 	left: 19.449px;
 }
 .ap-logo-lid-upper {
-	top: 12.627px;
+	top: 12.127px;
 }
 .ap-logo-lid-lower {
-	top: 16.537px;
+	top: 16.037px;
 }
 .ap-client-logos {
 	display: flex;

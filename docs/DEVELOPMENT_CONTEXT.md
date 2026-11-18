@@ -68,9 +68,13 @@ After login, show a welcoming project home **without a sidebar**. Lead with “S
 
 Project cards put Published/Unpublished beside the name, with edited time below. Overflow is a filled three-dot icon, tertiary at rest and primary on hover. Show the contextual dropdown. Keep card cover, status, navigation and overflow actions independent. All-projects filter, status filters, search results and no-results states use reusable menu/combobox patterns: heading, optional descriptions, trailing tags/checks and clear/close actions.
 
+Latest source-picker refinement (18 November): [Add website or file](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=299-1996) is a compact 480 × 372 dialog with a full-width URL input that submits on Enter, a divider, and an accessible file picker and drop area. Reuse `SourceAttachmentDialog` in Storybook and project home. Validate HTTP(S) addresses and PDF/DOCX/TXT/MD/CSV selections up to 10 MB; keep callback failures recoverable. The current home flow stores URL/file-name context only, so server upload, file ingestion and website import remain separate work. The [new-project prompt](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=52-1015) Create project action has 16px left and right padding.
+
 ### Project builder and preview
 
 The builder has a project-scoped sidebar for chat, skills, Instructions.md, history and branding. The user creates/refines the agent by chatting. Show real working state, first draft ready and ongoing editing; then show the agent preview on the right. Preserve cancellation/retry/error contracts rather than inventing fixed processing durations.
+
+Latest sidebar correction (18 November): conversations and New chat sit below All projects. Chat is opened through those controls; remove the duplicate Chat link from project tools in all five [navigation states](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=49-1206). Keep Skills, Instructions.md, History and Branding, 32px conversation/tool rows, and the single left-aligned Project access action at the bottom. Chat remains an internal builder state and must stay reachable through existing conversations, New chat and the mobile conversation menu.
 
 The preview supports testing the draft. Its Call button sits **outside and beside** the prompt input, with generous horizontal padding. It is not placed inside the composer. The reviewed controls are 48px high, with an 8px prompt-to-call gap and 24px call-button side padding.
 

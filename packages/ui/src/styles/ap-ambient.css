@@ -8,6 +8,30 @@
 	user-select: none;
 	--ap-ambient-main-x: 36px;
 	--ap-ambient-inner-x: 48px;
+	--ap-ambient-scale: 1.025;
+	--ap-ambient-travel: ap-ambient-drift;
+	--ap-ambient-css-blur: calc(var(--ambient-blur, 300px) / 2);
+}
+
+.ap-ambient:is([data-variant="page"], [data-variant="preview"]) {
+	--ap-ambient-scale: 1.14;
+	--ap-ambient-travel: ap-ambient-sweep;
+}
+
+.ap-ambient[data-variant="page"] {
+	--ap-ambient-main-x: clamp(50px, 16vw, 248px);
+	--ap-ambient-inner-x: clamp(64px, 20vw, 300px);
+}
+
+.ap-ambient[data-variant="preview"] {
+	position: absolute;
+	inset: auto 0 0;
+	z-index: -1;
+	width: 100%;
+	height: 176px;
+	--ap-ambient-main-x: 24%;
+	--ap-ambient-inner-x: 29%;
+	--ap-ambient-css-blur: 39.329px;
 }
 .ap-ambient-field {
 	position: absolute;
@@ -24,15 +48,17 @@
 		var(--ambient-cyan) 50%,
 		var(--ambient-sky) 100%
 	);
-	filter: blur(calc(var(--ambient-blur, 300px) / 2));
+	filter: blur(var(--ap-ambient-css-blur));
 	transform-origin: 50% 50%;
 	animation-delay: var(--ap-ambient-delay, 0s);
 }
 .ap-ambient-main {
+	--ap-ambient-shift-x: var(--ap-ambient-main-x);
+	--ap-ambient-shift-y: -6px;
 	inset: auto 0 0;
 	height: 140px;
-	animation: ap-ambient-drift calc(var(--ambient-duration-seconds, 32) * 1s)
-		ease-in-out infinite;
+	animation: var(--ap-ambient-travel)
+		calc(var(--ambient-duration-seconds, 32) * 1s) ease-in-out infinite;
 	animation-delay: var(--ap-ambient-delay, 0s);
 }
 .ap-ambient-main:before {
@@ -41,13 +67,15 @@
 	animation-delay: var(--ap-ambient-delay, 0s);
 }
 .ap-ambient-inner {
+	--ap-ambient-shift-x: calc(-1 * var(--ap-ambient-inner-x));
+	--ap-ambient-shift-y: 0px;
 	left: -6.666667%;
 	right: -6.666667%;
 	bottom: 2px;
 	height: 132px;
 	opacity: 0.08;
-	animation: ap-ambient-inner-x calc(var(--ambient-duration-seconds, 32) * 1s)
-		ease-in-out infinite;
+	animation: var(--ap-ambient-travel)
+		calc(var(--ambient-duration-seconds, 32) * 1s) ease-in-out infinite;
 	animation-delay: var(--ap-ambient-delay, 0s);
 }
 .ap-ambient-inner:before {
@@ -55,6 +83,18 @@
 		ease-in-out infinite;
 	animation-delay: var(--ap-ambient-delay, 0s);
 }
+
+.ap-ambient[data-variant="preview"] .ap-ambient-main {
+	inset: auto -16px 0;
+	height: 58px;
+	opacity: 0.47;
+}
+
+.ap-ambient[data-variant="preview"] .ap-ambient-inner {
+	height: 56px;
+	opacity: 0.06;
+}
+
 @keyframes ap-ambient-drift {
 	0%,
 	50%,
@@ -62,10 +102,13 @@
 		transform: translate(0, 0);
 	}
 	25% {
-		transform: translate(var(--ap-ambient-main-x), -6px);
+		transform: translate(var(--ap-ambient-shift-x), var(--ap-ambient-shift-y));
 	}
 	75% {
-		transform: translate(calc(-1 * var(--ap-ambient-main-x)), 6px);
+		transform: translate(
+			calc(-1 * var(--ap-ambient-shift-x)),
+			calc(-1 * var(--ap-ambient-shift-y))
+		);
 	}
 }
 @keyframes ap-ambient-scale {
@@ -74,20 +117,27 @@
 		transform: scaleX(1);
 	}
 	50% {
-		transform: scaleX(1.025);
+		transform: scaleX(var(--ap-ambient-scale));
 	}
 }
-@keyframes ap-ambient-inner-x {
+/* Ease into the turns while the color field keeps moving through the center. */
+@keyframes ap-ambient-sweep {
 	0%,
 	50%,
 	100% {
-		transform: translateX(0);
+		transform: translate(0, 0);
+		animation-timing-function: cubic-bezier(0.33, 0.52, 0.67, 1);
 	}
 	25% {
-		transform: translateX(calc(-1 * var(--ap-ambient-inner-x)));
+		transform: translate(var(--ap-ambient-shift-x), var(--ap-ambient-shift-y));
+		animation-timing-function: cubic-bezier(0.33, 0, 0.67, 0.48);
 	}
 	75% {
-		transform: translateX(var(--ap-ambient-inner-x));
+		transform: translate(
+			calc(-1 * var(--ap-ambient-shift-x)),
+			calc(-1 * var(--ap-ambient-shift-y))
+		);
+		animation-timing-function: cubic-bezier(0.33, 0, 0.67, 0.48);
 	}
 }
 @keyframes ap-ambient-inner-y {
@@ -255,8 +305,6 @@ html[data-ap-motion="reduced"] .ap-working-indicator .ap-working-diffusion {
 		height: clamp(360px, 44.444vw, 640px);
 		--ap-ambient-main-x: min(36px, 2.5vw);
 		--ap-ambient-inner-x: min(48px, 3.333vw);
-	}
-	.ap-ambient-field:before {
-		filter: blur(clamp(80px, 10.4165vw, 150px));
+		--ap-ambient-css-blur: clamp(80px, 10.4165vw, 150px);
 	}
 }

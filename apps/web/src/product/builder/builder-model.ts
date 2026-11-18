@@ -131,7 +131,7 @@ export function initialBuilderData(project: PrototypeProject): BuilderData {
 			];
 	return {
 		...configuration,
-		conversations: [{ id: "build", title: "Build project advisor", messages }],
+		conversations: [{ id: "build", title: project.name, messages }],
 		versions,
 	};
 }

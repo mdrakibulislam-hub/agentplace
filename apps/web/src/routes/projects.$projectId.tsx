@@ -25,7 +25,7 @@ export const Route = createFileRoute("/projects/$projectId")({
 function BuilderPage() {
 	const { projectId } = Route.useParams();
 	const { entry } = Route.useSearch();
-	const { workspace, updateProject } = usePrototype();
+	const { workspace, updateProject, saveProject } = usePrototype();
 	const { openProjects, openSettings } = useWorkspaceNavigation();
 	const project = workspace?.projects.find(
 		(candidate) => candidate.id === projectId,
@@ -43,6 +43,7 @@ function BuilderPage() {
 					entry === "publish" || entry === "unpublish" ? entry : undefined
 				}
 				onProjectChange={(updates) => updateProject(projectId, updates)}
+				onSaveDraft={(updates) => saveProject(projectId, updates)}
 				onBack={() => openProjects()}
 				onSettings={openSettings}
 				onOpenVisitor={(id, published) =>

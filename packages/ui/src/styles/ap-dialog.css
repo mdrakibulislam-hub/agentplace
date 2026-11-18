@@ -72,6 +72,16 @@
 	justify-content: flex-end;
 	gap: var(--space-8);
 }
+.ap-dialog-confirm[aria-busy="true"] .ap-button-label {
+	opacity: 0;
+}
+.ap-dialog-confirm .ap-button-spinner {
+	position: absolute;
+	inset: 0;
+	width: max-content;
+	height: max-content;
+	margin: auto;
+}
 .ap-confirm-dialog > .ap-dialog-error {
 	color: var(--status-error-foreground);
 }

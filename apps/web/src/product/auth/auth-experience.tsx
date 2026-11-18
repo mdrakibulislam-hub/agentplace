@@ -205,7 +205,7 @@ export function AuthExperience({
 
 	return (
 		<main className="product-auth-shell">
-			<AmbientBottomGradient className="product-auth-ambient" />
+			<AmbientBottomGradient variant="page" className="product-auth-ambient" />
 			<header className="product-auth-brand">
 				<Logo cycleDuration={32} />
 			</header>
@@ -277,6 +277,7 @@ export function AuthExperience({
 								<Button
 									type="button"
 									variant="ghost"
+									size="medium"
 									onClick={() => switchScreen("signup")}
 								>
 									Use a different email
@@ -284,6 +285,7 @@ export function AuthExperience({
 								<Button
 									type="button"
 									variant="ghost"
+									size="medium"
 									onClick={() => switchScreen("login")}
 								>
 									Back to sign in
@@ -394,7 +396,7 @@ export function AuthExperience({
 								<Button
 									type="button"
 									variant="ghost"
-									size={signup || recovery ? "small" : "medium"}
+									size="medium"
 									onClick={() =>
 										switchScreen(signup || recovery ? "login" : "signup")
 									}

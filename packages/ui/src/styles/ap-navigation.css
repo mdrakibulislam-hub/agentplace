@@ -151,73 +151,70 @@
 .ap-sidebar-link[aria-current="page"] {
 	background: var(--muted-hover);
 }
-.ap-sidebar-conversation-space {
-	height: 24px;
-	flex-shrink: 0;
+.ap-project-sidebar {
+	gap: 0;
 }
-.ap-sidebar .ap-sidebar-new {
-	display: flex;
-	gap: 8px;
-	align-items: center;
-	height: 32px;
-	min-height: 32px;
-	padding: 0 12px;
-	background: transparent;
-	border-radius: 9999px;
-	text-align: left;
-	font-weight: 510;
-}
-.ap-conversation-item {
+.ap-sidebar-conversations {
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
-	align-items: flex-start;
-	padding: 12px;
-	border-radius: var(--radius-md);
-	text-align: left;
-	background: transparent;
+	gap: var(--space-4);
+	margin-top: var(--space-16);
 }
-.ap-conversation-item[data-selected="true"] {
+.ap-project-sidebar .ap-sidebar-links {
+	flex-shrink: 0;
+	gap: var(--space-4);
+	margin-top: var(--space-24);
+}
+.ap-project-sidebar .ap-sidebar-link,
+.ap-project-sidebar .ap-conversation-item,
+.ap-project-sidebar :is(.ap-sidebar-new, .ap-sidebar-access) {
+	display: flex;
+	align-items: center;
+	gap: var(--space-8);
+	min-width: 0;
+	min-height: var(--size-control-sm);
+	height: var(--size-control-sm);
+	padding: 0 var(--space-12);
+	text-align: left;
+}
+.ap-project-sidebar :is(.ap-sidebar-new, .ap-sidebar-access) {
+	background: transparent;
+	border-radius: var(--radius-full);
+	font-weight: 510;
+}
+.ap-project-sidebar .ap-conversation-item {
+	background: transparent;
+	border-radius: var(--radius-md);
+}
+.ap-project-sidebar
+	:is(
+		.ap-sidebar-home,
+		.ap-sidebar-new,
+		.ap-sidebar-access,
+		.ap-conversation-item
+	):hover {
+	background: var(--muted-background);
+}
+.ap-project-sidebar .ap-conversation-item[aria-current="true"] {
 	background: var(--muted-hover);
 }
 .ap-conversation-item > span {
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: 510;
+	display: block;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-.ap-conversation-item > small {
-	font-size: 12px;
-	line-height: 16px;
-	color: var(--foreground-muted);
-}
-.ap-sidebar-bottom {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	padding: 8px;
-}
-.ap-sidebar-bottom p,
 .ap-sidebar-workspace p {
 	margin: 0;
 	font-weight: 510;
 	font-size: 14px;
 	line-height: 20px;
 }
-.ap-sidebar-bottom > span,
 .ap-sidebar-workspace > span {
 	font-size: 12px;
 	line-height: 16px;
 	color: var(--foreground-muted);
-}
-.ap-sidebar-bottom button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
-	height: 32px;
-	background: transparent;
-	border-radius: 9999px;
-	font-weight: 510;
 }
 .ap-sidebar-workspace {
 	padding: 16px;

@@ -3,6 +3,7 @@ import {
 	type ReactNode,
 	useContext,
 	useEffect,
+	useRef,
 	useState,
 } from "react";
 import { initialBuilderData, recordVersion } from "./builder/builder-model";
@@ -33,6 +34,7 @@ interface PrototypeState {
 	createProject: (prompt: string, sources: ProjectSource[]) => string;
 	selectProject: (id: string) => void;
 	updateProject: (id: string, updates: Partial<PrototypeProject>) => void;
+	saveProject: (id: string, updates: Partial<PrototypeProject>) => void;
 	updateCover: (id: string, cover: string) => void;
 	deleteProject: (id: string) => void;
 }
@@ -96,12 +98,14 @@ function readStore(): Store {
 
 export function PrototypeProvider({ children }: { children: ReactNode }) {
 	const [store, setStore] = useState(readStore);
+	const latestStore = useRef(store);
 	const [focusPromptRequest, setFocusPromptRequest] = useState(0);
 	const workspace = store.activeWorkspace
 		? store.workspaces[store.activeWorkspace]
 		: undefined;
 
 	useEffect(() => {
+		if (store !== latestStore.current) return;
 		try {
 			localStorage.setItem(storageKey, JSON.stringify(store));
 		} catch {
@@ -109,18 +113,53 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 		}
 	}, [store]);
 
+	function replaceStore(next: Store) {
+		latestStore.current = next;
+		setStore(next);
+	}
+
 	function changeWorkspace(change: (workspace: Workspace) => Workspace) {
-		setStore((current) => {
-			const key = current.activeWorkspace;
-			if (!key || !current.workspaces[key]) return current;
-			return {
-				...current,
-				workspaces: {
-					...current.workspaces,
-					[key]: change(current.workspaces[key]),
-				},
-			};
+		const current = latestStore.current;
+		const key = current.activeWorkspace;
+		if (!key || !current.workspaces[key]) return;
+		replaceStore({
+			...current,
+			workspaces: {
+				...current.workspaces,
+				[key]: change(current.workspaces[key]),
+			},
 		});
+	}
+
+	function saveProject(id: string, updates: Partial<PrototypeProject>) {
+		const current = latestStore.current;
+		const key = current.activeWorkspace;
+		const active = key ? current.workspaces[key] : undefined;
+		if (!key || !active?.projects.some((project) => project.id === id)) {
+			throw new Error("This project is no longer available in your workspace.");
+		}
+		const next = {
+			...current,
+			workspaces: {
+				...current.workspaces,
+				[key]: {
+					...active,
+					projects: active.projects.map((project) =>
+						project.id === id ? { ...project, ...updates } : project,
+					),
+				},
+			},
+		};
+		try {
+			localStorage.setItem(storageKey, JSON.stringify(next));
+		} catch (error) {
+			throw new Error(
+				error instanceof DOMException && error.name === "QuotaExceededError"
+					? "Browser storage is full. Free up space or choose smaller images, then try again."
+					: "Couldn’t save to browser storage. Allow local storage and try again.",
+			);
+		}
+		replaceStore(next);
 	}
 
 	return (
@@ -134,25 +173,24 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 					const accountKey = email
 						? `email:${email.trim().toLowerCase()}`
 						: "demo";
-					setStore((current) => {
-						const key =
-							isNewAccount || current.workspaces[accountKey]
-								? accountKey
-								: "demo";
-						return {
-							activeWorkspace: key,
-							workspaces: {
-								...current.workspaces,
-								[key]: current.workspaces[key] ?? {
-									projects: isNewAccount ? [] : seedDemoProjects(),
-									selectedId: isNewAccount ? undefined : demoProjects[0]?.id,
-								},
+					const current = latestStore.current;
+					const key =
+						isNewAccount || current.workspaces[accountKey]
+							? accountKey
+							: "demo";
+					replaceStore({
+						activeWorkspace: key,
+						workspaces: {
+							...current.workspaces,
+							[key]: current.workspaces[key] ?? {
+								projects: isNewAccount ? [] : seedDemoProjects(),
+								selectedId: isNewAccount ? undefined : demoProjects[0]?.id,
 							},
-						};
+						},
 					});
 				},
 				signOut: () =>
-					setStore((current) => ({ ...current, activeWorkspace: null })),
+					replaceStore({ ...latestStore.current, activeWorkspace: null }),
 				createProject: (prompt, sources) => {
 					const id = crypto.randomUUID();
 					const words = prompt
@@ -189,6 +227,7 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 							project.id === id ? { ...project, ...updates } : project,
 						),
 					})),
+				saveProject,
 				updateCover: (id, cover) =>
 					changeWorkspace((current) => ({
 						...current,

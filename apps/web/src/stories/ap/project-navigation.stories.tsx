@@ -12,18 +12,16 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"224 × 896 project-scoped navigation. Home has no sidebar. Selecting Chat, Skills, Instructions.md, History or Branding requests a project-scoped change. Conversation state and permissions are independent. Tab/Enter reaches every item; the active item has aria-current=page. All five Figma active variants are listed.",
+					"224 × 896 project-scoped navigation. New chat and conversation entries provide access to Chat; there is no duplicate Chat link in Project tools. Skills, Instructions.md, History and Branding retain their active states. Conversation and tool rows are 32px high. Project access is one left-aligned bottom action. Home has no sidebar.",
 			},
 		},
 	},
 	args: {
 		active: "Chat",
-		staffCount: 3,
 		conversations: [
 			{
 				id: "storybook-conversation",
 				title: "Build project advisor",
-				detail: "Today · 4 messages",
 				selected: true,
 			},
 		],
@@ -37,6 +35,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const Chat: Story = {
+	name: "Conversation active",
 	parameters: { figmaVariantId: "49:711" },
 	args: { active: "Chat" },
 };
@@ -55,4 +54,17 @@ export const History: Story = {
 export const Branding: Story = {
 	parameters: { figmaVariantId: "49:1107" },
 	args: { active: "Branding" },
+};
+
+export const LongConversationTitle: Story = {
+	args: {
+		conversations: [
+			{
+				id: "storybook-long-conversation",
+				title:
+					"Review recommendations, contact details, and appointment availability with the project team",
+				selected: true,
+			},
+		],
+	},
 };

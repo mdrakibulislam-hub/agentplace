@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { fn } from "storybook/test";
+import { expect, fn, userEvent, within } from "storybook/test";
 import { figma } from "../../stories/ap/fixtures";
 import { demoProjects, withLiveLink } from "../prototype-data";
 import { WorkspaceHeader } from "../workspace-header";
@@ -74,6 +74,20 @@ export const NoProjects: Story = {
 };
 export const RecentProjects: Story = {
 	parameters: { design: figma("53:349") },
+};
+export const AddWebsiteOrFile: Story = {
+	parameters: { design: figma("299:7410") },
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		await userEvent.click(
+			canvas.getByRole("button", { name: "Add website or file" }),
+		);
+		await expect(
+			within(canvasElement.ownerDocument.body).getByRole("dialog", {
+				name: "Add website or file",
+			}),
+		).toBeVisible();
+	},
 };
 export const QuickSwitcher: Story = {
 	args: { switcherOpen: true },

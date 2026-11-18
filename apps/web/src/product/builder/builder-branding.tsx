@@ -7,7 +7,13 @@ import {
 	MenuPopover,
 } from "@agentplace/ui/components/ap-menus";
 import { Button } from "@agentplace/ui/components/button";
-import { type ChangeEvent, useLayoutEffect, useRef, useState } from "react";
+import {
+	type ChangeEvent,
+	type FormEvent,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from "react";
 import { type BrandingDraft, initials } from "./builder-model";
 import { BuilderTitle } from "./builder-primitives";
 
@@ -18,38 +24,53 @@ const imageTypes: Record<ImageField, string[]> = {
 	cover: ["image/png", "image/jpeg"],
 };
 
+export interface BuilderBrandingProps {
+	branding: BrandingDraft;
+	onChange: (updates: Partial<BrandingDraft>) => void;
+	onSave: () => void | Promise<void>;
+	onBack: () => void;
+	saved: boolean;
+	canEdit?: boolean;
+	initialCoverMenu?: boolean;
+}
+
 export function BuilderBranding({
 	branding,
 	onChange,
 	onSave,
 	onBack,
 	saved,
+	canEdit = true,
 	initialCoverMenu = false,
-	demoCover = false,
-	onClearDemoCover,
-}: {
-	branding: BrandingDraft;
-	onChange: (updates: Partial<BrandingDraft>) => void;
-	onSave: () => void;
-	onBack: () => void;
-	saved: boolean;
-	initialCoverMenu?: boolean;
-	demoCover?: boolean;
-	onClearDemoCover?: () => void;
-}) {
+}: BuilderBrandingProps) {
 	const fileInput = useRef<HTMLInputElement>(null);
 	const colorInput = useRef<HTMLInputElement>(null);
+	const coverAction = useRef<HTMLButtonElement>(null);
+	const focusAfterRemoval = useRef(false);
 	const imageField = useRef<ImageField>("cover");
 	const request = useRef(0);
+	const savePending = useRef(false);
 	const latestChange = useRef(onChange);
 	const [isReading, setIsReading] = useState(false);
+	const [isSaving, setIsSaving] = useState(false);
 	const [fileError, setFileError] = useState("");
+	const [saveError, setSaveError] = useState("");
 	const [coverMenu, setCoverMenu] = useState(initialCoverMenu);
-	const hasCover = Boolean(branding.cover) || demoCover;
+	const hasCover = Boolean(branding.cover);
+	const locked = !canEdit || isSaving;
+	const imageDisabled = locked || isReading;
+	const valid = Boolean(branding.company.trim() && branding.name.trim());
 
 	useLayoutEffect(() => {
 		latestChange.current = onChange;
 	}, [onChange]);
+
+	useLayoutEffect(() => {
+		if (!hasCover && focusAfterRemoval.current) {
+			focusAfterRemoval.current = false;
+			coverAction.current?.focus();
+		}
+	}, [hasCover]);
 
 	useLayoutEffect(
 		() => () => {
@@ -58,11 +79,32 @@ export function BuilderBranding({
 		[],
 	);
 
+	async function submit(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		if (!canEdit || isReading || savePending.current || !valid || saved) return;
+		savePending.current = true;
+		setIsSaving(true);
+		setSaveError("");
+		try {
+			await onSave();
+		} catch (error) {
+			setSaveError(
+				error instanceof Error
+					? error.message
+					: "Couldn’t save changes. Try again.",
+			);
+		} finally {
+			savePending.current = false;
+			setIsSaving(false);
+		}
+	}
+
 	function pickImage(field: ImageField) {
-		imageField.current = field;
-		setFileError("");
+		if (imageDisabled) return;
 		const input = fileInput.current;
 		if (!input) return;
+		imageField.current = field;
+		setFileError("");
 		input.accept = imageTypes[field].join(",");
 		input.click();
 	}
@@ -70,11 +112,13 @@ export function BuilderBranding({
 	function stageImage(event: ChangeEvent<HTMLInputElement>) {
 		const file = event.currentTarget.files?.[0];
 		event.currentTarget.value = "";
-		if (!file) return;
+		if (!file || imageDisabled) return;
 		const field = imageField.current;
 		if (!imageTypes[field].includes(file.type) || file.size > 2 * 1024 * 1024) {
 			setFileError(
-				`Choose a supported image under 2 MB. ${field === "cover" ? "Covers use PNG or JPG." : ""}`,
+				field === "cover"
+					? "Choose a PNG or JPG cover up to 2 MB."
+					: "Choose a supported image up to 2 MB.",
 			);
 			return;
 		}
@@ -99,7 +143,6 @@ export function BuilderBranding({
 				if (request.current !== token) return;
 				setIsReading(false);
 				setFileError("");
-				if (field === "cover") onClearDemoCover?.();
 				latestChange.current({ [field]: source });
 			};
 			image.src = source;
@@ -108,10 +151,9 @@ export function BuilderBranding({
 	}
 
 	function removeCover() {
-		request.current++;
-		setIsReading(false);
+		if (imageDisabled) return;
 		setFileError("");
-		onClearDemoCover?.();
+		focusAfterRemoval.current = true;
 		onChange({ cover: undefined });
 	}
 
@@ -119,87 +161,112 @@ export function BuilderBranding({
 		<form
 			className="ap-builder-editor ap-builder-branding"
 			aria-label="Branding"
-			onSubmit={(event) => {
-				event.preventDefault();
-				onSave();
-			}}
+			onSubmit={(event) => void submit(event)}
 		>
 			<BuilderTitle
 				title="Branding"
-				description="Make the agent feel like your company."
 				action={
 					<Button
 						type="submit"
-						disabled={
-							isReading || !branding.company.trim() || !branding.name.trim()
-						}
+						className="ap-branding-save"
+						loading={isSaving}
+						disabled={imageDisabled || !valid}
 					>
-						Save changes
+						{isSaving ? "Saving…" : "Save changes"}
 					</Button>
 				}
 			/>
 			<input
 				ref={fileInput}
-				className="sr-only"
+				hidden
 				type="file"
-				tabIndex={-1}
 				aria-label="Choose a branding image"
 				onChange={stageImage}
 			/>
 			<div className="ap-builder-branding-controls">
-				<section aria-label="Company identity">
-					<h2>Company identity</h2>
-					<FormField
-						label="Company name"
-						showSupportingText={false}
-						required
-						value={branding.company}
-						onChange={(event) => onChange({ company: event.target.value })}
-					/>
-					<div className="ap-builder-brand-line ap-builder-brand-logo">
+				<section aria-label="Company">
+					<h2>Company</h2>
+					<div className="ap-branding-identity">
 						<Avatar
 							size="large"
-							initials={branding.company.slice(0, 1)}
+							initials={branding.company.charAt(0).toUpperCase()}
 							src={branding.companyLogo}
 							alt="Company logo"
 						/>
-						<div>
-							<p>Company logo</p>
-							<small>SVG or PNG · up to 2 MB</small>
-						</div>
+						<FormField
+							label="Company name"
+							showLabel={false}
+							showSupportingText={false}
+							required
+							disabled={locked}
+							value={branding.company}
+							onChange={(event) => onChange({ company: event.target.value })}
+						/>
 						<Button
 							variant="secondary"
+							disabled={imageDisabled}
 							onClick={() => pickImage("companyLogo")}
 						>
-							{branding.companyLogo ? "Replace" : "Upload"}
+							Upload logo
 						</Button>
 					</div>
 				</section>
-				<section aria-label="Project cover">
-					<h2>Project cover</h2>
+				<section aria-label="Agent">
+					<h2>Agent</h2>
+					<div className="ap-branding-identity">
+						<Avatar
+							size="large"
+							initials={initials(branding.name)}
+							src={branding.avatar}
+							alt="Agent avatar"
+						/>
+						<FormField
+							label="Agent name"
+							showLabel={false}
+							showSupportingText={false}
+							required
+							disabled={locked}
+							value={branding.name}
+							onChange={(event) => onChange({ name: event.target.value })}
+						/>
+						<Button
+							variant="secondary"
+							disabled={imageDisabled}
+							onClick={() => pickImage("avatar")}
+						>
+							Change avatar
+						</Button>
+					</div>
+				</section>
+				<section className="ap-branding-appearance" aria-label="Appearance">
+					<h2>Appearance</h2>
 					<div className="ap-builder-brand-line ap-builder-brand-cover">
 						<ProjectCover
 							context="branding-upload"
 							image={branding.cover}
-							presentation={demoCover ? "added" : undefined}
-							emptyLabel={hasCover ? "Replace cover" : "No cover"}
-							canEdit
+							emptyLabel={hasCover ? "Change cover" : "No cover"}
+							canEdit={!imageDisabled}
 							onEdit={() =>
 								hasCover ? setCoverMenu(true) : pickImage("cover")
 							}
 						/>
-						<div>
-							<p>Cards &amp; agent page</p>
-							<small>PNG or JPG · 1600 × 620</small>
+						<div className="ap-branding-cover-guidance">
+							<p>Project cover</p>
+							<small>1600 × 620 recommended</small>
 						</div>
 						{hasCover ? (
 							<MenuPopover
 								align="end"
-								open={coverMenu}
+								open={coverMenu && !imageDisabled}
 								onOpenChange={setCoverMenu}
 								trigger={
-									<Button variant="secondary" icon={<Icon name="upload" />}>
-										Replace
+									<Button
+										ref={coverAction}
+										variant="secondary"
+										aria-label="Change cover"
+										disabled={imageDisabled}
+									>
+										Change
 									</Button>
 								}
 							>
@@ -219,44 +286,46 @@ export function BuilderBranding({
 							</MenuPopover>
 						) : (
 							<Button
+								ref={coverAction}
 								variant="secondary"
-								icon={<Icon name="upload" />}
+								aria-label="Upload cover"
+								disabled={imageDisabled}
 								onClick={() => pickImage("cover")}
 							>
-								Upload cover
+								Upload
 							</Button>
 						)}
 					</div>
-					<small>Use a cover that represents your project.</small>
-				</section>
-				<section aria-label="Color and style">
-					<h2>Color &amp; style</h2>
 					<div className="ap-builder-brand-line ap-builder-brand-color">
 						<input
 							ref={colorInput}
 							type="color"
-							aria-label="Primary color"
+							aria-label="Brand color"
+							disabled={locked}
 							value={branding.color}
 							onChange={(event) =>
 								onChange({ color: event.target.value.toUpperCase() })
 							}
 						/>
-						<p>{branding.color}</p>
+						<p>Brand color</p>
 						<Button
 							variant="secondary"
+							aria-label={`Change brand color, ${branding.color}`}
+							disabled={locked}
 							onClick={() => {
-								if (colorInput.current?.showPicker)
-									colorInput.current.showPicker();
-								else colorInput.current?.click();
+								const input = colorInput.current;
+								if (input?.showPicker) input.showPicker();
+								else input?.click();
 							}}
 						>
-							Choose color
+							{branding.color}
 						</Button>
 					</div>
 					<div className="ap-builder-brand-selects">
 						<SelectField
-							label="Type style"
+							label="Font"
 							showSupportingText={false}
+							disabled={locked}
 							value={branding.typography}
 							onChange={(event) =>
 								onChange({
@@ -269,8 +338,9 @@ export function BuilderBranding({
 							]}
 						/>
 						<SelectField
-							label="Appearance"
+							label="Theme"
 							showSupportingText={false}
+							disabled={locked}
 							value={branding.appearance}
 							onChange={(event) =>
 								onChange({
@@ -285,37 +355,10 @@ export function BuilderBranding({
 						/>
 					</div>
 				</section>
-				<section aria-label="Agent identity">
-					<h2>Agent identity</h2>
-					<FormField
-						label="Agent name"
-						showSupportingText={false}
-						required
-						value={branding.name}
-						onChange={(event) => onChange({ name: event.target.value })}
-					/>
-					<div className="ap-builder-brand-line ap-builder-brand-avatar">
-						<Avatar
-							size="large"
-							initials={initials(branding.name)}
-							src={branding.avatar}
-							alt="Agent avatar"
-						/>
-						<p>Agent avatar</p>
-						<Button variant="secondary" onClick={() => pickImage("avatar")}>
-							Choose avatar
-						</Button>
-					</div>
-				</section>
 			</div>
-			{fileError && (
+			{(fileError || saveError) && (
 				<p className="ap-builder-error" role="alert">
-					{fileError}
-				</p>
-			)}
-			{isReading && (
-				<p className="ap-builder-small" role="status">
-					Preparing image…
+					{fileError || saveError}
 				</p>
 			)}
 			<footer className="ap-builder-branding-footer">
@@ -327,8 +370,14 @@ export function BuilderBranding({
 					Back to chat
 				</Button>
 				<span className="ap-builder-small" role="status">
-					{saved && <Icon name="check" />}
-					{saved ? "Saved to draft" : "Unsaved changes"}
+					{saved && !isReading && !isSaving && <Icon name="check" />}
+					{isReading
+						? "Preparing image…"
+						: isSaving
+							? "Saving draft…"
+							: saved
+								? "Saved to draft"
+								: "Unsaved changes"}
 				</span>
 			</footer>
 		</form>

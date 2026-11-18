@@ -72,6 +72,14 @@
 	select {
 		font: inherit;
 	}
+	:is(input, textarea):not(.ap-otp input)::placeholder {
+		font-size: var(--type-body-sm-regular-size);
+		font-weight: 400;
+	}
+}
+
+:is(input, textarea):not(.ap-otp input):placeholder-shown {
+	line-height: var(--type-body-sm-regular-line-height);
 }
 
 /* Storybook's reduced-motion control also covers portals mounted outside a story. */

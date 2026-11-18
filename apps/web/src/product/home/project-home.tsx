@@ -12,6 +12,7 @@ import {
 	type ProjectFilterValue,
 	ProjectSearchResults,
 } from "@agentplace/ui/components/ap-menus";
+import { SourceAttachmentDialog } from "@agentplace/ui/components/ap-source-dialog";
 import { Button } from "@agentplace/ui/components/button";
 import { useEffect, useRef, useState } from "react";
 import type {
@@ -85,7 +86,7 @@ export function ProjectHome({
 }: ProjectHomeProps) {
 	const [prompt, setPrompt] = useState("");
 	const [sources, setSources] = useState<ProjectSource[]>([]);
-	const [website, setWebsite] = useState("");
+	const [attachmentOpen, setAttachmentOpen] = useState(false);
 	const [filter, setFilter] = useState(initialFilter);
 	const [query, setQuery] = useState(initialQuery);
 	const [searchOpen, setSearchOpen] = useState(initialPanel === "search");
@@ -99,7 +100,7 @@ export function ProjectHome({
 	const deleted = useRef(false);
 	const coverTarget = useRef("");
 	const coverFile = useRef<HTMLInputElement>(null);
-	const linkDialog = useRef<HTMLDialogElement>(null);
+	const attachmentReturnFocus = useRef<HTMLElement>(null);
 	const queryText = query.trim();
 	const empty = projects.length === 0;
 	const candidates = projects.filter(
@@ -129,9 +130,6 @@ export function ProjectHome({
 				? previous
 				: [...previous, source],
 		);
-		setWebsite("");
-		linkDialog.current?.close();
-		promptArea.current?.querySelector("textarea")?.focus();
 	}
 
 	async function handleAction(action: ProjectAction, id: string) {
@@ -172,171 +170,183 @@ export function ProjectHome({
 
 	return (
 		<main className="ap-project-home">
-			<AmbientBottomGradient className="ap-home-ambient" />
-			<section
-				ref={promptArea}
-				className="ap-home-start"
-				aria-labelledby="ap-home-title"
-			>
-				<div className="ap-home-intro">
-					<h1 id="ap-home-title">
-						{empty ? "Create your first project" : "Start a new project"}
-					</h1>
-					<p>Describe the agent you want. We’ll help you build it together.</p>
-				</div>
-				<div className="ap-home-prompt">
-					<NewProjectPrompt
-						value={prompt}
-						onValueChange={setPrompt}
-						onSubmit={(value) => onCreate(value, sources)}
-						onAttach={() => linkDialog.current?.showModal()}
-					/>
-					{sources.length > 0 && (
-						<ul className="ap-home-sources" aria-label="Attached context">
-							{sources.map((source) => (
-								<li key={source.kind + source.value}>
-									<Button
-										variant="secondary"
-										icon={<Icon name="close" />}
-										aria-label={`Remove ${source.value}`}
-										onClick={() =>
-											setSources(
-												sources.filter((candidate) => candidate !== source),
-											)
-										}
-									>
-										{source.value}
-									</Button>
-								</li>
-							))}
-						</ul>
-					)}
-				</div>
-				<fieldset
-					className="ap-home-suggestions"
-					aria-label="Start with an idea"
+			<AmbientBottomGradient variant="page" className="ap-home-ambient" />
+			<div className="ap-home-content">
+				<section
+					ref={promptArea}
+					className="ap-home-start"
+					aria-labelledby="ap-home-title"
 				>
-					{suggestions.map((suggestion) => (
-						<Button
-							key={suggestion.label}
-							variant="secondary"
-							icon={<Icon name={suggestion.icon} />}
-							onClick={() => {
-								setPrompt(suggestion.prompt);
-								promptArea.current?.querySelector("textarea")?.focus();
-							}}
-						>
-							{suggestion.label}
-						</Button>
-					))}
-				</fieldset>
-			</section>
-			<section
-				ref={projectArea}
-				className="ap-home-projects"
-				aria-label="Projects"
-				tabIndex={-1}
-			>
-				{empty ? (
-					<div className="ap-home-empty">
-						<Icon name="briefcase-business" size={20} />
-						<h2>Your projects will appear here</h2>
+					<div className="ap-home-intro">
+						<h1 id="ap-home-title">
+							{empty ? "Create your first project" : "Start a new project"}
+						</h1>
 						<p>
-							Describe your first agent above, or choose a suggestion to get
-							started.
+							Describe the agent you want. We’ll help you build it together.
 						</p>
 					</div>
-				) : (
-					<>
-						<div className="ap-home-project-bar">
-							<h2>{queryText ? "Search results" : "Recent projects"}</h2>
-							<MenuPopover
-								defaultOpen={initialPanel === "filter"}
-								align="end"
-								trigger={
-									<Button variant="ghost" icon={<Icon name="chevron-down" />}>
-										{filterLabels[filter]}
-									</Button>
-								}
+					<div className="ap-home-prompt">
+						<NewProjectPrompt
+							value={prompt}
+							onValueChange={setPrompt}
+							onSubmit={(value) => onCreate(value, sources)}
+							onAttach={() => {
+								attachmentReturnFocus.current =
+									document.activeElement instanceof HTMLElement
+										? document.activeElement
+										: null;
+								setAttachmentOpen(true);
+							}}
+						/>
+						{sources.length > 0 && (
+							<ul className="ap-home-sources" aria-label="Attached context">
+								{sources.map((source) => (
+									<li key={source.kind + source.value}>
+										<Button
+											variant="secondary"
+											icon={<Icon name="close" />}
+											aria-label={`Remove ${source.value}`}
+											onClick={() =>
+												setSources(
+													sources.filter((candidate) => candidate !== source),
+												)
+											}
+										>
+											{source.value}
+										</Button>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+					<fieldset
+						className="ap-home-suggestions"
+						aria-label="Start with an idea"
+					>
+						{suggestions.map((suggestion) => (
+							<Button
+								key={suggestion.label}
+								variant="secondary"
+								icon={<Icon name={suggestion.icon} />}
+								onClick={() => {
+									setPrompt(suggestion.prompt);
+									promptArea.current?.querySelector("textarea")?.focus();
+								}}
 							>
-								{(close) => (
-									<ProjectFilter
-										projects={projects}
-										value={filter}
-										onChange={(value) => {
-											setFilter(value);
-											close();
+								{suggestion.label}
+							</Button>
+						))}
+					</fieldset>
+				</section>
+				<section
+					ref={projectArea}
+					className="ap-home-projects"
+					aria-label="Projects"
+					tabIndex={-1}
+				>
+					{empty ? (
+						<div className="ap-home-empty">
+							<Icon name="briefcase-business" size={20} />
+							<h2>Your projects will appear here</h2>
+							<p>
+								Describe your first agent above, or choose a suggestion to get
+								started.
+							</p>
+						</div>
+					) : (
+						<>
+							<div className="ap-home-project-bar">
+								<h2>{queryText ? "Search results" : "Recent projects"}</h2>
+								<MenuPopover
+									defaultOpen={initialPanel === "filter"}
+									align="end"
+									trigger={
+										<Button variant="ghost" icon={<Icon name="chevron-down" />}>
+											{filterLabels[filter]}
+										</Button>
+									}
+								>
+									{(close) => (
+										<ProjectFilter
+											projects={projects}
+											value={filter}
+											onChange={(value) => {
+												setFilter(value);
+												close();
+											}}
+											onClose={close}
+										/>
+									)}
+								</MenuPopover>
+								<MenuPopover
+									open={searchOpen}
+									onOpenChange={setSearchOpen}
+									align="end"
+									trigger={
+										<Button
+											variant="ghost"
+											aria-label="Find a project"
+											icon={<Icon name="search" />}
+										/>
+									}
+								>
+									{(close) => (
+										<ProjectSearchResults
+											projects={candidates}
+											query={query}
+											onQueryChange={setQuery}
+											onSelect={(id) => {
+												close();
+												onOpen(id);
+											}}
+											onClose={close}
+										/>
+									)}
+								</MenuPopover>
+							</div>
+							<div className="ap-home-grid">
+								{filtered.map((project) => (
+									<ProjectCard
+										key={project.id}
+										project={project}
+										cover={{ image: project.cover }}
+										defaultActionsOpen={initialActionsId === project.id}
+										onOpen={onOpen}
+										onCoverEdit={(id) => {
+											coverTarget.current = id;
+											coverFile.current?.click();
 										}}
-										onClose={close}
+										onAction={(action, id) => void handleAction(action, id)}
 									/>
-								)}
-							</MenuPopover>
-							<MenuPopover
-								open={searchOpen}
-								onOpenChange={setSearchOpen}
-								align="end"
-								trigger={
+								))}
+							</div>
+							{!searchOpen && filtered.length === 0 && (
+								<div className="ap-home-no-matches">
+									<p>
+										{queryText
+											? "No matching projects"
+											: `No ${filter} projects`}
+									</p>
 									<Button
 										variant="ghost"
-										aria-label="Find a project"
-										icon={<Icon name="search" />}
-									/>
-								}
-							>
-								{(close) => (
-									<ProjectSearchResults
-										projects={candidates}
-										query={query}
-										onQueryChange={setQuery}
-										onSelect={(id) => {
-											close();
-											onOpen(id);
+										onClick={() => {
+											setQuery("");
+											if (!queryText) setFilter("all");
 										}}
-										onClose={close}
-									/>
-								)}
-							</MenuPopover>
-						</div>
-						<div className="ap-home-grid">
-							{filtered.map((project) => (
-								<ProjectCard
-									key={project.id}
-									project={project}
-									cover={{ image: project.cover }}
-									defaultActionsOpen={initialActionsId === project.id}
-									onOpen={onOpen}
-									onCoverEdit={(id) => {
-										coverTarget.current = id;
-										coverFile.current?.click();
-									}}
-									onAction={(action, id) => void handleAction(action, id)}
-								/>
-							))}
-						</div>
-						{!searchOpen && filtered.length === 0 && (
-							<div className="ap-home-no-matches">
-								<p>
-									{queryText ? "No matching projects" : `No ${filter} projects`}
-								</p>
-								<Button
-									variant="ghost"
-									onClick={() => {
-										setQuery("");
-										if (!queryText) setFilter("all");
-									}}
-								>
-									{queryText ? "Clear search" : "Show all projects"}
-								</Button>
-							</div>
-						)}
-					</>
-				)}
-				{coverError && (
-					<p className="ap-home-error" role="alert">
-						{coverError}
-					</p>
-				)}
-			</section>
+									>
+										{queryText ? "Clear search" : "Show all projects"}
+									</Button>
+								</div>
+							)}
+						</>
+					)}
+					{coverError && (
+						<p className="ap-home-error" role="alert">
+							{coverError}
+						</p>
+					)}
+				</section>
+			</div>
 			<footer className="ap-home-footer">
 				Projects save automatically. Publish when you’re ready to share.
 			</footer>
@@ -412,59 +422,13 @@ export function ProjectHome({
 					reader.readAsDataURL(file);
 				}}
 			/>
-			<dialog
-				ref={linkDialog}
-				className="ap-home-attach"
-				aria-labelledby="ap-home-attach-title"
-			>
-				<form
-					onSubmit={(event) => {
-						event.preventDefault();
-						const url = URL.canParse(website) ? new URL(website) : undefined;
-						if (url?.protocol !== "https:" && url?.protocol !== "http:") {
-							const input = event.currentTarget.querySelector("input");
-							input?.setCustomValidity("Use an http or https address.");
-							input?.reportValidity();
-							return;
-						}
-						addSource({ kind: "website", value: url.href });
-					}}
-				>
-					<h2 id="ap-home-attach-title">Add website or file</h2>
-					<label htmlFor="ap-home-website">Website URL</label>
-					<div className="ap-home-attach-row">
-						<input
-							id="ap-home-website"
-							type="url"
-							required
-							value={website}
-							placeholder="https://"
-							onChange={(event) => {
-								event.currentTarget.setCustomValidity("");
-								setWebsite(event.currentTarget.value);
-							}}
-						/>
-						<Button type="submit">Add website</Button>
-					</div>
-					<label htmlFor="ap-home-attachment">Choose a file</label>
-					<input
-						id="ap-home-attachment"
-						type="file"
-						onChange={(event) => {
-							const file = event.currentTarget.files?.[0];
-							event.currentTarget.value = "";
-							if (file) addSource({ kind: "file", value: file.name });
-						}}
-					/>
-					<Button
-						variant="secondary"
-						type="button"
-						onClick={() => linkDialog.current?.close()}
-					>
-						Cancel
-					</Button>
-				</form>
-			</dialog>
+			<SourceAttachmentDialog
+				open={attachmentOpen}
+				onOpenChange={setAttachmentOpen}
+				returnFocus={attachmentReturnFocus}
+				onAddWebsite={(url) => addSource({ kind: "website", value: url })}
+				onAddFile={(file) => addSource({ kind: "file", value: file.name })}
+			/>
 		</main>
 	);
 }

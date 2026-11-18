@@ -3,6 +3,7 @@ import { useState } from "react";
 import { figma } from "../../stories/ap/fixtures";
 import type { PrototypeProject } from "../prototype-data";
 import { WorkspaceHeader } from "../workspace-header";
+import { coverFixture } from "./branding-story-fixtures";
 import {
 	BuilderExperience,
 	type BuilderExperienceProps,
@@ -59,7 +60,19 @@ const ready = {
 	builder: {
 		...authoredData,
 		...configuration,
+		conversations: authoredData.conversations.map((conversation) => ({
+			...conversation,
+			title: "Build project advisor",
+		})),
 		versions: authoredVersions.slice(1),
+	},
+};
+const withCover = {
+	...ready,
+	cover: coverFixture,
+	builder: {
+		...ready.builder,
+		branding: { ...ready.builder.branding, cover: coverFixture },
 	},
 };
 const published: PrototypeProject = {
@@ -72,7 +85,7 @@ const published: PrototypeProject = {
 
 type FixtureProps = Omit<
 	BuilderExperienceProps,
-	"onProjectChange" | "onBack" | "onSettings"
+	"onProjectChange" | "onSaveDraft" | "onBack" | "onSettings"
 >;
 function BuilderFixture({ project: initialProject, ...args }: FixtureProps) {
 	const [project, setProject] = useState(initialProject);
@@ -93,6 +106,9 @@ function BuilderFixture({ project: initialProject, ...args }: FixtureProps) {
 				{...args}
 				project={project}
 				onProjectChange={(updates) =>
+					setProject((current) => ({ ...current, ...updates }))
+				}
+				onSaveDraft={(updates) =>
 					setProject((current) => ({ ...current, ...updates }))
 				}
 				onBack={() => undefined}
@@ -141,12 +157,16 @@ export const BrandingWithoutCover: Story = {
 };
 
 export const BrandingWithCover: Story = {
-	args: { initialSection: "Branding", demoCover: true },
+	args: { initialSection: "Branding", project: withCover },
 	parameters: { design: figma("54:1876"), figmaNodeId: "54:1876" },
 };
 
 export const ReplaceOrRemoveCover: Story = {
-	args: { initialSection: "Branding", initialCoverMenu: true, demoCover: true },
+	args: {
+		initialSection: "Branding",
+		initialCoverMenu: true,
+		project: withCover,
+	},
 	parameters: { design: figma("140:4811"), figmaNodeId: "140:4811" },
 };
 

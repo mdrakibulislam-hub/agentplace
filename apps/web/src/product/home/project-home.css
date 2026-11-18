@@ -19,6 +19,16 @@
 	max-height: 100%;
 }
 
+.ap-home-content {
+	display: flex;
+	flex: 1;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-48);
+}
+
 .ap-home-start {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
@@ -153,8 +163,6 @@
 }
 
 .ap-home-footer {
-	margin-top: auto;
-	padding-top: var(--space-32);
 	color: var(--foreground-muted);
 	font-size: var(--type-body-xs-regular-size);
 	line-height: var(--type-body-xs-regular-line-height);
@@ -205,49 +213,6 @@
 	color: var(--status-error-foreground);
 }
 
-.ap-home-attach {
-	inset: 0;
-	margin: auto;
-	width: min(480px, calc(100vw - 32px));
-	padding: var(--space-24);
-	border-radius: var(--radius-xl);
-	background: var(--card-background);
-	box-shadow: var(--shadow-overlay);
-	color: var(--foreground-default);
-}
-
-.ap-home-attach::backdrop {
-	background: var(--overlay-modal);
-}
-
-.ap-home-attach form {
-	display: grid;
-	gap: var(--space-12);
-}
-
-.ap-home-attach h2 {
-	font-size: var(--type-heading-sm-size);
-	font-weight: 590;
-}
-
-.ap-home-attach-row {
-	display: flex;
-	gap: var(--space-8);
-}
-
-.ap-home-attach-row input {
-	min-width: 0;
-	flex: 1;
-	padding-inline: var(--space-12);
-	border: 1px solid var(--border-default);
-	border-radius: var(--radius-md);
-	background: var(--muted-background);
-}
-
-.ap-home-attach form > .ap-button {
-	justify-self: end;
-}
-
 @media (max-width: 900px) {
 	.ap-home-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -258,6 +223,9 @@
 	.ap-project-home {
 		gap: var(--space-24);
 		padding: var(--space-24) var(--space-16);
+	}
+	.ap-home-content {
+		gap: var(--space-24);
 	}
 	.ap-home-projects {
 		margin-top: var(--space-16);

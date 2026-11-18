@@ -27,6 +27,9 @@
 .ap-builder-main .ap-project-toolbar {
 	width: 100%;
 	flex-shrink: 0;
+	border-right: var(--stroke-default) solid var(--border-default);
+	border-bottom: var(--stroke-default) solid var(--border-default);
+	outline: none;
 }
 
 .ap-builder-main .ap-project-toolbar > :where(h2) {
@@ -36,9 +39,82 @@
 }
 
 .ap-builder-split {
+	position: relative;
 	display: grid;
-	grid-template-columns: minmax(0, 536fr) minmax(0, 680fr);
+	grid-template-columns:
+		minmax(var(--ap-builder-editor-min), 1fr)
+		clamp(
+			var(--ap-builder-preview-min),
+			var(--ap-builder-preview-share),
+			calc(100% - var(--ap-builder-editor-min))
+		);
 	min-height: calc(100svh - 128px);
+}
+
+.ap-builder-preview-pane {
+	display: grid;
+	min-width: 0;
+}
+
+.ap-builder-divider {
+	position: absolute;
+	z-index: 2;
+	grid-area: 1 / 2;
+	inset-block: 0;
+	inset-inline-start: 0;
+	transform: translateX(-50%);
+	display: grid;
+	place-items: center;
+	width: var(--space-24);
+	height: auto;
+	margin: 0;
+	border: 0;
+	cursor: col-resize;
+	touch-action: none;
+	outline: none;
+}
+
+.ap-builder-divider::before,
+.ap-builder-divider::after {
+	content: "";
+	grid-area: 1 / 1;
+	opacity: 0;
+}
+
+.ap-builder-divider::before {
+	width: var(--stroke-focus);
+	height: 100%;
+	background: var(--border-default);
+}
+
+.ap-builder-divider::after {
+	width: var(--space-4);
+	height: var(--size-control-sm);
+	border-radius: var(--radius-full);
+	background: var(--foreground-muted);
+}
+
+.ap-builder-divider:is(:hover, :focus-visible)::before,
+.ap-builder-divider:is(:hover, :focus-visible)::after,
+.ap-builder-split[data-resizing] > .ap-builder-divider::before,
+.ap-builder-split[data-resizing] > .ap-builder-divider::after {
+	opacity: 1;
+}
+
+.ap-builder-divider:focus-visible::after {
+	outline: var(--stroke-focus) solid var(--focus-ring);
+	outline-offset: 2px;
+}
+
+.ap-builder-split:where([data-resizing]) {
+	cursor: col-resize;
+	user-select: none;
+}
+
+@media (hover: none) {
+	.ap-builder-divider::after {
+		opacity: 1;
+	}
 }
 
 .ap-builder-editor {
@@ -50,6 +126,20 @@
 	display: flex;
 	flex-direction: column;
 	height: max(640px, calc(100svh - 128px));
+}
+
+.ap-builder-chat-scroll,
+.ap-builder-chat-compose,
+.ap-builder-branding
+	> :where(
+		.ap-builder-title,
+		.ap-builder-branding-controls,
+		.ap-builder-branding-footer,
+		.ap-builder-error
+	) {
+	width: 100%;
+	max-width: 720px;
+	margin-inline: auto;
 }
 
 .ap-builder-chat-scroll {
@@ -65,6 +155,10 @@
 
 .ap-builder-chat-scroll > * {
 	flex-shrink: 0;
+}
+
+.ap-builder-chat-scroll > .ap-working-indicator {
+	width: 100%;
 }
 
 .ap-builder-title {
@@ -313,10 +407,6 @@
 	padding: 0;
 }
 
-.ap-builder-visitor-standalone .ap-preview-diffusion {
-	display: none;
-}
-
 .ap-builder-visitor .ap-preview-company,
 .ap-builder-visitor .ap-visitor-experience h1,
 .ap-builder-visitor .ap-preview-description,
@@ -498,8 +588,8 @@
 	.ap-builder-progress {
 		padding-top: 64px;
 	}
-	.ap-builder-split:where([data-view="editor"]) > .ap-builder-progress,
-	.ap-builder-split:where([data-view="editor"]) > .ap-builder-visitor,
+	.ap-builder-divider,
+	.ap-builder-split:where([data-view="editor"]) > .ap-builder-preview-pane,
 	.ap-builder-split:where([data-view="preview"]) > .ap-builder-editor {
 		display: none;
 	}
@@ -526,6 +616,7 @@
 	}
 	.ap-builder-workspace .ap-sidebar-links {
 		flex-direction: row;
+		margin-top: var(--space-8);
 		overflow-x: auto;
 	}
 	.ap-builder-workspace .ap-sidebar-link {
@@ -560,67 +651,88 @@
 .ap-builder-branding {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
-	padding-top: 24px;
-	padding-bottom: 24px;
+	gap: var(--space-24);
+	padding-block: var(--space-24);
+	container: branding / inline-size;
+}
+
+.ap-builder-conversation-menu .ap-menu-item {
+	width: 100%;
+}
+
+.ap-builder-conversation-menu :where(.ap-menu-item) > .ap-icon {
+	flex: none;
+}
+
+.ap-builder-conversation-menu .ap-menu-item > :where(span:last-child) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ap-branding-save {
+	min-width: 118px;
 }
 
 .ap-builder-branding-controls,
 .ap-builder-branding-controls > section {
 	display: flex;
 	flex-direction: column;
+	gap: var(--space-12);
 }
 
 .ap-builder-branding-controls {
-	gap: 12px;
+	gap: var(--space-24);
 }
 
-.ap-builder-branding-controls > section {
-	gap: 8px;
+.ap-builder-branding-controls > .ap-branding-appearance {
+	gap: var(--space-16);
 }
 
 .ap-builder-branding-controls h2,
 .ap-builder-brand-line p {
 	margin: 0;
-	font-size: 14px;
-	line-height: 20px;
+	font-size: var(--type-body-sm-regular-size);
+	line-height: var(--type-body-sm-regular-line-height);
 	font-weight: 510;
+}
+
+.ap-builder-branding-controls h2 {
+	font-weight: 590;
 }
 
 .ap-builder-branding-controls small {
 	color: var(--foreground-muted);
-	font-size: 12px;
-	line-height: 16px;
+	font-size: var(--type-body-xs-regular-size);
+	line-height: var(--type-body-xs-regular-line-height);
+}
+
+.ap-branding-identity {
+	display: grid;
+	grid-template-columns: var(--size-avatar-lg) minmax(0, 1fr) 122px;
+	align-items: center;
+	gap: var(--space-12);
+}
+
+.ap-branding-identity .ap-input {
+	font-size: var(--type-body-sm-regular-size);
+	line-height: var(--type-body-sm-regular-line-height);
 }
 
 .ap-builder-brand-line {
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: var(--space-12);
 }
 
-.ap-builder-brand-line > :is(div, p) {
+.ap-builder-brand-line > :is(.ap-branding-cover-guidance, p) {
 	min-width: 0;
 	flex: 1;
 }
 
-.ap-builder-brand-line > div:not(.ap-project-cover) {
+.ap-branding-cover-guidance {
 	display: grid;
-	gap: 4px;
-}
-
-.ap-builder-brand-line > :last-child {
-	flex: 0 0 auto;
-}
-
-.ap-builder-brand-logo {
-	min-height: 56px;
-	gap: 16px;
-}
-
-.ap-builder-brand-avatar {
-	min-height: 48px;
-	gap: 16px;
+	gap: var(--space-4);
 }
 
 .ap-builder-brand-cover > .ap-project-cover {
@@ -629,28 +741,37 @@
 }
 
 .ap-builder-brand-cover .ap-cover-art {
-	padding: 8px;
-	gap: 4px;
-	font-size: 12px;
-	line-height: 16px;
+	padding: var(--space-8);
+	gap: var(--space-4);
+	font-size: var(--type-body-xs-regular-size);
+	line-height: var(--type-body-xs-regular-line-height);
 }
 
 .ap-builder-brand-cover :where(.ap-cover-empty) .ap-icon {
 	color: var(--content-tertiary);
 }
 
+.ap-builder-brand-cover .ap-cover-touch-action {
+	display: none;
+}
+
 .ap-builder-brand-color {
-	min-height: 40px;
+	min-height: var(--size-control-md);
 }
 
 .ap-builder-brand-color input[type="color"] {
-	width: 32px;
-	height: 32px;
+	width: var(--size-control-sm);
+	height: var(--size-control-sm);
 	border: 0;
 	border-radius: var(--radius-sm);
 	background: transparent;
 	padding: 0;
 	cursor: pointer;
+}
+
+.ap-builder-brand-color input[type="color"]:focus-visible {
+	outline: var(--stroke-focus) solid var(--focus-ring);
+	outline-offset: 2px;
 }
 
 .ap-builder-brand-color input[type="color"]::-webkit-color-swatch-wrapper {
@@ -669,25 +790,41 @@
 
 .ap-builder-brand-selects {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 16px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--space-16);
 }
 
 .ap-builder-branding-footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	gap: 8px;
+	gap: var(--space-8);
+	margin-top: auto;
 }
 
 .ap-builder-branding-footer > span {
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
+	gap: var(--space-8);
 }
 
-.ap-builder-branding-footer .ap-icon {
+.ap-builder-branding-footer > :where([role="status"]) .ap-icon {
 	color: var(--status-success-foreground);
+}
+
+@container branding (max-width: 360px) {
+	.ap-branding-identity {
+		grid-template-columns: var(--size-avatar-lg) minmax(0, 1fr);
+		row-gap: var(--space-8);
+	}
+	.ap-branding-identity > .ap-button {
+		grid-column: 2;
+		justify-self: start;
+		min-width: 122px;
+	}
+	.ap-builder-brand-cover > .ap-project-cover {
+		width: 80px;
+	}
 }
 
 .ap-builder-config {
@@ -695,6 +832,9 @@
 	flex-direction: column;
 	align-items: stretch;
 	gap: 24px;
+	width: 100%;
+	max-width: 1216px;
+	margin-inline: auto;
 	padding: 48px;
 }
 
@@ -791,7 +931,7 @@
 }
 
 .ap-builder-error {
-	margin: 0;
+	margin-block: 0;
 	color: var(--status-error-foreground);
 	font-size: 12px;
 	line-height: 16px;
@@ -800,13 +940,6 @@
 @media (max-width: 1150px) {
 	.ap-builder-config {
 		padding: 24px;
-	}
-	.ap-builder-brand-cover > .ap-project-cover {
-		width: 88px;
-	}
-	.ap-builder-brand-cover > div:not(.ap-project-cover) p,
-	.ap-builder-brand-cover > div:not(.ap-project-cover) small {
-		overflow-wrap: anywhere;
 	}
 }
 

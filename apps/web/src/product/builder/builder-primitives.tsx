@@ -8,7 +8,7 @@ export function BuilderTitle({
 	action,
 }: {
 	title: string;
-	description: string;
+	description?: string;
 	action?: ReactNode;
 }) {
 	return (
@@ -17,7 +17,7 @@ export function BuilderTitle({
 				<h1>{title}</h1>
 				{action}
 			</div>
-			<p>{description}</p>
+			{description && <p>{description}</p>}
 		</header>
 	);
 }

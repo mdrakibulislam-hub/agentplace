@@ -85,13 +85,14 @@ export function GlobalHeader({
 }
 
 export const projectNavItems = [
-	{ label: "Chat", icon: "message-square" },
 	{ label: "Skills", icon: "puzzle" },
 	{ label: "Instructions.md", icon: "file-text" },
 	{ label: "History", icon: "history" },
 	{ label: "Branding", icon: "palette" },
 ] as const;
-export type ProjectNavValue = (typeof projectNavItems)[number]["label"];
+export type ProjectNavValue =
+	| "Chat"
+	| (typeof projectNavItems)[number]["label"];
 export const settingsNavItems = [
 	{ label: "General", icon: "settings" },
 	{ label: "Billing & usage", icon: "credit-card" },
@@ -113,7 +114,6 @@ export function ProjectNavigation({
 	onManageAccess,
 	onConversation,
 	conversations = [],
-	staffCount = 0,
 	className = "",
 }: SidebarProps & {
 	active?: ProjectNavValue;
@@ -124,22 +124,42 @@ export function ProjectNavigation({
 	conversations?: {
 		id: string;
 		title: string;
-		detail: string;
 		selected?: boolean;
 	}[];
-	staffCount?: number;
 }) {
 	return (
 		<aside
-			className={`ap-sidebar ${className}`}
+			className={`ap-sidebar ap-project-sidebar ${className}`}
 			aria-label="Project navigation"
 		>
 			<button type="button" className="ap-sidebar-home" onClick={onHome}>
 				<Icon name="arrow-left" />
 				All projects
 			</button>
-			<div className="ap-sidebar-top-space" />
-			<p className="ap-sidebar-heading">Project</p>
+			<nav className="ap-sidebar-conversations" aria-label="Conversations">
+				<button
+					type="button"
+					className="ap-sidebar-new"
+					onClick={onNewConversation}
+				>
+					<Icon name="plus" />
+					New chat
+				</button>
+				{conversations.map((conversation) => (
+					<button
+						key={conversation.id}
+						type="button"
+						className="ap-conversation-item"
+						aria-current={
+							active === "Chat" && conversation.selected ? "true" : undefined
+						}
+						title={conversation.title}
+						onClick={() => onConversation?.(conversation.id)}
+					>
+						<span>{conversation.title}</span>
+					</button>
+				))}
+			</nav>
 			<nav className="ap-sidebar-links" aria-label="Project">
 				{projectNavItems.map((item) => (
 					<button
@@ -154,39 +174,15 @@ export function ProjectNavigation({
 					</button>
 				))}
 			</nav>
-			<div className="ap-sidebar-conversation-space" />
-			<p className="ap-sidebar-heading">Conversations</p>
+			<div className="ap-nav-spacer" />
 			<button
 				type="button"
-				className="ap-sidebar-new"
-				onClick={onNewConversation}
+				className="ap-sidebar-access"
+				onClick={onManageAccess}
 			>
-				<Icon name="plus" />
-				New conversation
+				<Icon name="users" />
+				Project access
 			</button>
-			{conversations.map((conversation) => (
-				<button
-					key={conversation.id}
-					type="button"
-					className="ap-conversation-item"
-					data-selected={conversation.selected}
-					onClick={() => onConversation?.(conversation.id)}
-				>
-					<span>{conversation.title}</span>
-					<small>{conversation.detail}</small>
-				</button>
-			))}
-			<div className="ap-nav-spacer" />
-			<div className="ap-sidebar-bottom">
-				<p>Project access</p>
-				<span>
-					{staffCount} staff {staffCount === 1 ? "member" : "members"}
-				</span>
-				<button type="button" onClick={onManageAccess}>
-					<Icon name="users" />
-					Manage access
-				</button>
-			</div>
 		</aside>
 	);
 }

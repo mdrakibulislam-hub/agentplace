@@ -139,10 +139,10 @@ export function ConfirmDialog({
 							Cancel
 						</Dialog.Close>
 						<Button
+							className="ap-dialog-confirm"
 							variant="danger"
 							size="medium"
 							loading={pending}
-							reserveLoadingSpace
 							onClick={confirm}
 						>
 							{confirmLabel}
