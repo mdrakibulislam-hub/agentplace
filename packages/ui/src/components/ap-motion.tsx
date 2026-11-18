@@ -148,7 +148,9 @@ export function useMascotTimeline(
 				animate(
 					lid,
 					{
-						scaleY: [1, 1, 1250, 1250, 86.446045, 86.446045],
+						// Native 0.003px lid thickness, expressed on a 1px box so
+						// browser layout precision cannot collapse the blink to zero.
+						scaleY: [0.003, 0.003, 3.75, 3.75, 0.259338135, 0.259338135],
 						y: [
 							0,
 							0,

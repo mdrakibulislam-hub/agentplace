@@ -71,7 +71,7 @@ export function ProjectCover({
 				className="ap-cover-art ap-cover-mascot"
 				aria-hidden={state !== "default-mascot"}
 			>
-				<Mascot />
+				<Mascot animated={state === "default-mascot"} />
 			</span>
 			<span
 				className="ap-cover-art ap-cover-added"

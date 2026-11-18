@@ -2,6 +2,8 @@
 
 This folder preserves the Figma-linked source coverage, measured browser geometry, actual interaction outcomes, motion observations and representative comparisons. It separates structural completeness from literal pixel identity. [Final full-worktree signoff](final-signoff.json) records passing Biome, all-workspace TypeScript, source audit, application build, and static Storybook build, plus current in-scope source hashes. This is source-level implementation/review signoff; literal pixel identity is not certified.
 
+The signoff and 24-play inventory below describe the original review snapshot. The subsequent [project-cover mascot fix](project-cover-mascot-motion.md) records the disabled cover animation and Chromium eyelid rounding defect, their corrections, and the additional executed regression play. Earlier motion-clock results establish synchronization, not visible blinking.
+
 ## Recorded results
 
 | Check                        | Evidence                                                           | Result                                                                                        |

@@ -226,7 +226,7 @@ export function Mascot({
 								style={
 									phase === "Blink" && !animated
 										? {
-												transform: `translateY(${lid === "upper" ? 1.651 : -1.651}px) scaleY(1250)`,
+												transform: `translateY(${lid === "upper" ? 1.651 : -1.651}px) scaleY(3.75)`,
 											}
 										: undefined
 								}
