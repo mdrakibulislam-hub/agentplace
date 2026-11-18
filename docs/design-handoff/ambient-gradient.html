@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agentplace · Ambient and elevation reference</title>
+  <link rel="stylesheet" href="./ambient-gradient.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #2a2a2a; font: 16px/1.5 'SF Pro', -apple-system, BlinkMacSystemFont, sans-serif; }
+    .demo { min-height: 100svh; background: #f2f2f2; padding: 12vh 24px; }
+    .demo-content { max-width: 1088px; margin: auto; }
+    h1 { font-size: 30px; line-height: 1.2; font-weight: 590; margin: 0 0 12px; }
+    p { color: #626772; margin: 0 0 24px; }
+    button { border: 1px solid #e5e7eb; border-radius: 999px; background: white; color: inherit; padding: 10px 20px; font: inherit; cursor: pointer; }
+    button:focus-visible { outline: 2px solid #5965df; outline-offset: 3px; }
+    .examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 72px; }
+    article { background: white; border: 1px solid #e5e7eb; border-radius: 20px; padding: 28px; min-height: 160px; }
+    article h2 { font-size: 18px; margin: 0 0 8px; }
+    article p { font-size: 14px; margin: 0; }
+    @media (max-width: 700px) { .examples { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <!-- On home, this shell belongs below the global header. -->
+  <main class="demo ap-ambient-shell">
+    <div class="ap-ambient" data-motion="flow" aria-hidden="true">
+      <div class="ap-ambient__field ap-ambient__field--main"></div>
+      <div class="ap-ambient__field ap-ambient__field--inner"></div>
+    </div>
+    <div class="demo-content ap-ambient-content">
+      <h1>A quiet background, gently in motion</h1>
+      <p>Reusable gradient and elevation integration reference. The full cycle takes 32 seconds.</p>
+      <button type="button" id="toggle-motion" aria-pressed="false">Turn motion off</button>
+      <div class="examples">
+        <article style="box-shadow:var(--shadow-resting)"><h2>Resting</h2><p>Standalone cards, authentication forms and project prompts.</p></article>
+        <article style="box-shadow:var(--shadow-panel)"><h2>Panel</h2><p>Menus, project switchers and anchored popovers.</p></article>
+        <article style="box-shadow:var(--shadow-overlay)"><h2>Overlay</h2><p>Modal dialogs and publish confirmations.</p></article>
+      </div>
+    </div>
+  </main>
+  <script type="module">
+    import { bindAmbientMotion } from './ambient-gradient.mjs';
+    const controller = bindAmbientMotion(document.querySelector('.ap-ambient'));
+    const button = document.querySelector('#toggle-motion');
+    button.addEventListener('click', () => {
+      const isOff = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(isOff));
+      button.textContent = isOff ? 'Turn motion on' : 'Turn motion off';
+      controller.setMotionEnabled(!isOff);
+    });
+    window.addEventListener('pagehide', event => {
+      if (!event.persisted) controller.destroy();
+    });
+  </script>
+</body>
+</html>

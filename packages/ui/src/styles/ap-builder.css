@@ -1,0 +1,553 @@
+.ap-builder-spacer {
+	flex: 1;
+	min-height: 0;
+	min-width: 0;
+}
+.ap-project-cover {
+	box-sizing: border-box;
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	width: 320px;
+	height: 124px;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+	border-radius: var(--radius-lg);
+	background: var(--muted-background);
+	font: inherit;
+	color: var(--foreground-muted);
+	flex-shrink: 0;
+}
+button.ap-project-cover {
+	cursor: pointer;
+	z-index: 1;
+}
+.ap-cover-art {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	transition: opacity 120ms;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	gap: 8px;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 510;
+}
+.ap-cover-mascot {
+	align-items: flex-end;
+	justify-content: flex-end;
+	background: linear-gradient(90deg, #cffaca 0%, #84e8ff 50%, #a4deff 100%);
+}
+.ap-cover-added {
+	padding: 0;
+}
+.ap-project-cover[data-presentation="empty"] .ap-cover-empty,
+.ap-project-cover[data-presentation="added"] .ap-cover-added,
+.ap-project-cover[data-presentation="default-mascot"] .ap-cover-mascot {
+	opacity: 1;
+}
+.ap-cover-art > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.ap-project-cover:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-cover-touch-action {
+	display: none;
+}
+.ap-project-card {
+	box-sizing: border-box;
+	position: relative;
+	width: 352px;
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 16px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--card-background);
+	box-shadow: var(--shadow-resting);
+	color: var(--foreground-default);
+}
+.ap-project-card .ap-project-cover {
+	width: 320px;
+}
+.ap-project-open {
+	position: absolute;
+	inset: 0;
+	border: 0;
+	background: transparent;
+	border-radius: inherit;
+	cursor: pointer;
+}
+.ap-project-open:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-project-details {
+	padding: 0 4px;
+	pointer-events: none;
+	min-width: 0;
+}
+.ap-project-card-heading {
+	height: 32px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.ap-project-name-status {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+	overflow: hidden;
+}
+.ap-project-name-status h3 {
+	max-width: 190px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin: 0;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 590;
+}
+.ap-project-edited {
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--foreground-muted);
+	margin: 0;
+}
+.ap-project-overflow {
+	position: relative;
+	z-index: 2;
+	pointer-events: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: 0;
+	border-radius: 9999px;
+	background: transparent;
+	color: var(--content-tertiary);
+	cursor: pointer;
+}
+.ap-project-overflow:hover {
+	color: var(--foreground-default);
+}
+.ap-project-overflow:focus-visible {
+	outline: 2px solid var(--focus-ring);
+}
+.ap-new-project-prompt,
+.ap-chat-composer {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	background: var(--card-background);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	color: var(--foreground-default);
+	max-width: 100%;
+}
+.ap-new-project-prompt {
+	width: 768px;
+	height: 144px;
+	padding: 24px;
+	gap: 16px;
+	box-shadow: var(--shadow-resting);
+}
+.ap-chat-composer {
+	width: 472px;
+	height: 128px;
+	padding: 16px;
+	gap: 12px;
+}
+.ap-new-project-prompt textarea,
+.ap-chat-composer textarea {
+	display: block;
+	flex: 1;
+	min-height: 24px;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	resize: none;
+	outline: 0;
+	border: 0;
+	background: transparent;
+	font: inherit;
+	font-size: 16px;
+	line-height: 24px;
+	color: var(--foreground-default);
+}
+.ap-chat-composer textarea {
+	font-size: 14px;
+	line-height: 20px;
+	min-height: 20px;
+}
+.ap-new-project-prompt textarea::placeholder,
+.ap-chat-composer textarea::placeholder {
+	color: var(--foreground-placeholder);
+	opacity: 1;
+}
+.ap-new-project-prompt:focus-within,
+.ap-chat-composer:focus-within {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-prompt-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	height: 32px;
+	flex-shrink: 0;
+}
+.ap-chat-composer .ap-prompt-actions {
+	gap: 8px;
+}
+.ap-new-project-prompt .ap-prompt-actions > .ap-button:first-child {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+.ap-chat-composer .ap-prompt-actions > .ap-button {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+.ap-composer-icon,
+.ap-composer-send {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: 0;
+	border-radius: 9999px;
+	background: transparent;
+	color: var(--foreground-default);
+	cursor: pointer;
+}
+.ap-composer-send {
+	background: var(--action-default);
+	color: var(--action-foreground);
+}
+.ap-composer-send:disabled {
+	cursor: not-allowed;
+}
+.ap-composer-icon:focus-visible,
+.ap-composer-send:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-composer-error {
+	margin: 8px 0 0;
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--status-error-foreground);
+}
+.ap-agent-preview {
+	box-sizing: border-box;
+	position: relative;
+	width: 680px;
+	max-width: 100%;
+	height: 832px;
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	background: var(--background-secondary);
+	color: var(--foreground-default);
+	font-size: 14px;
+	line-height: 20px;
+	isolation: isolate;
+}
+.ap-preview-diffusion {
+	position: absolute;
+	z-index: -1;
+	left: calc(50% - 1px);
+	bottom: -0.29px;
+	transform: translateX(-50%);
+	width: 712px;
+	height: 57.588px;
+	background: linear-gradient(
+		90deg,
+		var(--ambient-mint),
+		var(--ambient-cyan) 50%,
+		var(--ambient-sky)
+	);
+	filter: blur(39.329px);
+	opacity: 0.47;
+	pointer-events: none;
+}
+.ap-preview-toolbar {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	height: 32px;
+	flex-shrink: 0;
+	font-weight: 510;
+}
+.ap-visitor-experience {
+	box-sizing: border-box;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	height: 736px;
+	flex-shrink: 0;
+	width: 100%;
+	min-width: 0;
+	padding: 32px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--card-background);
+}
+.ap-preview-company {
+	display: flex;
+	height: 40px;
+	flex-shrink: 0;
+	gap: 12px;
+	align-items: center;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 590;
+}
+.ap-preview-cover {
+	height: 80px;
+	flex-shrink: 0;
+	width: 100%;
+	overflow: hidden;
+	background: var(--muted-background);
+	border-radius: var(--radius-lg);
+}
+.ap-preview-cover img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.ap-visitor-experience h1 {
+	margin: 0;
+	font-size: 36px;
+	line-height: 40px;
+	font-weight: 590;
+}
+.ap-preview-description {
+	margin: 0;
+	color: var(--foreground-muted);
+	font-size: 16px;
+	line-height: 24px;
+}
+.ap-preview-suggestions {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.ap-preview-suggestions button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	width: 100%;
+	height: 48px;
+	padding: 16px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md);
+	background: var(--background-default);
+	color: var(--foreground-default);
+	font: inherit;
+	font-weight: 510;
+	text-align: left;
+	cursor: pointer;
+}
+.ap-preview-suggestions button:hover {
+	background: var(--muted-background);
+}
+.ap-preview-suggestions button:focus-visible,
+.ap-visitor-call:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-visitor-footer {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.ap-preview-test-mode {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--foreground-muted);
+}
+.ap-visitor-input-call {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	height: 48px;
+}
+.ap-visitor-input {
+	box-sizing: border-box;
+	display: flex;
+	flex: 1;
+	min-width: 0;
+	align-items: center;
+	gap: 8px;
+	height: 48px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-2xl);
+	padding: 6px 6px 6px 16px;
+	background: var(--background-default);
+}
+.ap-visitor-input:focus-within {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 1px;
+}
+.ap-visitor-input input {
+	flex: 1;
+	min-width: 0;
+	background: transparent;
+	color: var(--foreground-default);
+	border: 0;
+	padding: 0;
+	font: inherit;
+	font-size: 14px;
+	line-height: 20px;
+	outline: 0;
+}
+.ap-visitor-input input::placeholder {
+	color: var(--foreground-placeholder);
+	opacity: 1;
+}
+.ap-visitor-call {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	height: 48px;
+	border: 0;
+	border-radius: var(--radius-2xl);
+	background: var(--action-secondary);
+	padding: 0 24px;
+	font: inherit;
+	font-weight: 510;
+	color: var(--foreground-default);
+	cursor: pointer;
+}
+@media (pointer: coarse) {
+	.ap-cover-touch-action {
+		position: absolute;
+		right: 8px;
+		bottom: 8px;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 4px 8px;
+		border-radius: 9999px;
+		background: var(--card-background);
+		font-size: 12px;
+		line-height: 16px;
+	}
+}
+@media (max-width: 600px) {
+	.ap-new-project-prompt {
+		padding: 16px;
+	}
+	.ap-agent-preview {
+		padding: 16px;
+		height: auto;
+		min-height: 720px;
+		overflow: hidden;
+	}
+	.ap-visitor-experience {
+		padding: 24px;
+		height: 640px;
+	}
+	.ap-visitor-experience h1 {
+		font-size: 28px;
+		line-height: 34px;
+	}
+	.ap-visitor-call {
+		padding: 0 16px;
+	}
+	.ap-prompt-actions {
+		gap: 8px;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.ap-project-cover,
+	.ap-cover-art {
+		transition: none;
+	}
+}
+
+/* The Figma masters preserve these fixed child widths inside their stroked frames. */
+.ap-new-project-prompt textarea,
+.ap-new-project-prompt .ap-prompt-actions {
+	width: 720px;
+}
+.ap-chat-composer textarea,
+.ap-chat-composer .ap-prompt-actions {
+	width: 440px;
+}
+.ap-preview-company,
+.ap-visitor-experience h1,
+.ap-preview-description,
+.ap-preview-suggestions {
+	width: 568px;
+}
+.ap-visitor-call {
+	width: calc-size(max-content, round(up, size, 1px));
+}
+@media (max-width: 600px) {
+	.ap-new-project-prompt textarea,
+	.ap-new-project-prompt .ap-prompt-actions,
+	.ap-chat-composer textarea,
+	.ap-chat-composer .ap-prompt-actions,
+	.ap-preview-company,
+	.ap-visitor-experience h1,
+	.ap-preview-description,
+	.ap-preview-suggestions {
+		width: 100%;
+	}
+}
+@media (max-width: 400px) {
+	.ap-project-card .ap-project-cover {
+		width: 100%;
+	}
+}
+
+/* SF Pro baseline mapping measured against Figma49:1601,49:1602 and52:1016.
+ * Native36/40 and16/24 glyphs sit1px lower than browser text after container
+ * stroke geometry is matched. Move glyphs only; preserve the semantic linebox,
+ * text advance, wrapping, container layout and all14/20 control text. */
+.ap-glyph-heading-xl,
+.ap-glyph-body-base {
+	--ap-glyph-baseline-offset: 1px;
+	position: relative;
+	top: var(--ap-glyph-baseline-offset);
+}
+.ap-new-project-prompt textarea {
+	--ap-glyph-baseline-body-base: 1px;
+	padding-top: var(--ap-glyph-baseline-body-base);
+}
+
+.ap-project-name-status h3 {
+	width: calc-size(max-content, round(up, size, 1px));
+}

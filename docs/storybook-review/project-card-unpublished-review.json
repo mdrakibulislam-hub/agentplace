@@ -1,0 +1,172 @@
+{
+	"source": {
+		"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+		"nodeId": "49:1674",
+		"path": "/Users/mdrakibulislam/Personal Projects/local-icons/AP/Product/Status=Unpublished.svg",
+		"sha256": "88eed98e67e9180fdf7938963a1775426e5f9a5e3d62c507734ac9209476cec4",
+		"exportCanvas": {
+			"width": 362,
+			"height": 228
+		},
+		"cardPathBounds": {
+			"x": 5,
+			"y": 2,
+			"width": 352,
+			"height": 218
+		},
+		"evidence": "Current user-exported SVG; root362\u00d7228 includes shadow. The first opaque card path/mask ranges x5..357,y2..220 and proves352\u00d7218. filter0_dd_49_1674 binds export to native49:1674. Review reference only; not rendered as component."
+	},
+	"storyId": "components-07-project-builder-project-card--unpublished",
+	"checks": [
+		{
+			"name": "card",
+			"expected": {
+				"width": 352,
+				"height": 218
+			},
+			"actual": {
+				"x": 0,
+				"y": 0,
+				"width": 352,
+				"height": 218,
+				"text": "Add a project coverAdd coverWhiteFrame AdvisorUnpublishedEdited 2 hours ago",
+				"color": "rgb(42, 42, 42)",
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"fontWeight": "400",
+				"fontSize": "14px",
+				"lineHeight": "20px"
+			},
+			"pass": true
+		},
+		{
+			"name": "cover",
+			"expected": {
+				"x": 17,
+				"y": 17,
+				"width": 320,
+				"height": 124
+			},
+			"actual": {
+				"x": 17,
+				"y": 17,
+				"width": 320,
+				"height": 124,
+				"text": "Add a project coverAdd cover",
+				"color": "rgb(75, 85, 99)",
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"fontWeight": "400",
+				"fontSize": "14px",
+				"lineHeight": "20px"
+			},
+			"pass": true
+		},
+		{
+			"name": "status",
+			"expected": {
+				"x": 169,
+				"y": 157,
+				"width": 89,
+				"height": 24,
+				"text": "Unpublished",
+				"color": "rgb(70, 70, 70)"
+			},
+			"actual": {
+				"x": 169,
+				"y": 157,
+				"width": 89,
+				"height": 24,
+				"text": "Unpublished",
+				"color": "rgb(70, 70, 70)",
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"fontWeight": "510",
+				"fontSize": "12px",
+				"lineHeight": "16px"
+			},
+			"pass": true
+		}
+	],
+	"actualTextMetrics": {
+		"card": {
+			"x": 0,
+			"y": 0,
+			"width": 352,
+			"height": 218,
+			"text": "Add a project coverAdd coverWhiteFrame AdvisorUnpublishedEdited 2 hours ago",
+			"color": "rgb(42, 42, 42)",
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontWeight": "400",
+			"fontSize": "14px",
+			"lineHeight": "20px"
+		},
+		"cover": {
+			"x": 17,
+			"y": 17,
+			"width": 320,
+			"height": 124,
+			"text": "Add a project coverAdd cover",
+			"color": "rgb(75, 85, 99)",
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontWeight": "400",
+			"fontSize": "14px",
+			"lineHeight": "20px"
+		},
+		"title": {
+			"x": 21,
+			"y": 159,
+			"width": 140,
+			"height": 20,
+			"text": "WhiteFrame Advisor",
+			"color": "rgb(42, 42, 42)",
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontWeight": "590",
+			"fontSize": "14px",
+			"lineHeight": "20px"
+		},
+		"status": {
+			"x": 169,
+			"y": 157,
+			"width": 89,
+			"height": 24,
+			"text": "Unpublished",
+			"color": "rgb(70, 70, 70)",
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontWeight": "510",
+			"fontSize": "12px",
+			"lineHeight": "16px"
+		},
+		"edited": {
+			"x": 21,
+			"y": 185,
+			"width": 310,
+			"height": 16,
+			"text": "Edited 2 hours ago",
+			"color": "rgb(75, 85, 99)",
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontWeight": "400",
+			"fontSize": "12px",
+			"lineHeight": "16px"
+		},
+		"actions": {
+			"x": 299,
+			"y": 153,
+			"width": 32,
+			"height": 32,
+			"text": "",
+			"color": "rgb(156, 163, 175)",
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontWeight": "510",
+			"fontSize": "14px",
+			"lineHeight": "20px"
+		}
+	},
+	"notes": [
+		"Current user export is used only as review evidence; component is React/CSS and original shared child vectors.",
+		"SVG title/edit/status text are outlined paths; font name is checked against captured source font system separately.",
+		"Source mask at26,159 has237\u00d724 clip for name; visible title ink26.6016..164.783,y165.274..176.15.",
+		"Source more-filled SVG dots occupy314..326,y169.667..172.333. Current shared ProjectActions uses that original asset.",
+		"Browser text raster cross-correlation against source is dx0/dy0 for name, status, edited time.",
+		"Whole card mean absolute channel error0.94/255 after ICC normalization; this is not byte-identical pixels."
+	],
+	"comparison": "/tmp/ap-unpublished-comparison-final.png",
+	"nativeRaster": "/tmp/ap-unpublished-native-current.png"
+}

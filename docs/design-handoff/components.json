@@ -1,0 +1,2278 @@
+{
+  "schemaVersion": 1,
+  "fileKey": "m0v1MINOJA152Kil6JHeZ8",
+  "page": "32:2",
+  "families": {
+    "brand": {
+      "id": "210:1916",
+      "name": "01 · Brand",
+      "x": 0,
+      "y": 1280,
+      "w": 2600,
+      "h": 274,
+      "items": [
+        "45:643",
+        "195:1678"
+      ]
+    },
+    "icons": {
+      "id": "210:1920",
+      "name": "02 · Reicon icons",
+      "x": 2800,
+      "y": 1280,
+      "w": 2600,
+      "h": 656,
+      "items": [
+        "51:1017",
+        "49:634",
+        "49:569",
+        "32:14",
+        "32:10",
+        "49:523",
+        "49:623",
+        "32:18",
+        "32:7",
+        "82:4407",
+        "49:529",
+        "32:21",
+        "49:581",
+        "49:601",
+        "49:538",
+        "82:4704",
+        "49:615",
+        "49:611",
+        "82:4410",
+        "49:546",
+        "82:4721",
+        "49:629",
+        "49:642",
+        "49:585",
+        "49:553",
+        "32:28",
+        "82:4715",
+        "49:565",
+        "49:606",
+        "49:598",
+        "49:652",
+        "49:533",
+        "49:574",
+        "49:593",
+        "49:590",
+        "99:1477",
+        "32:3",
+        "49:543",
+        "82:4718",
+        "32:24",
+        "49:561",
+        "49:638",
+        "49:557",
+        "82:4707",
+        "82:4701",
+        "82:4710",
+        "49:646",
+        "49:620"
+      ]
+    },
+    "actions": {
+      "id": "210:1970",
+      "name": "03 · Actions",
+      "x": 0,
+      "y": 2136,
+      "w": 2600,
+      "h": 784,
+      "items": [
+        "32:43",
+        "32:152",
+        "32:261",
+        "32:370",
+        "32:479",
+        "108:1306"
+      ]
+    },
+    "forms": {
+      "id": "210:1978",
+      "name": "04 · Forms & selection",
+      "x": 2800,
+      "y": 2136,
+      "w": 2600,
+      "h": 936,
+      "items": [
+        "32:532",
+        "32:569",
+        "32:600",
+        "51:1022",
+        "185:1606",
+        "32:671",
+        "32:692"
+      ]
+    },
+    "shell": {
+      "id": "210:1987",
+      "name": "05 · Navigation & app shell",
+      "x": 0,
+      "y": 3272,
+      "w": 2600,
+      "h": 1824,
+      "items": [
+        "116:11267",
+        "49:1206",
+        "49:1471",
+        "49:1533",
+        "32:706"
+      ]
+    },
+    "menus": {
+      "id": "210:1994",
+      "name": "06 · Menus & overlays",
+      "x": 2800,
+      "y": 3272,
+      "w": 2600,
+      "h": 892,
+      "items": [
+        "32:717",
+        "130:1320",
+        "131:1318",
+        "131:1414",
+        "131:1460",
+        "131:1545",
+        "131:1577",
+        "139:1490",
+        "32:744"
+      ]
+    },
+    "builder": {
+      "id": "210:2005",
+      "name": "07 · Project & builder",
+      "x": 0,
+      "y": 5296,
+      "w": 2600,
+      "h": 1396,
+      "items": [
+        "49:1705",
+        "130:1323",
+        "52:1015",
+        "49:1534",
+        "49:1565"
+      ]
+    },
+    "data": {
+      "id": "210:2012",
+      "name": "08 · Data & feedback",
+      "x": 2800,
+      "y": 5296,
+      "w": 2600,
+      "h": 1108,
+      "items": [
+        "32:649",
+        "32:659",
+        "32:748",
+        "32:758",
+        "129:1352",
+        "129:1355",
+        "52:1090",
+        "52:1091",
+        "52:1109",
+        "58:1060"
+      ]
+    },
+    "motion": {
+      "id": "210:2024",
+      "name": "09 · Motion & mascot",
+      "x": 0,
+      "y": 6892,
+      "w": 2600,
+      "h": 450,
+      "items": [
+        "166:1528",
+        "166:1812",
+        "169:1570",
+        "169:1853",
+        "169:1886"
+      ]
+    },
+    "reference": {
+      "id": "210:2031",
+      "name": "90 · Reference & QA",
+      "x": 5600,
+      "y": 1280,
+      "w": 2600,
+      "h": 6156,
+      "items": [
+        "32:759",
+        "35:453",
+        "45:645",
+        "84:1161"
+      ]
+    },
+    "ambient": {
+      "id": "237:1978",
+      "name": "11 · Ambient surfaces & elevation",
+      "x": 0,
+      "y": 7772,
+      "w": 5400,
+      "h": 2880,
+      "items": [
+        "237:1980"
+      ]
+    }
+  },
+  "components": [
+    {
+      "id": "45:643",
+      "name": "AP / Logo",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Color": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Inverse"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "45:567",
+          "name": "Color=Default"
+        },
+        {
+          "id": "45:641",
+          "name": "Color=Inverse"
+        }
+      ]
+    },
+    {
+      "id": "195:1678",
+      "name": "AP / Auth / Client logos",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "51:1017",
+      "name": "AP / Icon / Google",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:634",
+      "name": "AP / Icon / arrow-left",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:569",
+      "name": "AP / Icon / arrow-left-to-line",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:14",
+      "name": "AP / Icon / arrow-right",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:10",
+      "name": "AP / Icon / arrow-up",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:523",
+      "name": "AP / Icon / briefcase-business",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:623",
+      "name": "AP / Icon / calendar",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:18",
+      "name": "AP / Icon / check",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:7",
+      "name": "AP / Icon / chevron-down",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4407",
+      "name": "AP / Icon / chevron-up",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:529",
+      "name": "AP / Icon / chevrons-up-down",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:21",
+      "name": "AP / Icon / close",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:581",
+      "name": "AP / Icon / copy",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:601",
+      "name": "AP / Icon / credit-card",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:538",
+      "name": "AP / Icon / database",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4704",
+      "name": "AP / Icon / download",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:615",
+      "name": "AP / Icon / external-link",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:611",
+      "name": "AP / Icon / eye",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4410",
+      "name": "AP / Icon / eye-off",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:546",
+      "name": "AP / Icon / file-text",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4721",
+      "name": "AP / Icon / filter",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:629",
+      "name": "AP / Icon / globe",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:642",
+      "name": "AP / Icon / history",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:585",
+      "name": "AP / Icon / lightbulb",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:553",
+      "name": "AP / Icon / link",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:28",
+      "name": "AP / Icon / loader",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4715",
+      "name": "AP / Icon / lock",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:565",
+      "name": "AP / Icon / mail",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:606",
+      "name": "AP / Icon / message-circle-question-mark",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:598",
+      "name": "AP / Icon / message-square",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:652",
+      "name": "AP / Icon / monitor",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:533",
+      "name": "AP / Icon / more-horizontal",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:574",
+      "name": "AP / Icon / palette",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:593",
+      "name": "AP / Icon / panel-left-close",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:590",
+      "name": "AP / Icon / paperclip",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "99:1477",
+      "name": "AP / Icon / phone",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:3",
+      "name": "AP / Icon / plus",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:543",
+      "name": "AP / Icon / puzzle",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4718",
+      "name": "AP / Icon / refresh",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:24",
+      "name": "AP / Icon / search",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:561",
+      "name": "AP / Icon / settings",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:638",
+      "name": "AP / Icon / shield-check",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:557",
+      "name": "AP / Icon / square-pen",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4707",
+      "name": "AP / Icon / trash",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4701",
+      "name": "AP / Icon / upload",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "82:4710",
+      "name": "AP / Icon / user-add",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:646",
+      "name": "AP / Icon / users",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:620",
+      "name": "AP / Icon / zap",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:43",
+      "name": "AP / Button / Primary",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:0": {
+          "type": "TEXT",
+          "defaultValue": "Continue"
+        },
+        "Show icon#32:13": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        },
+        "Icon#32:26": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "32:3",
+          "preferredValues": []
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small",
+            "Medium"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus",
+            "Disabled",
+            "Loading"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:31",
+          "name": "Size=Small, State=Default"
+        },
+        {
+          "id": "32:32",
+          "name": "Size=Small, State=Hover"
+        },
+        {
+          "id": "32:33",
+          "name": "Size=Small, State=Pressed"
+        },
+        {
+          "id": "32:34",
+          "name": "Size=Small, State=Focus"
+        },
+        {
+          "id": "32:35",
+          "name": "Size=Small, State=Disabled"
+        },
+        {
+          "id": "32:36",
+          "name": "Size=Small, State=Loading"
+        },
+        {
+          "id": "32:37",
+          "name": "Size=Medium, State=Default"
+        },
+        {
+          "id": "32:38",
+          "name": "Size=Medium, State=Hover"
+        },
+        {
+          "id": "32:39",
+          "name": "Size=Medium, State=Pressed"
+        },
+        {
+          "id": "32:40",
+          "name": "Size=Medium, State=Focus"
+        },
+        {
+          "id": "32:41",
+          "name": "Size=Medium, State=Disabled"
+        },
+        {
+          "id": "32:42",
+          "name": "Size=Medium, State=Loading"
+        }
+      ]
+    },
+    {
+      "id": "32:152",
+      "name": "AP / Button / Secondary",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:39": {
+          "type": "TEXT",
+          "defaultValue": "Continue"
+        },
+        "Show icon#32:52": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        },
+        "Icon#32:65": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "32:3",
+          "preferredValues": []
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small",
+            "Medium"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus",
+            "Disabled",
+            "Loading"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:140",
+          "name": "Size=Small, State=Default"
+        },
+        {
+          "id": "32:141",
+          "name": "Size=Small, State=Hover"
+        },
+        {
+          "id": "32:142",
+          "name": "Size=Small, State=Pressed"
+        },
+        {
+          "id": "32:143",
+          "name": "Size=Small, State=Focus"
+        },
+        {
+          "id": "32:144",
+          "name": "Size=Small, State=Disabled"
+        },
+        {
+          "id": "32:145",
+          "name": "Size=Small, State=Loading"
+        },
+        {
+          "id": "32:146",
+          "name": "Size=Medium, State=Default"
+        },
+        {
+          "id": "32:147",
+          "name": "Size=Medium, State=Hover"
+        },
+        {
+          "id": "32:148",
+          "name": "Size=Medium, State=Pressed"
+        },
+        {
+          "id": "32:149",
+          "name": "Size=Medium, State=Focus"
+        },
+        {
+          "id": "32:150",
+          "name": "Size=Medium, State=Disabled"
+        },
+        {
+          "id": "32:151",
+          "name": "Size=Medium, State=Loading"
+        }
+      ]
+    },
+    {
+      "id": "32:261",
+      "name": "AP / Button / Ghost",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:78": {
+          "type": "TEXT",
+          "defaultValue": "Continue"
+        },
+        "Show icon#32:91": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        },
+        "Icon#32:104": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "32:3",
+          "preferredValues": []
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small",
+            "Medium"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus",
+            "Disabled",
+            "Loading"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:249",
+          "name": "Size=Small, State=Default"
+        },
+        {
+          "id": "32:250",
+          "name": "Size=Small, State=Hover"
+        },
+        {
+          "id": "32:251",
+          "name": "Size=Small, State=Pressed"
+        },
+        {
+          "id": "32:252",
+          "name": "Size=Small, State=Focus"
+        },
+        {
+          "id": "32:253",
+          "name": "Size=Small, State=Disabled"
+        },
+        {
+          "id": "32:254",
+          "name": "Size=Small, State=Loading"
+        },
+        {
+          "id": "32:255",
+          "name": "Size=Medium, State=Default"
+        },
+        {
+          "id": "32:256",
+          "name": "Size=Medium, State=Hover"
+        },
+        {
+          "id": "32:257",
+          "name": "Size=Medium, State=Pressed"
+        },
+        {
+          "id": "32:258",
+          "name": "Size=Medium, State=Focus"
+        },
+        {
+          "id": "32:259",
+          "name": "Size=Medium, State=Disabled"
+        },
+        {
+          "id": "32:260",
+          "name": "Size=Medium, State=Loading"
+        }
+      ]
+    },
+    {
+      "id": "32:370",
+      "name": "AP / Button / Danger",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:117": {
+          "type": "TEXT",
+          "defaultValue": "Unpublish"
+        },
+        "Show icon#32:130": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        },
+        "Icon#32:143": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "32:3",
+          "preferredValues": []
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small",
+            "Medium"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus",
+            "Disabled",
+            "Loading"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:358",
+          "name": "Size=Small, State=Default"
+        },
+        {
+          "id": "32:359",
+          "name": "Size=Small, State=Hover"
+        },
+        {
+          "id": "32:360",
+          "name": "Size=Small, State=Pressed"
+        },
+        {
+          "id": "32:361",
+          "name": "Size=Small, State=Focus"
+        },
+        {
+          "id": "32:362",
+          "name": "Size=Small, State=Disabled"
+        },
+        {
+          "id": "32:363",
+          "name": "Size=Small, State=Loading"
+        },
+        {
+          "id": "32:364",
+          "name": "Size=Medium, State=Default"
+        },
+        {
+          "id": "32:365",
+          "name": "Size=Medium, State=Hover"
+        },
+        {
+          "id": "32:366",
+          "name": "Size=Medium, State=Pressed"
+        },
+        {
+          "id": "32:367",
+          "name": "Size=Medium, State=Focus"
+        },
+        {
+          "id": "32:368",
+          "name": "Size=Medium, State=Disabled"
+        },
+        {
+          "id": "32:369",
+          "name": "Size=Medium, State=Loading"
+        }
+      ]
+    },
+    {
+      "id": "32:479",
+      "name": "AP / Icon button",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Icon#32:156": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "32:10",
+          "preferredValues": []
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small",
+            "Medium"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus",
+            "Disabled",
+            "Loading"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:467",
+          "name": "Size=Small, State=Default"
+        },
+        {
+          "id": "32:468",
+          "name": "Size=Small, State=Hover"
+        },
+        {
+          "id": "32:469",
+          "name": "Size=Small, State=Pressed"
+        },
+        {
+          "id": "32:470",
+          "name": "Size=Small, State=Focus"
+        },
+        {
+          "id": "32:471",
+          "name": "Size=Small, State=Disabled"
+        },
+        {
+          "id": "32:472",
+          "name": "Size=Small, State=Loading"
+        },
+        {
+          "id": "32:473",
+          "name": "Size=Medium, State=Default"
+        },
+        {
+          "id": "32:474",
+          "name": "Size=Medium, State=Hover"
+        },
+        {
+          "id": "32:475",
+          "name": "Size=Medium, State=Pressed"
+        },
+        {
+          "id": "32:476",
+          "name": "Size=Medium, State=Focus"
+        },
+        {
+          "id": "32:477",
+          "name": "Size=Medium, State=Disabled"
+        },
+        {
+          "id": "32:478",
+          "name": "Size=Medium, State=Loading"
+        }
+      ]
+    },
+    {
+      "id": "108:1306",
+      "name": "AP / Product / Project actions",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "107:1368",
+          "name": "State=Default"
+        },
+        {
+          "id": "107:1376",
+          "name": "State=Hover"
+        }
+      ]
+    },
+    {
+      "id": "32:532",
+      "name": "AP / Input",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:169": {
+          "type": "TEXT",
+          "defaultValue": "Label"
+        },
+        "Value#32:176": {
+          "type": "TEXT",
+          "defaultValue": "Customer support"
+        },
+        "Supporting text#32:183": {
+          "type": "TEXT",
+          "defaultValue": "Supporting text"
+        },
+        "Show label#32:190": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Show supporting text#32:197": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Placeholder#34:0": {
+          "type": "TEXT",
+          "defaultValue": "Enter a value"
+        },
+        "Error message#34:7": {
+          "type": "TEXT",
+          "defaultValue": "This field is required."
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Filled",
+            "Error",
+            "Disabled"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:526",
+          "name": "State=Default"
+        },
+        {
+          "id": "32:527",
+          "name": "State=Hover"
+        },
+        {
+          "id": "32:528",
+          "name": "State=Focus"
+        },
+        {
+          "id": "32:529",
+          "name": "State=Filled"
+        },
+        {
+          "id": "32:530",
+          "name": "State=Error"
+        },
+        {
+          "id": "32:531",
+          "name": "State=Disabled"
+        }
+      ]
+    },
+    {
+      "id": "32:569",
+      "name": "AP / Textarea",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:204": {
+          "type": "TEXT",
+          "defaultValue": "Label"
+        },
+        "Value#32:211": {
+          "type": "TEXT",
+          "defaultValue": "Customer support"
+        },
+        "Supporting text#32:218": {
+          "type": "TEXT",
+          "defaultValue": "Supporting text"
+        },
+        "Show label#32:225": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Show supporting text#32:232": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Placeholder#34:14": {
+          "type": "TEXT",
+          "defaultValue": "Enter a value"
+        },
+        "Error message#34:21": {
+          "type": "TEXT",
+          "defaultValue": "This field is required."
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Filled",
+            "Error",
+            "Disabled"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:563",
+          "name": "State=Default"
+        },
+        {
+          "id": "32:564",
+          "name": "State=Hover"
+        },
+        {
+          "id": "32:565",
+          "name": "State=Focus"
+        },
+        {
+          "id": "32:566",
+          "name": "State=Filled"
+        },
+        {
+          "id": "32:567",
+          "name": "State=Error"
+        },
+        {
+          "id": "32:568",
+          "name": "State=Disabled"
+        }
+      ]
+    },
+    {
+      "id": "32:600",
+      "name": "AP / Select",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:239": {
+          "type": "TEXT",
+          "defaultValue": "Project role"
+        },
+        "Value#32:246": {
+          "type": "TEXT",
+          "defaultValue": "Editor"
+        },
+        "Supporting text#32:253": {
+          "type": "TEXT",
+          "defaultValue": "Supporting text"
+        },
+        "Show label#32:260": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Show supporting text#32:267": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Placeholder#34:28": {
+          "type": "TEXT",
+          "defaultValue": "Choose a role"
+        },
+        "Error message#34:35": {
+          "type": "TEXT",
+          "defaultValue": "This field is required."
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Filled",
+            "Error",
+            "Disabled"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:594",
+          "name": "State=Default"
+        },
+        {
+          "id": "32:595",
+          "name": "State=Hover"
+        },
+        {
+          "id": "32:596",
+          "name": "State=Focus"
+        },
+        {
+          "id": "32:597",
+          "name": "State=Filled"
+        },
+        {
+          "id": "32:598",
+          "name": "State=Error"
+        },
+        {
+          "id": "32:599",
+          "name": "State=Disabled"
+        }
+      ]
+    },
+    {
+      "id": "51:1022",
+      "name": "AP / Product / Password field",
+      "type": "COMPONENT",
+      "properties": {
+        "Placeholder#51:0": {
+          "type": "TEXT",
+          "defaultValue": "Enter your password"
+        },
+        "Show recovery#84:0": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        }
+      }
+    },
+    {
+      "id": "185:1606",
+      "name": "AP / Form / Six-digit OTP",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Empty",
+          "variantOptions": [
+            "Empty",
+            "Complete",
+            "Processing"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "185:1607",
+          "name": "State=Empty"
+        },
+        {
+          "id": "185:1638",
+          "name": "State=Complete"
+        },
+        {
+          "id": "185:1669",
+          "name": "State=Processing"
+        }
+      ]
+    },
+    {
+      "id": "32:671",
+      "name": "AP / Checkbox",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Checked": {
+          "type": "VARIANT",
+          "defaultValue": "Off",
+          "variantOptions": [
+            "Off",
+            "On"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Disabled"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:663",
+          "name": "Checked=Off, State=Default"
+        },
+        {
+          "id": "32:664",
+          "name": "Checked=Off, State=Hover"
+        },
+        {
+          "id": "32:665",
+          "name": "Checked=Off, State=Focus"
+        },
+        {
+          "id": "32:666",
+          "name": "Checked=Off, State=Disabled"
+        },
+        {
+          "id": "32:667",
+          "name": "Checked=On, State=Default"
+        },
+        {
+          "id": "32:668",
+          "name": "Checked=On, State=Hover"
+        },
+        {
+          "id": "32:669",
+          "name": "Checked=On, State=Focus"
+        },
+        {
+          "id": "32:670",
+          "name": "Checked=On, State=Disabled"
+        }
+      ]
+    },
+    {
+      "id": "32:692",
+      "name": "AP / Switch",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Checked": {
+          "type": "VARIANT",
+          "defaultValue": "Off",
+          "variantOptions": [
+            "Off",
+            "On"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Disabled"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:684",
+          "name": "Checked=Off, State=Default"
+        },
+        {
+          "id": "32:685",
+          "name": "Checked=Off, State=Hover"
+        },
+        {
+          "id": "32:686",
+          "name": "Checked=Off, State=Focus"
+        },
+        {
+          "id": "32:687",
+          "name": "Checked=Off, State=Disabled"
+        },
+        {
+          "id": "32:688",
+          "name": "Checked=On, State=Default"
+        },
+        {
+          "id": "32:689",
+          "name": "Checked=On, State=Hover"
+        },
+        {
+          "id": "32:690",
+          "name": "Checked=On, State=Focus"
+        },
+        {
+          "id": "32:691",
+          "name": "Checked=On, State=Disabled"
+        }
+      ]
+    },
+    {
+      "id": "116:11267",
+      "name": "AP / Product / Global header",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Project#116:0": {
+          "type": "TEXT",
+          "defaultValue": "WhiteFrame Advisor"
+        },
+        "Type": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Secondary",
+            "Default"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "49:657",
+          "name": "Type=Default"
+        },
+        {
+          "id": "116:11268",
+          "name": "Type=Secondary"
+        }
+      ]
+    },
+    {
+      "id": "49:1206",
+      "name": "AP / Product / Project navigation",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Active": {
+          "type": "VARIANT",
+          "defaultValue": "Chat",
+          "variantOptions": [
+            "Chat",
+            "Skills",
+            "Instructions.md",
+            "History",
+            "Branding"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "49:711",
+          "name": "Active=Chat"
+        },
+        {
+          "id": "49:810",
+          "name": "Active=Skills"
+        },
+        {
+          "id": "49:909",
+          "name": "Active=Instructions.md"
+        },
+        {
+          "id": "49:1008",
+          "name": "Active=History"
+        },
+        {
+          "id": "49:1107",
+          "name": "Active=Branding"
+        }
+      ]
+    },
+    {
+      "id": "49:1471",
+      "name": "AP / Product / Settings navigation",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Active": {
+          "type": "VARIANT",
+          "defaultValue": "Billing & usage",
+          "variantOptions": [
+            "Billing & usage",
+            "Skills library",
+            "Plugins",
+            "Staff & roles"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "49:1207",
+          "name": "Active=Billing & usage"
+        },
+        {
+          "id": "49:1273",
+          "name": "Active=Skills library"
+        },
+        {
+          "id": "49:1339",
+          "name": "Active=Plugins"
+        },
+        {
+          "id": "49:1405",
+          "name": "Active=Staff & roles"
+        }
+      ]
+    },
+    {
+      "id": "49:1533",
+      "name": "AP / Product / Project toolbar",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Draft",
+          "variantOptions": [
+            "Draft",
+            "Published",
+            "Changes"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "49:1472",
+          "name": "Status=Draft"
+        },
+        {
+          "id": "49:1495",
+          "name": "Status=Published"
+        },
+        {
+          "id": "49:1513",
+          "name": "Status=Changes"
+        }
+      ]
+    },
+    {
+      "id": "32:706",
+      "name": "AP / Tab",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:285": {
+          "type": "TEXT",
+          "defaultValue": "Preview"
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Selected",
+            "Focus",
+            "Disabled"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:701",
+          "name": "State=Default"
+        },
+        {
+          "id": "32:702",
+          "name": "State=Hover"
+        },
+        {
+          "id": "32:703",
+          "name": "State=Selected"
+        },
+        {
+          "id": "32:704",
+          "name": "State=Focus"
+        },
+        {
+          "id": "32:705",
+          "name": "State=Disabled"
+        }
+      ]
+    },
+    {
+      "id": "32:717",
+      "name": "AP / Menu item",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:291": {
+          "type": "TEXT",
+          "defaultValue": "Menu item"
+        },
+        "Show icon#32:297": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Icon#32:303": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "32:3",
+          "preferredValues": []
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Selected",
+            "Danger",
+            "Disabled"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:712",
+          "name": "State=Default"
+        },
+        {
+          "id": "32:713",
+          "name": "State=Hover"
+        },
+        {
+          "id": "32:714",
+          "name": "State=Selected"
+        },
+        {
+          "id": "32:715",
+          "name": "State=Danger"
+        },
+        {
+          "id": "32:716",
+          "name": "State=Disabled"
+        }
+      ]
+    },
+    {
+      "id": "130:1320",
+      "name": "AP / Menu / Item",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#130:0": {
+          "type": "TEXT",
+          "defaultValue": "WhiteFrame Advisor"
+        },
+        "Description#130:5": {
+          "type": "TEXT",
+          "defaultValue": "Edited 2 hours ago"
+        },
+        "Show description#130:10": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Show tag#130:15": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Icon#130:20": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "49:523",
+          "preferredValues": []
+        },
+        "Show icon#130:25": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "Show trailing#130:30": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Selected",
+            "Danger"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "129:1304",
+          "name": "State=Default"
+        },
+        {
+          "id": "129:1316",
+          "name": "State=Hover"
+        },
+        {
+          "id": "129:1328",
+          "name": "State=Selected"
+        },
+        {
+          "id": "129:1340",
+          "name": "State=Danger"
+        }
+      ]
+    },
+    {
+      "id": "131:1318",
+      "name": "AP / Menu / Project switcher",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "131:1414",
+      "name": "AP / Menu / Project filter",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "131:1460",
+      "name": "AP / Menu / Project actions",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "131:1545",
+      "name": "AP / Menu / Project search results",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "131:1577",
+      "name": "AP / Menu / Project search empty",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "139:1490",
+      "name": "AP / Menu / Cover actions",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:744",
+      "name": "AP / Tooltip",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:309": {
+          "type": "TEXT",
+          "defaultValue": "More information"
+        },
+        "Style": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:743",
+          "name": "Style=Default"
+        }
+      ]
+    },
+    {
+      "id": "49:1705",
+      "name": "AP / Product / Project card",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Name#49:6": {
+          "type": "TEXT",
+          "defaultValue": "WhiteFrame Advisor"
+        },
+        "Updated#49:7": {
+          "type": "TEXT",
+          "defaultValue": "Edited 2 hours ago"
+        },
+        "Preview title#61:0": {
+          "type": "TEXT",
+          "defaultValue": "What are you working on?"
+        },
+        "Preview suggestion#61:3": {
+          "type": "TEXT",
+          "defaultValue": "Help me choose a service"
+        },
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Published",
+          "variantOptions": [
+            "Published",
+            "Unpublished"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "49:1643",
+          "name": "Status=Published"
+        },
+        {
+          "id": "49:1674",
+          "name": "Status=Unpublished"
+        }
+      ],
+      "description": "Project-card publication status and cover state are independent. With no coverAssetId the nested AP / Media / Project cover uses State=Default-mascot at rest. With an uploaded asset it uses State=Added bound to that image. Editable hover/focus reveals State=Empty; leave/blur recomputes from the current asset. Cover actions are separate from Open project and never change publication status. Branding upload instead uses Empty as its no-cover resting state. See the native component implementation guide."
+    },
+    {
+      "id": "130:1323",
+      "name": "AP / Media / Project cover",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Brand#130:35": {
+          "type": "TEXT",
+          "defaultValue": "WHITEFRAME"
+        },
+        "Caption#130:38": {
+          "type": "TEXT",
+          "defaultValue": "Ideas into impact."
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Empty",
+          "variantOptions": [
+            "Empty",
+            "Added",
+            "Default-mascot"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "129:1357",
+          "name": "State=Empty",
+          "description": "Upload/edit affordance. Default for branding when no cover is uploaded; transient hover/focus visual in editable cover areas. Never use as the resting fallback for homepage cards. Clicking invokes upload/replace for the same project; leaving restores the saved asset-derived state."
+        },
+        {
+          "id": "189:13673",
+          "name": "State=Default-mascot",
+          "description": "Homepage-card fallback when coverAssetId is absent. Preserve the supplied mascot artwork. Editable hover/focus shows Empty; leaving restores this fallback. Do not use this variant as the empty branding-upload control."
+        },
+        {
+          "id": "129:1362",
+          "name": "State=Added",
+          "description": "An uploaded cover exists. Bind the actual project cover asset and preserve its crop. In editable home/branding contexts show Empty temporarily on hover/focus. Restore this uploaded image on leave/blur. Read-only visitor covers stay Added without an upload action."
+        }
+      ],
+      "description": "Three presentation variants: Empty, Added, Default-mascot. Homepage cards: no uploaded asset =&gt; Default-mascot at rest; uploaded asset =&gt; Added bound to that asset. Editable hover/focus temporarily shows Empty and restores the asset-derived rest state on leave/blur. Branding upload: no asset =&gt; Empty at rest; uploaded asset =&gt; Added, with Empty on hover/focus. Hover never changes coverAssetId. Read-only/visitor contexts do not expose upload affordances."
+    },
+    {
+      "id": "52:1015",
+      "name": "AP / Product / New project prompt",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "49:1534",
+      "name": "AP / Product / Chat composer",
+      "type": "COMPONENT",
+      "properties": {
+        "Placeholder#49:1": {
+          "type": "TEXT",
+          "defaultValue": "Describe a change to your agent…"
+        }
+      }
+    },
+    {
+      "id": "49:1565",
+      "name": "AP / Product / Agent preview",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "32:649",
+      "name": "AP / Badge",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#32:274": {
+          "type": "TEXT",
+          "defaultValue": "Status"
+        },
+        "Tone": {
+          "type": "VARIANT",
+          "defaultValue": "Neutral",
+          "variantOptions": [
+            "Neutral",
+            "Success",
+            "Warning",
+            "Error",
+            "Info",
+            "Accent"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:643",
+          "name": "Tone=Neutral"
+        },
+        {
+          "id": "32:644",
+          "name": "Tone=Success"
+        },
+        {
+          "id": "32:645",
+          "name": "Tone=Warning"
+        },
+        {
+          "id": "32:646",
+          "name": "Tone=Error"
+        },
+        {
+          "id": "32:647",
+          "name": "Tone=Info"
+        },
+        {
+          "id": "32:648",
+          "name": "Tone=Accent"
+        }
+      ]
+    },
+    {
+      "id": "32:659",
+      "name": "AP / Avatar",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Initials#32:281": {
+          "type": "TEXT",
+          "defaultValue": "AP"
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small",
+            "Medium",
+            "Large"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:656",
+          "name": "Size=Small"
+        },
+        {
+          "id": "32:657",
+          "name": "Size=Medium"
+        },
+        {
+          "id": "32:658",
+          "name": "Size=Large"
+        }
+      ]
+    },
+    {
+      "id": "32:748",
+      "name": "AP / Spinner",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small",
+            "Medium"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:746",
+          "name": "Size=Small"
+        },
+        {
+          "id": "32:747",
+          "name": "Size=Medium"
+        }
+      ]
+    },
+    {
+      "id": "32:758",
+      "name": "AP / Surface",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Elevation": {
+          "type": "VARIANT",
+          "defaultValue": "Flat",
+          "variantOptions": [
+            "Flat",
+            "Panel",
+            "Overlay"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "32:755",
+          "name": "Elevation=Flat"
+        },
+        {
+          "id": "32:756",
+          "name": "Elevation=Panel"
+        },
+        {
+          "id": "32:757",
+          "name": "Elevation=Overlay"
+        }
+      ]
+    },
+    {
+      "id": "129:1352",
+      "name": "AP / Progress / Credit ring",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "129:1355",
+      "name": "AP / Progress / Credit balance",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "52:1090",
+      "name": "AP / Product / Capability row",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Name#52:4": {
+          "type": "TEXT",
+          "defaultValue": "Service recommendations"
+        },
+        "Description#52:5": {
+          "type": "TEXT",
+          "defaultValue": "Recommend the right service using approved company knowledge."
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Enabled",
+          "variantOptions": [
+            "Enabled",
+            "Available"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "52:1054",
+          "name": "State=Enabled"
+        },
+        {
+          "id": "52:1067",
+          "name": "State=Available"
+        }
+      ]
+    },
+    {
+      "id": "52:1091",
+      "name": "AP / Product / Version row",
+      "type": "COMPONENT",
+      "properties": {
+        "Version#52:6": {
+          "type": "TEXT",
+          "defaultValue": "V4"
+        },
+        "Title#52:7": {
+          "type": "TEXT",
+          "defaultValue": "Updated company branding"
+        },
+        "Meta#52:8": {
+          "type": "TEXT",
+          "defaultValue": "Today, 11:15 · Rakib"
+        }
+      }
+    },
+    {
+      "id": "52:1109",
+      "name": "AP / Product / Staff row",
+      "type": "COMPONENT",
+      "properties": {
+        "Name#52:9": {
+          "type": "TEXT",
+          "defaultValue": "Rakib"
+        },
+        "Email#52:10": {
+          "type": "TEXT",
+          "defaultValue": "rakib@whiteframe.agency"
+        },
+        "Role#52:11": {
+          "type": "TEXT",
+          "defaultValue": "Owner"
+        }
+      }
+    },
+    {
+      "id": "58:1060",
+      "name": "AP / Product / Library item",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Icon#58:6": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "49:543",
+          "preferredValues": []
+        },
+        "Name#58:7": {
+          "type": "TEXT",
+          "defaultValue": "Service recommendations"
+        },
+        "Description#58:8": {
+          "type": "TEXT",
+          "defaultValue": "Used in 2 projects"
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Selected"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "58:1046",
+          "name": "State=Default"
+        },
+        {
+          "id": "58:1053",
+          "name": "State=Selected"
+        }
+      ]
+    },
+    {
+      "id": "166:1528",
+      "name": "AP / Brand / A mascot artwork",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Eyes": {
+          "type": "VARIANT",
+          "defaultValue": "Open",
+          "variantOptions": [
+            "Open",
+            "Closed"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "166:1529",
+          "name": "Eyes=Open"
+        },
+        {
+          "id": "166:1671",
+          "name": "Eyes=Closed"
+        }
+      ]
+    },
+    {
+      "id": "166:1812",
+      "name": "AP / Motion / A mascot working",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Motion": {
+          "type": "VARIANT",
+          "defaultValue": "Loop",
+          "variantOptions": [
+            "Loop",
+            "Reduced"
+          ]
+        },
+        "Phase": {
+          "type": "VARIANT",
+          "defaultValue": "Rest",
+          "variantOptions": [
+            "Rest",
+            "Crouch",
+            "Air",
+            "Land",
+            "Settle",
+            "Blink"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "166:1813",
+          "name": "Motion=Loop, Phase=Rest"
+        },
+        {
+          "id": "166:1822",
+          "name": "Motion=Loop, Phase=Crouch"
+        },
+        {
+          "id": "166:1830",
+          "name": "Motion=Loop, Phase=Air"
+        },
+        {
+          "id": "166:1838",
+          "name": "Motion=Loop, Phase=Land"
+        },
+        {
+          "id": "166:1846",
+          "name": "Motion=Loop, Phase=Settle"
+        },
+        {
+          "id": "166:1854",
+          "name": "Motion=Loop, Phase=Blink"
+        },
+        {
+          "id": "166:1862",
+          "name": "Motion=Reduced, Phase=Rest"
+        }
+      ]
+    },
+    {
+      "id": "169:1570",
+      "name": "AP / Motion / A mascot native artwork",
+      "type": "COMPONENT",
+      "properties": {}
+    },
+    {
+      "id": "169:1853",
+      "name": "AP / Chat / Working indicator",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Title#169:0": {
+          "type": "TEXT",
+          "defaultValue": "Building your first draft"
+        },
+        "Detail#169:3": {
+          "type": "TEXT",
+          "defaultValue": "Creating visitor experience…"
+        },
+        "Motion": {
+          "type": "VARIANT",
+          "defaultValue": "Loop",
+          "variantOptions": [
+            "Loop",
+            "Reduced"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "169:1854",
+          "name": "Motion=Loop"
+        },
+        {
+          "id": "169:1867",
+          "name": "Motion=Reduced"
+        }
+      ]
+    },
+    {
+      "id": "237:1980",
+      "name": "AP / Ambient / Bottom gradient",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Motion": {
+          "type": "VARIANT",
+          "defaultValue": "Flow",
+          "variantOptions": [
+            "Still",
+            "Flow"
+          ]
+        },
+        "Phase": {
+          "type": "VARIANT",
+          "defaultValue": "0",
+          "variantOptions": [
+            "1",
+            "2",
+            "3",
+            "0"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "237:1981",
+          "name": "Motion=Flow, Phase=0"
+        },
+        {
+          "id": "237:1984",
+          "name": "Motion=Still, Phase=0"
+        },
+        {
+          "id": "253:1971",
+          "name": "Motion=Flow, Phase=1"
+        },
+        {
+          "id": "253:2000",
+          "name": "Motion=Flow, Phase=2"
+        },
+        {
+          "id": "253:2029",
+          "name": "Motion=Flow, Phase=3"
+        }
+      ]
+    }
+  ]
+}

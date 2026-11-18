@@ -1,0 +1,1779 @@
+{
+	"schemaVersion": 1,
+	"description": "All34 native canonical composition variants: expected current source dimensions against browser CSS bounds; state/color/font observations included. Geometry pass does not certify pixel identity.",
+	"source": "Current native captures and user-exported Unpublished SVG only; no inferred sibling dimensions.",
+	"viewport": {
+		"width": 1518,
+		"height": 1016,
+		"dpr": 1
+	},
+	"toleranceUnit": "CSS px",
+	"summary": {
+		"total": 34,
+		"passed": 34,
+		"failed": 0,
+		"sourceUnavailable": 0
+	},
+	"rows": [
+		{
+			"id": "components-05-navigation-global-header--default",
+			"figmaVariantId": "49:657",
+			"figmaComponentId": "116:11267",
+			"nativeName": "Type=Default",
+			"selector": ".ap-global-header",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:657",
+				"path": "/tmp/ap-context-49-657.json",
+				"sha256": "e6a93258a43a057c74272b61cc6c5356a9f59cb34d30df40c2c68a226c99cc92",
+				"evidence": "Captured current native get_design_context root has explicit w-[1440px], h-[64px]."
+			},
+			"expected": {
+				"width": 1440,
+				"height": 64
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 1440,
+				"height": 64,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(255, 255, 255)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": "default",
+				"text": "WhiteFrame Advisor1,985 creditsSettingsRA",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-global-header--secondary",
+			"figmaVariantId": "116:11268",
+			"figmaComponentId": "116:11267",
+			"nativeName": "Type=Secondary",
+			"selector": ".ap-global-header",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "116:11268",
+				"path": "/tmp/ap-context-116-11268.json",
+				"sha256": "56c483532a94bf206a3d0171bcfccf98cd6741c31dd61b5ec0e47fa037aee269",
+				"evidence": "Captured current native get_design_context root has explicit w-[1440px], h-[64px]."
+			},
+			"expected": {
+				"width": 1440,
+				"height": 64
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 1440,
+				"height": 64,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": "secondary",
+				"text": "WhiteFrame Advisor1,985 creditsSettingsRA",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-project-navigation--chat",
+			"figmaVariantId": "49:711",
+			"figmaComponentId": "49:1206",
+			"nativeName": "Active=Chat",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:711",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:711\" name=\"Active=Chat\" x=\"0\" y=\"32\" width=\"224\" height=\"896\" />\n      "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsProjectChatSkillsInstructions.mdHistoryBrandingConversationsNew conversationBuild project advisorToday \u00b7 4 messagesProject access3 staff membersManage access",
+				"current": [
+					{
+						"text": "Chat",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-project-navigation--skills",
+			"figmaVariantId": "49:810",
+			"figmaComponentId": "49:1206",
+			"nativeName": "Active=Skills",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:810",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:810\" name=\"Active=Skills\" x=\"256\" y=\"32\" width=\"224\" height=\"896\" />\n      "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsProjectChatSkillsInstructions.mdHistoryBrandingConversationsNew conversationBuild project advisorToday \u00b7 4 messagesProject access3 staff membersManage access",
+				"current": [
+					{
+						"text": "Skills",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-project-navigation--instructions",
+			"figmaVariantId": "49:909",
+			"figmaComponentId": "49:1206",
+			"nativeName": "Active=Instructions.md",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:909",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:909\" name=\"Active=Instructions.md\" x=\"512\" y=\"32\" width=\"224\" height=\"896\" />\n      "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsProjectChatSkillsInstructions.mdHistoryBrandingConversationsNew conversationBuild project advisorToday \u00b7 4 messagesProject access3 staff membersManage access",
+				"current": [
+					{
+						"text": "Instructions.md",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-project-navigation--history",
+			"figmaVariantId": "49:1008",
+			"figmaComponentId": "49:1206",
+			"nativeName": "Active=History",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1008",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1008\" name=\"Active=History\" x=\"768\" y=\"32\" width=\"224\" height=\"896\" />\n      "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsProjectChatSkillsInstructions.mdHistoryBrandingConversationsNew conversationBuild project advisorToday \u00b7 4 messagesProject access3 staff membersManage access",
+				"current": [
+					{
+						"text": "History",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-project-navigation--branding",
+			"figmaVariantId": "49:1107",
+			"figmaComponentId": "49:1206",
+			"nativeName": "Active=Branding",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1107",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1107\" name=\"Active=Branding\" x=\"1024\" y=\"32\" width=\"224\" height=\"896\" />\n    "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsProjectChatSkillsInstructions.mdHistoryBrandingConversationsNew conversationBuild project advisorToday \u00b7 4 messagesProject access3 staff membersManage access",
+				"current": [
+					{
+						"text": "Branding",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-settings-navigation--billing",
+			"figmaVariantId": "49:1207",
+			"figmaComponentId": "49:1471",
+			"nativeName": "Active=Billing & usage",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1207",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1207\" name=\"Active=Billing &amp; usage\" x=\"0\" y=\"32\" width=\"224\" height=\"896\" />\n      "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsWORKSPACE SETTINGSGeneralBilling & usageSkills libraryPluginsStaff & rolesWhiteFrame workspaceSettings apply across your projects.",
+				"current": [
+					{
+						"text": "Billing & usage",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-settings-navigation--skills",
+			"figmaVariantId": "49:1273",
+			"figmaComponentId": "49:1471",
+			"nativeName": "Active=Skills library",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1273",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1273\" name=\"Active=Skills library\" x=\"256\" y=\"32\" width=\"224\" height=\"896\" />\n      "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsWORKSPACE SETTINGSGeneralBilling & usageSkills libraryPluginsStaff & rolesWhiteFrame workspaceSettings apply across your projects.",
+				"current": [
+					{
+						"text": "Skills library",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-settings-navigation--plugins",
+			"figmaVariantId": "49:1339",
+			"figmaComponentId": "49:1471",
+			"nativeName": "Active=Plugins",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1339",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1339\" name=\"Active=Plugins\" x=\"512\" y=\"32\" width=\"224\" height=\"896\" />\n      "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsWORKSPACE SETTINGSGeneralBilling & usageSkills libraryPluginsStaff & rolesWhiteFrame workspaceSettings apply across your projects.",
+				"current": [
+					{
+						"text": "Plugins",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-settings-navigation--staff",
+			"figmaVariantId": "49:1405",
+			"figmaComponentId": "49:1471",
+			"nativeName": "Active=Staff & roles",
+			"selector": ".ap-sidebar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1405",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1405\" name=\"Active=Staff &amp; roles\" x=\"768\" y=\"32\" width=\"224\" height=\"896\" />\n    "
+			},
+			"expected": {
+				"width": 224,
+				"height": 896
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 224,
+				"height": 896,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "All projectsWORKSPACE SETTINGSGeneralBilling & usageSkills libraryPluginsStaff & rolesWhiteFrame workspaceSettings apply across your projects.",
+				"current": [
+					{
+						"text": "Staff & roles",
+						"color": "rgb(42, 42, 42)",
+						"background": "rgb(230, 230, 230)"
+					}
+				],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-project-toolbar--draft",
+			"figmaVariantId": "49:1472",
+			"figmaComponentId": "49:1533",
+			"nativeName": "Status=Draft",
+			"selector": ".ap-project-toolbar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1472",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1472\" name=\"Status=Draft\" x=\"32\" y=\"32\" width=\"1216\" height=\"64\" />\n      "
+			},
+			"expected": {
+				"width": 1216,
+				"height": 64
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 1216,
+				"height": 64,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(255, 255, 255)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "WhiteFrame AdvisorUnpublishedAll changes savedPublish",
+				"current": [],
+				"badge": [
+					{
+						"text": "Unpublished",
+						"x": 214.046875,
+						"y": 20,
+						"width": 89,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(70, 70, 70)",
+						"background": "rgb(242, 242, 242)",
+						"mask": "none"
+					}
+				],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-project-toolbar--published",
+			"figmaVariantId": "49:1495",
+			"figmaComponentId": "49:1533",
+			"nativeName": "Status=Published",
+			"selector": ".ap-project-toolbar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1495",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1495\" name=\"Status=Published\" x=\"32\" y=\"128\" width=\"1216\" height=\"64\" />\n      "
+			},
+			"expected": {
+				"width": 1216,
+				"height": 64
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 1216,
+				"height": 64,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(255, 255, 255)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "WhiteFrame AdvisorPublishedAll changes savedManage publish",
+				"current": [],
+				"badge": [
+					{
+						"text": "Published",
+						"x": 214.046875,
+						"y": 20,
+						"width": 74,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(22, 101, 52)",
+						"background": "rgb(240, 253, 244)",
+						"mask": "none"
+					}
+				],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-project-toolbar--changes",
+			"figmaVariantId": "49:1513",
+			"figmaComponentId": "49:1533",
+			"nativeName": "Status=Changes",
+			"selector": ".ap-project-toolbar",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1513",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"49:1513\" name=\"Status=Changes\" x=\"32\" y=\"224\" width=\"1216\" height=\"64\" />\n    "
+			},
+			"expected": {
+				"width": 1216,
+				"height": 64
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 1216,
+				"height": 64,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(255, 255, 255)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "WhiteFrame AdvisorPublishedDraft changesAll changes savedManage publish",
+				"current": [],
+				"badge": [
+					{
+						"text": "Published",
+						"x": 214.046875,
+						"y": 20,
+						"width": 74,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(22, 101, 52)",
+						"background": "rgb(240, 253, 244)",
+						"mask": "none"
+					},
+					{
+						"text": "Draft changes",
+						"x": 300.046875,
+						"y": 20,
+						"width": 98,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(146, 64, 14)",
+						"background": "rgb(255, 251, 235)",
+						"mask": "none"
+					}
+				],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-tab--default",
+			"figmaVariantId": "32:701",
+			"figmaComponentId": "32:706",
+			"nativeName": "State=Default",
+			"selector": ".ap-tab",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:701",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:701\" name=\"State=Default\" x=\"32\" y=\"32\" width=\"78\" height=\"36\" />\n      "
+			},
+			"expected": {
+				"width": 78,
+				"height": 36
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 78,
+				"height": 36,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(75, 85, 99)",
+				"background": "rgba(0, 0, 0, 0)",
+				"border": "0px none rgb(75, 85, 99)",
+				"dataState": "default",
+				"disabled": false,
+				"ariaSelected": "false",
+				"presentation": null,
+				"type": null,
+				"text": "Preview",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-tab--hover",
+			"figmaVariantId": "32:702",
+			"figmaComponentId": "32:706",
+			"nativeName": "State=Hover",
+			"selector": ".ap-tab",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:702",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:702\" name=\"State=Hover\" x=\"146\" y=\"32\" width=\"78\" height=\"36\" />\n      "
+			},
+			"expected": {
+				"width": 78,
+				"height": 36
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 78,
+				"height": 36,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(75, 85, 99)",
+				"background": "rgb(230, 230, 230)",
+				"border": "0px none rgb(75, 85, 99)",
+				"dataState": "hover",
+				"disabled": false,
+				"ariaSelected": "false",
+				"presentation": null,
+				"type": null,
+				"text": "Preview",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-tab--selected",
+			"figmaVariantId": "32:703",
+			"figmaComponentId": "32:706",
+			"nativeName": "State=Selected",
+			"selector": ".ap-tab",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:703",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:703\" name=\"State=Selected\" x=\"260\" y=\"32\" width=\"80\" height=\"38\" />\n      "
+			},
+			"expected": {
+				"width": 80,
+				"height": 38
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 80,
+				"height": 38,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(255, 255, 255)",
+				"border": "1px solid rgb(229, 231, 235)",
+				"dataState": "selected",
+				"disabled": false,
+				"ariaSelected": "true",
+				"presentation": null,
+				"type": null,
+				"text": "Preview",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-tab--focus",
+			"figmaVariantId": "32:704",
+			"figmaComponentId": "32:706",
+			"nativeName": "State=Focus",
+			"selector": ".ap-tab",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:704",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:704\" name=\"State=Focus\" x=\"374\" y=\"32\" width=\"82\" height=\"40\" />\n      "
+			},
+			"expected": {
+				"width": 82,
+				"height": 40
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 82,
+				"height": 40,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(75, 85, 99)",
+				"background": "rgba(0, 0, 0, 0)",
+				"border": "2px solid rgb(29, 78, 216)",
+				"dataState": "focus",
+				"disabled": false,
+				"ariaSelected": "false",
+				"presentation": null,
+				"type": null,
+				"text": "Preview",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-05-navigation-tab--disabled",
+			"figmaVariantId": "32:705",
+			"figmaComponentId": "32:706",
+			"nativeName": "State=Disabled",
+			"selector": ".ap-tab",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:705",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:705\" name=\"State=Disabled\" x=\"488\" y=\"32\" width=\"78\" height=\"36\" />\n    "
+			},
+			"expected": {
+				"width": 78,
+				"height": 36
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 78,
+				"height": 36,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(162, 162, 162)",
+				"background": "rgba(0, 0, 0, 0)",
+				"border": "0px none rgb(162, 162, 162)",
+				"dataState": "disabled",
+				"disabled": true,
+				"ariaSelected": "false",
+				"presentation": null,
+				"type": null,
+				"text": "Preview",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-menu-item--default",
+			"figmaVariantId": "32:712",
+			"figmaComponentId": "32:717",
+			"nativeName": "State=Default",
+			"selector": ".ap-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:712",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:712\" name=\"State=Default\" x=\"32\" y=\"32\" width=\"264\" height=\"40\" />\n      "
+			},
+			"expected": {
+				"width": 264,
+				"height": 40
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 264,
+				"height": 40,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgba(0, 0, 0, 0)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": "default",
+				"disabled": false,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "Menu item",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-menu-item--hover",
+			"figmaVariantId": "32:713",
+			"figmaComponentId": "32:717",
+			"nativeName": "State=Hover",
+			"selector": ".ap-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:713",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:713\" name=\"State=Hover\" x=\"328\" y=\"32\" width=\"264\" height=\"40\" />\n      "
+			},
+			"expected": {
+				"width": 264,
+				"height": 40
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 264,
+				"height": 40,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(230, 230, 230)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": "hover",
+				"disabled": false,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "Menu item",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-menu-item--selected",
+			"figmaVariantId": "32:714",
+			"figmaComponentId": "32:717",
+			"nativeName": "State=Selected",
+			"selector": ".ap-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:714",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:714\" name=\"State=Selected\" x=\"624\" y=\"32\" width=\"264\" height=\"40\" />\n      "
+			},
+			"expected": {
+				"width": 264,
+				"height": 40
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 264,
+				"height": 40,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(238, 242, 255)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": "selected",
+				"disabled": false,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "Menu item",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-menu-item--danger",
+			"figmaVariantId": "32:715",
+			"figmaComponentId": "32:717",
+			"nativeName": "State=Danger",
+			"selector": ".ap-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:715",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:715\" name=\"State=Danger\" x=\"32\" y=\"104\" width=\"264\" height=\"40\" />\n      "
+			},
+			"expected": {
+				"width": 264,
+				"height": 40
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 264,
+				"height": 40,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(153, 27, 27)",
+				"background": "rgba(0, 0, 0, 0)",
+				"border": "0px none rgb(153, 27, 27)",
+				"dataState": "danger",
+				"disabled": false,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "Menu item",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-menu-item--disabled",
+			"figmaVariantId": "32:716",
+			"figmaComponentId": "32:717",
+			"nativeName": "State=Disabled",
+			"selector": ".ap-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:716",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:716\" name=\"State=Disabled\" x=\"328\" y=\"104\" width=\"264\" height=\"40\" />\n    "
+			},
+			"expected": {
+				"width": 264,
+				"height": 40
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 264,
+				"height": 40,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(162, 162, 162)",
+				"background": "rgba(0, 0, 0, 0)",
+				"border": "0px none rgb(162, 162, 162)",
+				"dataState": "disabled",
+				"disabled": true,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "Menu item",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-rich-menu-item--default",
+			"figmaVariantId": "129:1304",
+			"figmaComponentId": "130:1320",
+			"nativeName": "State=Default",
+			"selector": ".ap-rich-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "129:1304",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"129:1304\" name=\"State=Default\" x=\"32\" y=\"32\" width=\"336\" height=\"58\" />\n      "
+			},
+			"expected": {
+				"width": 336,
+				"height": 58
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 336,
+				"height": 58,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(255, 255, 255)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": "default",
+				"disabled": false,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "WhiteFrame AdvisorEdited 2 hours agoPublished",
+				"current": [],
+				"badge": [
+					{
+						"text": "Published",
+						"x": 250,
+						"y": 17,
+						"width": 74,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(22, 101, 52)",
+						"background": "rgb(240, 253, 244)",
+						"mask": "none"
+					}
+				],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-rich-menu-item--hover",
+			"figmaVariantId": "129:1316",
+			"figmaComponentId": "130:1320",
+			"nativeName": "State=Hover",
+			"selector": ".ap-rich-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "129:1316",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"129:1316\" name=\"State=Hover\" x=\"400\" y=\"32\" width=\"336\" height=\"58\" />\n      "
+			},
+			"expected": {
+				"width": 336,
+				"height": 58
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 336,
+				"height": 58,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": "hover",
+				"disabled": false,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "WhiteFrame AdvisorEdited 2 hours agoPublished",
+				"current": [],
+				"badge": [
+					{
+						"text": "Published",
+						"x": 250,
+						"y": 17,
+						"width": 74,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(22, 101, 52)",
+						"background": "rgb(240, 253, 244)",
+						"mask": "none"
+					}
+				],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-rich-menu-item--selected",
+			"figmaVariantId": "129:1328",
+			"figmaComponentId": "130:1320",
+			"nativeName": "State=Selected",
+			"selector": ".ap-rich-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "129:1328",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"129:1328\" name=\"State=Selected\" x=\"32\" y=\"122\" width=\"336\" height=\"58\" />\n      "
+			},
+			"expected": {
+				"width": 336,
+				"height": 58
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 336,
+				"height": 58,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px none rgb(42, 42, 42)",
+				"dataState": "selected",
+				"disabled": false,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "WhiteFrame AdvisorEdited 2 hours agoPublished",
+				"current": [],
+				"badge": [
+					{
+						"text": "Published",
+						"x": 250,
+						"y": 17,
+						"width": 74,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(22, 101, 52)",
+						"background": "rgb(240, 253, 244)",
+						"mask": "none"
+					}
+				],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-rich-menu-item--danger",
+			"figmaVariantId": "129:1340",
+			"figmaComponentId": "130:1320",
+			"nativeName": "State=Danger",
+			"selector": ".ap-rich-menu-item",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "129:1340",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"129:1340\" name=\"State=Danger\" x=\"400\" y=\"122\" width=\"336\" height=\"58\" />\n    "
+			},
+			"expected": {
+				"width": 336,
+				"height": 58
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 336,
+				"height": 58,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(153, 27, 27)",
+				"background": "rgb(255, 255, 255)",
+				"border": "0px none rgb(153, 27, 27)",
+				"dataState": "danger",
+				"disabled": false,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "WhiteFrame AdvisorEdited 2 hours agoPublished",
+				"current": [],
+				"badge": [
+					{
+						"text": "Published",
+						"x": 250,
+						"y": 17,
+						"width": 74,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(22, 101, 52)",
+						"background": "rgb(240, 253, 244)",
+						"mask": "none"
+					}
+				],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-06-menus-tooltip--default",
+			"figmaVariantId": "32:743",
+			"figmaComponentId": "32:744",
+			"nativeName": "Style=Default",
+			"selector": ".ap-tooltip",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "32:743",
+				"path": "/tmp/agentplace-design-32-2.json",
+				"sha256": "035c00a114bed07cd56c2d94f8454483eef7eab972aaabc1d18b97837a2aa22c",
+				"evidence": "<symbol id=\"32:743\" name=\"Style=Default\" x=\"32\" y=\"32\" width=\"116\" height=\"32\" />\n    "
+			},
+			"expected": {
+				"width": 116,
+				"height": 32
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 116,
+				"height": 32,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(255, 255, 255)",
+				"background": "rgb(42, 42, 42)",
+				"border": "0px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "More information",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-07-project-builder-project-card--published",
+			"figmaVariantId": "49:1643",
+			"figmaComponentId": "49:1705",
+			"nativeName": "Status=Published",
+			"selector": ".ap-project-card",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1643",
+				"path": "/tmp/ap-context-49-1643.png",
+				"sha256": "e1adf9b1e589b0c994a14868806eb57d506f9637c4e20be15ab27b115a522f13",
+				"evidence": "Native root context fixes width352; its screenshot inside-border horizontal rows y2 and219 delimit218px outer height. PNG width362 includes5px shadow margin on each side. See source JSON /tmp/ap-context-49-1643.json."
+			},
+			"expected": {
+				"width": 352,
+				"height": 218
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 352,
+				"height": 218,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(255, 255, 255)",
+				"border": "1px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "Add a project coverAdd coverWhiteFrame AdvisorPublishedEdited 2 hours ago",
+				"current": [],
+				"badge": [
+					{
+						"text": "Published",
+						"x": 169,
+						"y": 157,
+						"width": 74,
+						"height": 24,
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontSize": "12px",
+						"fontWeight": "510",
+						"lineHeight": "16px",
+						"color": "rgb(22, 101, 52)",
+						"background": "rgb(240, 253, 244)",
+						"mask": "none"
+					}
+				],
+				"title": {
+					"text": "WhiteFrame Advisor",
+					"x": 21,
+					"y": 159,
+					"width": 140,
+					"height": 20,
+					"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+					"fontSize": "14px",
+					"fontWeight": "590",
+					"lineHeight": "20px",
+					"color": "rgb(42, 42, 42)",
+					"background": "rgba(0, 0, 0, 0)",
+					"mask": "none"
+				},
+				"edited": null,
+				"cover": {
+					"text": "Add a project coverAdd cover",
+					"x": 17,
+					"y": 17,
+					"width": 320,
+					"height": 124,
+					"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+					"fontSize": "14px",
+					"fontWeight": "400",
+					"lineHeight": "20px",
+					"color": "rgb(75, 85, 99)",
+					"background": "rgb(242, 242, 242)",
+					"mask": "none"
+				},
+				"actions": {
+					"text": "",
+					"x": 299,
+					"y": 153,
+					"width": 32,
+					"height": 32,
+					"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+					"fontSize": "14px",
+					"fontWeight": "510",
+					"lineHeight": "20px",
+					"color": "rgb(156, 163, 175)",
+					"background": "rgba(0, 0, 0, 0)",
+					"mask": "none"
+				},
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-07-project-builder-project-card--unpublished",
+			"figmaVariantId": "49:1674",
+			"figmaComponentId": "49:1705",
+			"nativeName": "Status=Unpublished",
+			"selector": ".ap-project-card",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "49:1674",
+				"path": "/Users/mdrakibulislam/Personal Projects/local-icons/AP/Product/Status=Unpublished.svg",
+				"sha256": "88eed98e67e9180fdf7938963a1775426e5f9a5e3d62c507734ac9209476cec4",
+				"exportCanvas": {
+					"width": 362,
+					"height": 228
+				},
+				"cardPathBounds": {
+					"x": 5,
+					"y": 2,
+					"width": 352,
+					"height": 218
+				},
+				"evidence": "Current user-exported SVG; root362\u00d7228 includes shadow. The first opaque card path/mask ranges x5..357,y2..220 and proves352\u00d7218. filter0_dd_49_1674 binds export to native49:1674. Review reference only; not rendered as component."
+			},
+			"expected": {
+				"width": 352,
+				"height": 218
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 352,
+				"height": 218,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(42, 42, 42)",
+				"background": "rgb(255, 255, 255)",
+				"border": "1px solid rgb(229, 231, 235)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": null,
+				"type": null,
+				"text": "Add a project coverAdd coverWhiteFrame AdvisorUnpublishedEdited 2 hours ago",
+				"current": [],
+				"badge": [
+					{
+						"x": 169,
+						"y": 157,
+						"width": 89,
+						"height": 24,
+						"text": "Unpublished",
+						"color": "rgb(70, 70, 70)",
+						"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+						"fontWeight": "510",
+						"fontSize": "12px",
+						"lineHeight": "16px"
+					}
+				],
+				"title": {
+					"x": 21,
+					"y": 159,
+					"width": 140,
+					"height": 20,
+					"text": "WhiteFrame Advisor",
+					"color": "rgb(42, 42, 42)",
+					"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+					"fontWeight": "590",
+					"fontSize": "14px",
+					"lineHeight": "20px"
+				},
+				"edited": {
+					"x": 21,
+					"y": 185,
+					"width": 310,
+					"height": 16,
+					"text": "Edited 2 hours ago",
+					"color": "rgb(75, 85, 99)",
+					"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+					"fontWeight": "400",
+					"fontSize": "12px",
+					"lineHeight": "16px"
+				},
+				"cover": {
+					"text": "Add a project coverAdd cover",
+					"x": 17,
+					"y": 17,
+					"width": 320,
+					"height": 124,
+					"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+					"fontSize": "14px",
+					"fontWeight": "400",
+					"lineHeight": "20px",
+					"color": "rgb(75, 85, 99)",
+					"background": "rgb(242, 242, 242)",
+					"mask": "none"
+				},
+				"actions": {
+					"text": "",
+					"x": 299,
+					"y": 153,
+					"width": 32,
+					"height": 32,
+					"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+					"fontSize": "14px",
+					"fontWeight": "510",
+					"lineHeight": "20px",
+					"color": "rgb(156, 163, 175)",
+					"background": "rgba(0, 0, 0, 0)",
+					"mask": "none"
+				},
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-07-project-builder-project-cover--empty",
+			"figmaVariantId": "129:1357",
+			"figmaComponentId": "130:1323",
+			"nativeName": "State=Empty",
+			"selector": ".ap-project-cover",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "129:1357",
+				"path": "/tmp/ap-context-129-1357.json",
+				"sha256": "b2ddf09116532f86d6a36fbd7301d9b310317a5ec08ae65bcbe936fd1a204292",
+				"evidence": "Captured current native get_design_context root has explicit w-[320px], h-[124px]; docs/design-handoff/cover-presentation-before.json also preserves these three variant dimensions."
+			},
+			"expected": {
+				"width": 320,
+				"height": 124
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 320,
+				"height": 124,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(75, 85, 99)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px none rgb(75, 85, 99)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": "empty",
+				"type": null,
+				"text": "Add a project cover",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-07-project-builder-project-cover--default-mascot",
+			"figmaVariantId": "189:13673",
+			"figmaComponentId": "130:1323",
+			"nativeName": "State=Default-mascot",
+			"selector": ".ap-project-cover",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "189:13673",
+				"path": "/tmp/ap-context-189-13673.json",
+				"sha256": "f965d19f2982a2f7107594b9e9015d0a1be58ea0dd618edffa99f2ad51f687ca",
+				"evidence": "Captured current native get_design_context root has explicit w-[320px], h-[124px]; docs/design-handoff/cover-presentation-before.json also preserves these three variant dimensions."
+			},
+			"expected": {
+				"width": 320,
+				"height": 124
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 320,
+				"height": 124,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(75, 85, 99)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px none rgb(75, 85, 99)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": "default-mascot",
+				"type": null,
+				"text": "Add a project cover",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		},
+		{
+			"id": "components-07-project-builder-project-cover--added",
+			"figmaVariantId": "129:1362",
+			"figmaComponentId": "130:1323",
+			"nativeName": "State=Added",
+			"selector": ".ap-project-cover",
+			"source": {
+				"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+				"nodeId": "129:1362",
+				"path": "/tmp/ap-context-129-1362.json",
+				"sha256": "01b2206166e1ea9d650eff0de77bccdc1e2bdc80b1e0737c5f00a8c7ebbec8b6",
+				"evidence": "Captured current native get_design_context root has explicit w-[320px], h-[124px]; docs/design-handoff/cover-presentation-before.json also preserves these three variant dimensions."
+			},
+			"expected": {
+				"width": 320,
+				"height": 124
+			},
+			"sourceUnavailable": false,
+			"tolerance": 0.02,
+			"actual": {
+				"width": 320,
+				"height": 124,
+				"fontLoaded": true,
+				"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+				"foreground": "rgb(75, 85, 99)",
+				"background": "rgb(242, 242, 242)",
+				"border": "0px none rgb(75, 85, 99)",
+				"dataState": null,
+				"disabled": null,
+				"ariaSelected": null,
+				"presentation": "added",
+				"type": null,
+				"text": "Add a project cover",
+				"current": [],
+				"badge": [],
+				"title": null,
+				"edited": null,
+				"cover": null,
+				"actions": null,
+				"icons": []
+			},
+			"pass": true
+		}
+	]
+}

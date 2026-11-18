@@ -1,0 +1,46 @@
+[
+	{
+		"id": "components-actions-primary-button--pending-request-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-actions-primary-button--activation-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-forms-input--editing-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-actions-secondary-button--activation-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-actions-ghost-button--activation-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-actions-danger-button--activation-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-forms-password-field--visibility-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-forms-six-digit-otp--leading-zero-paste-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-forms-six-digit-otp--correction-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-forms-checkbox--toggle-guide",
+		"status": "PASS"
+	},
+	{
+		"id": "components-forms-switch--toggle-guide",
+		"status": "PASS"
+	}
+]

@@ -1,0 +1,840 @@
+{
+	"schemaVersion": 1,
+	"generatedAt": "2026-11-18T08:09:57.949572+00:00",
+	"status": "implementation-and-source-review-complete",
+	"fileKey": "m0v1MINOJA152Kil6JHeZ8",
+	"sourceNodes": {
+		"foundations": "29:397",
+		"foundationOverview": "30:2",
+		"components": "32:2",
+		"productExperience": "50:2",
+		"componentGuide": "209:1916",
+		"flowGuide": "209:7141",
+		"agentContract": "213:2020"
+	},
+	"structuralCoverage": {
+		"artifact": "../storybook-coverage.json",
+		"counts": {
+			"expectedDefinitions": 97,
+			"linkedDefinitions": 97,
+			"expectedVariants": 169,
+			"linkedVariants": 169,
+			"tokens": 395,
+			"textStyles": 25,
+			"sourceStories": 312,
+			"sourcePlayFunctions": 24,
+			"localAssets": 69
+		},
+		"complete": true,
+		"scope": "Source IDs/metadata/docs/assets only, not proof of visual identity."
+	},
+	"foundations": {
+		"artifact": "foundation-browser-checks.json",
+		"tokenValueChecks": 790,
+		"textStyleMetricChecks": 25,
+		"failures": 0
+	},
+	"geometry": {
+		"canonicalVariantCoverage": {
+			"artifact": "canonical-variant-geometry.json",
+			"expected": 169,
+			"passed": 169,
+			"missing": [],
+			"scope": "Every authored variant has an actual expected/observed outer-bound comparison. This does not certify content, pixels, responsive layouts or every interaction."
+		},
+		"controlsFormsData": {
+			"artifact": "controls-geometry.json",
+			"cases": 122,
+			"passed": 122,
+			"failures": [],
+			"comparisonTolerancePx": 0.02
+		},
+		"root": {
+			"artifact": "root-geometry.json",
+			"cases": 118,
+			"passed": 118,
+			"failures": [],
+			"scope": "Uses each captured case's own expected bounds and recorded pass result; includes fractional CSS pixel quantization."
+		},
+		"compositions": {
+			"artifact": "composition-geometry.json",
+			"status": "captured",
+			"variantArtifact": "composition-variant-geometry.json",
+			"variantCases": 34,
+			"variantPassed": 34,
+			"sourceUnavailable": [],
+			"variantFailures": [],
+			"unpublishedSource": {
+				"artifact": "references/project-card-unpublished-source.svg",
+				"figmaVariantId": "49:1674",
+				"sha256": "88eed98e67e9180fdf7938963a1775426e5f9a5e3d62c507734ac9209476cec4",
+				"bytes": 42228,
+				"svgRoot": {
+					"width": "362",
+					"height": "228",
+					"viewBox": "0 0 362 228"
+				},
+				"scope": "User-provided exact Figma SVG export retained only as review source. SVG root362\u00d7228 includes shadow padding; physical card surface352\u00d7218 is measured independently. This SVG is not used as the component implementation."
+			},
+			"currentProjectCard": {
+				"width": 352,
+				"height": 218
+			},
+			"supersededClaim": "The earlier216px card-height claim was withdrawn; final canonical card is352\u00d7218.",
+			"previewCorrections": "Real borders and1px glyph baseline refinement; final capture preserved."
+		}
+	},
+	"interactions": {
+		"controls": {
+			"artifact": "controls-interactions.json",
+			"passed": 11,
+			"outcomes": [
+				{
+					"id": "components-actions-primary-button--pending-request-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-actions-primary-button--activation-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-forms-input--editing-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-actions-secondary-button--activation-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-actions-ghost-button--activation-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-actions-danger-button--activation-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-forms-password-field--visibility-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-forms-six-digit-otp--leading-zero-paste-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-forms-six-digit-otp--correction-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-forms-checkbox--toggle-guide",
+					"status": "PASS"
+				},
+				{
+					"id": "components-forms-switch--toggle-guide",
+					"status": "PASS"
+				}
+			]
+		},
+		"compositions": {
+			"artifact": "composition-interactions.json",
+			"status": "captured-final",
+			"passed": 11,
+			"outcomes": [
+				{
+					"id": "components-06-menus-project-switcher--keyboard-and-dismiss",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\nproject-switcher.stories.tsx\nInteraction steps\nuserEvent.click(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Switch project\" }))\nwithin(<body.sb-main-padded.sb-show-main>).findByRole(\"combobox\",\u00a0{ name: \"Search projects\" })\nuserEvent.type(<input>,\u00a0\"Booking\")\nexpect(within(<body.sb-main-padded.sb-show-main>).getAllByRole(\"option\")).toHaveLength(1)\nuserEvent.keyboard(\"{ArrowDown}{Enter}\")\nexpect(onSelect).toHaveBeenCalledWith(\"storybook-booking\")\nuserEvent.keyboard(\"{Escape}\")\nwaitFor(anonymous)\nexpect(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Switch project\" })).toHaveFocus()"
+				},
+				{
+					"id": "components-06-menus-project-filter--keyboard-selection",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\nproject-filter.stories.tsx\nInteraction steps\nuserEvent.click(within(<div#storybook-root>).getByRole(\"menuitemradio\",\u00a0{ name: /Published 2/ }))\nexpect(within(<div#storybook-root>).getByRole(\"menuitemradio\",\u00a0{ name: /Published 2/ })).toHaveAttribute(\"aria-checked\",\u00a0\"true\")"
+				},
+				{
+					"id": "components-06-menus-project-search-empty--clear-interaction",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\nproject-search-empty.stories.tsx\nInteraction steps\nexpect(within(<div#storybook-root>).getByText(\"No matching projects\")).toBeVisible()\nuserEvent.click(<button.ap-menu-close>)\nexpect(within(<div#storybook-root>).getByRole(\"combobox\")).toHaveValue(\"\")\nexpect(within(<div#storybook-root>).getAllByRole(\"option\")).toHaveLength(3)"
+				},
+				{
+					"id": "components-05-navigation-tab--keyboard-interaction",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\ntab.stories.tsx\nInteraction steps\nuserEvent.click(within(<div#storybook-root>).getByRole(\"tab\",\u00a0{ name: \"Preview\" }))\nuserEvent.keyboard(\"{ArrowRight}\")\nexpect(within(<div#storybook-root>).getByRole(\"tab\",\u00a0{ name: \"Settings\" })).toHaveFocus()\nexpect(within(<div#storybook-root>).getByRole(\"tab\",\u00a0{ name: \"Settings\" })).toHaveAttribute(\"aria-selected\",\u00a0\"true\")\nuserEvent.keyboard(\"{ArrowRight}\")\nexpect(within(<div#storybook-root>).getByRole(\"tab\",\u00a0{ name: \"Preview\" })).toHaveFocus()\nuserEvent.keyboard(\"{End}\")\nexpect(within(<div#storybook-root>).getByRole(\"tab\",\u00a0{ name: \"Settings\" })).toHaveFocus()\nuserEvent.keyboard(\"{Home}\")\nexpect(within(<div#storybook-root>).getByRole(\"tab\",\u00a0{ name: \"Preview\" })).toHaveFocus()"
+				},
+				{
+					"id": "components-07-project-builder-chat-composer--enter-and-multiline",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\nchat-composer.stories.tsx\nInteraction steps\nuserEvent.type(within(<div#storybook-root>).getByRole(\"textbox\",\u00a0{ name: \"Message your agent builder\" }),\u00a0\"First line{Shift>}{Enter}{/Shift}Second line\")\nexpect(within(<div#storybook-root>).getByRole(\"textbox\",\u00a0{ name: \"Message your agent builder\" })).toHaveValue(\"First line\\nSecond line\")\nuserEvent.keyboard(\"{Enter}\")\nexpect(onSubmit).toHaveBeenCalledWith(\"First line\\nSecond line\")\nexpect(within(<div#storybook-root>).getByRole(\"textbox\",\u00a0{ name: \"Message your agent builder\" })).toHaveValue(\"\")\nexpect(within(<div#storybook-root>).getByRole(\"textbox\",\u00a0{ name: \"Message your agent builder\" })).toHaveFocus()"
+				},
+				{
+					"id": "components-07-project-builder-agent-preview--suggest-send-and-call",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\nagent-preview.stories.tsx\nInteraction steps\nuserEvent.click(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Help me choose a service\" }))\nexpect(within(<div#storybook-root>).getByRole(\"textbox\",\u00a0{ name: \"Ask your agent a question\" })).toHaveValue(\"Help me choose a service\")\nuserEvent.click(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Send question\" }))\nexpect(onSend).toHaveBeenCalledWith(\"Help me choose a service\")\nuserEvent.click(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Call\" }))\nexpect(onCall).toHaveBeenCalledOnce()"
+				},
+				{
+					"id": "components-07-project-builder-project-card--cover-does-not-navigate",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\nproject-card.stories.tsx\nInteraction steps\nuserEvent.click(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" }))\nexpect(onCoverEdit).toHaveBeenCalledWith(\"storybook-whiteframe\")\nexpect(onOpen).not.toHaveBeenCalled()"
+				},
+				{
+					"id": "components-07-project-builder-project-cover--hover-focus-and-restore",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\nproject-cover.stories.tsx\nInteraction steps\nexpect(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" })).toHaveAttribute(\"data-presentation\",\u00a0\"default-mascot\")\nuserEvent.hover(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" }))\nwaitFor(anonymous)\nexpect(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" })).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.unhover(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" }))\nexpect(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" })).toHaveAttribute(\"data-presentation\",\u00a0\"default-mascot\")\nuserEvent.tab()\nexpect(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" })).toHaveFocus()\nfireEvent.focusIn(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" }))\nwaitFor(anonymous)\nexpect(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Add project cover\" })).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.keyboard(\"{Enter}\")\nexpect(onEdit).toHaveBeenCalledOnce()"
+				},
+				{
+					"id": "components-07-project-builder-project-cover--context-and-asset-lifecycle",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\nproject-cover.stories.tsx\nInteraction steps\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"default-mascot\")\nexpect(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.hover(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nwaitFor(anonymous)\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.unhover(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"default-mascot\")\nuserEvent.hover(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.unhover(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\"))\nuserEvent.tab()\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveFocus()\nfireEvent.focusIn(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nwaitFor(anonymous)\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.tab()\nfireEvent.focusOut(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nfireEvent.focusIn(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"default-mascot\")\nuserEvent.tab()\nfireEvent.focusOut(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\"))\nuserEvent.upload(within(<div#storybook-root>).getByLabelText(\"Fixture cover image\"),\u00a0File)\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"added\")\nexpect(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"added\")\nuserEvent.hover(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nwaitFor(anonymous)\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.unhover(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"added\")\nuserEvent.hover(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.unhover(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"added\")\nuserEvent.click(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nfireEvent.focusIn(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nuserEvent.unhover(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nwaitFor(anonymous)\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.tab()\nfireEvent.focusOut(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nfireEvent.focusIn(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"added\")\nexpect(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\")).toHaveFocus()\nuserEvent.tab()\nfireEvent.focusOut(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"added\")\nuserEvent.click(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Cancel replacement\" }))\nexpect(\"blob:http://localhost:6006/cfeaf4d0-a73d-4bf6\u2026\").toBe(\"blob:http://localhost:6006/cfeaf4d0-a73d-4bf6\u2026\")\nuserEvent.click(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Fail replacement\" }))\nexpect(\"blob:http://localhost:6006/cfeaf4d0-a73d-4bf6\u2026\").toBe(\"blob:http://localhost:6006/cfeaf4d0-a73d-4bf6\u2026\")\nuserEvent.upload(within(<div#storybook-root>).getByLabelText(\"Fixture cover image\"),\u00a0File)\nexpect(\"blob:http://localhost:6006/63f44e91-c3d5-4525\u2026\").not.toBe(\"blob:http://localhost:6006/cfeaf4d0-a73d-4bf6\u2026\")\nexpect(\"blob:http://localhost:6006/63f44e91-c3d5-4525\u2026\").toBe(\"blob:http://localhost:6006/63f44e91-c3d5-4525\u2026\")\nuserEvent.hover(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")\nuserEvent.unhover(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\"))\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"added\")\nexpect(null).not.toBeInTheDocument()\nuserEvent.click(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Remove staged cover\" }))\nexpect(within(within(<div#storybook-root>).getByTestId(\"home-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"default-mascot\")\nexpect(within(within(<div#storybook-root>).getByTestId(\"branding-cover\")).getByRole(\"button\")).toHaveAttribute(\"data-presentation\",\u00a0\"empty\")"
+				},
+				{
+					"id": "components-06-menus-tooltip--hover-and-escape",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\ntooltip.stories.tsx\nInteraction steps\nuserEvent.hover(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Hover for help\" }))\nwithin(<body.sb-main-padded.sb-show-main>).findByRole(\"tooltip\")\nexpect(<div#_r_0_>).toHaveTextContent(\"More information\")\nuserEvent.keyboard(\"{Escape}\")\nwaitFor(anonymous)\nexpect(null).not.toBeInTheDocument()"
+				},
+				{
+					"id": "components-06-menus-tooltip--keyboard-focus-and-escape",
+					"status": "PASS",
+					"report": "PASS\nScroll to end\ntooltip.stories.tsx\nInteraction steps\nuserEvent.tab()\nexpect(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Focus for help\" })).toHaveFocus()\nfireEvent.focusIn(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Focus for help\" }))\nwithin(<body.sb-main-padded.sb-show-main>).findByRole(\"tooltip\")\nexpect(<div#_r_0_>).toHaveTextContent(\"More information\")\nuserEvent.keyboard(\"{Escape}\")\nwaitFor(anonymous)\nexpect(null).not.toBeInTheDocument()\nexpect(within(<div#storybook-root>).getByRole(\"button\",\u00a0{ name: \"Focus for help\" })).toHaveFocus()"
+				}
+			]
+		},
+		"root": {
+			"artifact": "root-interactions.json",
+			"outcomes": [
+				{
+					"id": "components-09-motion-mascot-working-indicator--cancellation",
+					"pass": true
+				},
+				{
+					"id": "guides-interaction-recipes-springs-and-overlays--dialog",
+					"pass": true
+				}
+			],
+			"passed": 2,
+			"note": "These are actual cancellation/dialog play outcomes; motion lifecycle scope is recorded separately below."
+		}
+	},
+	"pressMotion": {
+		"artifact": "controls-press-spring.json",
+		"stableHitBox": true,
+		"sample": {
+			"width": 85,
+			"height": 32,
+			"scale": 0.978912372595344,
+			"visualTransform": "matrix(0.978912, 0, 0, 0.978912, 0, 0)"
+		},
+		"scope": "Observed in-flight press scale with stable outer hit geometry; not a claim the sampled frame has reached its0.97 endpoint."
+	},
+	"motionLifecycle": {
+		"status": "cohort-offscreen-reduced-cancel-verified",
+		"cohortArtifact": "motion-shared-cohort.json",
+		"historicalArtifact": "motion-lifecycle-pre-cohort-fix.json",
+		"historicalNote": "Pre-fix working-track drift in this artifact is superseded by motion-shared-cohort.json; only prior sampled keyframe/reference evidence is retained here.",
+		"cohortSummary": {
+			"canonical": {
+				"initial": {
+					"tracks": 7,
+					"states": ["running"],
+					"maxStartTimeDeltaMs": 0,
+					"maxCurrentTimeDeltaMs": 0,
+					"durationsMs": [2000]
+				},
+				"offscreen": {
+					"tracks": 7,
+					"states": ["paused"],
+					"maxStartTimeDeltaMs": null,
+					"maxCurrentTimeDeltaMs": 0,
+					"durationsMs": [2000]
+				},
+				"offscreenLater": {
+					"tracks": 7,
+					"states": ["paused"],
+					"maxStartTimeDeltaMs": null,
+					"maxCurrentTimeDeltaMs": 0,
+					"durationsMs": [2000]
+				},
+				"resumed": {
+					"tracks": 7,
+					"states": ["running"],
+					"maxStartTimeDeltaMs": 0,
+					"maxCurrentTimeDeltaMs": 0,
+					"durationsMs": [2000]
+				}
+			},
+			"native": {
+				"initial": {
+					"tracks": 7,
+					"states": ["running"],
+					"maxStartTimeDeltaMs": 0,
+					"maxCurrentTimeDeltaMs": 0,
+					"durationsMs": [6800]
+				},
+				"offscreen": {
+					"tracks": 7,
+					"states": ["paused"],
+					"maxStartTimeDeltaMs": null,
+					"maxCurrentTimeDeltaMs": 0,
+					"durationsMs": [6800]
+				},
+				"offscreenLater": {
+					"tracks": 7,
+					"states": ["paused"],
+					"maxStartTimeDeltaMs": null,
+					"maxCurrentTimeDeltaMs": 0,
+					"durationsMs": [6800]
+				},
+				"resumed": {
+					"tracks": 7,
+					"states": ["running"],
+					"maxStartTimeDeltaMs": 0,
+					"maxCurrentTimeDeltaMs": 0,
+					"durationsMs": [6800]
+				}
+			},
+			"cancellation": {
+				"indicators": 0,
+				"workingTracks": 0
+			},
+			"reduced": {
+				"animations": 0,
+				"fieldTranslate": "0px",
+				"mascot": "none"
+			},
+			"restart": {
+				"maxStartTimeDeltaMs": 0,
+				"maxCurrentTimeDeltaMs": 0
+			},
+			"preferenceRestart": {
+				"maxStartTimeDeltaMs": 0,
+				"maxCurrentTimeDeltaMs": 0
+			}
+		},
+		"priorSeekedAmbientKeyframes": {
+			"timing": [
+				{
+					"name": "ap-ambient-drift",
+					"duration": 32000,
+					"easing": "linear",
+					"iterations": "Infinity"
+				},
+				{
+					"name": "ap-ambient-scale",
+					"duration": 32000,
+					"easing": "linear",
+					"iterations": "Infinity"
+				},
+				{
+					"name": "ap-ambient-inner-x",
+					"duration": 32000,
+					"easing": "linear",
+					"iterations": "Infinity"
+				},
+				{
+					"name": "ap-ambient-inner-y",
+					"duration": 32000,
+					"easing": "linear",
+					"iterations": "Infinity"
+				}
+			],
+			"samples": [
+				{
+					"time": 0,
+					"main": "matrix(1, 0, 0, 1, 0, 0)",
+					"mainScale": "matrix(1, 0, 0, 1, 0, 0)",
+					"innerX": "matrix(1, 0, 0, 1, 0, 0)",
+					"innerY": "matrix(1, 0, 0, 1, 0, 0)",
+					"mainOpacity": "1",
+					"innerOpacity": "0.08"
+				},
+				{
+					"time": 8000,
+					"main": "matrix(1, 0, 0, 1, 36, -6)",
+					"mainScale": "matrix(1.0125, 0, 0, 1, 0, 0)",
+					"innerX": "matrix(1, 0, 0, 1, -48, 0)",
+					"innerY": "matrix(1, 0, 0, 1, 0, -4)",
+					"mainOpacity": "1",
+					"innerOpacity": "0.08"
+				},
+				{
+					"time": 16000,
+					"main": "matrix(1, 0, 0, 1, 0, 0)",
+					"mainScale": "matrix(1.025, 0, 0, 1, 0, 0)",
+					"innerX": "matrix(1, 0, 0, 1, 0, 0)",
+					"innerY": "matrix(1, 0, 0, 1, 0, -8)",
+					"mainOpacity": "1",
+					"innerOpacity": "0.08"
+				},
+				{
+					"time": 24000,
+					"main": "matrix(1, 0, 0, 1, -36, 6)",
+					"mainScale": "matrix(1.0125, 0, 0, 1, 0, 0)",
+					"innerX": "matrix(1, 0, 0, 1, 48, 0)",
+					"innerY": "matrix(1, 0, 0, 1, 0, -4)",
+					"mainOpacity": "1",
+					"innerOpacity": "0.08"
+				},
+				{
+					"time": 32000,
+					"main": "matrix(1, 0, 0, 1, 0, 0)",
+					"mainScale": "matrix(1, 0, 0, 1, 0, 0)",
+					"innerX": "matrix(1, 0, 0, 1, 0, 0)",
+					"innerY": "matrix(1, 0, 0, 1, 0, 0)",
+					"mainOpacity": "1",
+					"innerOpacity": "0.08"
+				}
+			]
+		},
+		"priorReducedPreferenceChecks": [
+			{
+				"source": "os",
+				"id": "components-01-brand-logo--default",
+				"animations": 0
+			},
+			{
+				"source": "os",
+				"id": "components-09-motion-mascot-native-artwork--default",
+				"animations": 0,
+				"artwork": "none"
+			},
+			{
+				"source": "os",
+				"id": "components-09-motion-mascot-working-indicator--loop",
+				"animations": 0,
+				"motion": "still",
+				"artwork": "none"
+			},
+			{
+				"source": "os",
+				"id": "components-11-ambient-surfaces-elevation-bottom-gradient--flow",
+				"animations": 0,
+				"motion": "still",
+				"main": "none"
+			},
+			{
+				"source": "global",
+				"id": "components-01-brand-logo--default",
+				"animations": 0
+			},
+			{
+				"source": "global",
+				"id": "components-09-motion-mascot-native-artwork--default",
+				"animations": 0,
+				"artwork": "none"
+			},
+			{
+				"source": "global",
+				"id": "components-09-motion-mascot-working-indicator--loop",
+				"animations": 0,
+				"motion": "still",
+				"artwork": "none"
+			},
+			{
+				"source": "global",
+				"id": "components-11-ambient-surfaces-elevation-bottom-gradient--flow",
+				"animations": 0,
+				"motion": "still",
+				"main": "none"
+			}
+		],
+		"limitations": [
+			"A complete live6800ms native-artwork loop and a real document.hidden transition were not observed. Do not infer those from seeked keyframe checks or source handlers.",
+			"Recorded offscreen pause/resume, cancellation cleanup, reduced preference and shared-clock alignment are actual browser observations; seeked keyframes are identified separately.",
+			"Ambient0/8/16/24/32s endpoints were seeked samples, not a recorded32-second wall-clock cycle."
+		]
+	},
+	"visualComparisons": [
+		{
+			"label": "Foundations overview",
+			"sourceNode": "30:2",
+			"size": [656, 1024],
+			"meanAbsoluteRgbDifference": 1.8615732580665652,
+			"channelRange": [0, 255],
+			"comparison": "comparisons/foundations.png",
+			"columns": [
+				"Figma reference",
+				"Storybook render",
+				"absolute RGB difference"
+			]
+		},
+		{
+			"label": "Actions family board",
+			"sourceNode": "210:1970",
+			"size": [2680, 864],
+			"meanAbsoluteRgbDifference": 0.6913614796388429,
+			"channelRange": [0, 255],
+			"comparison": "comparisons/actions.png",
+			"columns": [
+				"Figma reference",
+				"Storybook render",
+				"absolute RGB difference"
+			]
+		},
+		{
+			"label": "Forms family board",
+			"sourceNode": "210:1978",
+			"size": [2680, 1016],
+			"meanAbsoluteRgbDifference": 0.6171093352136953,
+			"channelRange": [0, 255],
+			"comparison": "comparisons/forms.png",
+			"columns": [
+				"Figma reference",
+				"Storybook render",
+				"absolute RGB difference"
+			]
+		},
+		{
+			"label": "Data family board",
+			"sourceNode": "210:2012",
+			"size": [2680, 1188],
+			"meanAbsoluteRgbDifference": 0.6934817704407257,
+			"channelRange": [0, 255],
+			"comparison": "comparisons/data.png",
+			"columns": [
+				"Figma reference",
+				"Storybook render",
+				"absolute RGB difference"
+			]
+		},
+		{
+			"label": "logo-fixed",
+			"sourceNode": "45:567",
+			"size": [180, 34],
+			"meanAbsoluteRgbDifference": 5.604575163398692,
+			"channelRange": [0, 255],
+			"comparison": "comparisons/logo-fixed.png",
+			"columns": [
+				"Figma reference",
+				"Storybook render",
+				"absolute RGB difference"
+			],
+			"reference": "references/logo-fixed.png",
+			"render": "renders/logo-fixed.png"
+		},
+		{
+			"label": "working-reduced",
+			"sourceNode": "169:1867",
+			"size": [472, 72],
+			"meanAbsoluteRgbDifference": 2.1503648775894537,
+			"channelRange": [0, 255],
+			"comparison": "comparisons/working-reduced.png",
+			"columns": [
+				"Figma reference",
+				"Storybook render",
+				"absolute RGB difference"
+			],
+			"reference": "references/working-reduced.png",
+			"render": "renders/working-reduced.png"
+		},
+		{
+			"label": "ambient-still",
+			"sourceNode": "237:1981",
+			"size": [1024, 456],
+			"meanAbsoluteRgbDifference": 1.2923305578399125,
+			"channelRange": [0, 255],
+			"comparison": "comparisons/ambient-still.png",
+			"columns": [
+				"Figma reference",
+				"Storybook render",
+				"absolute RGB difference"
+			],
+			"reference": "references/ambient-still.png",
+			"render": "renders/ambient-still.png"
+		}
+	],
+	"compositionVisuals": [
+		{
+			"artifact": "comparisons/project-card.png",
+			"size": [744, 260],
+			"metric": null,
+			"note": "Visual comparison/final capture; no new quantitative claim is inferred from a combined or full-viewport screenshot."
+		},
+		{
+			"artifact": "comparisons/preview-title.png",
+			"size": [600, 180],
+			"metric": null,
+			"note": "Visual comparison/final capture; no new quantitative claim is inferred from a combined or full-viewport screenshot."
+		},
+		{
+			"artifact": "comparisons/project-card-unpublished.png",
+			"size": [724, 228],
+			"metric": null,
+			"note": "Visual comparison/final capture; no new quantitative claim is inferred from a combined or full-viewport screenshot."
+		},
+		{
+			"artifact": "references/project-card-unpublished.png",
+			"size": [362, 228],
+			"metric": null,
+			"note": "Visual comparison/final capture; no new quantitative claim is inferred from a combined or full-viewport screenshot."
+		},
+		{
+			"artifact": "renders/agent-preview-final.png",
+			"size": [1518, 1016],
+			"metric": null,
+			"note": "Visual comparison/final capture; no new quantitative claim is inferred from a combined or full-viewport screenshot."
+		},
+		{
+			"artifact": "renders/chat-composer-final.png",
+			"size": [1518, 1016],
+			"metric": null,
+			"note": "Visual comparison/final capture; no new quantitative claim is inferred from a combined or full-viewport screenshot."
+		},
+		{
+			"artifact": "renders/new-project-prompt-final.png",
+			"size": [1518, 1016],
+			"metric": null,
+			"note": "Visual comparison/final capture; no new quantitative claim is inferred from a combined or full-viewport screenshot."
+		},
+		{
+			"artifact": "renders/project-card-final.png",
+			"size": [1518, 1016],
+			"metric": null,
+			"note": "Visual comparison/final capture; no new quantitative claim is inferred from a combined or full-viewport screenshot."
+		}
+	],
+	"unpublishedCardReview": {
+		"artifact": "project-card-unpublished-review.json",
+		"checks": 3,
+		"passed": 3,
+		"source": "references/project-card-unpublished-source.svg",
+		"nativeRaster": "references/project-card-unpublished.png",
+		"comparison": "comparisons/project-card-unpublished.png",
+		"scope": "Current source-backed card/cover/status checks and text raster alignment; nonzero raster residual remains."
+	},
+	"pixelMethod": {
+		"colorSpace": "sRGB",
+		"icc": "Embedded ICC profiles converted with PillowImageCms before comparison. Untagged native Figma images and already-normalized comparison sheets assumed sRGB. Alpha composited onwhite.",
+		"pillowVersion": "13.0.0",
+		"metric": "Mean absoluteRGB channel difference, range0\u2013255. No similarity percentage is derived.",
+		"caveats": [
+			"Full-board means include large empty backgrounds and can hide local text differences; per-component crop metrics are retained separately.",
+			"Browser/Figma antialiasing, font rasterization, CSS layout quantization and shadow rendering leave nonzero residuals.",
+			"Animated states can differ by sampled phase; static geometry and actual motion are reviewed separately.",
+			"Combined composition sheets are retained for visual inspection without inventing quantitative results."
+		]
+	},
+	"font": {
+		"family": "SF Pro",
+		"source": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg",
+		"sha256": "b5a18ca8d2f36303f2632a259313bcee33631c9a2eeb2a51a67ee81a862c1359",
+		"scope": "Local licensed design review only; font binaries excluded from this report and Git.",
+		"guide": "../storybook-fonts.md"
+	},
+	"strictPixelIdentityCertified": false,
+	"pendingAcceptance": [],
+	"sources": [
+		{
+			"sourceFile": "ap-controls-geometry-audit-final.json",
+			"sha256": "e52a69c2d336996aeb25fe953ec411d7112cc1996f3d483376f5d79701323506",
+			"artifact": "controls-geometry.json"
+		},
+		{
+			"sourceFile": "ap-controls-interaction-audit-final.json",
+			"sha256": "365ce562fa54cf8127d117b151622fba77df3e7f2661daad6d4d03f6506931a8",
+			"artifact": "controls-interactions.json"
+		},
+		{
+			"sourceFile": "ap-controls-press-spring-audit.json",
+			"sha256": "409e12ffd49eb8f0c4c81244ca405c38ad329224f0513cf9e747119eedcade04",
+			"artifact": "controls-press-spring.json"
+		},
+		{
+			"sourceFile": "ap-controls-pixel-review.json",
+			"sha256": "cf686b5560af4cdb8f14594bfddc5477dfc388aa731c9f2721ce5ec5ea4e0ad2",
+			"artifact": "controls-component-pixels.json"
+		},
+		{
+			"sourceFile": "ap-root-geometry-audit.json",
+			"sha256": "97c7434c3f7d3b8918367b47ba2da3365772e371a3f249a8135c740872eca04c",
+			"artifact": "root-geometry.json"
+		},
+		{
+			"sourceFile": "ap-root-interaction-audit.json",
+			"sha256": "26221f14239845e6704f195fd4a34a9fd20d318046ccebe2097d2d219777bc9a",
+			"artifact": "root-interactions.json"
+		},
+		{
+			"sourceFile": "ap-compositions-interaction-audit-final.json",
+			"sha256": "06f4e3b85287efbb16f83e0a07df03710e93b631495a02ebd38f25def2728fa2",
+			"artifact": "composition-interactions.json"
+		},
+		{
+			"sourceFile": "ap-compositions-geometry-audit-final.json",
+			"sha256": "3e490d61dfee8c64b4798c3457d47b7b6a64445ebd02abdeeea5ad68928b5ea3",
+			"artifact": "composition-geometry.json"
+		},
+		{
+			"sourceFile": "ap-compositions-variant-geometry-audit-final.json",
+			"sha256": "661e37a28a77c5aa2cab36d31b01fe996dd4e514c2018174b028c39301e4b8a7",
+			"artifact": "composition-variant-geometry.json"
+		},
+		{
+			"sourceFile": "ap-unpublished-source-review-final.json",
+			"sha256": "ce1d248c7237758342659e95c4df0fd487c212b68e05e295216bbea9c2161ab2",
+			"artifact": "project-card-unpublished-review.json"
+		},
+		{
+			"sourceFile": "ap-root-shared-cohort-audit.json",
+			"sha256": "a1e4cdb50740cbcdade2e29af0cdfb2efb2062c88d42b91fef9db35bcb0cb66a",
+			"artifact": "motion-shared-cohort.json"
+		},
+		{
+			"sourceFile": "ap-root-motion-lifecycle-audit.json",
+			"sha256": "cb8fe1871452ef12e928f1755da1e4d54adc179fc6b4ddaf460457c26a49641a",
+			"artifact": "motion-lifecycle-pre-cohort-fix.json"
+		},
+		{
+			"sourceFile": "Status=Unpublished.svg",
+			"sha256": "88eed98e67e9180fdf7938963a1775426e5f9a5e3d62c507734ac9209476cec4",
+			"artifact": "references/project-card-unpublished-source.svg"
+		},
+		{
+			"sourceFile": "ap-foundations-comparison-srgb.png",
+			"sha256": "7c671930a069160f646c6eaeea8472272804f7747d96608cf939f863baaa0d85",
+			"artifact": "comparisons/foundations.png"
+		},
+		{
+			"sourceFile": "ap-actions.png",
+			"sha256": "854b844a33263a746b2cb872c21f64012ad497407b4ff0c040866535a8754b01",
+			"artifact": "references/actions.png"
+		},
+		{
+			"sourceFile": "ap-actions-render-final.png",
+			"sha256": "93ff67e7cd939b996294138d3dbca63887998ffc221cdd8dda92ef21d4356a00",
+			"artifact": "renders/actions.png"
+		},
+		{
+			"sourceFile": "ap-forms.png",
+			"sha256": "78a095faa14e841b2efd2b732daecc186e2aeb0aa3d5ee45326597987fdbf835",
+			"artifact": "references/forms.png"
+		},
+		{
+			"sourceFile": "ap-forms-render-final.png",
+			"sha256": "56212281df56c88242714e7449d176eda4cd2ce10a5252ce73db2825682efb38",
+			"artifact": "renders/forms.png"
+		},
+		{
+			"sourceFile": "ap-data.png",
+			"sha256": "928d30a02cf567221d5ec911a6f33148e4feb79af0a4721cfca2df6810626934",
+			"artifact": "references/data.png"
+		},
+		{
+			"sourceFile": "ap-data-render-final.png",
+			"sha256": "fe4f7f74fbe19e8a1e09557df4d82a9593d3c35bb551a02cccea7d33ec543f1b",
+			"artifact": "renders/data.png"
+		},
+		{
+			"sourceFile": "ap-reference-45-567.png",
+			"sha256": "7c364ae262d148d603384b2f0e8c479bd3386456ba2b512a7061efbaa42d144b",
+			"artifact": "references/logo-fixed.png"
+		},
+		{
+			"sourceFile": "ap-root-logo-fixed.png",
+			"sha256": "8ab606d5779a5d95efd3e40336dfa39fc2002a964cdb99ab89923753fd66ce3f",
+			"artifact": "renders/logo-fixed.png"
+		},
+		{
+			"sourceFile": "ap-comparison-logo-fixed-srgb.png",
+			"sha256": "1fa9151060d12df887624acf649a45c5e229d5c1fb4208119865da47334f78ad",
+			"artifact": "comparisons/logo-fixed.png"
+		},
+		{
+			"sourceFile": "ap-reference-169-1867.png",
+			"sha256": "56aa514ea575a7602ae8c104aed7335f0ea88be8e9ff323cdb043f4c74e0836e",
+			"artifact": "references/working-reduced.png"
+		},
+		{
+			"sourceFile": "ap-root-working-reduced.png",
+			"sha256": "5c0605d56a1317cee1f4aa2a3510c886cb354ca7e04020cbb842762e0ab24a1c",
+			"artifact": "renders/working-reduced.png"
+		},
+		{
+			"sourceFile": "ap-comparison-working-reduced-srgb.png",
+			"sha256": "39efea1139bc5f53d841a4a140562e681259db2731772b56696b1ec5353dd2a8",
+			"artifact": "comparisons/working-reduced.png"
+		},
+		{
+			"sourceFile": "ap-reference-237-1981.png",
+			"sha256": "737e11e5e1edcf29f0165a331e1c64e32a5985f0affddbbade94d23bea1b6144",
+			"artifact": "references/ambient-still.png"
+		},
+		{
+			"sourceFile": "ap-root-ambient-still.png",
+			"sha256": "a5c5e0fe90fcdb68da079adcfe194ee5dd77c353b978fb3983a0f816b8fcc6cc",
+			"artifact": "renders/ambient-still.png"
+		},
+		{
+			"sourceFile": "ap-comparison-ambient-still-srgb.png",
+			"sha256": "8a057c7780a82430b005501ce051f1e6ca0040084840975ebbc5fc7f461f8977",
+			"artifact": "comparisons/ambient-still.png"
+		},
+		{
+			"sourceFile": "ap-card-comparison-final.png",
+			"sha256": "4f40562150f1e8f9024ef9e5c17e2ad6460d1958a807ca26844aedc127259178",
+			"artifact": "comparisons/project-card.png"
+		},
+		{
+			"sourceFile": "ap-title-comparison-normalized.png",
+			"sha256": "68b9328b8776fcdab078f811baac6027cc18f8c2f1de501563a9ad907d5dd3c3",
+			"artifact": "comparisons/preview-title.png"
+		},
+		{
+			"sourceFile": "ap-unpublished-comparison-final.png",
+			"sha256": "ba36ec7a65be245583766610ec7139212b58f1caa5c3690c4943ba9e6f07b493",
+			"artifact": "comparisons/project-card-unpublished.png"
+		},
+		{
+			"sourceFile": "ap-unpublished-native-current.png",
+			"sha256": "e5f87eb9157c144ced092322b5b4750d83978f5f13702be8a6bdee85e31be5f4",
+			"artifact": "references/project-card-unpublished.png"
+		},
+		{
+			"sourceFile": "ap-baseline-final-components-07-project-builder-agent-preview--default.png",
+			"sha256": "f550d96e56996491d681b288e15fee3e22ae3c6afd6ddf5d10ae3aece8f4c063",
+			"artifact": "renders/agent-preview-final.png"
+		},
+		{
+			"sourceFile": "ap-baseline-final-components-07-project-builder-chat-composer--default.png",
+			"sha256": "ac9407674a62b07e43bd72d3b1d3560bc6691225e01221b560346a9c5434cf73",
+			"artifact": "renders/chat-composer-final.png"
+		},
+		{
+			"sourceFile": "ap-baseline-final-components-07-project-builder-new-project-prompt--default.png",
+			"sha256": "ed23f0a32ee8590362ad588d7da1ba4e660ee5680b279a79c5a0cb65c60d46c4",
+			"artifact": "renders/new-project-prompt-final.png"
+		},
+		{
+			"sourceFile": "ap-baseline-final-components-07-project-builder-project-card--published.png",
+			"sha256": "80598f5afd8374db95803414c9e27a8bad41aed50e9bbf8acdc7b5d770b52da7",
+			"artifact": "renders/project-card-final.png"
+		}
+	],
+	"finalSignoff": "final-signoff.json",
+	"manualDocsThemeTouch": "docs-theme-touch.json",
+	"aggregateChecks": [
+		{
+			"command": "bun run check",
+			"exitCode": 0
+		},
+		{
+			"command": "bun run check-types",
+			"exitCode": 0
+		},
+		{
+			"command": "bun run audit:storybook",
+			"exitCode": 0
+		},
+		{
+			"command": "bun run build",
+			"exitCode": 0
+		},
+		{
+			"command": "bun run build-storybook",
+			"exitCode": 0
+		}
+	],
+	"knownVerificationLimits": [
+		"Literal Figma/browser pixel identity is not certified: measured raster, font antialiasing, shadow and layout-quantization residuals remain in the saved comparisons.",
+		"Ambient phases/endpoints are deterministically seeked; a full wall-clock32-second recording and full live6800ms native loop were not captured.",
+		"Real document.hidden transition was not observable in Ego. Offscreen phase preservation, reduced motion, cancellation/restart and shared-clock synchronization were observed.",
+		"Dark portal/control and390px touch-cover checks cover those exact states; a full mobile or cross-browser product certification is outside this evidence."
+	]
+}

@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "fileKey": "m0v1MINOJA152Kil6JHeZ8",
+  "styles": [
+    {
+      "id": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+      "name": "AP / Elevation / Resting",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 2,
+          "boundVariables": {},
+          "color": {
+            "r": 0.0941176488995552,
+            "g": 0.0941176488995552,
+            "b": 0.10588235408067703,
+            "a": 0.03500000014901161
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "spread": -1,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        },
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 8,
+          "boundVariables": {},
+          "color": {
+            "r": 0.0941176488995552,
+            "g": 0.0941176488995552,
+            "b": 0.10588235408067703,
+            "a": 0.03500000014901161
+          },
+          "offset": {
+            "x": 0,
+            "y": 3
+          },
+          "spread": -3,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        }
+      ],
+      "description": "Quiet depth for standalone cards, authentication forms and the new-project composer. Keep nested surfaces flat."
+    },
+    {
+      "id": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+      "name": "AP / Elevation / Panel",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 3,
+          "boundVariables": {},
+          "color": {
+            "r": 0.0941176488995552,
+            "g": 0.0941176488995552,
+            "b": 0.10588235408067703,
+            "a": 0.05000000074505806
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "spread": -1,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        },
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 10,
+          "boundVariables": {},
+          "color": {
+            "r": 0.0941176488995552,
+            "g": 0.0941176488995552,
+            "b": 0.10588235408067703,
+            "a": 0.054999999701976776
+          },
+          "offset": {
+            "x": 0,
+            "y": 4
+          },
+          "spread": -3,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        },
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 28,
+          "boundVariables": {},
+          "color": {
+            "r": 0.0941176488995552,
+            "g": 0.0941176488995552,
+            "b": 0.10588235408067703,
+            "a": 0.06499999761581421
+          },
+          "offset": {
+            "x": 0,
+            "y": 12
+          },
+          "spread": -8,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        }
+      ],
+      "description": "Floating menus and popovers: soft contact, middle and ambient shadow. Border is a separate semantic stroke; no hard shadow outline."
+    },
+    {
+      "id": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+      "name": "AP / Elevation / Overlay",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 4,
+          "boundVariables": {},
+          "color": {
+            "r": 0.0941176488995552,
+            "g": 0.0941176488995552,
+            "b": 0.10588235408067703,
+            "a": 0.04500000178813934
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "spread": -2,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        },
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 20,
+          "boundVariables": {},
+          "color": {
+            "r": 0.0941176488995552,
+            "g": 0.0941176488995552,
+            "b": 0.10588235408067703,
+            "a": 0.06499999761581421
+          },
+          "offset": {
+            "x": 0,
+            "y": 8
+          },
+          "spread": -6,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        },
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 56,
+          "boundVariables": {},
+          "color": {
+            "r": 0.0941176488995552,
+            "g": 0.0941176488995552,
+            "b": 0.10588235408067703,
+            "a": 0.10999999940395355
+          },
+          "offset": {
+            "x": 0,
+            "y": 24
+          },
+          "spread": -16,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        }
+      ],
+      "description": "Dialogs: compact contact shadow with broad, low-opacity falloff. Do not stack with Panel or Resting."
+    }
+  ],
+  "usage": {
+    "resting": "Standalone authentication/project/prompt surfaces",
+    "panel": "Menus and anchored popovers",
+    "overlay": "Modal dialogs",
+    "flat": "Inputs and nested content"
+  },
+  "borderIndependent": true,
+  "animatedBlur": false
+}

@@ -1,0 +1,1530 @@
+{
+	"scope": "Every authored variant has an actual expected/observed outer-bound comparison. This does not certify content, pixels, responsive layouts or every interaction.",
+	"expected": 169,
+	"passed": 169,
+	"missing": [],
+	"storyIdResolution": "Derived from audited story title/export using installed Storybook toId and storyNameFromExport helpers.",
+	"variants": [
+		{
+			"figmaVariantId": "107:1368",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "107:1368"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "107:1376",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "107:1376"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "116:11268",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-global-header--secondary"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "129:1304",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-rich-menu-item--default"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "129:1316",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-rich-menu-item--hover"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "129:1328",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-rich-menu-item--selected"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "129:1340",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-rich-menu-item--danger"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "129:1357",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-07-project-builder-project-cover--empty"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "129:1362",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-07-project-builder-project-cover--added"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1529",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-original-artwork--open"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1671",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-original-artwork--closed"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1813",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-mascot--rest"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1822",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-mascot--crouch"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1830",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-mascot--air"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1838",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-mascot--land"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1846",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-mascot--settle"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1854",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-mascot--blink"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "166:1862",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-mascot--reduced"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "169:1854",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-indicator--loop"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "169:1867",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-09-motion-mascot-working-indicator--reduced"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "185:1607",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "185:1607"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "185:1638",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "185:1638"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "185:1669",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "185:1669"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "189:13673",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-07-project-builder-project-cover--default-mascot"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "237:1981",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-11-ambient-surfaces-elevation-bottom-gradient--flow"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "237:1984",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-11-ambient-surfaces-elevation-bottom-gradient--still"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "253:1971",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-11-ambient-surfaces-elevation-bottom-gradient--phase-1"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "253:2000",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-11-ambient-surfaces-elevation-bottom-gradient--phase-2"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "253:2029",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-11-ambient-surfaces-elevation-bottom-gradient--phase-3"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:140",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:140"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:141",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:141"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:142",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:142"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:143",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:143"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:144",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:144"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:145",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:145"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:146",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:146"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:147",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:147"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:148",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:148"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:149",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:149"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:150",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:150"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:151",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:151"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:249",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:249"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:250",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:250"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:251",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:251"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:252",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:252"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:253",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:253"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:254",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:254"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:255",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:255"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:256",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:256"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:257",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:257"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:258",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:258"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:259",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:259"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:260",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:260"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:31",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:31"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:32",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:32"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:33",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:33"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:34",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:34"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:35",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:35"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:358",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:358"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:359",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:359"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:36",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:36"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:360",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:360"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:361",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:361"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:362",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:362"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:363",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:363"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:364",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:364"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:365",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:365"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:366",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:366"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:367",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:367"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:368",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:368"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:369",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:369"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:37",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:37"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:38",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:38"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:39",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:39"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:40",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:40"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:41",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:41"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:42",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:42"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:467",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:467"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:468",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:468"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:469",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:469"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:470",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:470"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:471",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:471"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:472",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:472"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:473",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:473"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:474",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:474"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:475",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:475"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:476",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:476"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:477",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:477"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:478",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:478"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:526",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:526"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:527",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:527"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:528",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:528"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:529",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:529"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:530",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:530"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:531",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:531"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:563",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:563"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:564",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:564"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:565",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:565"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:566",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:566"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:567",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:567"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:568",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:568"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:594",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:594"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:595",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:595"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:596",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:596"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:597",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:597"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:598",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:598"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:599",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:599"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:643",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:643"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:644",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:644"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:645",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:645"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:646",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:646"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:647",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:647"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:648",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:648"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:656",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:656"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:657",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:657"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:658",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:658"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:663",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:663"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:664",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:664"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:665",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:665"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:666",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:666"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:667",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:667"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:668",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:668"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:669",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:669"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:670",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:670"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:684",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:684"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:685",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:685"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:686",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:686"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:687",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:687"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:688",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:688"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:689",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:689"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:690",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:690"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:691",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:691"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:701",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-tab--default"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:702",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-tab--hover"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:703",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-tab--selected"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:704",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-tab--focus"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:705",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-tab--disabled"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:712",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-menu-item--default"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:713",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-menu-item--hover"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:714",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-menu-item--selected"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:715",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-menu-item--danger"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:716",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-menu-item--disabled"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:743",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-06-menus-tooltip--default"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:746",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:746"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:747",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:747"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:755",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:755"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:756",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:756"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "32:757",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "32:757"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "45:567",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-01-brand-logo--default"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "45:641",
+			"measurements": [
+				{
+					"artifact": "root-geometry.json",
+					"caseId": "components-01-brand-logo--inverse"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1008",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-project-navigation--history"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1107",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-project-navigation--branding"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1207",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-settings-navigation--billing"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1273",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-settings-navigation--skills"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1339",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-settings-navigation--plugins"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1405",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-settings-navigation--staff"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1472",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-project-toolbar--draft"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1495",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-project-toolbar--published"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1513",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-project-toolbar--changes"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1643",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-07-project-builder-project-card--published"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:1674",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-07-project-builder-project-card--unpublished"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:657",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-global-header--default"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:711",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-project-navigation--chat"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:810",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-project-navigation--skills"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "49:909",
+			"measurements": [
+				{
+					"artifact": "composition-variant-geometry.json",
+					"caseId": "components-05-navigation-project-navigation--instructions"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "52:1054",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "52:1054"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "52:1067",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "52:1067"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "58:1046",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "58:1046"
+				}
+			]
+		},
+		{
+			"figmaVariantId": "58:1053",
+			"measurements": [
+				{
+					"artifact": "controls-geometry.json",
+					"caseId": "58:1053"
+				}
+			]
+		}
+	]
+}

@@ -1,54 +1,181 @@
 import { cn } from "@agentplace/ui/lib/utils";
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
+import { animate } from "motion";
+import { useMotionValue, useMotionValueEvent } from "motion/react";
+import { type ReactNode, useEffect, useImperativeHandle, useRef } from "react";
+import { Icon } from "./ap-icon";
+import { springs, useMotionEnvironment } from "./ap-motion";
+import "../styles/ap-controls.css";
 
-const buttonVariants = cva(
-	"group/button focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 inline-flex shrink-0 items-center justify-center rounded-none border border-transparent bg-clip-padding text-xs font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-1 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-1 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-	{
-		variants: {
-			variant: {
-				default: "bg-primary text-primary-foreground hover:bg-primary/80",
-				outline:
-					"border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
-				secondary:
-					"bg-secondary text-secondary-foreground aria-expanded:bg-secondary aria-expanded:text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)]",
-				ghost:
-					"hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
-				destructive:
-					"bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
-				link: "text-primary underline-offset-4 hover:underline",
-			},
-			size: {
-				default:
-					"h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-				xs: "h-6 gap-1 rounded-none px-2 text-xs has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-				sm: "h-7 gap-1 rounded-none px-2.5 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-				lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-				icon: "size-8",
-				"icon-xs": "size-6 rounded-none [&_svg:not([class*='size-'])]:size-3",
-				"icon-sm": "size-7 rounded-none",
-				"icon-lg": "size-9",
-			},
+const buttonVariants = cva("ap-button", {
+	variants: {
+		variant: {
+			default: "ap-button-primary",
+			primary: "ap-button-primary",
+			secondary: "ap-button-secondary",
+			outline: "ap-button-secondary",
+			ghost: "ap-button-ghost",
+			destructive: "ap-button-danger",
+			danger: "ap-button-danger",
+			link: "ap-button-link",
 		},
-		defaultVariants: {
-			variant: "default",
-			size: "default",
+		size: {
+			default: "ap-button-small",
+			Small: "ap-button-small",
+			small: "ap-button-small",
+			Medium: "ap-button-medium",
+			medium: "ap-button-medium",
+			xs: "ap-button-small",
+			sm: "ap-button-small",
+			lg: "ap-button-medium",
+			icon: "ap-button-small ap-button-square",
+			"icon-xs": "ap-button-small ap-button-square",
+			"icon-sm": "ap-button-small ap-button-square",
+			"icon-lg": "ap-button-medium ap-button-square",
 		},
 	},
-);
-
+	defaultVariants: { variant: "default", size: "default" },
+});
+export type ControlState =
+	| "default"
+	| "hover"
+	| "pressed"
+	| "focus"
+	| "disabled"
+	| "loading";
+export type ButtonProps = Omit<ButtonPrimitive.Props, "className"> &
+	VariantProps<typeof buttonVariants> & {
+		className?: string;
+		loading?: boolean;
+		reserveLoadingSpace?: boolean;
+		state?: ControlState;
+		icon?: ReactNode;
+	};
 function Button({
 	className,
 	variant = "default",
 	size = "default",
+	children,
+	loading,
+	reserveLoadingSpace = false,
+	disabled,
+	state = "default",
+	icon,
+	style,
+	ref: externalRef,
 	...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonProps) {
+	const environment = useMotionEnvironment();
+	const buttonRef = useRef<HTMLButtonElement | null>(null);
+	const pressScale = useMotionValue(1);
+	useImperativeHandle(
+		externalRef,
+		() => buttonRef.current as HTMLButtonElement,
+	);
+	useMotionValueEvent(pressScale, "change", (latest) =>
+		buttonRef.current?.style.setProperty("--ap-press-scale", String(latest)),
+	);
+	useEffect(() => {
+		if (environment.reduced) {
+			pressScale.stop();
+			pressScale.set(1);
+		}
+	}, [environment.reduced, pressScale]);
+	function press(target: number) {
+		if (!environment.reduced) animate(pressScale, target, springs.press);
+	}
+	const busy = loading || state === "loading";
+	const unavailable = disabled || state === "disabled" || busy;
 	return (
 		<ButtonPrimitive
-			data-slot="button"
-			className={cn(buttonVariants({ variant, size, className }))}
 			{...props}
-		/>
+			data-slot="button"
+			data-state={busy ? "loading" : state}
+			aria-busy={busy || undefined}
+			disabled={unavailable}
+			className={cn(buttonVariants({ variant, size }), className)}
+			style={style}
+			ref={buttonRef}
+			onPointerDown={(event) => {
+				props.onPointerDown?.(event);
+				if (!unavailable && !event.defaultPrevented && event.button === 0)
+					press(0.97);
+			}}
+			onPointerUp={(event) => {
+				props.onPointerUp?.(event);
+				press(1);
+			}}
+			onPointerCancel={(event) => {
+				props.onPointerCancel?.(event);
+				press(1);
+			}}
+			onPointerLeave={(event) => {
+				props.onPointerLeave?.(event);
+				press(1);
+			}}
+			onKeyDown={(event) => {
+				props.onKeyDown?.(event);
+				if (
+					!unavailable &&
+					!event.defaultPrevented &&
+					["Enter", " "].includes(event.key)
+				)
+					press(0.97);
+			}}
+			onKeyUp={(event) => {
+				props.onKeyUp?.(event);
+				press(1);
+			}}
+			onBlur={(event) => {
+				props.onBlur?.(event);
+				press(1);
+			}}
+		>
+			<span className="ap-button-contents">
+				{busy ? (
+					<span
+						className="ap-button-spinner"
+						aria-hidden="true"
+						style={{
+							animationPlayState: environment.paused ? "paused" : "running",
+							animation: environment.reduced ? "none" : undefined,
+						}}
+					>
+						<Icon
+							name="loader"
+							size={
+								size === "Medium" ||
+								size === "medium" ||
+								size === "lg" ||
+								size === "icon-lg"
+									? 20
+									: 16
+							}
+						/>
+					</span>
+				) : (
+					icon ||
+					(reserveLoadingSpace && (
+						<span className="ap-button-reserved-icon" aria-hidden="true">
+							<Icon
+								name="loader"
+								size={
+									size === "Medium" || size === "medium" || size === "lg"
+										? 20
+										: 16
+								}
+							/>
+						</span>
+					))
+				)}
+				{typeof children === "string" || typeof children === "number" ? (
+					<span className="ap-button-label">{children}</span>
+				) : (
+					children
+				)}
+			</span>
+		</ButtonPrimitive>
 	);
 }
 

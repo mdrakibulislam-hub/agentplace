@@ -1,19 +1,30 @@
 import { cn } from "@agentplace/ui/lib/utils";
-import { Input as InputPrimitive } from "@base-ui/react/input";
-import type * as React from "react";
-
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+import type { ComponentProps } from "react";
+import "../styles/ap-controls.css";
+export type FieldState =
+	| "default"
+	| "hover"
+	| "focus"
+	| "filled"
+	| "error"
+	| "disabled";
+export type InputProps = ComponentProps<"input"> & { state?: FieldState };
+export function Input({
+	className,
+	type,
+	state = "default",
+	disabled,
+	...props
+}: InputProps) {
 	return (
-		<InputPrimitive
+		<input
+			{...props}
 			type={type}
 			data-slot="input"
-			className={cn(
-				"border-input file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 disabled:bg-input/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 h-8 w-full min-w-0 rounded-none border bg-transparent px-2.5 py-1 text-xs transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-xs file:font-medium focus-visible:ring-1 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-1 md:text-xs",
-				className,
-			)}
-			{...props}
+			data-state={state}
+			disabled={disabled || state === "disabled"}
+			aria-invalid={state === "error" || props["aria-invalid"] || undefined}
+			className={cn("ap-input", className)}
 		/>
 	);
 }
-
-export { Input };

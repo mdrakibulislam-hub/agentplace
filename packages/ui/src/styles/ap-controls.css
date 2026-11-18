@@ -1,0 +1,490 @@
+.ap-button {
+	--ap-button-bg: var(--action-default);
+	--ap-button-fill: var(--ap-button-bg);
+	--ap-button-hover: var(--action-hover);
+	--ap-button-pressed: var(--action-pressed);
+	--ap-button-fg: var(--action-foreground);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	flex-shrink: 0;
+	gap: var(--space-8);
+	box-sizing: border-box;
+	border: 0 solid transparent;
+	border-radius: var(--radius-full);
+	background: transparent;
+	color: var(--ap-button-fg);
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: var(--type-control-medium-size);
+	font-weight: 510;
+	font-variation-settings: "wdth" 100;
+	line-height: var(--type-control-medium-line-height);
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	outline: none;
+	transition:
+		background-color 120ms,
+		color 120ms;
+}
+.ap-button-small {
+	height: var(--size-control-sm);
+	padding: 0 var(--space-12);
+}
+.ap-button-medium {
+	height: var(--size-control-md);
+	padding: 0 var(--space-16);
+}
+.ap-button-square {
+	width: var(--size-control-sm);
+	padding: 0;
+	gap: 0;
+}
+.ap-button-medium.ap-button-square {
+	width: var(--size-control-md);
+}
+.ap-button-secondary {
+	--ap-button-bg: var(--action-secondary);
+	--ap-button-hover: var(--action-secondary-hover);
+	--ap-button-pressed: var(--muted-hover);
+	--ap-button-fg: var(--foreground-default);
+}
+.ap-button-ghost {
+	--ap-button-bg: var(--transparent);
+	--ap-button-hover: var(--action-secondary-hover);
+	--ap-button-pressed: var(--muted-hover);
+	--ap-button-fg: var(--foreground-default);
+}
+.ap-button-danger {
+	--ap-button-bg: var(--danger-background);
+	--ap-button-hover: var(--danger-hover);
+	--ap-button-pressed: var(--danger-hover);
+	--ap-button-fg: var(--danger-foreground);
+}
+.ap-button-link {
+	--ap-button-bg: transparent;
+	--ap-button-hover: transparent;
+	--ap-button-pressed: transparent;
+	--ap-button-fg: var(--link-default);
+	text-decoration: underline;
+}
+.ap-button:hover:not(:disabled),
+.ap-button[data-state="hover"] {
+	--ap-button-fill: var(--ap-button-hover);
+}
+.ap-button:active:not(:disabled),
+.ap-button[data-state="pressed"] {
+	--ap-button-fill: var(--ap-button-pressed);
+}
+.ap-button:focus-visible,
+.ap-button[data-state="focus"] {
+	box-shadow: inset 0 0 0 var(--stroke-focus) var(--focus-ring);
+}
+.ap-button:disabled:not([aria-busy="true"]),
+.ap-button[data-state="disabled"] {
+	--ap-button-fill: var(--action-disabled);
+	color: var(--action-disabled-foreground);
+	cursor: not-allowed;
+}
+.ap-button[aria-busy="true"] {
+	cursor: wait;
+}
+.ap-button-spinner {
+	display: inline-flex;
+	animation: ap-control-spin 1s linear infinite;
+}
+.ap-project-actions {
+	--ap-button-bg: transparent;
+	--ap-button-hover: var(--muted-background);
+	--ap-button-pressed: var(--muted-hover);
+	color: var(--content-tertiary);
+}
+.ap-project-actions:hover,
+.ap-project-actions[data-state="hover"] {
+	color: var(--foreground-default);
+}
+.ap-input,
+.ap-textarea,
+.ap-select,
+.ap-password-control {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 0;
+	border: var(--stroke-default) solid var(--border-default);
+	border-radius: var(--radius-sm);
+	background: var(--muted-background);
+	color: var(--foreground-default);
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-variation-settings: "wdth" 100;
+	font-size: var(--type-body-base-regular-size);
+	font-weight: 400;
+	line-height: var(--type-body-base-regular-line-height);
+	outline: none;
+	transition:
+		border-color 120ms,
+		background-color 120ms;
+}
+.ap-input {
+	height: 48px;
+	padding: var(--space-4) var(--space-12);
+}
+.ap-input::placeholder,
+.ap-textarea::placeholder {
+	color: var(--foreground-placeholder);
+	opacity: 1;
+}
+.ap-input:hover:not(:disabled),
+.ap-textarea:hover:not(:disabled),
+.ap-select:hover:not(:disabled),
+.ap-password-control:hover,
+:is(
+	.ap-input,
+	.ap-textarea,
+	.ap-select,
+	.ap-password-control
+)[data-state="hover"] {
+	border-color: var(--border-interactive);
+}
+.ap-input:focus-visible,
+.ap-textarea:focus-visible,
+.ap-select:focus-visible,
+.ap-password-control:focus-within,
+:is(
+	.ap-input,
+	.ap-textarea,
+	.ap-select,
+	.ap-password-control
+)[data-state="focus"] {
+	border-color: var(--focus-ring);
+	background: var(--card-background);
+	box-shadow: inset 0 0 0 calc(var(--stroke-focus) - var(--stroke-default))
+		var(--focus-ring);
+}
+.ap-input[aria-invalid="true"],
+.ap-textarea[aria-invalid="true"],
+.ap-select[aria-invalid="true"],
+.ap-password-control[aria-invalid="true"] {
+	border-color: var(--status-error-foreground);
+	background: var(--card-background);
+}
+.ap-input:disabled,
+.ap-textarea:disabled,
+.ap-select:disabled {
+	border-color: var(--border-interactive);
+	color: var(--foreground-disabled);
+	opacity: 1;
+	cursor: not-allowed;
+}
+.ap-input:disabled::placeholder,
+.ap-textarea:disabled::placeholder {
+	color: var(--foreground-disabled);
+}
+.ap-field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+	width: 320px;
+	max-width: 100%;
+}
+.ap-field-label {
+	display: block;
+	color: var(--foreground-default);
+	font:
+		510 var(--type-body-sm-medium-size) / var(--type-body-sm-medium-line-height)
+		var(--font-family-ui),
+		var(--font-family-fallback);
+}
+.ap-field-support {
+	margin: 0;
+	min-height: 20px;
+	color: var(--foreground-muted);
+	font:
+		400 var(--type-body-xs-regular-size) /
+		var(--type-body-xs-regular-line-height) var(--font-family-ui),
+		var(--font-family-fallback);
+}
+.ap-field-error {
+	color: var(--status-error-foreground);
+}
+.ap-textarea {
+	resize: none;
+	height: 96px;
+	padding: var(--space-12);
+	font-size: var(--type-body-sm-regular-size);
+	line-height: var(--type-body-sm-regular-line-height);
+}
+.ap-select-wrap {
+	position: relative;
+	width: 100%;
+}
+.ap-select {
+	appearance: none;
+	height: 40px;
+	padding: 0 44px 0 var(--space-12);
+	font-size: var(--type-body-sm-regular-size);
+	line-height: var(--type-body-sm-regular-line-height);
+	cursor: pointer;
+}
+.ap-select[data-empty="true"] {
+	color: var(--foreground-placeholder);
+}
+.ap-select-icon {
+	position: absolute;
+	right: var(--space-12);
+	top: 10px;
+	color: var(--foreground-muted);
+	pointer-events: none;
+}
+.ap-password-field {
+	width: 336px;
+}
+.ap-password-label-row {
+	display: flex;
+	align-items: center;
+	gap: var(--space-8);
+	height: 20px;
+}
+.ap-password-label-row label {
+	flex: 1;
+}
+.ap-password-recovery {
+	color: var(--foreground-default);
+	font:
+		400 14px / 20px var(--font-family-ui),
+		var(--font-family-fallback);
+	text-decoration: underline;
+}
+.ap-password-control {
+	display: flex;
+	align-items: center;
+	gap: var(--space-8);
+	height: 48px;
+	padding: var(--space-4) var(--space-12);
+}
+.ap-password-control .ap-input {
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+	height: 100%;
+	background: transparent;
+	box-shadow: none;
+}
+.ap-password-visibility {
+	--ap-button-hover: transparent;
+	--ap-button-bg: transparent;
+	--ap-button-fg: var(--foreground-muted);
+}
+.ap-otp {
+	display: flex;
+	gap: var(--space-8);
+	width: 336px;
+	max-width: 100%;
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+.ap-otp .ap-input {
+	flex: 1 1 0;
+	width: 0;
+	padding: var(--space-4) 0;
+	text-align: center;
+	font-weight: 510;
+}
+.ap-otp[data-empty-focus="true"]:not(:focus-within) .ap-input:first-of-type {
+	border-color: var(--focus-ring);
+	background: var(--card-background);
+	box-shadow: inset 0 0 0 1px var(--focus-ring);
+}
+.ap-otp .ap-input:disabled {
+	border-color: var(--border-default);
+}
+.ap-check,
+.ap-switch {
+	position: relative;
+	display: inline-flex;
+	flex: 0 0 auto;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: var(--stroke-default) solid var(--border-interactive);
+	outline: none;
+	background: var(--card-background);
+	cursor: pointer;
+}
+.ap-check {
+	width: 20px;
+	height: 20px;
+	border-radius: var(--radius-xs);
+}
+.ap-switch {
+	width: 36px;
+	height: 20px;
+	border-radius: var(--radius-full);
+}
+.ap-check:hover:not(:disabled),
+.ap-switch:hover:not(:disabled),
+:is(.ap-check, .ap-switch)[data-state="hover"] {
+	background: var(--muted-hover);
+}
+.ap-check[aria-checked="true"],
+.ap-switch[aria-checked="true"] {
+	border-color: transparent;
+	background: var(--action-default);
+	color: var(--action-foreground);
+}
+.ap-check[aria-checked="true"]:hover:not(:disabled),
+.ap-check[aria-checked="true"][data-state="hover"] {
+	background: var(--action-hover);
+}
+:is(.ap-check, .ap-switch):focus-visible,
+:is(.ap-check, .ap-switch)[data-state="focus"] {
+	border-color: var(--focus-ring);
+	box-shadow: inset 0 0 0 calc(var(--stroke-focus) - var(--stroke-default))
+		var(--focus-ring);
+}
+:is(.ap-check, .ap-switch):disabled {
+	background: var(--action-disabled);
+	cursor: not-allowed;
+	color: var(--action-disabled-foreground);
+}
+.ap-switch-thumb {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	left: 1px;
+	top: 1px;
+	background: var(--foreground-muted);
+	border-radius: var(--radius-full);
+	transition: transform 120ms;
+}
+.ap-switch[aria-checked="true"] .ap-switch-thumb {
+	background: var(--action-foreground);
+	transform: translateX(16px);
+}
+.ap-switch:disabled .ap-switch-thumb {
+	background: var(--foreground-disabled);
+}
+.ap-check-target:after,
+.ap-switch:after {
+	content: "";
+	position: absolute;
+	inset: -12px;
+}
+@keyframes ap-control-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.ap-button-spinner {
+		animation: none;
+	}
+	.ap-button,
+	.ap-input,
+	.ap-textarea,
+	.ap-select,
+	.ap-password-control,
+	.ap-switch-thumb {
+		transition: none;
+	}
+}
+[data-ap-motion="reduced"] .ap-button-spinner {
+	animation: none;
+}
+[data-ap-motion="reduced"] .ap-switch .ap-switch-thumb {
+	transition: none;
+}
+.ap-control-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.ap-check {
+	appearance: none;
+	margin: 0;
+}
+.ap-check-target {
+	position: relative;
+	display: inline-flex;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+.ap-check-mark {
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	display: inline-flex;
+	pointer-events: none;
+	color: var(--action-foreground);
+}
+.ap-check-target:has(.ap-check:disabled) .ap-check-mark {
+	color: var(--action-disabled-foreground);
+}
+/* Figma's explicit focus specimens include their 2px stroke in auto width.
+   Real keyboard focus keeps the hit box stable through the inset ring above. */
+.ap-button[data-state="focus"] {
+	border-width: var(--stroke-focus);
+	border-color: var(--focus-ring);
+	box-shadow: none;
+}
+
+.ap-button-reserved-icon {
+	display: inline-flex;
+	visibility: hidden;
+}
+
+/* Transform visual layers only: the semantic button's layout and hit box stay stable. */
+.ap-button::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: var(--ap-button-fill);
+	border-radius: inherit;
+	transform: scale(var(--ap-press-scale, 1));
+	pointer-events: none;
+	transition: background-color 120ms;
+}
+.ap-button-contents {
+	display: inline-flex;
+	position: relative;
+	z-index: 1;
+	align-items: center;
+	justify-content: center;
+	gap: inherit;
+	transform: scale(var(--ap-press-scale, 1));
+}
+.ap-button:focus-visible {
+	outline: var(--stroke-focus) solid var(--focus-ring);
+	outline-offset: calc(-1 * var(--stroke-focus));
+	box-shadow: none;
+}
+.ap-button[data-state="focus"] {
+	outline: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.ap-button::before {
+		transition: none;
+	}
+}
+[data-ap-motion="reduced"] .ap-button::before {
+	transition: none;
+}
+.ap-select-wrap:has(.ap-select:disabled) .ap-select-icon {
+	color: var(--foreground-disabled);
+}
+
+/* Figma's HUG text frames allocate whole pixels without changing glyph spacing. */
+.ap-button-label {
+	display: inline-block;
+	width: calc-size(max-content, round(up, size, 1px));
+}

@@ -1,0 +1,158 @@
+{
+	"capturedAt": "2026-11-18T07:51:25.167Z",
+	"browser": "ego-browser task37 p4",
+	"results": [
+		{
+			"id": "components-05-navigation-global-header--default",
+			"width": 1440,
+			"height": 64,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-05-navigation-project-navigation--chat",
+			"width": 224,
+			"height": 896,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-05-navigation-settings-navigation--billing",
+			"width": 224,
+			"height": 896,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-05-navigation-project-toolbar--draft",
+			"width": 1216,
+			"height": 64,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-05-navigation-tab--default",
+			"width": 78,
+			"height": 36,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-05-navigation-tab--selected",
+			"width": 80,
+			"height": 38,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-05-navigation-tab--focus",
+			"width": 82,
+			"height": 40,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-menu-item--default",
+			"width": 264,
+			"height": 40,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-rich-menu-item--default",
+			"width": 336,
+			"height": 58,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-project-switcher--default",
+			"width": 384,
+			"height": 371,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-project-filter--all",
+			"width": 240,
+			"height": 192,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-project-actions--published",
+			"width": 240,
+			"height": 273,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-project-search-results--one-result",
+			"width": 384,
+			"height": 182,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-project-search-empty--no-results",
+			"width": 384,
+			"height": 214,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-cover-actions--default",
+			"width": 240,
+			"height": 136,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-06-menus-tooltip--default",
+			"width": 116,
+			"height": 32,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-07-project-builder-project-card--published",
+			"width": 352,
+			"height": 218,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-07-project-builder-project-cover--default-mascot",
+			"width": 320,
+			"height": 124,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-07-project-builder-new-project-prompt--default",
+			"width": 768,
+			"height": 144,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-07-project-builder-chat-composer--default",
+			"width": 472,
+			"height": 128,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		},
+		{
+			"id": "components-07-project-builder-agent-preview--default",
+			"width": 680,
+			"height": 832,
+			"fontFamily": "\"SF Pro\", -apple-system, \"system-ui\", sans-serif",
+			"fontLoaded": true
+		}
+	],
+	"notes": [
+		"Project card sourceheight is218px, confirmed by nativeborderrows2/219; prior216claim withdrawn.",
+		"Preview1pxborder consumesinnerarea; fixedsourcegroups568px, cover566px, footerprompt460px, Call98px.",
+		"Semantic36/40and16/24glyphbaselineoffset1px is source-measured after stroke alignment; lineboxes unchanged."
+	]
+}

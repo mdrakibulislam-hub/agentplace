@@ -1,0 +1,194 @@
+.ap-foundation-page {
+	max-width: 1600px;
+	padding: 48px 64px 64px;
+	background: var(--background-default);
+	color: var(--foreground-default);
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+}
+.ap-foundation-page h1 {
+	margin: 0 0 16px;
+	font-size: 30px;
+	line-height: 36px;
+	font-weight: 590;
+}
+.ap-foundation-page h2 {
+	margin: 40px 0 20px;
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 590;
+}
+.ap-foundation-page p {
+	margin: 0;
+}
+.ap-foundation-intro {
+	max-width: 880px;
+	color: var(--foreground-muted);
+	line-height: 24px;
+}
+.ap-foundation-meta {
+	margin: 0 0 16px;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+}
+.ap-foundation-toolbar {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin: 24px 0;
+}
+.ap-foundation-search {
+	width: 320px;
+	max-width: 100%;
+	min-height: 40px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-sm);
+	background: var(--background-secondary);
+	padding: 10px 12px;
+	color: var(--foreground-default);
+}
+.ap-foundation-search:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-foundation-count {
+	color: var(--foreground-muted);
+	font-size: 12px;
+}
+.ap-foundation-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+	font-size: 14px;
+	line-height: 20px;
+}
+.ap-foundation-table caption {
+	text-align: left;
+	margin: 24px 0 16px;
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 590;
+}
+.ap-foundation-table th {
+	font-weight: 590;
+	color: var(--foreground-secondary);
+}
+.ap-foundation-table th,
+.ap-foundation-table td {
+	padding: 12px 16px 12px 0;
+	border-bottom: 1px solid var(--border-default);
+	vertical-align: middle;
+}
+.ap-foundation-table code {
+	font-size: 12px;
+	overflow-wrap: anywhere;
+}
+.ap-foundation-table td:first-child {
+	width: 32%;
+}
+.ap-token-palette {
+	min-width: 150px;
+	padding: 12px;
+	border-radius: var(--radius-sm);
+	background: var(--background-default);
+	color: var(--foreground-default);
+}
+.ap-token-swatch {
+	display: block;
+	width: 100%;
+	height: 44px;
+	margin-bottom: 8px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xs);
+}
+.ap-token-note {
+	display: block;
+	margin-top: 4px;
+	font-size: 12px;
+	color: var(--foreground-muted);
+}
+.ap-foundation-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+	gap: 24px;
+	margin-top: 32px;
+}
+.ap-radius-specimen {
+	display: grid;
+	min-height: 112px;
+	place-items: center;
+	background: var(--muted-background);
+	border: 1px solid var(--border-default);
+}
+.ap-foundation-specimen-label {
+	display: block;
+	margin-top: 12px;
+	font-size: 12px;
+	line-height: 16px;
+}
+.ap-elevation-specimen {
+	min-height: 140px;
+	padding: 24px;
+	border-radius: var(--radius-lg);
+	border: 1px solid var(--border-default);
+	background: var(--card-background);
+	color: var(--card-foreground);
+}
+.ap-elevation-specimen strong {
+	display: block;
+	margin-bottom: 12px;
+	font-weight: 590;
+}
+.ap-elevation-specimen p {
+	color: var(--foreground-muted);
+	line-height: 20px;
+}
+.ap-elevation-layers {
+	margin: 24px 0 0;
+	padding-left: 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: var(--foreground-muted);
+}
+.ap-space-row {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+	min-height: 56px;
+	border-bottom: 1px solid var(--border-default);
+}
+.ap-space-row code {
+	flex: 0 0 160px;
+	font-size: 12px;
+}
+.ap-space-mark {
+	height: 24px;
+	min-width: 1px;
+	max-width: 60%;
+	background: var(--action-accent);
+}
+.ap-foundation-callout {
+	margin-top: 32px;
+	border: 1px solid var(--border-default);
+	background: var(--muted-background);
+	border-radius: var(--radius-md);
+	padding: 20px 24px;
+	line-height: 24px;
+}
+.ap-foundation-rule {
+	margin: 8px 0;
+}
+@media (max-width: 700px) {
+	.ap-foundation-page {
+		padding: 24px;
+	}
+	.ap-foundation-table th,
+	.ap-foundation-table td {
+		padding-right: 8px;
+	}
+	.ap-token-palette {
+		min-width: 100px;
+	}
+}

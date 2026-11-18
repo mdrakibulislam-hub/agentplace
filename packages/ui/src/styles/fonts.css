@@ -1,0 +1,13 @@
+/* Official SF Pro, provisioned locally for design review. The binary is never committed. */
+/* See docs/storybook-fonts.md for setup, scope, and Apple's license restrictions. */
+@font-face {
+	font-family: "SF Pro";
+	src:
+		local("SF Pro"),
+		local("SFPro-Regular"),
+		url("/fonts/SF-Pro.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 1 1000;
+	font-stretch: 30% 150%;
+	font-display: swap;
+}

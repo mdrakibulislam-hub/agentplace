@@ -1,24 +1,66 @@
-import { Input } from "@agentplace/ui/components/input";
-import { Label } from "@agentplace/ui/components/label";
+import { FormField } from "@agentplace/ui/components/ap-controls";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 const meta = {
-	title: "Components/Input",
-	component: Input,
-	args: { id: "customer-email", type: "email", placeholder: "you@example.com" },
-	decorators: [
-		(Story) => (
-			<div className="grid max-w-sm gap-2">
-				<Label htmlFor="customer-email">Email address</Label>
-				<Story />
-			</div>
-		),
-	],
-} satisfies Meta<typeof Input>;
+	title: "Components/Forms/Input",
+	component: FormField,
+	args: { label: "Label", placeholder: "Enter a value" },
+	parameters: {
+		layout: "centered",
+		figmaComponentId: "32:532",
+		design: {
+			type: "figma",
+			url: "https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=32-532",
+		},
+		docs: {
+			description: {
+				component:
+					"Shared AP field: 320px width, 6px label/control/help gaps, SF Pro 14/20 Medium label and 12/16 help in a 20px slot. The resting fill is muted with a soft border; hover emphasizes only the border and focus uses the white card fill with a 2px focus ring. Error has a readable inline message associated with the control; disabled blocks editing. Explicit states document Figma variants, while ordinary focus/hover are driven by the browser.",
+			},
+		},
+	},
+} satisfies Meta<typeof FormField>;
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {};
-export const Disabled: Story = { args: { disabled: true } };
-export const Invalid: Story = {
-	args: { "aria-invalid": true, defaultValue: "invalid-email" },
+export const Default: Story = {
+	args: { state: "default" },
+	parameters: { figmaVariantId: "32:526" },
+};
+export const Hover: Story = {
+	args: { state: "hover" },
+	parameters: { figmaVariantId: "32:527" },
+};
+export const Focus: Story = {
+	args: { state: "focus" },
+	parameters: { figmaVariantId: "32:528" },
+};
+export const Filled: Story = {
+	args: { state: "filled", defaultValue: "Customer support" },
+	parameters: { figmaVariantId: "32:529" },
+};
+export const ErrorState: Story = {
+	name: "Error",
+	args: { state: "error" },
+	parameters: { figmaVariantId: "32:530" },
+};
+export const Disabled: Story = {
+	args: { state: "disabled" },
+	parameters: { figmaVariantId: "32:531" },
+};
+export const EditingGuide: Story = {
+	play: async ({ canvasElement }) => {
+		const field = within(canvasElement).getByRole("textbox");
+		await userEvent.click(field);
+		await userEvent.type(field, "Customer support");
+		await expect(field).toHaveValue("Customer support");
+	},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"Click or Tab to focus, then enter a value. Focus styling belongs only to the active field. Validation is supplied by the parent form and should preserve the user's text on a rejected request.",
+			},
+		},
+	},
 };

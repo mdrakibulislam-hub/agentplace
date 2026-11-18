@@ -1,0 +1,808 @@
+[
+	{
+		"name": "icon-arrow-left.svg",
+		"nodeId": "49:634",
+		"kind": "figma-master",
+		"sha256": "ed284f2bc5a0d333a59b43a9dd9341caa6bbb6756a7e835eaae99b57dc891ea1",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:634"
+	},
+	{
+		"name": "icon-arrow-left-to-line.svg",
+		"nodeId": "49:569",
+		"kind": "figma-master",
+		"sha256": "9de4f6adfe4b66c00f24afae3edeb64346631a76846bbc91495cba84dab9bf74",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:569"
+	},
+	{
+		"name": "icon-arrow-right.svg",
+		"nodeId": "32:14",
+		"kind": "figma-master",
+		"sha256": "ca0dd27d156e8440c1a57a58ff2bfd457dc0a807b75b1d5fd05e5f8be0e2a508",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "32:14"
+	},
+	{
+		"name": "icon-arrow-up.svg",
+		"nodeId": "32:10",
+		"kind": "figma-master",
+		"sha256": "ecd106f1820d0d1945734edb4d6db2106671f9b6bc2bb23a1cb310ffd6a597b4",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "32:10"
+	},
+	{
+		"name": "icon-briefcase-business.svg",
+		"nodeId": "49:523",
+		"kind": "figma-master",
+		"sha256": "9b366b41a9559deff74b8baec8cb1e93647a330b43441c2e6cd5459cb3cbb201",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:523"
+	},
+	{
+		"name": "icon-calendar.svg",
+		"nodeId": "49:623",
+		"kind": "figma-master",
+		"sha256": "ef02b7cf4fb721c7ce359e0fa2584eb9c5eeb68a804a1ba91c8eaadcb604fc99",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:623"
+	},
+	{
+		"name": "icon-check.svg",
+		"nodeId": "32:18",
+		"kind": "figma-master",
+		"sha256": "8e5a1b1eeb5c1a322155d07f0b0034b3ee9d51c376ceeba8f8c12fd2e5db4ad4",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "32:18"
+	},
+	{
+		"name": "icon-chevron-down.svg",
+		"nodeId": "32:7",
+		"kind": "figma-master",
+		"sha256": "f1070c9e516f8933f2416adefd8d1fda688498a8205c75e7ea97529ae647e2ca",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "32:7"
+	},
+	{
+		"name": "icon-chevron-up.svg",
+		"nodeId": "82:4407",
+		"kind": "figma-master",
+		"sha256": "41247ebe773104b78561c28d13e5edc956421e381a6144c0fbb88486626e40cf",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "82:4407"
+	},
+	{
+		"name": "icon-chevrons-up-down.svg",
+		"nodeId": "49:529",
+		"kind": "figma-master",
+		"sha256": "ad5a0624bb5415a2f161667b911690d1c3198a2837fc42eeb3d5876847f31dc4",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:529"
+	},
+	{
+		"name": "icon-close.svg",
+		"nodeId": "32:21",
+		"kind": "figma-master",
+		"sha256": "cffa90158babad140c1dcbb3177b4b427ef6dd3a7cd3bb3f7588f5bbf5f3bb39",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "32:21"
+	},
+	{
+		"name": "icon-copy.svg",
+		"nodeId": "49:581",
+		"kind": "figma-master",
+		"sha256": "a4e19f1e81ae2f8f6de6259dd386c61546251bafab0a39473e0c210e44a58b97",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:581"
+	},
+	{
+		"name": "icon-credit-card.svg",
+		"nodeId": "49:601",
+		"kind": "figma-master",
+		"sha256": "522e3311a8c8ba7ecd376893be71d8e7f1b8d0246b1fd0a5b604844ea09f9efb",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:601"
+	},
+	{
+		"name": "icon-database.svg",
+		"nodeId": "49:538",
+		"kind": "figma-master",
+		"sha256": "448fda92a49cb53b7b76949ce1d9e92bcda8101e8d99826858403b5541f5fd4e",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:538"
+	},
+	{
+		"name": "icon-download.svg",
+		"nodeId": "82:4704",
+		"kind": "figma-master",
+		"sha256": "bb7f6809a4d008f5353ea324a0e1975f616253d254a720d4f1d6bc7ca6643975",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "82:4704"
+	},
+	{
+		"name": "icon-external-link.svg",
+		"nodeId": "49:615",
+		"kind": "figma-master",
+		"sha256": "b55c9566bf998b6626f2ca9fa940323df4cf40315f9bb6ab91dbb9f7546cddcf",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:615"
+	},
+	{
+		"name": "icon-eye.svg",
+		"nodeId": "49:611",
+		"kind": "figma-master",
+		"sha256": "ea21e79d7d4905b2d3c0ded1196177a813b6a06a1242948d367d4a7f4e2835b0",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:611"
+	},
+	{
+		"name": "icon-eye-off.svg",
+		"nodeId": "82:4410",
+		"kind": "figma-master",
+		"sha256": "bd74959b152f24e474485b169fb61198045e18204b33044ecccf13797284d8e4",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "82:4410"
+	},
+	{
+		"name": "icon-file-text.svg",
+		"nodeId": "49:546",
+		"kind": "figma-master",
+		"sha256": "34f59875a115b7f17f55cd17edfeb9921a3898f3e17557ef3966215aeb8c6088",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:546"
+	},
+	{
+		"name": "icon-filter.svg",
+		"nodeId": "82:4721",
+		"kind": "figma-master",
+		"sha256": "9d73511c29217e698c74e90f5e81a5519e1753fd6e1e8cd7b7ba26df001903f7",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "82:4721"
+	},
+	{
+		"name": "icon-globe.svg",
+		"nodeId": "49:629",
+		"kind": "figma-master",
+		"sha256": "ed4197f8275e963e4b63ea70f93c0bba359f26472e1f354f6e8e41b522397324",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:629"
+	},
+	{
+		"name": "icon-history.svg",
+		"nodeId": "49:642",
+		"kind": "figma-master",
+		"sha256": "2f409d1945bedf708220ac5dabada164e663b61b07725fa80155ecda39ceeb54",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:642"
+	},
+	{
+		"name": "icon-lightbulb.svg",
+		"nodeId": "49:585",
+		"kind": "figma-master",
+		"sha256": "a176082250deb0fc6eca95f4906c2ee3321295703a0c7c261b27034aada47518",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:585"
+	},
+	{
+		"name": "icon-link.svg",
+		"nodeId": "49:553",
+		"kind": "figma-master",
+		"sha256": "134214db68d367ef09ddb505795254a21e9b55b94d5d883e7ea9f84e7796c1f5",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:553"
+	},
+	{
+		"name": "icon-mail.svg",
+		"nodeId": "49:565",
+		"kind": "figma-master",
+		"sha256": "15b37de4cd0e837ec83d4f02cc87177703748eafe30a780ea4e0c52c5f0e177b",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:565"
+	},
+	{
+		"name": "icon-message-circle-question-mark.svg",
+		"nodeId": "49:606",
+		"kind": "figma-master",
+		"sha256": "3c5aded4b8343c6c77920980478cd0b4fc28a9e881ffc9a723687507b5798272",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:606"
+	},
+	{
+		"name": "icon-message-square.svg",
+		"nodeId": "49:598",
+		"kind": "figma-master",
+		"sha256": "a5cb505fb117e416d1d9a6b6effc63246d7f8c9f1c46389e90300a80a075da28",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:598"
+	},
+	{
+		"name": "icon-monitor.svg",
+		"nodeId": "49:652",
+		"kind": "figma-master",
+		"sha256": "229869ca41809842dd83792d471d6bc256b7f53104c1e7252aa01d24ee23db7d",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:652"
+	},
+	{
+		"name": "icon-more-horizontal.svg",
+		"nodeId": "49:533",
+		"kind": "figma-master",
+		"sha256": "19208829b982282aa745d65c7f22f1ed283030854d79c2f320c596756b5888e3",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:533"
+	},
+	{
+		"name": "icon-settings.svg",
+		"nodeId": "49:561",
+		"kind": "figma-master",
+		"sha256": "84a6b9ca3a4394eb145f88f233865bc155ae086a0e765ce4b14f482d6ab031ac",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:561"
+	},
+	{
+		"name": "icon-upload.svg",
+		"nodeId": "82:4701",
+		"kind": "figma-master",
+		"sha256": "8af304873d58ca95a38b8b024a0d45fe178d52a1f50b649e3134bfba1c78a8b1",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "82:4701"
+	},
+	{
+		"name": "icon-loader.svg",
+		"nodeId": "32:748",
+		"kind": "figma-instance-vector",
+		"sha256": "9b0abe45eee81fd5c138c059233ae847c1df15cdb93ae625b64fbe673c43c643",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "32:28"
+	},
+	{
+		"name": "icon-palette.svg",
+		"nodeId": "49:711",
+		"kind": "figma-instance-vector",
+		"sha256": "797ea14b37934dddb3b1c480849d6f0cb83697bd89bd24a8302863681b23e8f6",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "49:574"
+	},
+	{
+		"name": "icon-paperclip.svg",
+		"nodeId": "49:1534",
+		"kind": "figma-instance-vector",
+		"sha256": "aea090f732b3ac31e8e49fa44c7bfab77a93a269893970a541b58aac944742c4",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "49:590"
+	},
+	{
+		"name": "icon-phone.svg",
+		"nodeId": "49:1565",
+		"kind": "figma-instance-vector",
+		"sha256": "19c07ed6465e5f2850131ee9fa3d0553445adcdc65298a1ae981b7705dbfad63",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "99:1477"
+	},
+	{
+		"name": "icon-plus.svg",
+		"nodeId": "49:711",
+		"kind": "figma-instance-vector",
+		"sha256": "c6819f9bb3789a28477969d23340f257a8cd6e7c03d1aca0388fba57c92eab8c",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "32:3"
+	},
+	{
+		"name": "icon-puzzle.svg",
+		"nodeId": "58:1060",
+		"kind": "figma-instance-vector",
+		"sha256": "044afbfd4ae37766907403c03941c1379e392dc5c674b3d643884a87f0fcc19b",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:543"
+	},
+	{
+		"name": "icon-search.svg",
+		"nodeId": "131:1318",
+		"kind": "figma-instance-vector",
+		"sha256": "3aaad7b0db0b358b5166e09ce9d9adcef89493e9f924e6cd3cd1a830979bfc3c",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "32:24"
+	},
+	{
+		"name": "icon-shield-check.svg",
+		"nodeId": "49:1565",
+		"kind": "figma-instance-vector",
+		"sha256": "3443547692d67da1de58992b6e12d4faf932f53eefa284dae0bcc2ddff190b2e",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "49:638"
+	},
+	{
+		"name": "icon-trash.svg",
+		"nodeId": "139:1490",
+		"kind": "figma-instance-vector",
+		"sha256": "113a5ae9337634b9adc06ce3803ae1a20312043c6c7bc6a5fbbf6b5baf47f42a",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "82:4707"
+	},
+	{
+		"name": "icon-users.svg",
+		"nodeId": "49:1207",
+		"kind": "figma-instance-vector",
+		"sha256": "02f52cd88bd81fbfb9bb3b88405db59a8f866f22d988d022b7b91b60adaf1e7d",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "49:646"
+	},
+	{
+		"name": "icon-zap.svg",
+		"nodeId": "49:1534",
+		"kind": "figma-instance-vector",
+		"sha256": "fa5b51ad6ef7fc35a2f331bb5ab5dca881181ca1baf1958778b22f79fafaf6c0",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		},
+		"canonicalIconId": "49:620"
+	},
+	{
+		"name": "client-imgGroup.svg",
+		"nodeId": "195:1678",
+		"kind": "figma-vector",
+		"sha256": "2af4f88c22def6465488ab92cd1d53861cc61202e0e5448fb49ad77171f42005",
+		"nativeGeometry": {
+			"width": "46.8365",
+			"height": "16.7838",
+			"viewBox": "0 0 46.8365 16.7838"
+		}
+	},
+	{
+		"name": "client-imgGroup1.svg",
+		"nodeId": "195:1678",
+		"kind": "figma-vector",
+		"sha256": "b8cf1e33df237bf413e8ba354cb80125d4acd147ab43f6ac7c3d1a3785d5c96b",
+		"nativeGeometry": {
+			"width": "84.8142",
+			"height": "16.7804",
+			"viewBox": "0 0 84.8142 16.7804"
+		}
+	},
+	{
+		"name": "client-imgVector.svg",
+		"nodeId": "195:1678",
+		"kind": "figma-vector",
+		"sha256": "a08b4bad10854cd38d26c249ed1457f7705a934a4240df36abc376a48716958a",
+		"nativeGeometry": {
+			"width": "20.2703",
+			"height": "20",
+			"viewBox": "0 0 20.2703 20"
+		}
+	},
+	{
+		"name": "client-imgGroup4.svg",
+		"nodeId": "195:1678",
+		"kind": "figma-vector",
+		"sha256": "93208d619a6fb9580bcbe5bcf8c5f7fe334feab17ffa19f10c0b3d9bcfd7b31b",
+		"nativeGeometry": {
+			"width": "39.9921",
+			"height": "14.099",
+			"viewBox": "0 0 39.9921 14.099"
+		}
+	},
+	{
+		"name": "client-imgGroup5.svg",
+		"nodeId": "195:1678",
+		"kind": "figma-vector",
+		"sha256": "b4a062b5f3f1901458b790594df54ad75efdd432eb3f09de39f4293be87b4fa8",
+		"nativeGeometry": {
+			"width": "67.8869",
+			"height": "14.1012",
+			"viewBox": "0 0 67.8869 14.1012"
+		}
+	},
+	{
+		"name": "client-imgGroup2.svg",
+		"nodeId": "195:1678",
+		"kind": "figma-vector",
+		"sha256": "675da0a5a9e75845c26c33ae3825aa4fc21c20c93344bf0dc0f9c854dd8340af",
+		"nativeGeometry": {
+			"width": "102.26",
+			"height": "16.0207",
+			"viewBox": "0 0 102.26 16.0207"
+		}
+	},
+	{
+		"name": "mascot-open.svg",
+		"nodeId": "166:1529",
+		"kind": "figma-vector",
+		"sha256": "a16cd933728cc3da4b3ddaeaf327dcf4d3b3ccd6b9046ed2eddd54123ec9afd9",
+		"nativeGeometry": {
+			"width": "201",
+			"height": "226.434",
+			"viewBox": "0 0 201 226.434"
+		}
+	},
+	{
+		"name": "mascot-closed.svg",
+		"nodeId": "166:1671",
+		"kind": "figma-vector",
+		"sha256": "956efd797a546a5da178a3d3c5cdcb43e5aeb207a6db5759b110f9facca9ec9b",
+		"nativeGeometry": {
+			"width": "201",
+			"height": "226.434",
+			"viewBox": "0 0 201 226.434"
+		}
+	},
+	{
+		"name": "mascot-face.svg",
+		"nodeId": "169:1570",
+		"kind": "figma-vector",
+		"sha256": "b5795ce84dea9515476bfa5ee4cea496243b2d5006e04d30c7ba01d45b85dbdb",
+		"nativeGeometry": {
+			"width": "26.4478",
+			"height": "29.9252",
+			"viewBox": "0 0 26.4478 29.9252"
+		}
+	},
+	{
+		"name": "google-imgGroup.svg",
+		"nodeId": "51:1017",
+		"kind": "figma-vector",
+		"sha256": "249a58a8428c3cad9b078690e39628488591028c8751124f33e39332cea20380",
+		"nativeGeometry": {
+			"width": "19.5815",
+			"height": "19.9998",
+			"viewBox": "0 0 19.5815 19.9998"
+		}
+	},
+	{
+		"name": "google-imgGroup1.svg",
+		"nodeId": "51:1017",
+		"kind": "figma-vector",
+		"sha256": "969182244181085c6d9d534656a5c88aecbe01e86b4e825feef1682e0872a5a3",
+		"nativeGeometry": {
+			"width": "19.9423",
+			"height": "20.3001",
+			"viewBox": "0 0 19.9423 20.3001"
+		}
+	},
+	{
+		"name": "icon-more-filled.svg",
+		"nodeId": "108:1306",
+		"kind": "figma-instance-vector",
+		"sha256": "c535dd97c1d9141540d0baa720d5e95a031f009de39708da065e0a745b8494fe",
+		"nativeGeometry": {
+			"width": "16",
+			"height": "16",
+			"viewBox": "0 0 16 16"
+		}
+	},
+	{
+		"name": "icon-lock.svg",
+		"nodeId": "82:4715",
+		"kind": "user-supplied-figma-svg-export",
+		"sha256": "5f091f6ac964e328ab4052db48f69cc69e4cf0ed2b97b2b6290142ee449fb356",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "82:4715"
+	},
+	{
+		"name": "icon-panel-left-close.svg",
+		"nodeId": "49:593",
+		"kind": "user-supplied-figma-svg-export",
+		"sha256": "e59021e752af9decfd9fc50f8ec7162cb5ef0d3c6e15e31a69743b638015ba26",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:593"
+	},
+	{
+		"name": "icon-refresh.svg",
+		"nodeId": "82:4718",
+		"kind": "user-supplied-figma-svg-export",
+		"sha256": "e9b2b2872bd3d9b047ced49b8618deb3f1a74e9591436b7fe333d58e6e4417f2",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "82:4718"
+	},
+	{
+		"name": "icon-square-pen.svg",
+		"nodeId": "49:557",
+		"kind": "user-supplied-figma-svg-export",
+		"sha256": "6327fa95d28dea00782d332192dfef5591c3ed18c5afb80020883cdc7f412066",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "49:557"
+	},
+	{
+		"name": "icon-user-add.svg",
+		"nodeId": "82:4710",
+		"kind": "user-supplied-figma-svg-export",
+		"sha256": "f10c1d5f5c50483fc3122191f1cdec27541e23ff1396f978263d3f082007d447",
+		"nativeGeometry": {
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
+		},
+		"canonicalIconId": "82:4710"
+	},
+	{
+		"name": "logo-imgN.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "0c4847135ee8dbe9088740bc266910fab67654fb13c52c7bc51aff243bc788e6",
+		"nativeGeometry": {
+			"width": "15.3202",
+			"height": "16.4145",
+			"viewBox": "0 0 15.3202 16.4145"
+		}
+	},
+	{
+		"name": "logo-imgAFace.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "c3bc225f6d13ade9d23628faca58dba524b804d66471831126f2847c70e50b3e",
+		"nativeGeometry": {
+			"width": "14.5204",
+			"height": "16.4296",
+			"viewBox": "0 0 14.5204 16.4296"
+		}
+	},
+	{
+		"name": "logo-imgA.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "15abec536e92975fa9af998abb2810b157df3cdb29c459da7dd06973968728dc",
+		"nativeGeometry": {
+			"width": "13.7957",
+			"height": "16.4305",
+			"viewBox": "0 0 13.7957 16.4305"
+		}
+	},
+	{
+		"name": "logo-imgE.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "8020f344fe4e829b5932906644ee7f5d4087de877279e8a26bf3fea4fa5dcdb9",
+		"nativeGeometry": {
+			"width": "12.8589",
+			"height": "16.431",
+			"viewBox": "0 0 12.8589 16.431"
+		}
+	},
+	{
+		"name": "logo-imgE1.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "1258bb57c81e473a1bc14c0cbf6e6fc16e897d43edc07d985c6a691d71273bcd",
+		"nativeGeometry": {
+			"width": "12.4265",
+			"height": "16.4335",
+			"viewBox": "0 0 12.4265 16.4335"
+		}
+	},
+	{
+		"name": "logo-imgG.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "e72d8ad12c53b0c322f1d8856b16afaca9e91c2725daab71df08017bd32b8fab",
+		"nativeGeometry": {
+			"width": "14.9336",
+			"height": "16.4278",
+			"viewBox": "0 0 14.9336 16.4278"
+		}
+	},
+	{
+		"name": "logo-imgP.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "42dd2398b927e7fe2266365b215e2d3c82b7484c0a7a45dd310378c7467ddd8b",
+		"nativeGeometry": {
+			"width": "13.4566",
+			"height": "16.4257",
+			"viewBox": "0 0 13.4566 16.4257"
+		}
+	},
+	{
+		"name": "logo-imgC.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "362a3866d650b965c34f34f7cb11c7bb9c1985b466382625744277f87b7e4089",
+		"nativeGeometry": {
+			"width": "13.3233",
+			"height": "16.4287",
+			"viewBox": "0 0 13.3233 16.4287"
+		}
+	},
+	{
+		"name": "logo-imgL.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "69158759ce00f0d0f1947786d953915fbc57954ca7e9ebb4dc75fd79644ed51b",
+		"nativeGeometry": {
+			"width": "10.856",
+			"height": "16.4345",
+			"viewBox": "0 0 10.856 16.4345"
+		}
+	},
+	{
+		"name": "logo-imgT.svg",
+		"nodeId": "45:567",
+		"kind": "figma-wordmark-vector",
+		"sha256": "030cf1d4bd26901bf3ea6433b9584f791fae6f44d3f86f4fe2937a2241a5200c",
+		"nativeGeometry": {
+			"width": "11.7048",
+			"height": "16.4254",
+			"viewBox": "0 0 11.7048 16.4254"
+		}
+	}
+]

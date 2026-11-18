@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-11-18",
+  "source": "Conversation design handoff snapshot",
+  "figmaFileKey": "m0v1MINOJA152Kil6JHeZ8",
+  "fileCount": 33,
+  "files": [
+    {
+      "path": "AGENT_CONTRACT.md",
+      "bytes": 11123,
+      "sha256": "949b0338ab1f5e05d7cd4f895d0610e33c13f3c6d03b07594cc492bb7cb1313e"
+    },
+    {
+      "path": "COMPONENTS.md",
+      "bytes": 20397,
+      "sha256": "72e22adeb5603b3a229b38681e30a0e9db391e0cea295a0442b630cc471b1486"
+    },
+    {
+      "path": "FLOWS.md",
+      "bytes": 16044,
+      "sha256": "29c769d0bc30811df1f89ed9db43414a0480716cff0a57094daa49a8c6ecb3a2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5804,
+      "sha256": "615b1c82d8f72b21b2cfba734b580284480e18ecc394b60c322d0eca4ee50ad4"
+    },
+    {
+      "path": "ambient-elevation.json",
+      "bytes": 38418,
+      "sha256": "679d548c639a3f11222d9e119e6addb12f1497be84cc62cad0d3db905108e250"
+    },
+    {
+      "path": "ambient-flow.mp4",
+      "bytes": 1059263,
+      "sha256": "7a841fab766500dbc115c21d403c01af0630cf2b4e8d1763c3d6828a149611bd"
+    },
+    {
+      "path": "ambient-gradient.css",
+      "bytes": 2997,
+      "sha256": "191fca8722c5e534f18a3ff75521213bd0740322405ec4e2d786bdafe671acfb"
+    },
+    {
+      "path": "ambient-gradient.html",
+      "bytes": 3073,
+      "sha256": "7845d2238682f573579dd68ee39f754bf44e8ea4ef7c63911d80caa02275e6ad"
+    },
+    {
+      "path": "ambient-gradient.mjs",
+      "bytes": 1265,
+      "sha256": "f4ae2b3f1f6bcea3de01f3328e9f270f354d2e606dd7b4b129da3375e9f85864"
+    },
+    {
+      "path": "ambient-motion-contact.png",
+      "bytes": 173045,
+      "sha256": "60eb764f5730511ddfd643def2670eb8c08f7662d0884116f3af0a5e654ba7e5"
+    },
+    {
+      "path": "ambient-phase-0.png",
+      "bytes": 32955,
+      "sha256": "86f8f112808a16d3eb7e68e2130492ff2d39530fe418dc32e02ad0ba015189ce"
+    },
+    {
+      "path": "ambient-phase-16.png",
+      "bytes": 33166,
+      "sha256": "2a975d36f3954765f47a3eb0a0391117b7397762254c33d798165c406efb02a4"
+    },
+    {
+      "path": "ambient-phase-24.png",
+      "bytes": 31999,
+      "sha256": "8d20bdb48dceba44d75e40c43c042eb7d9f6840134e09ec13e907a9f6f60c462"
+    },
+    {
+      "path": "ambient-phase-31.8.png",
+      "bytes": 33743,
+      "sha256": "44f5c2f5fa334c6e4a2e72a724144d776a604be11aaa50f8bd2f45b051554980"
+    },
+    {
+      "path": "ambient-phase-8.png",
+      "bytes": 33635,
+      "sha256": "3e8dbaf19b9bd33d00e70c4316d6bee9545ccc59a8cb3d57d47688a49da97818"
+    },
+    {
+      "path": "before-layout.json",
+      "bytes": 72137,
+      "sha256": "ec9325a90eead8606c6922d2c624c815b3ae54fe71152988d1e9884c33bfbadf"
+    },
+    {
+      "path": "components.json",
+      "bytes": 50958,
+      "sha256": "9ce504b167e04515a28a27c3a37ffb2f896d62386544cbfc5724994b77be1a1f"
+    },
+    {
+      "path": "cover-presentation-before.json",
+      "bytes": 8315,
+      "sha256": "00a8959e8beb246fa07b5d184a5444367d31b6f147ce5a512129170e4d917e4b"
+    },
+    {
+      "path": "cover-presentation.json",
+      "bytes": 10901,
+      "sha256": "36d5af2a9a399e021735308e649772e0d1bbb4ba66fe4301d3826035419c47a9"
+    },
+    {
+      "path": "elevation.json",
+      "bytes": 5093,
+      "sha256": "e6b72f74441b80341c41f3eff902b1e5115aa633d6b93e758768b37ae4aed64b"
+    },
+    {
+      "path": "interactions.json",
+      "bytes": 5715,
+      "sha256": "9bd9d10ebeaf56e4d0f30e343d7fb90435534a219a939f91d4ba4a8bcec5b2fb"
+    },
+    {
+      "path": "motion-lab.mp4",
+      "bytes": 24787,
+      "sha256": "ccf7dcb978568f8d7d419bc51efbf43065628d12515d04ac1fac63987c78f67a"
+    },
+    {
+      "path": "motion-phase-0.png",
+      "bytes": 6603,
+      "sha256": "45a264938459ec785845463e63ac4a218fd38aaedf10587c3921de839b156b12"
+    },
+    {
+      "path": "motion-phase-1.png",
+      "bytes": 21746,
+      "sha256": "b4e33eaab02bb946dc37ec5cdf38510346ae4bd47bc136754abe641449715593"
+    },
+    {
+      "path": "motion-phase-2.png",
+      "bytes": 20270,
+      "sha256": "f66e227d79d900f0b3dfd3ff8d5a975025b56650e56a74bcd9fcb275ef0df7da"
+    },
+    {
+      "path": "motion-phase-3.png",
+      "bytes": 20287,
+      "sha256": "daf9827ba7bb99993b643c01722ede2b8c8b79d9fae2c1b395954b33fffe0960"
+    },
+    {
+      "path": "motion-phase-4.png",
+      "bytes": 20302,
+      "sha256": "9ac08c24c4f11626e571fa858ffa508fc340771c4943e0152c0b1bc04a3e69c7"
+    },
+    {
+      "path": "motion.json",
+      "bytes": 3606,
+      "sha256": "3d6c9bacb2321719d30be687e74c5488604914ade0de65e9b6035e701786d021"
+    },
+    {
+      "path": "motion.presets.ts",
+      "bytes": 1748,
+      "sha256": "1db54c05e3c38661377c8a5f7e1ff58893579ff8a6d9518a237a6d793e35b03b"
+    },
+    {
+      "path": "organization.json",
+      "bytes": 17012,
+      "sha256": "e6086d6f5f2012c903fd80883a1e9e76fd05340e39da5eae9631b66917d4981a"
+    },
+    {
+      "path": "screens.json",
+      "bytes": 4571,
+      "sha256": "b4357e63676677700eac5e0d823b8d3f70f445a796186871d3deb082e3e6fc5e"
+    },
+    {
+      "path": "tokens.json",
+      "bytes": 207056,
+      "sha256": "25481e6d0e82127d89c955e7bc58a4b10cc6b4614aa464b89fb7e94a1a975a46"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 4552,
+      "sha256": "265fd42c36dc684d999932ecb6b55d7511a99b4531f78ed72b052fa3f5e854d8"
+    }
+  ],
+  "notes": [
+    "No original chat image attachment pixels are included; use current Figma for visual details.",
+    "Reference CSS, HTML, JS and TypeScript are examples, not integrated application runtime.",
+    "Historical before-layout/reference files are audit evidence; current contracts take priority."
+  ]
+}

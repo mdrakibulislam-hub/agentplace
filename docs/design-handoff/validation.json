@@ -1,0 +1,183 @@
+{
+  "date": "2026-11-18",
+  "fileKey": "m0v1MINOJA152Kil6JHeZ8",
+  "status": "passed",
+  "components": {
+    "issues": [],
+    "originalRoots": 101,
+    "masters": 96,
+    "variantCount": 163,
+    "sectionCount": 11,
+    "pageChildren": [
+      {
+        "id": "209:1916",
+        "type": "SPEC_BLOCK",
+        "name": "00 · Start here / Component implementation guide"
+      },
+      {
+        "id": "210:1916",
+        "type": "SECTION",
+        "name": "01 · Brand"
+      },
+      {
+        "id": "210:1920",
+        "type": "SECTION",
+        "name": "02 · Reicon icons"
+      },
+      {
+        "id": "210:1970",
+        "type": "SECTION",
+        "name": "03 · Actions"
+      },
+      {
+        "id": "210:1978",
+        "type": "SECTION",
+        "name": "04 · Forms & selection"
+      },
+      {
+        "id": "210:1987",
+        "type": "SECTION",
+        "name": "05 · Navigation & app shell"
+      },
+      {
+        "id": "210:1994",
+        "type": "SECTION",
+        "name": "06 · Menus & overlays"
+      },
+      {
+        "id": "210:2005",
+        "type": "SECTION",
+        "name": "07 · Project & builder"
+      },
+      {
+        "id": "210:2012",
+        "type": "SECTION",
+        "name": "08 · Data & feedback"
+      },
+      {
+        "id": "210:2024",
+        "type": "SECTION",
+        "name": "09 · Motion & mascot"
+      },
+      {
+        "id": "210:2031",
+        "type": "SECTION",
+        "name": "90 · Reference & QA"
+      },
+      {
+        "id": "213:2020",
+        "type": "SPEC_BLOCK",
+        "name": "00 · Agent implementation contract"
+      },
+      {
+        "id": "214:2032",
+        "type": "SECTION",
+        "name": "10 · Spring motion recipes"
+      }
+    ]
+  },
+  "screens": {
+    "issues": [],
+    "screens": 34,
+    "uniqueScreens": 34,
+    "sections": 10,
+    "prototypeDestinationLinks": 449,
+    "captionCount": 11
+  },
+  "documentation": {
+    "layerOrder": [
+      "209:1916",
+      "213:2020",
+      "210:1916",
+      "210:1920",
+      "210:1970",
+      "210:1978",
+      "210:1987",
+      "210:1994",
+      "210:2005",
+      "210:2012",
+      "210:2024",
+      "214:2032",
+      "210:2031"
+    ],
+    "docs": [
+      {
+        "id": "209:1916",
+        "name": "00 · Start here / Component implementation guide",
+        "type": "SPEC_BLOCK",
+        "h1": "# Agentplace component implementation guide",
+        "characters": 11291,
+        "links": 26,
+        "missing": []
+      },
+      {
+        "id": "213:2020",
+        "name": "00 · Agent implementation contract",
+        "type": "SPEC_BLOCK",
+        "h1": "# Agentplace agent implementation contract",
+        "characters": 6741,
+        "links": 15,
+        "missing": []
+      },
+      {
+        "id": "209:7141",
+        "name": "00 · Start here / Product flows & interactions",
+        "type": "SPEC_BLOCK",
+        "h1": "# Agentplace product flow and interaction guide",
+        "characters": 12482,
+        "links": 19,
+        "missing": []
+      }
+    ]
+  },
+  "visualReview": {
+    "componentForms": "passed — native screenshot",
+    "componentMenus": "passed — native screenshot",
+    "otpFlow": "passed — native screenshot at 0.25 scale",
+    "builderFlow": "passed — native screenshot at 0.25 scale",
+    "springMotion": "passed — native video sampled at 0.0, 0.2 and 0.6 seconds"
+  },
+  "limitations": [
+    "Documentation and Figma motion recipes do not constitute application runtime or backend implementation.",
+    "Responsive recommendations are specified; mobile layouts are not drawn or verified."
+  ],
+  "localExports": {
+    "parsedJsonFiles": [
+      "before-layout.json",
+      "components.json",
+      "interactions.json",
+      "motion.json",
+      "organization.json",
+      "screens.json",
+      "tokens.json"
+    ],
+    "variables": 384,
+    "textStyles": 25,
+    "missingAliasTargets": [],
+    "aliasCycles": [],
+    "componentDefinitions": 96,
+    "uniqueScreens": 34
+  },
+  "ambientElevationRevision": {
+    "status": "passed",
+    "variables": 395,
+    "componentDefinitions": 97,
+    "currentAuthHomeStates": 19,
+    "shadowSurfaces": 87,
+    "prototypePhases": 4,
+    "nativeDuration": 32,
+    "noHardShadowOutlines": true,
+    "missingAliasTargets": [],
+    "nativeSpecs": 3
+  },
+  "coverPresentationRevision": {
+    "status": "passed",
+    "coverVariants": 3,
+    "projectCardInstances": 24,
+    "brandingEmpty": "Empty",
+    "brandingUploaded": "Added",
+    "nativeGuidesUpdated": 3,
+    "readOnlyVisitorHasNoHover": true,
+    "report": "cover-presentation.json"
+  }
+}

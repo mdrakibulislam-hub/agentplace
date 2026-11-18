@@ -1,0 +1,47 @@
+[
+	{
+		"label": "logo-fixed",
+		"sourceNode": "45:567",
+		"size": [180, 34],
+		"meanAbsoluteRgbDifference": 5.604575163398692,
+		"channelRange": [0, 255],
+		"comparison": "comparisons/logo-fixed.png",
+		"columns": [
+			"Figma reference",
+			"Storybook render",
+			"absolute RGB difference"
+		],
+		"reference": "references/logo-fixed.png",
+		"render": "renders/logo-fixed.png"
+	},
+	{
+		"label": "working-reduced",
+		"sourceNode": "169:1867",
+		"size": [472, 72],
+		"meanAbsoluteRgbDifference": 2.1503648775894537,
+		"channelRange": [0, 255],
+		"comparison": "comparisons/working-reduced.png",
+		"columns": [
+			"Figma reference",
+			"Storybook render",
+			"absolute RGB difference"
+		],
+		"reference": "references/working-reduced.png",
+		"render": "renders/working-reduced.png"
+	},
+	{
+		"label": "ambient-still",
+		"sourceNode": "237:1981",
+		"size": [1024, 456],
+		"meanAbsoluteRgbDifference": 1.2923305578399125,
+		"channelRange": [0, 255],
+		"comparison": "comparisons/ambient-still.png",
+		"columns": [
+			"Figma reference",
+			"Storybook render",
+			"absolute RGB difference"
+		],
+		"reference": "references/ambient-still.png",
+		"render": "renders/ambient-still.png"
+	}
+]

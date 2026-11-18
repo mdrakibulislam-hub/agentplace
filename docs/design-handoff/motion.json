@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "direction": "restrained Apple-inspired spring feel; not an Apple system specification",
+  "physics": {
+    "press": {
+      "mass": 1,
+      "stiffness": 520,
+      "damping": 38
+    },
+    "popover": {
+      "mass": 1,
+      "stiffness": 420,
+      "damping": 32
+    },
+    "dialog": {
+      "mass": 1,
+      "stiffness": 360,
+      "damping": 30
+    },
+    "layout": {
+      "mass": 1,
+      "stiffness": 320,
+      "damping": 32
+    },
+    "success": {
+      "mass": 1,
+      "stiffness": 480,
+      "damping": 30
+    }
+  },
+  "normalizedFigmaBounce": {
+    "press": 0.16679488165832224,
+    "popover": 0.21927994164117337,
+    "dialog": 0.20943058495790523,
+    "layout": 0.10557280900008414,
+    "success": 0.31534680311854235
+  },
+  "units": {
+    "duration": "seconds",
+    "travel": "pixels",
+    "scale": "multiplier",
+    "physics": "compatible spring-engine parameter units"
+  },
+  "recipes": {
+    "press": {
+      "scale": 0.97,
+      "pressDuration": 0.12,
+      "release": "press spring"
+    },
+    "popover": {
+      "initial": {
+        "scale": 0.97,
+        "y": 6
+      },
+      "settleApprox": 0.34,
+      "opacityDuration": 0.14,
+      "spring": "popover"
+    },
+    "dialog": {
+      "initial": {
+        "scale": 0.98,
+        "y": 12
+      },
+      "settleApprox": 0.38,
+      "opacityDuration": 0.16,
+      "spring": "dialog"
+    },
+    "exit": {
+      "duration": [
+        0.12,
+        0.16
+      ],
+      "ease": "easeOut",
+      "bounce": false
+    },
+    "layout": {
+      "spring": "layout",
+      "settleApprox": [
+        0.3,
+        0.42
+      ]
+    },
+    "navigation": {
+      "duration": [
+        0.16,
+        0.22
+      ],
+      "maxTravel": 8,
+      "bounce": false
+    },
+    "hover": {
+      "duration": [
+        0.1,
+        0.14
+      ],
+      "bounce": false
+    }
+  },
+  "reducedMotion": {
+    "mascot": "Motion=Reduced",
+    "scale": false,
+    "translation": false,
+    "layoutSpring": false,
+    "optionalOpacityDuration": 0.1,
+    "taskStateIndependent": true
+  },
+  "runtime": {
+    "retargetCurrentVelocity": true,
+    "pauseLoopsWhenHidden": true,
+    "animate": [
+      "transform",
+      "opacity"
+    ],
+    "avoid": [
+      "whole-page bouncing",
+      "text-layout animation",
+      "animation-timer business logic"
+    ]
+  },
+  "figma": {
+    "nativeKeyframeSpring": {
+      "type": "CUSTOM_SPRING",
+      "easingFunctionSpring": {
+        "bounce": 0.21927994164117337
+      }
+    },
+    "prototypeSpring": {
+      "type": "CUSTOM_SPRING",
+      "easingFunctionSpring": {
+        "mass": 1,
+        "stiffness": 420,
+        "damping": 32
+      }
+    },
+    "nativeLab": "214:2034",
+    "mascot": "166:1812",
+    "workingIndicator": "169:1853",
+    "nativeMascotDuration": 6.8,
+    "prototypeLoopApprox": 2.1
+  },
+  "ambient": {
+    "duration": 32,
+    "easing": "cubic-bezier(0.42,0,0.58,1)",
+    "cycle": "infinite",
+    "prototypeCycleApprox": 32.004,
+    "component": "237:1980",
+    "phaseIds": [
+      "237:1981",
+      "253:1971",
+      "253:2000",
+      "253:2029"
+    ],
+    "nativePreview": "242:1966",
+    "mainTranslationX": [
+      0,
+      36,
+      0,
+      -36,
+      0
+    ],
+    "mainTranslationY": [
+      0,
+      -6,
+      0,
+      6,
+      0
+    ],
+    "mainScaleX": [
+      1,
+      1.025,
+      1
+    ],
+    "innerTranslationX": [
+      0,
+      -48,
+      0,
+      48,
+      0
+    ],
+    "innerTranslationY": [
+      0,
+      -8,
+      0
+    ],
+    "reducedMotion": "Motion=Still / Phase=0; no reactions or animation",
+    "opacityConstant": true,
+    "pauseHiddenOrOffscreen": true
+  }
+}

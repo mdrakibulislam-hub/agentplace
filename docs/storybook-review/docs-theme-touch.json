@@ -1,0 +1,52 @@
+{
+	"source": "Manual ego-browser task37 p2 checks after the final shared foundations loaded",
+	"docs": {
+		"story": "components-actions-primary-button--docs",
+		"visibleHeading": "Primary button",
+		"figmaLink": "https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=32-43",
+		"controlsTable": true,
+		"interactionGuidanceVisible": true,
+		"visibleRenderErrors": []
+	},
+	"darkPrimary": {
+		"story": "components-actions-primary-button--small-default",
+		"globals": {
+			"theme": "dark",
+			"motion": "reduced"
+		},
+		"htmlDarkClass": true,
+		"visualBackground": "rgb(227, 227, 227)",
+		"foreground": "rgb(15, 15, 15)",
+		"pageBackground": "rgb(15, 15, 15)"
+	},
+	"darkPortal": {
+		"story": "components-06-menus-project-switcher--keyboard-and-dismiss",
+		"renderedOutsideStoryRoot": true,
+		"background": "rgb(15, 15, 15)",
+		"foreground": "rgb(227, 227, 227)",
+		"bounds": {
+			"x": 16,
+			"y": 56,
+			"width": 384,
+			"height": 371
+		},
+		"withinViewport8pxMargin": true
+	},
+	"touchCover": {
+		"story": "components-07-project-builder-project-cover--editable-home",
+		"viewport": {
+			"width": 390,
+			"height": 844
+		},
+		"pointerCoarse": true,
+		"explicitEditActionDisplay": "flex",
+		"coverBounds": {
+			"x": 16,
+			"y": 16,
+			"width": 320,
+			"height": 124
+		},
+		"horizontalOverflow": false
+	},
+	"scopeLimit": "These checks prove the listed rendered states, not every possible mobile layout or browser engine."
+}

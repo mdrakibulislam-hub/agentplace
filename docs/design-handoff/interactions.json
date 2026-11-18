@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "source": "Agentplace native Figma handoff",
+  "kind": "implementation requirements, not a deployed API",
+  "authentication": {
+    "states": [
+      "empty",
+      "partial",
+      "complete",
+      "verifying",
+      "verified",
+      "error",
+      "expired"
+    ],
+    "otp": {
+      "digits": 6,
+      "valueType": "string",
+      "preserveLeadingZeros": true,
+      "paste": true,
+      "autofill": "one-time-code",
+      "inputMode": "numeric",
+      "submit": "explicit Verify action",
+      "duplicateSubmit": "blocked",
+      "preserveInputOnRecoverableError": true,
+      "resendCooldown": "server derived"
+    },
+    "prototype": {
+      "empty": "53:284",
+      "complete": "186:5625",
+      "processing": "186:5647",
+      "demoDelaySeconds": 1.4,
+      "productionMustUseServerResult": true
+    }
+  },
+  "projects": {
+    "context": "projectId",
+    "homeSidebar": false,
+    "suggestions": "insert editable starter prompt; Create project submits",
+    "filters": [
+      "all",
+      "published",
+      "unpublished"
+    ],
+    "queryCombinesWithFilter": true,
+    "switch": "save pending draft or offer save/discard/cancel",
+    "menu": {
+      "draftAction": "publish",
+      "publishedAction": "unpublish",
+      "copy": "actual published URL only",
+      "delete": "named confirmation, initial Cancel focus, one request"
+    },
+    "editedTime": "below name",
+    "status": "beside name"
+  },
+  "generation": {
+    "states": [
+      "idle",
+      "queued",
+      "working",
+      "ready",
+      "cancelled",
+      "error"
+    ],
+    "workingIndicator": "169:1853",
+    "mascotLoop": "stop on ready/cancelled/error; pause when hidden",
+    "progress": "actual job step; no fake percentage",
+    "keyboard": {
+      "Enter": "send",
+      "Shift+Enter": "newline"
+    },
+    "recover": "preserve partial draft and conversation; retry without duplicate messages",
+    "preview": "draft data in test mode"
+  },
+  "drafts": {
+    "save": "explicit successful persistence acknowledgement",
+    "publish": "immutable version and live pointer",
+    "restore": "draft-only until explicitly published",
+    "unpublish": "remove public availability and retain draft/history"
+  },
+  "covers": {
+    "asset": "shared coverAssetId",
+    "component": "130:1323",
+    "presentationVariants": [
+      "Empty",
+      "Added",
+      "Default-mascot"
+    ],
+    "uploadStates": [
+      "idle",
+      "uploading",
+      "replacing",
+      "failed"
+    ],
+    "presentationMatrix": [
+      {
+        "context": "home-card",
+        "hasUploadedCover": false,
+        "rest": "Default-mascot",
+        "editableHoverOrFocus": "Empty"
+      },
+      {
+        "context": "home-card",
+        "hasUploadedCover": true,
+        "rest": "Added",
+        "editableHoverOrFocus": "Empty"
+      },
+      {
+        "context": "branding-upload",
+        "hasUploadedCover": false,
+        "rest": "Empty",
+        "editableHoverOrFocus": "Empty"
+      },
+      {
+        "context": "branding-upload",
+        "hasUploadedCover": true,
+        "rest": "Added",
+        "editableHoverOrFocus": "Empty"
+      }
+    ],
+    "hoverMutatesAsset": false,
+    "restore": "On leave/blur recompute from the current coverAssetId and context",
+    "replacement": "Retain previous asset until success; cancel/failure restores it",
+    "readOnlyUploadAffordance": false,
+    "keyboard": "Focus reveals affordance; Enter/Space activates the cover-edit button",
+    "touch": "Explicit Upload/Change cover action",
+    "cardNavigation": "Cover edit must stop propagation into Open project",
+    "publishSeparately": true,
+    "reusedBy": [
+      "project card",
+      "project picker",
+      "agent experience"
+    ],
+    "contract": "cover-presentation.json"
+  },
+  "permissions": {
+    "workspace": {
+      "Owner": "billing and all controls",
+      "Admin": "manage staff, skills, plugins",
+      "Member": "assigned projects"
+    },
+    "project": {
+      "Editor": "build, test, publish assigned projects",
+      "Viewer": "view and test only"
+    },
+    "authority": "server",
+    "settingsScope": "workspace; project access explicit"
+  },
+  "overlays": {
+    "offset": 8,
+    "viewportInset": 8,
+    "dismiss": [
+      "Escape",
+      "outside pointer"
+    ],
+    "focusReturn": true,
+    "dialogFocusTrap": true,
+    "destructiveInitialFocus": "Cancel",
+    "comboboxKeyboard": [
+      "Arrow keys",
+      "Enter",
+      "Escape",
+      "editable query"
+    ]
+  },
+  "credits": {
+    "formula": "clamp(remaining / allocation, 0, 1)",
+    "sample": {
+      "remaining": 1985,
+      "allocation": 2000,
+      "used": 15
+    },
+    "unknownOrZeroAllocation": "unavailable state, no divide-by-zero",
+    "authority": "billing service"
+  },
+  "responsive": {
+    "status": "implementation guidance; mobile/tablet not drawn",
+    "desktop": {
+      "frame": [
+        1440,
+        960
+      ],
+      "header": 64,
+      "sidebar": 224,
+      "editor": 536,
+      "preview": 680,
+      "homeContent": 1088,
+      "authCard": 400,
+      "authInner": 336
+    },
+    "narrow": "collapse nav; chat/preview tabs or drawer; responsive grid; at least 24px auth side margin"
+  },
+  "gaps": [
+    "real authentication and OTP error/expiry",
+    "generation error/cancel UX",
+    "uploads and cropping",
+    "billing data",
+    "invitations and plugin authorization",
+    "permission-denied states",
+    "responsive visual review"
+  ],
+  "ambient": {
+    "component": "237:1980",
+    "internalPhaseLoop": [
+      "237:1981",
+      "253:1971",
+      "253:2000",
+      "253:2029",
+      "237:1981"
+    ],
+    "transitionSeconds": 8,
+    "triggerSeconds": 0.001,
+    "easing": "ease-in-out",
+    "stillHasNoReactions": true
+  }
+}

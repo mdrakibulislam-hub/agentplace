@@ -46,7 +46,9 @@
 		"build-storybook": "turbo run build-storybook --filter=web",
 		"check:fix": "biome check --write .",
 		"typecheck": "bun run check-types",
-		"setup": "bun run scripts/setup.ts && bun run env:generate && bun run db:migrate"
+		"setup": "bun run scripts/setup.ts && bun run env:generate && bun run db:migrate",
+		"audit:storybook": "bun run scripts/audit-storybook-coverage.ts",
+		"setup:fonts": "bun run scripts/setup-storybook-fonts.ts"
 	},
 	"dependencies": {
 		"zod": "catalog:"

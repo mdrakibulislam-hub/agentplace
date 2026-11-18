@@ -1,0 +1,184 @@
+{
+  "id": "130:1323",
+  "name": "AP / Media / Project cover",
+  "properties": {
+    "Brand#130:35": {
+      "type": "TEXT",
+      "defaultValue": "WHITEFRAME"
+    },
+    "Caption#130:38": {
+      "type": "TEXT",
+      "defaultValue": "Ideas into impact."
+    },
+    "State": {
+      "type": "VARIANT",
+      "defaultValue": "Empty",
+      "variantOptions": [
+        "Empty",
+        "Added",
+        "Default-mascot"
+      ]
+    }
+  },
+  "variants": [
+    {
+      "id": "129:1357",
+      "name": "State=Empty",
+      "type": "COMPONENT",
+      "w": 320,
+      "h": 124,
+      "reactions": [],
+      "children": [
+        {
+          "id": "129:1358",
+          "name": "Icon / upload",
+          "type": "INSTANCE"
+        },
+        {
+          "id": "129:1361",
+          "name": "Add a project cover",
+          "type": "TEXT"
+        }
+      ]
+    },
+    {
+      "id": "189:13673",
+      "name": "State=Default-mascot",
+      "type": "COMPONENT",
+      "w": 320,
+      "h": 124,
+      "reactions": [],
+      "children": [
+        {
+          "id": "189:13680",
+          "name": "AP / Motion / A mascot native artwork",
+          "type": "INSTANCE"
+        }
+      ]
+    },
+    {
+      "id": "129:1362",
+      "name": "State=Added",
+      "type": "COMPONENT",
+      "w": 320,
+      "h": 124,
+      "reactions": [],
+      "children": [
+        {
+          "id": "129:1363",
+          "name": "WHITEFRAME",
+          "type": "TEXT"
+        },
+        {
+          "id": "129:1364",
+          "name": "Ideas into impact.",
+          "type": "TEXT"
+        }
+      ]
+    }
+  ],
+  "instances": [
+    {
+      "id": "133:3241",
+      "name": "Project cover",
+      "mainComponent": {
+        "id": "129:1362"
+      },
+      "parent": {
+        "id": "49:1644",
+        "name": "Project thumbnail"
+      },
+      "page": "32:2"
+    },
+    {
+      "id": "133:3244",
+      "name": "Project cover",
+      "mainComponent": {
+        "id": "129:1362"
+      },
+      "parent": {
+        "id": "49:1675",
+        "name": "Project thumbnail"
+      },
+      "page": "32:2"
+    },
+    {
+      "id": "133:3281",
+      "name": "Agent cover",
+      "mainComponent": {
+        "id": "129:1362"
+      },
+      "parent": {
+        "id": "49:1595",
+        "name": "Visitor experience"
+      },
+      "page": "32:2"
+    },
+    {
+      "id": "135:6437",
+      "name": "Current cover",
+      "mainComponent": {
+        "id": "129:1357"
+      },
+      "parent": {
+        "id": "135:6436",
+        "name": "Cover upload"
+      },
+      "page": "50:2"
+    },
+    {
+      "id": "133:3423",
+      "name": "Current cover",
+      "mainComponent": {
+        "id": "129:1362"
+      },
+      "parent": {
+        "id": "133:3422",
+        "name": "Cover upload"
+      },
+      "page": "50:2"
+    },
+    {
+      "id": "140:4839",
+      "name": "Current cover",
+      "mainComponent": {
+        "id": "129:1362"
+      },
+      "parent": {
+        "id": "140:4838",
+        "name": "Cover upload"
+      },
+      "page": "50:2"
+    }
+  ],
+  "docs": [
+    {
+      "id": "209:1916",
+      "chunks": [
+        "[Project cover](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=130-1323) is a shared asset reference used by cards, picker thumbnails and the agent experience. Preserve the image crop; use a branded or empty fallback. Upload, replace and remove affect the draft first. Persist and publish separately.",
+        "For responsive code use a bottom field height clamp(360px, 44.444vw, 640px), blur clamp(160px, 20.833vw, 300px), and scale travel down with viewport width. Keep the field decorative and behind scrolling content; it must not cover controls, create horizontal scroll or become a fixed foreground overlay. Avoid one canvas per component, full-screen animated blur or per-frame layout measurements. The companion CSS example implements the same cycle using transformed gradient layers; a GPU shader is optional, not required."
+      ]
+    },
+    {
+      "id": "209:7141",
+      "chunks": [
+        "| Section | Coverage |\n|---|---|\n| [01 · Login & signup](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=50-3) | 3 screens |\n| [02 · Email verification](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=186-5602) | 3 screens |\n| [03 · Projects / Start & switch](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=212-6268) | 3 screens |\n| [04 · Projects / Filter & search](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=212-6269) | 5 screens |\n| [05 · Projects / Actions & feedback](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=135-5209) | 4 screens |\n| [06 · Agent / Build & configure](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=212-6270) | 5 screens |\n| [07 · Agent / Branding & covers](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=212-6271) | 3 screens |\n| [08 · Agent / Publish lifecycle](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=212-6272) | 3 screens |\n| [09 · Workspace settings](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=212-6273) | 4 screens |\n| [90 · Reference copies](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=212-6274) | 1 screens |",
+        "OTP state machine: empty/partial → complete → verifying → verified or error. Six numeric digits are a string, including leading zeroes. Paste/autofill distributes all digits. Verify remains disabled until the code is complete; a second submit during verification has no effect. Keep entered digits on recoverable errors and move focus to the relevant correction point. Expiry or invalid-code messages must explain the next action and allow resend when eligible.",
+        "## 04–05 · Discovery and project actions",
+        "- Project: id, name, lifecycle, hasUnpublishedChanges, updatedAt, coverAssetId, publishedVersionId.\n- Draft: projectId, versionId, agentConfig, branding, instructions, skillBindings.\n- Generation job: id, projectId, status, currentStep, error, resumable.\n- Published version: immutable versionId and public URL. Publishing changes the live pointer; editing a draft does not.",
+        "## 07 · Branding, avatars and covers",
+        "Keep company logo and agent avatar separate. A cover can be uploaded, replaced or removed and reused in cards and the agent experience. Validate file type and size, show upload progress/failure, preserve the previous image until replacement succeeds, and expose crop/alt-text handling where relevant.",
+        "Branding changes stage a draft and the preview can reflect local changes immediately. Save changes persists the draft. The saved state must reflect a successful response. Publishing is a separate action. Removing a cover restores the agreed fallback everywhere that draft asset is consumed.",
+        "Only example Added/Empty cover states are drawn. File picker, validation error, upload progress and crop details still need implementation and focused visual QA.",
+        "The Figma file documents desktop visuals and sample prototype flows. It does not implement backend authentication, persistence, clipboard, uploads, billing, invitations, plugin consent, responsive pages, OTP errors/expiry, generation errors/cancel, or permission-denied screens. Build these behaviors from the contracts above using the existing components, and review their error/empty/loading states before release. Do not infer a deployed API or complete runtime from a prototype link."
+      ]
+    },
+    {
+      "id": "213:2020",
+      "chunks": [
+        "Maintain explicit async states: idle, validating, submitting/working, success and error. Disable duplicate submissions, preserve user input and recover from failed persistence. Network/server outcomes determine transitions; prototype timeouts must not become production logic.",
+        "Required evidence: six-digit paste and leading-zero OTP; blocked duplicate submit; loading widths stay stable; project switching retains the correct data; draft edits do not alter live content; role restrictions are enforced by the server; failed save/upload/publish can recover; menus/dialogs restore focus; reduced motion has no decorative movement."
+      ]
+    }
+  ]
+}

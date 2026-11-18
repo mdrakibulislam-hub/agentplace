@@ -1,0 +1,1528 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-18",
+  "sessionId": "28f1de9f-bb4e-4991-8ba8-31eed9564040",
+  "status": "complete",
+  "component": "237:1980",
+  "flow": "237:1981",
+  "still": "237:1984",
+  "phaseIds": [
+    "237:1981",
+    "253:1971",
+    "253:2000",
+    "253:2029"
+  ],
+  "prototype": {
+    "transitionSeconds": 8,
+    "triggerSeconds": 0.001,
+    "cycleApproxSeconds": 32.004,
+    "loop": true,
+    "entry": {
+      "Motion": "Flow",
+      "Phase": "0"
+    },
+    "still": {
+      "Motion": "Still",
+      "Phase": "0"
+    },
+    "easing": "ease-in-out"
+  },
+  "native": {
+    "frame": "242:1966",
+    "main": "253:1969",
+    "echo": "253:1970",
+    "duration": 32,
+    "tracks": {
+      "main": {
+        "TRANSLATION_X": {
+          "id": "KeyframeTrackId:253:2062",
+          "baseValue": {
+            "type": "FLOAT",
+            "value": 0
+          },
+          "keyframes": [
+            {
+              "id": "253:2063",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 0
+            },
+            {
+              "id": "253:2064",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 36
+              },
+              "timelinePosition": 8
+            },
+            {
+              "id": "253:2065",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 16
+            },
+            {
+              "id": "253:2066",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": -36
+              },
+              "timelinePosition": 24
+            },
+            {
+              "id": "253:2067",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 32
+            }
+          ]
+        },
+        "TRANSLATION_Y": {
+          "id": "KeyframeTrackId:253:2068",
+          "baseValue": {
+            "type": "FLOAT",
+            "value": 0
+          },
+          "keyframes": [
+            {
+              "id": "253:2069",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 0
+            },
+            {
+              "id": "253:2070",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": -6
+              },
+              "timelinePosition": 8
+            },
+            {
+              "id": "253:2071",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 16
+            },
+            {
+              "id": "253:2072",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 6
+              },
+              "timelinePosition": 24
+            },
+            {
+              "id": "253:2073",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 32
+            }
+          ]
+        },
+        "SCALE_X": {
+          "id": "KeyframeTrackId:253:2074",
+          "baseValue": {
+            "type": "FLOAT",
+            "value": 1
+          },
+          "keyframes": [
+            {
+              "id": "253:2075",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 1
+              },
+              "timelinePosition": 0
+            },
+            {
+              "id": "253:2076",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 1.024999976158142
+              },
+              "timelinePosition": 16
+            },
+            {
+              "id": "253:2077",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 1
+              },
+              "timelinePosition": 32
+            }
+          ]
+        }
+      },
+      "echo": {
+        "TRANSLATION_X": {
+          "id": "KeyframeTrackId:253:2078",
+          "baseValue": {
+            "type": "FLOAT",
+            "value": 0
+          },
+          "keyframes": [
+            {
+              "id": "253:2079",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 0
+            },
+            {
+              "id": "253:2080",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": -48
+              },
+              "timelinePosition": 8
+            },
+            {
+              "id": "253:2081",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 16
+            },
+            {
+              "id": "253:2082",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 48
+              },
+              "timelinePosition": 24
+            },
+            {
+              "id": "253:2083",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 32
+            }
+          ]
+        },
+        "TRANSLATION_Y": {
+          "id": "KeyframeTrackId:253:2084",
+          "baseValue": {
+            "type": "FLOAT",
+            "value": 0
+          },
+          "keyframes": [
+            {
+              "id": "253:2085",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 0
+            },
+            {
+              "id": "253:2086",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": -8
+              },
+              "timelinePosition": 16
+            },
+            {
+              "id": "253:2087",
+              "easing": {
+                "type": "EASE_IN_AND_OUT",
+                "easingFunctionCubicBezier": {
+                  "x1": 0.42,
+                  "y1": 0,
+                  "x2": 0.58,
+                  "y2": 1
+                }
+              },
+              "value": {
+                "type": "FLOAT",
+                "value": 0
+              },
+              "timelinePosition": 32
+            }
+          ]
+        }
+      }
+    },
+    "video": "ambient-flow.mp4",
+    "sampleTimes": [
+      0,
+      8,
+      16,
+      24,
+      31.8
+    ],
+    "phase8vs24MeanRgbDifference": [
+      0.9245378521,
+      0.3699933979,
+      0.4786128228
+    ],
+    "phase0vsEndMeanRgbDifference": [
+      0.0223774941,
+      0.0190397594,
+      0.0203455106
+    ]
+  },
+  "placement": {
+    "width": 1440,
+    "height": 640,
+    "authRootY": 320,
+    "homeContentY": 256,
+    "zOrder": "below foreground content, above opaque page background"
+  },
+  "appliedScreens": [
+    {
+      "screen": "53:8",
+      "parent": "53:8",
+      "instance": "240:6417"
+    },
+    {
+      "screen": "53:119",
+      "parent": "53:119",
+      "instance": "240:6420"
+    },
+    {
+      "screen": "53:208",
+      "parent": "53:208",
+      "instance": "240:6423"
+    },
+    {
+      "screen": "53:284",
+      "parent": "53:284",
+      "instance": "240:6426"
+    },
+    {
+      "screen": "186:5625",
+      "parent": "186:5625",
+      "instance": "240:6429"
+    },
+    {
+      "screen": "186:5647",
+      "parent": "186:5647",
+      "instance": "240:6432"
+    },
+    {
+      "screen": "186:5603",
+      "parent": "186:5603",
+      "instance": "240:6435"
+    },
+    {
+      "screen": "135:5210",
+      "parent": "135:5212",
+      "instance": "240:6438"
+    },
+    {
+      "screen": "53:349",
+      "parent": "53:430",
+      "instance": "240:6441"
+    },
+    {
+      "screen": "59:2476",
+      "parent": "59:2515",
+      "instance": "240:6444"
+    },
+    {
+      "screen": "135:5533",
+      "parent": "135:5535",
+      "instance": "240:6447"
+    },
+    {
+      "screen": "135:5687",
+      "parent": "135:5689",
+      "instance": "240:6450"
+    },
+    {
+      "screen": "135:5858",
+      "parent": "135:5860",
+      "instance": "240:6453"
+    },
+    {
+      "screen": "135:6048",
+      "parent": "135:6050",
+      "instance": "240:6456"
+    },
+    {
+      "screen": "135:6257",
+      "parent": "135:6259",
+      "instance": "240:6459"
+    },
+    {
+      "screen": "135:5332",
+      "parent": "135:5334",
+      "instance": "240:6462"
+    },
+    {
+      "screen": "140:4874",
+      "parent": "140:4876",
+      "instance": "240:6465"
+    },
+    {
+      "screen": "140:4901",
+      "parent": "140:4903",
+      "instance": "240:6468"
+    },
+    {
+      "screen": "140:4928",
+      "parent": "140:4930",
+      "instance": "240:6471"
+    }
+  ],
+  "reducedMotion": {
+    "still": true,
+    "disableTimedReactions": true,
+    "disableCssAnimations": true
+  },
+  "implementationReferences": [
+    "ambient-gradient.css",
+    "ambient-gradient.mjs",
+    "ambient-gradient.html"
+  ],
+  "sourceReference": {
+    "requestedFrame": "189:13473",
+    "requestedLayer": "189:13476",
+    "observedRemovedDuringTask": true,
+    "colorsRetained": [
+      "#CFFAC9",
+      "#84E8FF",
+      "#A4DEFF"
+    ]
+  },
+  "validation": {
+    "structure": {
+      "issues": [],
+      "phases": [
+        {
+          "id": "237:1981",
+          "name": "Motion=Flow, Phase=0",
+          "reactions": 1
+        },
+        {
+          "id": "237:1984",
+          "name": "Motion=Still, Phase=0",
+          "reactions": 0
+        },
+        {
+          "id": "253:1971",
+          "name": "Motion=Flow, Phase=1",
+          "reactions": 1
+        },
+        {
+          "id": "253:2000",
+          "name": "Motion=Flow, Phase=2",
+          "reactions": 1
+        },
+        {
+          "id": "253:2029",
+          "name": "Motion=Flow, Phase=3",
+          "reactions": 1
+        }
+      ],
+      "bindings": [
+        {
+          "id": "30:81",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "30:84",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "131:1318",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "131:1414",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "131:1460",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "131:1545",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "131:1577",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "139:1490",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "49:1643",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "49:1674",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "52:1015",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "32:756",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "32:757",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "214:2043",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "214:2079",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "242:1970",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "242:1980",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "242:1985",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "242:1990",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "32:1395",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "32:1397",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "53:26",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "53:137",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "53:226",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5340",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5354",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5355",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5356",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5475",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "140:4882",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4896",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4897",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4898",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:6079",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "140:4909",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4923",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4924",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4925",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:6085",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "140:4936",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4950",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4951",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "140:4952",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "53:302",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "186:5628",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "186:5650",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5218",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5232",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5233",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5234",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "53:435",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "53:551",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "53:589",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "53:627",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "59:2520",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "59:2534",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "59:2535",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "59:2536",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "133:3284",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "135:5541",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5555",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5556",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5557",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5654",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "135:5695",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5709",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5710",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5711",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5866",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5880",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5881",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:5882",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6056",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6070",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6071",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6072",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6172",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "135:6265",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6279",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6280",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6281",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        },
+        {
+          "id": "135:6381",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "140:6019",
+          "style": "S:28ab3e05a629f54df511060b4775a8fd73ce5a9d,",
+          "layers": 3
+        },
+        {
+          "id": "57:2187",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "57:2529",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "57:2842",
+          "style": "S:ad587b842a82fc06dd1c72546b792b1183f43ec7,",
+          "layers": 3
+        },
+        {
+          "id": "186:5606",
+          "style": "S:8e2947f7ee2e0b859f88c0b3331fe19cef843e10,",
+          "layers": 2
+        }
+      ],
+      "docs": [
+        {
+          "id": "209:1916",
+          "characters": 17414,
+          "hasPhase": true,
+          "hasAmbient": true,
+          "hasOldReference": false
+        },
+        {
+          "id": "209:7141",
+          "characters": 14540,
+          "hasPhase": true,
+          "hasAmbient": false,
+          "hasOldReference": false
+        },
+        {
+          "id": "213:2020",
+          "characters": 8968,
+          "hasPhase": true,
+          "hasAmbient": true,
+          "hasOldReference": false
+        }
+      ],
+      "nativePreview": {
+        "id": "242:1966",
+        "duration": 32
+      },
+      "properties": {
+        "Motion": {
+          "type": "VARIANT",
+          "defaultValue": "Flow",
+          "variantOptions": [
+            "Still",
+            "Flow"
+          ]
+        },
+        "Phase": {
+          "type": "VARIANT",
+          "defaultValue": "0",
+          "variantOptions": [
+            "1",
+            "2",
+            "3",
+            "0"
+          ]
+        }
+      }
+    },
+    "screens": {
+      "issues": [],
+      "count": 19,
+      "placements": [
+        {
+          "screen": "53:8",
+          "instance": "240:6417",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 320
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "53:119",
+          "instance": "240:6420",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 320
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "53:208",
+          "instance": "240:6423",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 320
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "53:284",
+          "instance": "240:6426",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 320
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "186:5625",
+          "instance": "240:6429",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 320
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "186:5647",
+          "instance": "240:6432",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 320
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "186:5603",
+          "instance": "240:6435",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 320
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "135:5210",
+          "instance": "240:6438",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "53:349",
+          "instance": "240:6441",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "59:2476",
+          "instance": "240:6444",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "135:5533",
+          "instance": "240:6447",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "135:5687",
+          "instance": "240:6450",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "135:5858",
+          "instance": "240:6453",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "135:6048",
+          "instance": "240:6456",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "135:6257",
+          "instance": "240:6459",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "135:5332",
+          "instance": "240:6462",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "140:4874",
+          "instance": "240:6465",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "140:4901",
+          "instance": "240:6468",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        },
+        {
+          "screen": "140:4928",
+          "instance": "240:6471",
+          "mainComponent": "237:1981",
+          "props": {
+            "Motion": {
+              "value": "Flow",
+              "type": "VARIANT",
+              "boundVariables": {}
+            },
+            "Phase": {
+              "value": "0",
+              "type": "VARIANT",
+              "boundVariables": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 256
+          },
+          "reactions": 1
+        }
+      ]
+    },
+    "visual": "passed: login, populated home, switcher, delete dialog, OTP verifying, empty home, component gallery and sampled native video",
+    "runtime": "integration reference; no application repository was modified"
+  }
+}

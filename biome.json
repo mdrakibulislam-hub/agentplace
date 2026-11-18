@@ -28,7 +28,12 @@
 			"!**/.source",
 			"!**/convex/_generated",
 			"!**/storybook-static",
-			"!**/src/env.ts"
+			"!**/src/env.ts",
+			"!docs/design-handoff",
+			"!packages/ui/src/assets/**/*.svg",
+			"!packages/ui/src/assets/fonts",
+			"!apps/web/public/fonts",
+			"!docs/storybook-review/references/**/*.svg"
 		]
 	},
 	"formatter": {

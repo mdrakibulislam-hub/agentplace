@@ -1,0 +1,734 @@
+[
+	{
+		"family": "actions",
+		"id": "32:31",
+		"bounds": [104, 200, 85, 32],
+		"meanAbsoluteRgbDifference": 7.214
+	},
+	{
+		"family": "actions",
+		"id": "32:32",
+		"bounds": [257, 200, 85, 32],
+		"meanAbsoluteRgbDifference": 5.438
+	},
+	{
+		"family": "actions",
+		"id": "32:33",
+		"bounds": [410, 200, 85, 32],
+		"meanAbsoluteRgbDifference": 6.16
+	},
+	{
+		"family": "actions",
+		"id": "32:34",
+		"bounds": [563, 200, 89, 32],
+		"meanAbsoluteRgbDifference": 7.579
+	},
+	{
+		"family": "actions",
+		"id": "32:35",
+		"bounds": [716, 200, 85, 32],
+		"meanAbsoluteRgbDifference": 1.433
+	},
+	{
+		"family": "actions",
+		"id": "32:36",
+		"bounds": [869, 200, 109, 32],
+		"meanAbsoluteRgbDifference": 6.43
+	},
+	{
+		"family": "actions",
+		"id": "32:37",
+		"bounds": [104, 272, 93, 40],
+		"meanAbsoluteRgbDifference": 5.581
+	},
+	{
+		"family": "actions",
+		"id": "32:38",
+		"bounds": [257, 272, 93, 40],
+		"meanAbsoluteRgbDifference": 4.021
+	},
+	{
+		"family": "actions",
+		"id": "32:39",
+		"bounds": [410, 272, 93, 40],
+		"meanAbsoluteRgbDifference": 4.555
+	},
+	{
+		"family": "actions",
+		"id": "32:40",
+		"bounds": [563, 272, 97, 40],
+		"meanAbsoluteRgbDifference": 6.031
+	},
+	{
+		"family": "actions",
+		"id": "32:41",
+		"bounds": [716, 272, 93, 40],
+		"meanAbsoluteRgbDifference": 1.054
+	},
+	{
+		"family": "actions",
+		"id": "32:42",
+		"bounds": [869, 272, 121, 40],
+		"meanAbsoluteRgbDifference": 4.975
+	},
+	{
+		"family": "actions",
+		"id": "32:140",
+		"bounds": [1102, 200, 85, 32],
+		"meanAbsoluteRgbDifference": 2.482
+	},
+	{
+		"family": "actions",
+		"id": "32:141",
+		"bounds": [1255, 200, 85, 32],
+		"meanAbsoluteRgbDifference": 2.348
+	},
+	{
+		"family": "actions",
+		"id": "32:142",
+		"bounds": [1408, 200, 85, 32],
+		"meanAbsoluteRgbDifference": 2.348
+	},
+	{
+		"family": "actions",
+		"id": "32:143",
+		"bounds": [1561, 200, 89, 32],
+		"meanAbsoluteRgbDifference": 3.373
+	},
+	{
+		"family": "actions",
+		"id": "32:144",
+		"bounds": [1714, 200, 85, 32],
+		"meanAbsoluteRgbDifference": 1.433
+	},
+	{
+		"family": "actions",
+		"id": "32:145",
+		"bounds": [1867, 200, 109, 32],
+		"meanAbsoluteRgbDifference": 2.197
+	},
+	{
+		"family": "actions",
+		"id": "32:146",
+		"bounds": [1102, 272, 93, 40],
+		"meanAbsoluteRgbDifference": 1.82
+	},
+	{
+		"family": "actions",
+		"id": "32:147",
+		"bounds": [1255, 272, 93, 40],
+		"meanAbsoluteRgbDifference": 1.723
+	},
+	{
+		"family": "actions",
+		"id": "32:148",
+		"bounds": [1408, 272, 93, 40],
+		"meanAbsoluteRgbDifference": 1.723
+	},
+	{
+		"family": "actions",
+		"id": "32:149",
+		"bounds": [1561, 272, 97, 40],
+		"meanAbsoluteRgbDifference": 2.633
+	},
+	{
+		"family": "actions",
+		"id": "32:150",
+		"bounds": [1714, 272, 93, 40],
+		"meanAbsoluteRgbDifference": 1.054
+	},
+	{
+		"family": "actions",
+		"id": "32:151",
+		"bounds": [1867, 272, 121, 40],
+		"meanAbsoluteRgbDifference": 1.588
+	},
+	{
+		"family": "actions",
+		"id": "32:249",
+		"bounds": [104, 464, 85, 32],
+		"meanAbsoluteRgbDifference": 2.621
+	},
+	{
+		"family": "actions",
+		"id": "32:250",
+		"bounds": [257, 464, 85, 32],
+		"meanAbsoluteRgbDifference": 2.348
+	},
+	{
+		"family": "actions",
+		"id": "32:251",
+		"bounds": [410, 464, 85, 32],
+		"meanAbsoluteRgbDifference": 2.348
+	},
+	{
+		"family": "actions",
+		"id": "32:252",
+		"bounds": [563, 464, 89, 32],
+		"meanAbsoluteRgbDifference": 2.951
+	},
+	{
+		"family": "actions",
+		"id": "32:253",
+		"bounds": [716, 464, 85, 32],
+		"meanAbsoluteRgbDifference": 1.433
+	},
+	{
+		"family": "actions",
+		"id": "32:254",
+		"bounds": [869, 464, 109, 32],
+		"meanAbsoluteRgbDifference": 2.32
+	},
+	{
+		"family": "actions",
+		"id": "32:255",
+		"bounds": [104, 536, 93, 40],
+		"meanAbsoluteRgbDifference": 1.917
+	},
+	{
+		"family": "actions",
+		"id": "32:256",
+		"bounds": [257, 536, 93, 40],
+		"meanAbsoluteRgbDifference": 1.723
+	},
+	{
+		"family": "actions",
+		"id": "32:257",
+		"bounds": [410, 536, 93, 40],
+		"meanAbsoluteRgbDifference": 1.723
+	},
+	{
+		"family": "actions",
+		"id": "32:258",
+		"bounds": [563, 536, 97, 40],
+		"meanAbsoluteRgbDifference": 2.21
+	},
+	{
+		"family": "actions",
+		"id": "32:259",
+		"bounds": [716, 536, 93, 40],
+		"meanAbsoluteRgbDifference": 1.054
+	},
+	{
+		"family": "actions",
+		"id": "32:260",
+		"bounds": [869, 536, 121, 40],
+		"meanAbsoluteRgbDifference": 1.675
+	},
+	{
+		"family": "actions",
+		"id": "32:358",
+		"bounds": [1102, 464, 93, 32],
+		"meanAbsoluteRgbDifference": 7.907
+	},
+	{
+		"family": "actions",
+		"id": "32:359",
+		"bounds": [1260, 464, 93, 32],
+		"meanAbsoluteRgbDifference": 8.692
+	},
+	{
+		"family": "actions",
+		"id": "32:360",
+		"bounds": [1418, 464, 93, 32],
+		"meanAbsoluteRgbDifference": 8.692
+	},
+	{
+		"family": "actions",
+		"id": "32:361",
+		"bounds": [1576, 464, 97, 32],
+		"meanAbsoluteRgbDifference": 8.342
+	},
+	{
+		"family": "actions",
+		"id": "32:362",
+		"bounds": [1734, 464, 93, 32],
+		"meanAbsoluteRgbDifference": 2.791
+	},
+	{
+		"family": "actions",
+		"id": "32:363",
+		"bounds": [1892, 464, 117, 32],
+		"meanAbsoluteRgbDifference": 6.704
+	},
+	{
+		"family": "actions",
+		"id": "32:364",
+		"bounds": [1102, 536, 101, 40],
+		"meanAbsoluteRgbDifference": 5.87
+	},
+	{
+		"family": "actions",
+		"id": "32:365",
+		"bounds": [1260, 536, 101, 40],
+		"meanAbsoluteRgbDifference": 6.525
+	},
+	{
+		"family": "actions",
+		"id": "32:366",
+		"bounds": [1418, 536, 101, 40],
+		"meanAbsoluteRgbDifference": 6.525
+	},
+	{
+		"family": "actions",
+		"id": "32:367",
+		"bounds": [1576, 536, 105, 40],
+		"meanAbsoluteRgbDifference": 6.371
+	},
+	{
+		"family": "actions",
+		"id": "32:368",
+		"bounds": [1734, 536, 101, 40],
+		"meanAbsoluteRgbDifference": 2.061
+	},
+	{
+		"family": "actions",
+		"id": "32:369",
+		"bounds": [1892, 536, 129, 40],
+		"meanAbsoluteRgbDifference": 4.928
+	},
+	{
+		"family": "actions",
+		"id": "32:467",
+		"bounds": [2130, 464, 32, 32],
+		"meanAbsoluteRgbDifference": 2.164
+	},
+	{
+		"family": "actions",
+		"id": "32:468",
+		"bounds": [2194, 464, 32, 32],
+		"meanAbsoluteRgbDifference": 1.154
+	},
+	{
+		"family": "actions",
+		"id": "32:469",
+		"bounds": [2258, 464, 32, 32],
+		"meanAbsoluteRgbDifference": 1.395
+	},
+	{
+		"family": "actions",
+		"id": "32:470",
+		"bounds": [2322, 464, 32, 32],
+		"meanAbsoluteRgbDifference": 4.178
+	},
+	{
+		"family": "actions",
+		"id": "32:471",
+		"bounds": [2386, 464, 32, 32],
+		"meanAbsoluteRgbDifference": 0.212
+	},
+	{
+		"family": "actions",
+		"id": "32:472",
+		"bounds": [2450, 464, 32, 32],
+		"meanAbsoluteRgbDifference": 3.707
+	},
+	{
+		"family": "actions",
+		"id": "32:473",
+		"bounds": [2130, 536, 40, 40],
+		"meanAbsoluteRgbDifference": 2.446
+	},
+	{
+		"family": "actions",
+		"id": "32:474",
+		"bounds": [2194, 536, 40, 40],
+		"meanAbsoluteRgbDifference": 1.417
+	},
+	{
+		"family": "actions",
+		"id": "32:475",
+		"bounds": [2258, 536, 40, 40],
+		"meanAbsoluteRgbDifference": 1.619
+	},
+	{
+		"family": "actions",
+		"id": "32:476",
+		"bounds": [2322, 536, 40, 40],
+		"meanAbsoluteRgbDifference": 4.139
+	},
+	{
+		"family": "actions",
+		"id": "32:477",
+		"bounds": [2386, 536, 40, 40],
+		"meanAbsoluteRgbDifference": 0.382
+	},
+	{
+		"family": "actions",
+		"id": "32:478",
+		"bounds": [2450, 536, 40, 40],
+		"meanAbsoluteRgbDifference": 2.92
+	},
+	{
+		"family": "actions",
+		"id": "107:1368",
+		"bounds": [96, 728, 32, 32],
+		"meanAbsoluteRgbDifference": 0.228
+	},
+	{
+		"family": "actions",
+		"id": "107:1376",
+		"bounds": [176, 728, 32, 32],
+		"meanAbsoluteRgbDifference": 0.654
+	},
+	{
+		"family": "forms",
+		"id": "32:526",
+		"bounds": [104, 200, 320, 100],
+		"meanAbsoluteRgbDifference": 0.864
+	},
+	{
+		"family": "forms",
+		"id": "32:527",
+		"bounds": [456, 200, 320, 100],
+		"meanAbsoluteRgbDifference": 0.879
+	},
+	{
+		"family": "forms",
+		"id": "32:528",
+		"bounds": [808, 200, 320, 100],
+		"meanAbsoluteRgbDifference": 1.885
+	},
+	{
+		"family": "forms",
+		"id": "32:529",
+		"bounds": [104, 332, 320, 100],
+		"meanAbsoluteRgbDifference": 1.154
+	},
+	{
+		"family": "forms",
+		"id": "32:530",
+		"bounds": [456, 332, 320, 100],
+		"meanAbsoluteRgbDifference": 1.017
+	},
+	{
+		"family": "forms",
+		"id": "32:531",
+		"bounds": [808, 332, 320, 100],
+		"meanAbsoluteRgbDifference": 0.815
+	},
+	{
+		"family": "forms",
+		"id": "32:563",
+		"bounds": [1240, 200, 320, 148],
+		"meanAbsoluteRgbDifference": 0.575
+	},
+	{
+		"family": "forms",
+		"id": "32:564",
+		"bounds": [1592, 200, 320, 148],
+		"meanAbsoluteRgbDifference": 0.585
+	},
+	{
+		"family": "forms",
+		"id": "32:565",
+		"bounds": [1944, 200, 320, 148],
+		"meanAbsoluteRgbDifference": 1.367
+	},
+	{
+		"family": "forms",
+		"id": "32:566",
+		"bounds": [1240, 380, 320, 148],
+		"meanAbsoluteRgbDifference": 0.724
+	},
+	{
+		"family": "forms",
+		"id": "32:567",
+		"bounds": [1592, 380, 320, 148],
+		"meanAbsoluteRgbDifference": 0.679
+	},
+	{
+		"family": "forms",
+		"id": "32:568",
+		"bounds": [1944, 380, 320, 148],
+		"meanAbsoluteRgbDifference": 0.552
+	},
+	{
+		"family": "forms",
+		"id": "32:594",
+		"bounds": [104, 680, 320, 92],
+		"meanAbsoluteRgbDifference": 1.243
+	},
+	{
+		"family": "forms",
+		"id": "32:595",
+		"bounds": [456, 680, 320, 92],
+		"meanAbsoluteRgbDifference": 1.257
+	},
+	{
+		"family": "forms",
+		"id": "32:596",
+		"bounds": [808, 680, 320, 92],
+		"meanAbsoluteRgbDifference": 2.249
+	},
+	{
+		"family": "forms",
+		"id": "32:597",
+		"bounds": [104, 804, 320, 92],
+		"meanAbsoluteRgbDifference": 1.119
+	},
+	{
+		"family": "forms",
+		"id": "32:598",
+		"bounds": [456, 804, 320, 92],
+		"meanAbsoluteRgbDifference": 1.412
+	},
+	{
+		"family": "forms",
+		"id": "32:599",
+		"bounds": [808, 804, 320, 92],
+		"meanAbsoluteRgbDifference": 1.482
+	},
+	{
+		"family": "forms",
+		"id": "51:1022",
+		"bounds": [1208, 648, 336, 74],
+		"meanAbsoluteRgbDifference": 1.11
+	},
+	{
+		"family": "forms",
+		"id": "185:1607",
+		"bounds": [1608, 688, 336, 48],
+		"meanAbsoluteRgbDifference": 3.013
+	},
+	{
+		"family": "forms",
+		"id": "185:1638",
+		"bounds": [1608, 768, 336, 48],
+		"meanAbsoluteRgbDifference": 1.117
+	},
+	{
+		"family": "forms",
+		"id": "185:1669",
+		"bounds": [1608, 848, 336, 48],
+		"meanAbsoluteRgbDifference": 1.002
+	},
+	{
+		"family": "forms",
+		"id": "32:663",
+		"bounds": [2040, 680, 20, 20],
+		"meanAbsoluteRgbDifference": 0.811
+	},
+	{
+		"family": "forms",
+		"id": "32:664",
+		"bounds": [2092, 680, 20, 20],
+		"meanAbsoluteRgbDifference": 0.713
+	},
+	{
+		"family": "forms",
+		"id": "32:665",
+		"bounds": [2144, 680, 20, 20],
+		"meanAbsoluteRgbDifference": 1.531
+	},
+	{
+		"family": "forms",
+		"id": "32:666",
+		"bounds": [2196, 680, 20, 20],
+		"meanAbsoluteRgbDifference": 0.713
+	},
+	{
+		"family": "forms",
+		"id": "32:667",
+		"bounds": [2040, 732, 20, 20],
+		"meanAbsoluteRgbDifference": 4.282
+	},
+	{
+		"family": "forms",
+		"id": "32:668",
+		"bounds": [2092, 732, 20, 20],
+		"meanAbsoluteRgbDifference": 2.812
+	},
+	{
+		"family": "forms",
+		"id": "32:669",
+		"bounds": [2144, 732, 20, 20],
+		"meanAbsoluteRgbDifference": 4.103
+	},
+	{
+		"family": "forms",
+		"id": "32:670",
+		"bounds": [2196, 732, 20, 20],
+		"meanAbsoluteRgbDifference": 0.685
+	},
+	{
+		"family": "forms",
+		"id": "32:684",
+		"bounds": [2328, 680, 36, 20],
+		"meanAbsoluteRgbDifference": 1.54
+	},
+	{
+		"family": "forms",
+		"id": "32:685",
+		"bounds": [2396, 680, 36, 20],
+		"meanAbsoluteRgbDifference": 1.376
+	},
+	{
+		"family": "forms",
+		"id": "32:686",
+		"bounds": [2464, 680, 36, 20],
+		"meanAbsoluteRgbDifference": 3.762
+	},
+	{
+		"family": "forms",
+		"id": "32:687",
+		"bounds": [2532, 680, 36, 20],
+		"meanAbsoluteRgbDifference": 1.144
+	},
+	{
+		"family": "forms",
+		"id": "32:688",
+		"bounds": [2328, 732, 36, 20],
+		"meanAbsoluteRgbDifference": 2.034
+	},
+	{
+		"family": "forms",
+		"id": "32:689",
+		"bounds": [2396, 732, 36, 20],
+		"meanAbsoluteRgbDifference": 2.034
+	},
+	{
+		"family": "forms",
+		"id": "32:690",
+		"bounds": [2464, 732, 36, 20],
+		"meanAbsoluteRgbDifference": 2.646
+	},
+	{
+		"family": "forms",
+		"id": "32:691",
+		"bounds": [2532, 732, 36, 20],
+		"meanAbsoluteRgbDifference": 0.254
+	},
+	{
+		"family": "data",
+		"id": "32:643",
+		"bounds": [104, 200, 54, 24],
+		"meanAbsoluteRgbDifference": 4.636
+	},
+	{
+		"family": "data",
+		"id": "32:644",
+		"bounds": [234, 200, 54, 24],
+		"meanAbsoluteRgbDifference": 4.585
+	},
+	{
+		"family": "data",
+		"id": "32:645",
+		"bounds": [364, 200, 54, 24],
+		"meanAbsoluteRgbDifference": 4.609
+	},
+	{
+		"family": "data",
+		"id": "32:646",
+		"bounds": [494, 200, 54, 24],
+		"meanAbsoluteRgbDifference": 4.342
+	},
+	{
+		"family": "data",
+		"id": "32:647",
+		"bounds": [624, 200, 54, 24],
+		"meanAbsoluteRgbDifference": 3.872
+	},
+	{
+		"family": "data",
+		"id": "32:648",
+		"bounds": [754, 200, 54, 24],
+		"meanAbsoluteRgbDifference": 3.791
+	},
+	{
+		"family": "data",
+		"id": "32:656",
+		"bounds": [964, 200, 24, 24],
+		"meanAbsoluteRgbDifference": 9.948
+	},
+	{
+		"family": "data",
+		"id": "32:657",
+		"bounds": [1036, 200, 32, 32],
+		"meanAbsoluteRgbDifference": 5.61
+	},
+	{
+		"family": "data",
+		"id": "32:658",
+		"bounds": [1108, 200, 40, 40],
+		"meanAbsoluteRgbDifference": 3.603
+	},
+	{
+		"family": "data",
+		"id": "32:746",
+		"bounds": [1260, 200, 16, 16],
+		"meanAbsoluteRgbDifference": 4.249
+	},
+	{
+		"family": "data",
+		"id": "32:747",
+		"bounds": [1316, 200, 24, 24],
+		"meanAbsoluteRgbDifference": 3.011
+	},
+	{
+		"family": "data",
+		"id": "32:755",
+		"bounds": [1548, 200, 320, 180],
+		"meanAbsoluteRgbDifference": 0.003
+	},
+	{
+		"family": "data",
+		"id": "32:756",
+		"bounds": [1900, 200, 320, 180],
+		"meanAbsoluteRgbDifference": 0.041
+	},
+	{
+		"family": "data",
+		"id": "32:757",
+		"bounds": [2252, 200, 320, 180],
+		"meanAbsoluteRgbDifference": 0.034
+	},
+	{
+		"family": "data",
+		"id": "129:1352",
+		"bounds": [72, 500, 16, 16],
+		"meanAbsoluteRgbDifference": 7.245
+	},
+	{
+		"family": "data",
+		"id": "129:1355",
+		"bounds": [360, 500, 500, 6],
+		"meanAbsoluteRgbDifference": 0.986
+	},
+	{
+		"family": "data",
+		"id": "52:1054",
+		"bounds": [932, 524, 1072, 104],
+		"meanAbsoluteRgbDifference": 1.809
+	},
+	{
+		"family": "data",
+		"id": "52:1067",
+		"bounds": [932, 652, 1072, 104],
+		"meanAbsoluteRgbDifference": 1.773
+	},
+	{
+		"family": "data",
+		"id": "52:1091",
+		"bounds": [72, 868, 1072, 104],
+		"meanAbsoluteRgbDifference": 1.345
+	},
+	{
+		"family": "data",
+		"id": "52:1109",
+		"bounds": [1192, 868, 648, 80],
+		"meanAbsoluteRgbDifference": 1.149
+	},
+	{
+		"family": "data",
+		"id": "58:1046",
+		"bounds": [1912, 892, 352, 88],
+		"meanAbsoluteRgbDifference": 1.356
+	},
+	{
+		"family": "data",
+		"id": "58:1053",
+		"bounds": [1912, 1004, 352, 88],
+		"meanAbsoluteRgbDifference": 1.258
+	}
+]

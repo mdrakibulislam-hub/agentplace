@@ -1,0 +1,27 @@
+{
+	"tokenValues": {
+		"checked": 790,
+		"modes": ["light", "dark"],
+		"failures": [],
+		"resultOrigin": "Recorded actual browser audit execution in this review session; every live-captured variable compared with computed CSS. The standalone browser script produced checked:790,failures:[]."
+	},
+	"textStyleMetrics": {
+		"checked": 25,
+		"failures": [],
+		"properties": ["font-size", "line-height", "font-weight"],
+		"font": "Actual official SF Pro custom font loaded; reviewed again after replacing platform fallback.",
+		"resultOrigin": "Recorded actual browser execution in this review session; all25 style rows compared with live-captured style values."
+	},
+	"liveSource": {
+		"variables": 395,
+		"textStyles": 25,
+		"snapshot": "../design-handoff/tokens.json",
+		"snapshotSha256": "25481e6d0e82127d89c955e7bc58a4b10cc6b4614aa464b89fb7e94a1a975a46",
+		"differenceFromLiveCapture": []
+	},
+	"search": {
+		"ambientMatches": 3,
+		"noResults": true,
+		"clearedRestores": 58
+	}
+}

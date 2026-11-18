@@ -1,0 +1,15 @@
+{
+	"before": {
+		"x": 716.5,
+		"y": 492,
+		"width": 85,
+		"height": 32
+	},
+	"held": {
+		"width": 85,
+		"height": 32,
+		"scale": 0.978912372595344,
+		"visualTransform": "matrix(0.978912, 0, 0, 0.978912, 0, 0)"
+	},
+	"stableHitBox": true
+}

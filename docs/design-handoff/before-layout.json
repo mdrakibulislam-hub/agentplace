@@ -1,0 +1,3170 @@
+{
+  "sessionId": "83372ff7-549d-412f-be4f-ef7bcbb89b2f",
+  "components": {
+    "specEnabled": true,
+    "page": {
+      "id": "32:2",
+      "name": "Design system · Components"
+    },
+    "roots": [
+      {
+        "id": "32:3",
+        "type": "COMPONENT",
+        "name": "AP / Icon / plus",
+        "x": 1900,
+        "y": 0,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "32:7",
+        "type": "COMPONENT",
+        "name": "AP / Icon / chevron-down",
+        "x": 1900,
+        "y": 60,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "32:10",
+        "type": "COMPONENT",
+        "name": "AP / Icon / arrow-up",
+        "x": 1900,
+        "y": 120,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "32:14",
+        "type": "COMPONENT",
+        "name": "AP / Icon / arrow-right",
+        "x": 1900,
+        "y": 180,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "32:18",
+        "type": "COMPONENT",
+        "name": "AP / Icon / check",
+        "x": 1900,
+        "y": 240,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "32:21",
+        "type": "COMPONENT",
+        "name": "AP / Icon / close",
+        "x": 1900,
+        "y": 300,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "32:24",
+        "type": "COMPONENT",
+        "name": "AP / Icon / search",
+        "x": 1900,
+        "y": 360,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "32:28",
+        "type": "COMPONENT",
+        "name": "AP / Icon / loader",
+        "x": 1900,
+        "y": 420,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "32:43",
+        "type": "COMPONENT_SET",
+        "name": "AP / Button / Primary",
+        "x": 1900,
+        "y": 480,
+        "w": 950,
+        "h": 176,
+        "children": 12
+      },
+      {
+        "id": "32:152",
+        "type": "COMPONENT_SET",
+        "name": "AP / Button / Secondary",
+        "x": 1900,
+        "y": 756,
+        "w": 950,
+        "h": 176,
+        "children": 12
+      },
+      {
+        "id": "32:261",
+        "type": "COMPONENT_SET",
+        "name": "AP / Button / Ghost",
+        "x": 1900,
+        "y": 1032,
+        "w": 950,
+        "h": 176,
+        "children": 12
+      },
+      {
+        "id": "32:370",
+        "type": "COMPONENT_SET",
+        "name": "AP / Button / Danger",
+        "x": 1900,
+        "y": 1308,
+        "w": 980,
+        "h": 176,
+        "children": 12
+      },
+      {
+        "id": "32:479",
+        "type": "COMPONENT_SET",
+        "name": "AP / Icon button",
+        "x": 1900,
+        "y": 1584,
+        "w": 416,
+        "h": 176,
+        "children": 12
+      },
+      {
+        "id": "32:532",
+        "type": "COMPONENT_SET",
+        "name": "AP / Input",
+        "x": 1900,
+        "y": 1860,
+        "w": 2144,
+        "h": 156,
+        "children": 6
+      },
+      {
+        "id": "32:569",
+        "type": "COMPONENT_SET",
+        "name": "AP / Textarea",
+        "x": 1900,
+        "y": 2116,
+        "w": 2144,
+        "h": 212,
+        "children": 6
+      },
+      {
+        "id": "32:600",
+        "type": "COMPONENT_SET",
+        "name": "AP / Select",
+        "x": 1900,
+        "y": 2428,
+        "w": 2144,
+        "h": 156,
+        "children": 6
+      },
+      {
+        "id": "32:649",
+        "type": "COMPONENT_SET",
+        "name": "AP / Badge",
+        "x": 1900,
+        "y": 2684,
+        "w": 812,
+        "h": 88,
+        "children": 6
+      },
+      {
+        "id": "32:659",
+        "type": "COMPONENT_SET",
+        "name": "AP / Avatar",
+        "x": 1900,
+        "y": 2872,
+        "w": 248,
+        "h": 104,
+        "children": 3
+      },
+      {
+        "id": "32:671",
+        "type": "COMPONENT_SET",
+        "name": "AP / Checkbox",
+        "x": 1900,
+        "y": 3076,
+        "w": 240,
+        "h": 136,
+        "children": 8
+      },
+      {
+        "id": "32:692",
+        "type": "COMPONENT_SET",
+        "name": "AP / Switch",
+        "x": 1900,
+        "y": 3312,
+        "w": 304,
+        "h": 136,
+        "children": 8
+      },
+      {
+        "id": "32:706",
+        "type": "COMPONENT_SET",
+        "name": "AP / Tab",
+        "x": 1900,
+        "y": 3548,
+        "w": 602,
+        "h": 104,
+        "children": 5
+      },
+      {
+        "id": "32:717",
+        "type": "COMPONENT_SET",
+        "name": "AP / Menu item",
+        "x": 1900,
+        "y": 3752,
+        "w": 1512,
+        "h": 104,
+        "children": 5
+      },
+      {
+        "id": "32:744",
+        "type": "COMPONENT_SET",
+        "name": "AP / Tooltip",
+        "x": 1900,
+        "y": 3956,
+        "w": 180,
+        "h": 96,
+        "children": 1
+      },
+      {
+        "id": "32:748",
+        "type": "COMPONENT_SET",
+        "name": "AP / Spinner",
+        "x": 1900,
+        "y": 4152,
+        "w": 144,
+        "h": 88,
+        "children": 2
+      },
+      {
+        "id": "32:758",
+        "type": "COMPONENT_SET",
+        "name": "AP / Surface",
+        "x": 1900,
+        "y": 4340,
+        "w": 1088,
+        "h": 244,
+        "children": 3
+      },
+      {
+        "id": "32:759",
+        "type": "FRAME",
+        "name": "Agentplace / Base component review",
+        "x": 0,
+        "y": 0,
+        "w": 1780,
+        "h": 4360,
+        "children": 277
+      },
+      {
+        "id": "35:453",
+        "type": "FRAME",
+        "name": "Agentplace / Theme verification",
+        "x": 0,
+        "y": 4480,
+        "w": 1780,
+        "h": 650,
+        "children": 4
+      },
+      {
+        "id": "45:643",
+        "type": "COMPONENT_SET",
+        "name": "AP / Logo",
+        "x": 1900,
+        "y": 4700,
+        "w": 440,
+        "h": 114,
+        "children": 2
+      },
+      {
+        "id": "45:645",
+        "type": "FRAME",
+        "name": "Agentplace / Logo component review",
+        "x": 0,
+        "y": 5250,
+        "w": 720,
+        "h": 228,
+        "children": 2
+      },
+      {
+        "id": "49:523",
+        "type": "COMPONENT",
+        "name": "AP / Icon / briefcase-business",
+        "x": 4700,
+        "y": 5650,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:529",
+        "type": "COMPONENT",
+        "name": "AP / Icon / chevrons-up-down",
+        "x": 4700,
+        "y": 5698,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:533",
+        "type": "COMPONENT",
+        "name": "AP / Icon / more-horizontal",
+        "x": 4700,
+        "y": 5746,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:538",
+        "type": "COMPONENT",
+        "name": "AP / Icon / database",
+        "x": 4700,
+        "y": 5794,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:543",
+        "type": "COMPONENT",
+        "name": "AP / Icon / puzzle",
+        "x": 4700,
+        "y": 5842,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:546",
+        "type": "COMPONENT",
+        "name": "AP / Icon / file-text",
+        "x": 4700,
+        "y": 5890,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:553",
+        "type": "COMPONENT",
+        "name": "AP / Icon / link",
+        "x": 4700,
+        "y": 5938,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:557",
+        "type": "COMPONENT",
+        "name": "AP / Icon / square-pen",
+        "x": 4700,
+        "y": 5986,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:561",
+        "type": "COMPONENT",
+        "name": "AP / Icon / settings",
+        "x": 4700,
+        "y": 6034,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:565",
+        "type": "COMPONENT",
+        "name": "AP / Icon / mail",
+        "x": 4700,
+        "y": 6082,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:569",
+        "type": "COMPONENT",
+        "name": "AP / Icon / arrow-left-to-line",
+        "x": 4700,
+        "y": 6130,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:574",
+        "type": "COMPONENT",
+        "name": "AP / Icon / palette",
+        "x": 4700,
+        "y": 6178,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:581",
+        "type": "COMPONENT",
+        "name": "AP / Icon / copy",
+        "x": 4700,
+        "y": 6226,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:585",
+        "type": "COMPONENT",
+        "name": "AP / Icon / lightbulb",
+        "x": 4700,
+        "y": 6274,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:590",
+        "type": "COMPONENT",
+        "name": "AP / Icon / paperclip",
+        "x": 4700,
+        "y": 6322,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:593",
+        "type": "COMPONENT",
+        "name": "AP / Icon / panel-left-close",
+        "x": 4700,
+        "y": 6370,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:598",
+        "type": "COMPONENT",
+        "name": "AP / Icon / message-square",
+        "x": 4700,
+        "y": 6418,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:601",
+        "type": "COMPONENT",
+        "name": "AP / Icon / credit-card",
+        "x": 4700,
+        "y": 6466,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:606",
+        "type": "COMPONENT",
+        "name": "AP / Icon / message-circle-question-mark",
+        "x": 4700,
+        "y": 6514,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:611",
+        "type": "COMPONENT",
+        "name": "AP / Icon / eye",
+        "x": 4700,
+        "y": 6562,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:615",
+        "type": "COMPONENT",
+        "name": "AP / Icon / external-link",
+        "x": 4700,
+        "y": 6610,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:620",
+        "type": "COMPONENT",
+        "name": "AP / Icon / zap",
+        "x": 4700,
+        "y": 6658,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:623",
+        "type": "COMPONENT",
+        "name": "AP / Icon / calendar",
+        "x": 4700,
+        "y": 6706,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:629",
+        "type": "COMPONENT",
+        "name": "AP / Icon / globe",
+        "x": 4700,
+        "y": 6754,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:634",
+        "type": "COMPONENT",
+        "name": "AP / Icon / arrow-left",
+        "x": 4700,
+        "y": 6802,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:638",
+        "type": "COMPONENT",
+        "name": "AP / Icon / shield-check",
+        "x": 4700,
+        "y": 6850,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:642",
+        "type": "COMPONENT",
+        "name": "AP / Icon / history",
+        "x": 4700,
+        "y": 6898,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:646",
+        "type": "COMPONENT",
+        "name": "AP / Icon / users",
+        "x": 4700,
+        "y": 6946,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:652",
+        "type": "COMPONENT",
+        "name": "AP / Icon / monitor",
+        "x": 4700,
+        "y": 6994,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "49:1206",
+        "type": "COMPONENT_SET",
+        "name": "AP / Product / Project navigation",
+        "x": 4700,
+        "y": 160,
+        "w": 1280,
+        "h": 960,
+        "children": 5
+      },
+      {
+        "id": "49:1471",
+        "type": "COMPONENT_SET",
+        "name": "AP / Product / Settings navigation",
+        "x": 4700,
+        "y": 1240,
+        "w": 1024,
+        "h": 960,
+        "children": 4
+      },
+      {
+        "id": "49:1533",
+        "type": "COMPONENT_SET",
+        "name": "AP / Product / Project toolbar",
+        "x": 4700,
+        "y": 2264,
+        "w": 1280,
+        "h": 352,
+        "children": 3
+      },
+      {
+        "id": "49:1534",
+        "type": "COMPONENT",
+        "name": "AP / Product / Chat composer",
+        "x": 4700,
+        "y": 2680,
+        "w": 472,
+        "h": 128,
+        "children": 3
+      },
+      {
+        "id": "49:1565",
+        "type": "COMPONENT",
+        "name": "AP / Product / Agent preview",
+        "x": 4700,
+        "y": 2872,
+        "w": 680,
+        "h": 832,
+        "children": 2
+      },
+      {
+        "id": "49:1705",
+        "type": "COMPONENT_SET",
+        "name": "AP / Product / Project card",
+        "x": 4700,
+        "y": 4400,
+        "w": 800,
+        "h": 316,
+        "children": 2
+      },
+      {
+        "id": "51:1017",
+        "type": "COMPONENT",
+        "name": "AP / Icon / Google",
+        "x": 4700,
+        "y": 6000,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "51:1022",
+        "type": "COMPONENT",
+        "name": "AP / Product / Password field",
+        "x": 4927,
+        "y": 6089,
+        "w": 336,
+        "h": 74,
+        "children": 2
+      },
+      {
+        "id": "52:1015",
+        "type": "COMPONENT",
+        "name": "AP / Product / New project prompt",
+        "x": 6200,
+        "y": 0,
+        "w": 768,
+        "h": 144,
+        "children": 3
+      },
+      {
+        "id": "52:1090",
+        "type": "COMPONENT_SET",
+        "name": "AP / Product / Capability row",
+        "x": 6200,
+        "y": 220,
+        "w": 1120,
+        "h": 280,
+        "children": 2
+      },
+      {
+        "id": "52:1091",
+        "type": "COMPONENT",
+        "name": "AP / Product / Version row",
+        "x": 6200,
+        "y": 600,
+        "w": 1072,
+        "h": 104,
+        "children": 5
+      },
+      {
+        "id": "52:1109",
+        "type": "COMPONENT",
+        "name": "AP / Product / Staff row",
+        "x": 6200,
+        "y": 780,
+        "w": 648,
+        "h": 80,
+        "children": 5
+      },
+      {
+        "id": "58:1060",
+        "type": "COMPONENT_SET",
+        "name": "AP / Product / Library item",
+        "x": 6200,
+        "y": 960,
+        "w": 400,
+        "h": 248,
+        "children": 2
+      },
+      {
+        "id": "82:4407",
+        "type": "COMPONENT",
+        "name": "AP / Icon / chevron-up",
+        "x": 7600,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "82:4410",
+        "type": "COMPONENT",
+        "name": "AP / Icon / eye-off",
+        "x": 7652,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "82:4701",
+        "type": "COMPONENT",
+        "name": "AP / Icon / upload",
+        "x": 7704,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "82:4704",
+        "type": "COMPONENT",
+        "name": "AP / Icon / download",
+        "x": 7756,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "82:4707",
+        "type": "COMPONENT",
+        "name": "AP / Icon / trash",
+        "x": 7808,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "82:4710",
+        "type": "COMPONENT",
+        "name": "AP / Icon / user-add",
+        "x": 7860,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "82:4715",
+        "type": "COMPONENT",
+        "name": "AP / Icon / lock",
+        "x": 7912,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "82:4718",
+        "type": "COMPONENT",
+        "name": "AP / Icon / refresh",
+        "x": 7964,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "82:4721",
+        "type": "COMPONENT",
+        "name": "AP / Icon / filter",
+        "x": 8016,
+        "y": 930,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "84:1161",
+        "type": "FRAME",
+        "name": "Agentplace / Reicon product icon library",
+        "x": 7600,
+        "y": 0,
+        "w": 1280,
+        "h": 810,
+        "children": 8
+      },
+      {
+        "id": "99:1477",
+        "type": "COMPONENT",
+        "name": "AP / Icon / phone",
+        "x": 8960,
+        "y": 160,
+        "w": 20,
+        "h": 20,
+        "children": 1
+      },
+      {
+        "id": "108:1306",
+        "type": "COMPONENT_SET",
+        "name": "AP / Product / Project actions",
+        "x": 5580,
+        "y": 4750,
+        "w": 176,
+        "h": 96,
+        "children": 2
+      },
+      {
+        "id": "129:1352",
+        "type": "COMPONENT",
+        "name": "AP / Progress / Credit ring",
+        "x": 1800,
+        "y": 16200,
+        "w": 16,
+        "h": 16,
+        "children": 2
+      },
+      {
+        "id": "129:1355",
+        "type": "COMPONENT",
+        "name": "AP / Progress / Credit balance",
+        "x": 2200,
+        "y": 16200,
+        "w": 500,
+        "h": 6,
+        "children": 1
+      },
+      {
+        "id": "130:1320",
+        "type": "COMPONENT_SET",
+        "name": "AP / Menu / Item",
+        "x": 1800,
+        "y": 16000,
+        "w": 1460,
+        "h": 140,
+        "children": 4
+      },
+      {
+        "id": "130:1323",
+        "type": "COMPONENT_SET",
+        "name": "AP / Media / Project cover",
+        "x": 1800,
+        "y": 16400,
+        "w": 720,
+        "h": 180,
+        "children": 2
+      },
+      {
+        "id": "131:1318",
+        "type": "COMPONENT",
+        "name": "Kind=Projects",
+        "x": 1800,
+        "y": 16800,
+        "w": 384,
+        "h": 371,
+        "children": 8
+      },
+      {
+        "id": "131:1414",
+        "type": "COMPONENT",
+        "name": "Kind=Filter",
+        "x": 2232,
+        "y": 16800,
+        "w": 240,
+        "h": 192,
+        "children": 4
+      },
+      {
+        "id": "131:1460",
+        "type": "COMPONENT",
+        "name": "Kind=Actions",
+        "x": 2520,
+        "y": 16800,
+        "w": 240,
+        "h": 273,
+        "children": 7
+      },
+      {
+        "id": "131:1545",
+        "type": "COMPONENT",
+        "name": "Kind=Search",
+        "x": 2808,
+        "y": 16800,
+        "w": 384,
+        "h": 182,
+        "children": 4
+      },
+      {
+        "id": "131:1577",
+        "type": "COMPONENT",
+        "name": "Kind=No results",
+        "x": 3240,
+        "y": 16800,
+        "w": 384,
+        "h": 214,
+        "children": 4
+      },
+      {
+        "id": "139:1490",
+        "type": "COMPONENT",
+        "name": "AP / Menu / Cover actions",
+        "x": 4600,
+        "y": 16800,
+        "w": 240,
+        "h": 136,
+        "children": 3
+      },
+      {
+        "id": "116:11267",
+        "type": "COMPONENT_SET",
+        "name": "AP",
+        "x": 4684,
+        "y": -159,
+        "w": 1472,
+        "h": 176,
+        "children": 2
+      },
+      {
+        "id": "166:1528",
+        "type": "COMPONENT_SET",
+        "name": "AP / Brand / A mascot artwork",
+        "x": 1800,
+        "y": 17400,
+        "w": 500,
+        "h": 290,
+        "children": 2
+      },
+      {
+        "id": "166:1812",
+        "type": "COMPONENT_SET",
+        "name": "AP / Motion / A mascot working",
+        "x": 1800,
+        "y": 17800,
+        "w": 320,
+        "h": 220,
+        "children": 7
+      },
+      {
+        "id": "169:1570",
+        "type": "COMPONENT",
+        "name": "AP / Motion / A mascot native artwork",
+        "x": 3500,
+        "y": 17800,
+        "w": 26.56387710571289,
+        "h": 30,
+        "children": 1
+      },
+      {
+        "id": "169:1853",
+        "type": "COMPONENT_SET",
+        "name": "AP / Chat / Working indicator",
+        "x": 2280,
+        "y": 17800,
+        "w": 504,
+        "h": 232,
+        "children": 2
+      },
+      {
+        "id": "169:1886",
+        "type": "FRAME",
+        "name": "A mascot · Working indicator / Motion preview",
+        "x": 2880,
+        "y": 17800,
+        "w": 520,
+        "h": 260,
+        "children": 3
+      },
+      {
+        "id": "185:1606",
+        "type": "COMPONENT_SET",
+        "name": "AP / Form / Six-digit OTP",
+        "x": 1800,
+        "y": 18300,
+        "w": 368,
+        "h": 296,
+        "children": 3
+      },
+      {
+        "id": "195:1678",
+        "type": "COMPONENT",
+        "name": "AP / Auth / Client logos",
+        "x": 2300,
+        "y": 18300,
+        "w": 404.8771057128906,
+        "h": 20,
+        "children": 1
+      }
+    ],
+    "components": [
+      {
+        "id": "32:3",
+        "name": "AP / Icon / plus",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "32:7",
+        "name": "AP / Icon / chevron-down",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "32:10",
+        "name": "AP / Icon / arrow-up",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "32:14",
+        "name": "AP / Icon / arrow-right",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "32:18",
+        "name": "AP / Icon / check",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "32:21",
+        "name": "AP / Icon / close",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "32:24",
+        "name": "AP / Icon / search",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "32:28",
+        "name": "AP / Icon / loader",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "32:43",
+        "name": "AP / Button / Primary",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 950,
+        "h": 176,
+        "variants": 12
+      },
+      {
+        "id": "32:152",
+        "name": "AP / Button / Secondary",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 950,
+        "h": 176,
+        "variants": 12
+      },
+      {
+        "id": "32:261",
+        "name": "AP / Button / Ghost",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 950,
+        "h": 176,
+        "variants": 12
+      },
+      {
+        "id": "32:370",
+        "name": "AP / Button / Danger",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 980,
+        "h": 176,
+        "variants": 12
+      },
+      {
+        "id": "32:479",
+        "name": "AP / Icon button",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 416,
+        "h": 176,
+        "variants": 12
+      },
+      {
+        "id": "32:532",
+        "name": "AP / Input",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 2144,
+        "h": 156,
+        "variants": 6
+      },
+      {
+        "id": "32:569",
+        "name": "AP / Textarea",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 2144,
+        "h": 212,
+        "variants": 6
+      },
+      {
+        "id": "32:600",
+        "name": "AP / Select",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 2144,
+        "h": 156,
+        "variants": 6
+      },
+      {
+        "id": "32:649",
+        "name": "AP / Badge",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 812,
+        "h": 88,
+        "variants": 6
+      },
+      {
+        "id": "32:659",
+        "name": "AP / Avatar",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 248,
+        "h": 104,
+        "variants": 3
+      },
+      {
+        "id": "32:671",
+        "name": "AP / Checkbox",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 240,
+        "h": 136,
+        "variants": 8
+      },
+      {
+        "id": "32:692",
+        "name": "AP / Switch",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 304,
+        "h": 136,
+        "variants": 8
+      },
+      {
+        "id": "32:706",
+        "name": "AP / Tab",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 602,
+        "h": 104,
+        "variants": 5
+      },
+      {
+        "id": "32:717",
+        "name": "AP / Menu item",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 1512,
+        "h": 104,
+        "variants": 5
+      },
+      {
+        "id": "32:744",
+        "name": "AP / Tooltip",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 180,
+        "h": 96,
+        "variants": 1
+      },
+      {
+        "id": "32:748",
+        "name": "AP / Spinner",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 144,
+        "h": 88,
+        "variants": 2
+      },
+      {
+        "id": "32:758",
+        "name": "AP / Surface",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 1088,
+        "h": 244,
+        "variants": 3
+      },
+      {
+        "id": "45:643",
+        "name": "AP / Logo",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 440,
+        "h": 114,
+        "variants": 2
+      },
+      {
+        "id": "49:523",
+        "name": "AP / Icon / briefcase-business",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:529",
+        "name": "AP / Icon / chevrons-up-down",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:533",
+        "name": "AP / Icon / more-horizontal",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:538",
+        "name": "AP / Icon / database",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:543",
+        "name": "AP / Icon / puzzle",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:546",
+        "name": "AP / Icon / file-text",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:553",
+        "name": "AP / Icon / link",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:557",
+        "name": "AP / Icon / square-pen",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:561",
+        "name": "AP / Icon / settings",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:565",
+        "name": "AP / Icon / mail",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:569",
+        "name": "AP / Icon / arrow-left-to-line",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:574",
+        "name": "AP / Icon / palette",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:581",
+        "name": "AP / Icon / copy",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:585",
+        "name": "AP / Icon / lightbulb",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:590",
+        "name": "AP / Icon / paperclip",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:593",
+        "name": "AP / Icon / panel-left-close",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:598",
+        "name": "AP / Icon / message-square",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:601",
+        "name": "AP / Icon / credit-card",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:606",
+        "name": "AP / Icon / message-circle-question-mark",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:611",
+        "name": "AP / Icon / eye",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:615",
+        "name": "AP / Icon / external-link",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:620",
+        "name": "AP / Icon / zap",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:623",
+        "name": "AP / Icon / calendar",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:629",
+        "name": "AP / Icon / globe",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:634",
+        "name": "AP / Icon / arrow-left",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:638",
+        "name": "AP / Icon / shield-check",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:642",
+        "name": "AP / Icon / history",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:646",
+        "name": "AP / Icon / users",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:652",
+        "name": "AP / Icon / monitor",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "49:1206",
+        "name": "AP / Product / Project navigation",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 1280,
+        "h": 960,
+        "variants": 5
+      },
+      {
+        "id": "49:1471",
+        "name": "AP / Product / Settings navigation",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 1024,
+        "h": 960,
+        "variants": 4
+      },
+      {
+        "id": "49:1533",
+        "name": "AP / Product / Project toolbar",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 1280,
+        "h": 352,
+        "variants": 3
+      },
+      {
+        "id": "49:1534",
+        "name": "AP / Product / Chat composer",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 472,
+        "h": 128,
+        "variants": 0
+      },
+      {
+        "id": "49:1565",
+        "name": "AP / Product / Agent preview",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 680,
+        "h": 832,
+        "variants": 0
+      },
+      {
+        "id": "49:1705",
+        "name": "AP / Product / Project card",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 800,
+        "h": 316,
+        "variants": 2
+      },
+      {
+        "id": "51:1017",
+        "name": "AP / Icon / Google",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "51:1022",
+        "name": "AP / Product / Password field",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 336,
+        "h": 74,
+        "variants": 0
+      },
+      {
+        "id": "52:1015",
+        "name": "AP / Product / New project prompt",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 768,
+        "h": 144,
+        "variants": 0
+      },
+      {
+        "id": "52:1090",
+        "name": "AP / Product / Capability row",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 1120,
+        "h": 280,
+        "variants": 2
+      },
+      {
+        "id": "52:1091",
+        "name": "AP / Product / Version row",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 1072,
+        "h": 104,
+        "variants": 0
+      },
+      {
+        "id": "52:1109",
+        "name": "AP / Product / Staff row",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 648,
+        "h": 80,
+        "variants": 0
+      },
+      {
+        "id": "58:1060",
+        "name": "AP / Product / Library item",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 400,
+        "h": 248,
+        "variants": 2
+      },
+      {
+        "id": "82:4407",
+        "name": "AP / Icon / chevron-up",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "82:4410",
+        "name": "AP / Icon / eye-off",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "82:4701",
+        "name": "AP / Icon / upload",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "82:4704",
+        "name": "AP / Icon / download",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "82:4707",
+        "name": "AP / Icon / trash",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "82:4710",
+        "name": "AP / Icon / user-add",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "82:4715",
+        "name": "AP / Icon / lock",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "82:4718",
+        "name": "AP / Icon / refresh",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "82:4721",
+        "name": "AP / Icon / filter",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "99:1477",
+        "name": "AP / Icon / phone",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 20,
+        "h": 20,
+        "variants": 0
+      },
+      {
+        "id": "108:1306",
+        "name": "AP / Product / Project actions",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 176,
+        "h": 96,
+        "variants": 2
+      },
+      {
+        "id": "129:1352",
+        "name": "AP / Progress / Credit ring",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 16,
+        "h": 16,
+        "variants": 0
+      },
+      {
+        "id": "129:1355",
+        "name": "AP / Progress / Credit balance",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 500,
+        "h": 6,
+        "variants": 0
+      },
+      {
+        "id": "130:1320",
+        "name": "AP / Menu / Item",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 1460,
+        "h": 140,
+        "variants": 4
+      },
+      {
+        "id": "130:1323",
+        "name": "AP / Media / Project cover",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 720,
+        "h": 180,
+        "variants": 2
+      },
+      {
+        "id": "131:1318",
+        "name": "Kind=Projects",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 384,
+        "h": 371,
+        "variants": 0
+      },
+      {
+        "id": "131:1414",
+        "name": "Kind=Filter",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 240,
+        "h": 192,
+        "variants": 0
+      },
+      {
+        "id": "131:1460",
+        "name": "Kind=Actions",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 240,
+        "h": 273,
+        "variants": 0
+      },
+      {
+        "id": "131:1545",
+        "name": "Kind=Search",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 384,
+        "h": 182,
+        "variants": 0
+      },
+      {
+        "id": "131:1577",
+        "name": "Kind=No results",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 384,
+        "h": 214,
+        "variants": 0
+      },
+      {
+        "id": "139:1490",
+        "name": "AP / Menu / Cover actions",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 240,
+        "h": 136,
+        "variants": 0
+      },
+      {
+        "id": "116:11267",
+        "name": "AP",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 1472,
+        "h": 176,
+        "variants": 2
+      },
+      {
+        "id": "166:1528",
+        "name": "AP / Brand / A mascot artwork",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 500,
+        "h": 290,
+        "variants": 2
+      },
+      {
+        "id": "166:1812",
+        "name": "AP / Motion / A mascot working",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 320,
+        "h": 220,
+        "variants": 7
+      },
+      {
+        "id": "169:1570",
+        "name": "AP / Motion / A mascot native artwork",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 26.56387710571289,
+        "h": 30,
+        "variants": 0
+      },
+      {
+        "id": "169:1853",
+        "name": "AP / Chat / Working indicator",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 504,
+        "h": 232,
+        "variants": 2
+      },
+      {
+        "id": "185:1606",
+        "name": "AP / Form / Six-digit OTP",
+        "type": "COMPONENT_SET",
+        "parent": "32:2",
+        "w": 368,
+        "h": 296,
+        "variants": 3
+      },
+      {
+        "id": "195:1678",
+        "name": "AP / Auth / Client logos",
+        "type": "COMPONENT",
+        "parent": "32:2",
+        "w": 404.8771057128906,
+        "h": 20,
+        "variants": 0
+      }
+    ],
+    "specs": []
+  },
+  "screens": {
+    "page": {
+      "id": "50:2",
+      "name": "Product experience · High fidelity"
+    },
+    "roots": [
+      {
+        "id": "50:3",
+        "name": "Agentplace · Product experience / 19 high-fidelity screens",
+        "type": "SECTION",
+        "x": 200,
+        "y": 200,
+        "w": 4768,
+        "h": 7900,
+        "children": [
+          {
+            "id": "53:2",
+            "name": "Board introduction",
+            "type": "FRAME",
+            "x": 48,
+            "y": 40,
+            "w": 4400,
+            "h": 112
+          },
+          {
+            "id": "53:6",
+            "name": "Label / loginEmail",
+            "type": "FRAME",
+            "x": 48,
+            "y": 192,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "53:8",
+            "name": "loginEmail / Sign in · Email last used",
+            "type": "FRAME",
+            "x": 48,
+            "y": 240,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "53:117",
+            "name": "Label / loginGoogle",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 192,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "53:119",
+            "name": "loginGoogle / Sign in · Google last used",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 240,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "53:206",
+            "name": "Label / signup",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 192,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "53:208",
+            "name": "signup / Create your account",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 240,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "53:282",
+            "name": "Label / confirm",
+            "type": "FRAME",
+            "x": 48,
+            "y": 1280,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "53:284",
+            "name": "confirm / Confirm your email",
+            "type": "FRAME",
+            "x": 48,
+            "y": 1328,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "53:347",
+            "name": "Label / home",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 1280,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "53:349",
+            "name": "home / Project home",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 1328,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "54:1383",
+            "name": "Label / create",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 1280,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "54:1385",
+            "name": "create / Create through conversation",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 1328,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "54:1622",
+            "name": "Label / builder",
+            "type": "FRAME",
+            "x": 48,
+            "y": 2368,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "54:1624",
+            "name": "builder / Builder & visitor preview",
+            "type": "FRAME",
+            "x": 48,
+            "y": 2416,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "54:1874",
+            "name": "Label / branding",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 2368,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "54:1876",
+            "name": "branding / Company branding",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 2416,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "57:1156",
+            "name": "Label / instructions",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 2368,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "57:1158",
+            "name": "instructions / Instructions.md",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 2416,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "57:1398",
+            "name": "Label / skills",
+            "type": "FRAME",
+            "x": 48,
+            "y": 3456,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "57:1400",
+            "name": "skills / Project skills",
+            "type": "FRAME",
+            "x": 48,
+            "y": 3504,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "57:1662",
+            "name": "Label / history",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 3456,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "57:1664",
+            "name": "history / History & versions",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 3504,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "57:1934",
+            "name": "Label / review",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 3456,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "57:1936",
+            "name": "review / Review & publish",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 3504,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "57:2268",
+            "name": "Label / published",
+            "type": "FRAME",
+            "x": 48,
+            "y": 4544,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "57:2270",
+            "name": "published / Published · Draft changes",
+            "type": "FRAME",
+            "x": 48,
+            "y": 4592,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "57:2583",
+            "name": "Label / unpublish",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 4544,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "57:2585",
+            "name": "unpublish / Unpublish confirmation",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 4592,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "59:2474",
+            "name": "Label / switcher",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 4544,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "59:2476",
+            "name": "switcher / Quick project switcher",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 4592,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "59:2614",
+            "name": "Label / billing",
+            "type": "FRAME",
+            "x": 48,
+            "y": 5632,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "59:2616",
+            "name": "billing / Billing & usage",
+            "type": "FRAME",
+            "x": 48,
+            "y": 5680,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "59:2858",
+            "name": "Label / team",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 5632,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "59:2860",
+            "name": "team / Staff & roles",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 5680,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "59:3247",
+            "name": "Label / library",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 5632,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "59:3249",
+            "name": "library / Workspace skills library",
+            "type": "FRAME",
+            "x": 3152,
+            "y": 5680,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "59:3465",
+            "name": "Label / plugins",
+            "type": "FRAME",
+            "x": 48,
+            "y": 6720,
+            "w": 1440,
+            "h": 32
+          },
+          {
+            "id": "59:3467",
+            "name": "plugins / Plugins & connections",
+            "type": "FRAME",
+            "x": 48,
+            "y": 6768,
+            "w": 1440,
+            "h": 960
+          }
+        ]
+      },
+      {
+        "id": "135:5209",
+        "name": "Refined states · projects, menus & covers",
+        "type": "SECTION",
+        "x": 200,
+        "y": 8280,
+        "w": 4720,
+        "h": 4400,
+        "children": [
+          {
+            "id": "135:5210",
+            "name": "home / No projects yet",
+            "type": "FRAME",
+            "x": 80,
+            "y": 80,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "135:5332",
+            "name": "home / Project actions open",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 80,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "135:5533",
+            "name": "home / All projects filter",
+            "type": "FRAME",
+            "x": 3120,
+            "y": 80,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "135:5687",
+            "name": "home / Published projects",
+            "type": "FRAME",
+            "x": 80,
+            "y": 1160,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "135:5858",
+            "name": "home / Unpublished projects",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 1160,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "135:6048",
+            "name": "home / Search results",
+            "type": "FRAME",
+            "x": 3120,
+            "y": 1160,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "135:6257",
+            "name": "home / No search results",
+            "type": "FRAME",
+            "x": 80,
+            "y": 2240,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "135:6409",
+            "name": "branding / Add a project cover",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 2240,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "140:4811",
+            "name": "branding / Cover options",
+            "type": "FRAME",
+            "x": 3120,
+            "y": 2240,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "140:4874",
+            "name": "home / Live link copied",
+            "type": "FRAME",
+            "x": 80,
+            "y": 3320,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "140:4901",
+            "name": "home / Confirm project deletion",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 3320,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "140:4928",
+            "name": "home / Project deleted",
+            "type": "FRAME",
+            "x": 3120,
+            "y": 3320,
+            "w": 1440,
+            "h": 960
+          }
+        ]
+      },
+      {
+        "id": "186:5602",
+        "name": "Email verification · Six-digit OTP states",
+        "type": "SECTION",
+        "x": 200,
+        "y": 12802,
+        "w": 4720,
+        "h": 1120,
+        "children": [
+          {
+            "id": "186:5603",
+            "name": "verify / OTP Empty",
+            "type": "FRAME",
+            "x": 80,
+            "y": 80,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "186:5625",
+            "name": "verify / OTP Code entered",
+            "type": "FRAME",
+            "x": 1600,
+            "y": 80,
+            "w": 1440,
+            "h": 960
+          },
+          {
+            "id": "186:5647",
+            "name": "verify / OTP Processing",
+            "type": "FRAME",
+            "x": 3120,
+            "y": 80,
+            "w": 1440,
+            "h": 960
+          }
+        ]
+      }
+    ],
+    "screens": [
+      {
+        "id": "53:8",
+        "name": "loginEmail / Sign in · Email last used",
+        "parent": "50:3"
+      },
+      {
+        "id": "53:119",
+        "name": "loginGoogle / Sign in · Google last used",
+        "parent": "50:3"
+      },
+      {
+        "id": "53:208",
+        "name": "signup / Create your account",
+        "parent": "50:3"
+      },
+      {
+        "id": "53:284",
+        "name": "confirm / Confirm your email",
+        "parent": "50:3"
+      },
+      {
+        "id": "53:349",
+        "name": "home / Project home",
+        "parent": "50:3"
+      },
+      {
+        "id": "54:1385",
+        "name": "create / Create through conversation",
+        "parent": "50:3"
+      },
+      {
+        "id": "54:1624",
+        "name": "builder / Builder & visitor preview",
+        "parent": "50:3"
+      },
+      {
+        "id": "54:1876",
+        "name": "branding / Company branding",
+        "parent": "50:3"
+      },
+      {
+        "id": "57:1158",
+        "name": "instructions / Instructions.md",
+        "parent": "50:3"
+      },
+      {
+        "id": "57:1400",
+        "name": "skills / Project skills",
+        "parent": "50:3"
+      },
+      {
+        "id": "57:1664",
+        "name": "history / History & versions",
+        "parent": "50:3"
+      },
+      {
+        "id": "57:1936",
+        "name": "review / Review & publish",
+        "parent": "50:3"
+      },
+      {
+        "id": "57:2186",
+        "name": "Dialog overlay",
+        "parent": "57:1936"
+      },
+      {
+        "id": "57:2270",
+        "name": "published / Published · Draft changes",
+        "parent": "50:3"
+      },
+      {
+        "id": "57:2585",
+        "name": "unpublish / Unpublish confirmation",
+        "parent": "50:3"
+      },
+      {
+        "id": "57:2841",
+        "name": "Dialog overlay",
+        "parent": "57:2585"
+      },
+      {
+        "id": "59:2476",
+        "name": "switcher / Quick project switcher",
+        "parent": "50:3"
+      },
+      {
+        "id": "59:2616",
+        "name": "billing / Billing & usage",
+        "parent": "50:3"
+      },
+      {
+        "id": "59:2860",
+        "name": "team / Staff & roles",
+        "parent": "50:3"
+      },
+      {
+        "id": "59:3249",
+        "name": "library / Workspace skills library",
+        "parent": "50:3"
+      },
+      {
+        "id": "59:3467",
+        "name": "plugins / Plugins & connections",
+        "parent": "50:3"
+      },
+      {
+        "id": "135:5210",
+        "name": "home / No projects yet",
+        "parent": "135:5209"
+      },
+      {
+        "id": "135:5332",
+        "name": "home / Project actions open",
+        "parent": "135:5209"
+      },
+      {
+        "id": "135:5533",
+        "name": "home / All projects filter",
+        "parent": "135:5209"
+      },
+      {
+        "id": "135:5687",
+        "name": "home / Published projects",
+        "parent": "135:5209"
+      },
+      {
+        "id": "135:5858",
+        "name": "home / Unpublished projects",
+        "parent": "135:5209"
+      },
+      {
+        "id": "135:6048",
+        "name": "home / Search results",
+        "parent": "135:5209"
+      },
+      {
+        "id": "135:6257",
+        "name": "home / No search results",
+        "parent": "135:5209"
+      },
+      {
+        "id": "135:6409",
+        "name": "branding / Add a project cover",
+        "parent": "135:5209"
+      },
+      {
+        "id": "140:4811",
+        "name": "branding / Cover options",
+        "parent": "135:5209"
+      },
+      {
+        "id": "140:4874",
+        "name": "home / Live link copied",
+        "parent": "135:5209"
+      },
+      {
+        "id": "140:4901",
+        "name": "home / Confirm project deletion",
+        "parent": "135:5209"
+      },
+      {
+        "id": "140:6084",
+        "name": "Dismiss delete dialog",
+        "parent": "140:4901"
+      },
+      {
+        "id": "140:4928",
+        "name": "home / Project deleted",
+        "parent": "135:5209"
+      },
+      {
+        "id": "186:5603",
+        "name": "verify / OTP Empty",
+        "parent": "186:5602"
+      },
+      {
+        "id": "186:5625",
+        "name": "verify / OTP Code entered",
+        "parent": "186:5602"
+      },
+      {
+        "id": "186:5647",
+        "name": "verify / OTP Processing",
+        "parent": "186:5602"
+      }
+    ],
+    "specs": []
+  },
+  "details": {
+    "sets": [
+      {
+        "id": "116:11267",
+        "name": "AP",
+        "children": [
+          {
+            "id": "49:657",
+            "name": "Type=Default",
+            "x": 16,
+            "y": 16,
+            "w": 1440,
+            "h": 64
+          },
+          {
+            "id": "116:11268",
+            "name": "Type=Secondary",
+            "x": 16,
+            "y": 96,
+            "w": 1440,
+            "h": 64
+          }
+        ]
+      },
+      {
+        "id": "32:532",
+        "name": "AP / Input",
+        "children": [
+          {
+            "id": "32:526",
+            "name": "State=Default",
+            "x": 32,
+            "y": 32,
+            "w": 320,
+            "h": 100
+          },
+          {
+            "id": "32:527",
+            "name": "State=Hover",
+            "x": 384,
+            "y": 32,
+            "w": 320,
+            "h": 100
+          },
+          {
+            "id": "32:528",
+            "name": "State=Focus",
+            "x": 736,
+            "y": 32,
+            "w": 320,
+            "h": 100
+          },
+          {
+            "id": "32:529",
+            "name": "State=Filled",
+            "x": 1088,
+            "y": 32,
+            "w": 320,
+            "h": 100
+          },
+          {
+            "id": "32:530",
+            "name": "State=Error",
+            "x": 1440,
+            "y": 32,
+            "w": 320,
+            "h": 100
+          },
+          {
+            "id": "32:531",
+            "name": "State=Disabled",
+            "x": 1792,
+            "y": 32,
+            "w": 320,
+            "h": 100
+          }
+        ]
+      },
+      {
+        "id": "32:569",
+        "name": "AP / Textarea",
+        "children": [
+          {
+            "id": "32:563",
+            "name": "State=Default",
+            "x": 32,
+            "y": 32,
+            "w": 320,
+            "h": 148
+          },
+          {
+            "id": "32:564",
+            "name": "State=Hover",
+            "x": 384,
+            "y": 32,
+            "w": 320,
+            "h": 148
+          },
+          {
+            "id": "32:565",
+            "name": "State=Focus",
+            "x": 736,
+            "y": 32,
+            "w": 320,
+            "h": 148
+          },
+          {
+            "id": "32:566",
+            "name": "State=Filled",
+            "x": 1088,
+            "y": 32,
+            "w": 320,
+            "h": 148
+          },
+          {
+            "id": "32:567",
+            "name": "State=Error",
+            "x": 1440,
+            "y": 32,
+            "w": 320,
+            "h": 148
+          },
+          {
+            "id": "32:568",
+            "name": "State=Disabled",
+            "x": 1792,
+            "y": 32,
+            "w": 320,
+            "h": 148
+          }
+        ]
+      },
+      {
+        "id": "32:600",
+        "name": "AP / Select",
+        "children": [
+          {
+            "id": "32:594",
+            "name": "State=Default",
+            "x": 32,
+            "y": 32,
+            "w": 320,
+            "h": 92
+          },
+          {
+            "id": "32:595",
+            "name": "State=Hover",
+            "x": 384,
+            "y": 32,
+            "w": 320,
+            "h": 92
+          },
+          {
+            "id": "32:596",
+            "name": "State=Focus",
+            "x": 736,
+            "y": 32,
+            "w": 320,
+            "h": 92
+          },
+          {
+            "id": "32:597",
+            "name": "State=Filled",
+            "x": 1088,
+            "y": 32,
+            "w": 320,
+            "h": 92
+          },
+          {
+            "id": "32:598",
+            "name": "State=Error",
+            "x": 1440,
+            "y": 32,
+            "w": 320,
+            "h": 92
+          },
+          {
+            "id": "32:599",
+            "name": "State=Disabled",
+            "x": 1792,
+            "y": 32,
+            "w": 320,
+            "h": 92
+          }
+        ]
+      },
+      {
+        "id": "32:717",
+        "name": "AP / Menu item",
+        "children": [
+          {
+            "id": "32:712",
+            "name": "State=Default",
+            "x": 32,
+            "y": 32,
+            "w": 264,
+            "h": 40
+          },
+          {
+            "id": "32:713",
+            "name": "State=Hover",
+            "x": 328,
+            "y": 32,
+            "w": 264,
+            "h": 40
+          },
+          {
+            "id": "32:714",
+            "name": "State=Selected",
+            "x": 624,
+            "y": 32,
+            "w": 264,
+            "h": 40
+          },
+          {
+            "id": "32:715",
+            "name": "State=Danger",
+            "x": 920,
+            "y": 32,
+            "w": 264,
+            "h": 40
+          },
+          {
+            "id": "32:716",
+            "name": "State=Disabled",
+            "x": 1216,
+            "y": 32,
+            "w": 264,
+            "h": 40
+          }
+        ]
+      },
+      {
+        "id": "130:1320",
+        "name": "AP / Menu / Item",
+        "children": [
+          {
+            "id": "129:1304",
+            "name": "State=Default",
+            "x": 16,
+            "y": 40,
+            "w": 336,
+            "h": 58
+          },
+          {
+            "id": "129:1316",
+            "name": "State=Hover",
+            "x": 376,
+            "y": 40,
+            "w": 336,
+            "h": 58
+          },
+          {
+            "id": "129:1328",
+            "name": "State=Selected",
+            "x": 736,
+            "y": 40,
+            "w": 336,
+            "h": 58
+          },
+          {
+            "id": "129:1340",
+            "name": "State=Danger",
+            "x": 1096,
+            "y": 40,
+            "w": 336,
+            "h": 58
+          }
+        ]
+      },
+      {
+        "id": "166:1812",
+        "name": "AP / Motion / A mascot working",
+        "children": [
+          {
+            "id": "166:1813",
+            "name": "Motion=Loop, Phase=Rest",
+            "x": 16,
+            "y": 40,
+            "w": 40,
+            "h": 48,
+            "reactions": [
+              {
+                "action": {
+                  "type": "NODE",
+                  "destinationId": "166:1822",
+                  "navigation": "CHANGE_TO",
+                  "transition": {
+                    "type": "SMART_ANIMATE",
+                    "easing": {
+                      "type": "EASE_IN"
+                    },
+                    "duration": 0.10000000149011612
+                  },
+                  "resetVideoPosition": false
+                },
+                "actions": [
+                  {
+                    "type": "NODE",
+                    "destinationId": "166:1822",
+                    "navigation": "CHANGE_TO",
+                    "transition": {
+                      "type": "SMART_ANIMATE",
+                      "easing": {
+                        "type": "EASE_IN"
+                      },
+                      "duration": 0.10000000149011612
+                    },
+                    "resetVideoPosition": false
+                  }
+                ],
+                "trigger": {
+                  "type": "AFTER_TIMEOUT",
+                  "timeout": 0.8999999761581421
+                }
+              }
+            ]
+          },
+          {
+            "id": "166:1822",
+            "name": "Motion=Loop, Phase=Crouch",
+            "x": 88,
+            "y": 40,
+            "w": 40,
+            "h": 48,
+            "reactions": [
+              {
+                "action": {
+                  "type": "NODE",
+                  "destinationId": "166:1830",
+                  "navigation": "CHANGE_TO",
+                  "transition": {
+                    "type": "SMART_ANIMATE",
+                    "easing": {
+                      "type": "EASE_OUT"
+                    },
+                    "duration": 0.20000000298023224
+                  },
+                  "resetVideoPosition": false
+                },
+                "actions": [
+                  {
+                    "type": "NODE",
+                    "destinationId": "166:1830",
+                    "navigation": "CHANGE_TO",
+                    "transition": {
+                      "type": "SMART_ANIMATE",
+                      "easing": {
+                        "type": "EASE_OUT"
+                      },
+                      "duration": 0.20000000298023224
+                    },
+                    "resetVideoPosition": false
+                  }
+                ],
+                "trigger": {
+                  "type": "AFTER_TIMEOUT",
+                  "timeout": 0.0010000000474974513
+                }
+              }
+            ]
+          },
+          {
+            "id": "166:1830",
+            "name": "Motion=Loop, Phase=Air",
+            "x": 160,
+            "y": 40,
+            "w": 40,
+            "h": 48,
+            "reactions": [
+              {
+                "action": {
+                  "type": "NODE",
+                  "destinationId": "166:1838",
+                  "navigation": "CHANGE_TO",
+                  "transition": {
+                    "type": "SMART_ANIMATE",
+                    "easing": {
+                      "type": "EASE_IN"
+                    },
+                    "duration": 0.18000000715255737
+                  },
+                  "resetVideoPosition": false
+                },
+                "actions": [
+                  {
+                    "type": "NODE",
+                    "destinationId": "166:1838",
+                    "navigation": "CHANGE_TO",
+                    "transition": {
+                      "type": "SMART_ANIMATE",
+                      "easing": {
+                        "type": "EASE_IN"
+                      },
+                      "duration": 0.18000000715255737
+                    },
+                    "resetVideoPosition": false
+                  }
+                ],
+                "trigger": {
+                  "type": "AFTER_TIMEOUT",
+                  "timeout": 0.07999999821186066
+                }
+              }
+            ]
+          },
+          {
+            "id": "166:1838",
+            "name": "Motion=Loop, Phase=Land",
+            "x": 232,
+            "y": 40,
+            "w": 40,
+            "h": 48,
+            "reactions": [
+              {
+                "action": {
+                  "type": "NODE",
+                  "destinationId": "166:1846",
+                  "navigation": "CHANGE_TO",
+                  "transition": {
+                    "type": "SMART_ANIMATE",
+                    "easing": {
+                      "type": "EASE_OUT"
+                    },
+                    "duration": 0.15000000596046448
+                  },
+                  "resetVideoPosition": false
+                },
+                "actions": [
+                  {
+                    "type": "NODE",
+                    "destinationId": "166:1846",
+                    "navigation": "CHANGE_TO",
+                    "transition": {
+                      "type": "SMART_ANIMATE",
+                      "easing": {
+                        "type": "EASE_OUT"
+                      },
+                      "duration": 0.15000000596046448
+                    },
+                    "resetVideoPosition": false
+                  }
+                ],
+                "trigger": {
+                  "type": "AFTER_TIMEOUT",
+                  "timeout": 0.0010000000474974513
+                }
+              }
+            ]
+          },
+          {
+            "id": "166:1846",
+            "name": "Motion=Loop, Phase=Settle",
+            "x": 16,
+            "y": 128,
+            "w": 40,
+            "h": 48,
+            "reactions": [
+              {
+                "action": {
+                  "type": "NODE",
+                  "destinationId": "166:1854",
+                  "navigation": "CHANGE_TO",
+                  "transition": {
+                    "type": "SMART_ANIMATE",
+                    "easing": {
+                      "type": "EASE_IN"
+                    },
+                    "duration": 0.07000000029802322
+                  },
+                  "resetVideoPosition": false
+                },
+                "actions": [
+                  {
+                    "type": "NODE",
+                    "destinationId": "166:1854",
+                    "navigation": "CHANGE_TO",
+                    "transition": {
+                      "type": "SMART_ANIMATE",
+                      "easing": {
+                        "type": "EASE_IN"
+                      },
+                      "duration": 0.07000000029802322
+                    },
+                    "resetVideoPosition": false
+                  }
+                ],
+                "trigger": {
+                  "type": "AFTER_TIMEOUT",
+                  "timeout": 0.15000000596046448
+                }
+              }
+            ]
+          },
+          {
+            "id": "166:1854",
+            "name": "Motion=Loop, Phase=Blink",
+            "x": 88,
+            "y": 128,
+            "w": 40,
+            "h": 48,
+            "reactions": [
+              {
+                "action": {
+                  "type": "NODE",
+                  "destinationId": "166:1813",
+                  "navigation": "CHANGE_TO",
+                  "transition": {
+                    "type": "SMART_ANIMATE",
+                    "easing": {
+                      "type": "EASE_OUT"
+                    },
+                    "duration": 0.10000000149011612
+                  },
+                  "resetVideoPosition": false
+                },
+                "actions": [
+                  {
+                    "type": "NODE",
+                    "destinationId": "166:1813",
+                    "navigation": "CHANGE_TO",
+                    "transition": {
+                      "type": "SMART_ANIMATE",
+                      "easing": {
+                        "type": "EASE_OUT"
+                      },
+                      "duration": 0.10000000149011612
+                    },
+                    "resetVideoPosition": false
+                  }
+                ],
+                "trigger": {
+                  "type": "AFTER_TIMEOUT",
+                  "timeout": 0.05999999865889549
+                }
+              }
+            ]
+          },
+          {
+            "id": "166:1862",
+            "name": "Motion=Reduced, Phase=Rest",
+            "x": 160,
+            "y": 128,
+            "w": 40,
+            "h": 48,
+            "reactions": []
+          }
+        ]
+      }
+    ],
+    "physics": 0.21927994164117337,
+    "roles": [
+      "Staff & roles",
+      "Manage who can build, publish and administer your workspace.",
+      "Workspace staff",
+      "ROLE",
+      "ACCESS",
+      "Workspace roles",
+      "Owner · Billing and all workspace controls\nAdmin · Manage staff, skills and plugins\nMember · Access assigned projects",
+      "Project roles",
+      "Editor · Build, test and publish assigned projects\nViewer · View and test only",
+      "Invite staff",
+      "Access summary",
+      "Can edit and publish WhiteFrame Advisor. Cannot manage billing or staff."
+    ]
+  }
+}

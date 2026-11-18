@@ -1,0 +1,418 @@
+{
+  "schemaVersion": 1,
+  "fileKey": "m0v1MINOJA152Kil6JHeZ8",
+  "date": "2026-11-18",
+  "sessionId": "be56f26d-0eed-4c4b-8071-10728453f0e4",
+  "component": "130:1323",
+  "presentationVariants": {
+    "Empty": "129:1357",
+    "Added": "129:1362",
+    "Default-mascot": "189:13673"
+  },
+  "matrix": [
+    {
+      "context": "home-card",
+      "hasUploadedCover": false,
+      "rest": "Default-mascot",
+      "editableHoverOrFocus": "Empty"
+    },
+    {
+      "context": "home-card",
+      "hasUploadedCover": true,
+      "rest": "Added",
+      "editableHoverOrFocus": "Empty"
+    },
+    {
+      "context": "branding-upload",
+      "hasUploadedCover": false,
+      "rest": "Empty",
+      "editableHoverOrFocus": "Empty"
+    },
+    {
+      "context": "branding-upload",
+      "hasUploadedCover": true,
+      "rest": "Added",
+      "editableHoverOrFocus": "Empty"
+    }
+  ],
+  "restore": "On leave/blur recompute from the current coverAssetId and context",
+  "hoverMutatesAsset": false,
+  "hoverStartsUpload": false,
+  "persistVariantName": false,
+  "uploadedImage": "Use actual project cover asset; preserve crop/focal point",
+  "canEditRequired": true,
+  "keyboard": "Focus reveals affordance; Enter/Space activates the cover-edit button",
+  "touch": "Explicit Upload/Change cover action",
+  "cardNavigation": "Cover edit must stop propagation into Open project",
+  "readOnlyContexts": [
+    "public visitor preview",
+    "read-only cards",
+    "picker thumbnails"
+  ],
+  "readOnlyUploadAffordance": false,
+  "crossfadeMs": 120,
+  "reducedMotionMs": 0,
+  "uploadStates": [
+    "idle",
+    "uploading",
+    "replacing",
+    "failed"
+  ],
+  "replacement": "Retain previous asset until success; cancel/failure restores it",
+  "removal": {
+    "home-card": "Default-mascot",
+    "branding-upload": "Empty"
+  },
+  "publishSeparately": true,
+  "native": {
+    "coverVariantsPreserved": 3,
+    "projectCardMasters": [
+      "133:3241",
+      "133:3244"
+    ],
+    "brandingEmpty": "135:6437",
+    "brandingUploaded": [
+      "133:3423",
+      "140:4839"
+    ],
+    "scopedHover": {
+      "trigger": "ON_HOVER",
+      "destination": "129:1357",
+      "navigation": "CHANGE_TO",
+      "transition": "DISSOLVE",
+      "seconds": 0.12
+    }
+  },
+  "verification": {
+    "nativeNodes": [
+      {
+        "id": "133:3241",
+        "state": "Default-mascot",
+        "reactions": [
+          {
+            "action": {
+              "type": "NODE",
+              "destinationId": "129:1357",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_IN_AND_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "129:1357",
+                "navigation": "CHANGE_TO",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_IN_AND_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ],
+            "trigger": {
+              "type": "ON_HOVER"
+            }
+          }
+        ],
+        "mainComponent": "189:13673"
+      },
+      {
+        "id": "133:3244",
+        "state": "Default-mascot",
+        "reactions": [
+          {
+            "action": {
+              "type": "NODE",
+              "destinationId": "129:1357",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_IN_AND_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "129:1357",
+                "navigation": "CHANGE_TO",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_IN_AND_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ],
+            "trigger": {
+              "type": "ON_HOVER"
+            }
+          }
+        ],
+        "mainComponent": "189:13673"
+      },
+      {
+        "id": "135:6437",
+        "state": "Empty",
+        "reactions": [],
+        "mainComponent": "129:1357"
+      },
+      {
+        "id": "133:3423",
+        "state": "Added",
+        "reactions": [
+          {
+            "action": {
+              "type": "NODE",
+              "destinationId": "129:1357",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_IN_AND_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "129:1357",
+                "navigation": "CHANGE_TO",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_IN_AND_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ],
+            "trigger": {
+              "type": "ON_HOVER"
+            }
+          }
+        ],
+        "mainComponent": "129:1362"
+      },
+      {
+        "id": "140:4839",
+        "state": "Added",
+        "reactions": [
+          {
+            "action": {
+              "type": "NODE",
+              "destinationId": "129:1357",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "DISSOLVE",
+                "easing": {
+                  "type": "EASE_IN_AND_OUT"
+                },
+                "duration": 0.11999999731779099
+              },
+              "resetVideoPosition": false
+            },
+            "actions": [
+              {
+                "type": "NODE",
+                "destinationId": "129:1357",
+                "navigation": "CHANGE_TO",
+                "transition": {
+                  "type": "DISSOLVE",
+                  "easing": {
+                    "type": "EASE_IN_AND_OUT"
+                  },
+                  "duration": 0.11999999731779099
+                },
+                "resetVideoPosition": false
+              }
+            ],
+            "trigger": {
+              "type": "ON_HOVER"
+            }
+          }
+        ],
+        "mainComponent": "129:1362"
+      },
+      {
+        "id": "133:3281",
+        "state": "Added",
+        "reactions": [],
+        "mainComponent": "129:1362"
+      }
+    ],
+    "projectCardInstances": [
+      {
+        "card": "135:5354",
+        "cover": "I135:5354;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:5355",
+        "cover": "I135:5355;133:3244",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:5356",
+        "cover": "I135:5356;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "140:4896",
+        "cover": "I140:4896;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "140:4897",
+        "cover": "I140:4897;133:3244",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "140:4898",
+        "cover": "I140:4898;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "140:4923",
+        "cover": "I140:4923;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "140:4924",
+        "cover": "I140:4924;133:3244",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "140:4925",
+        "cover": "I140:4925;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "140:4951",
+        "cover": "I140:4951;133:3244",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "140:4952",
+        "cover": "I140:4952;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "53:551",
+        "cover": "I53:551;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "53:589",
+        "cover": "I53:589;133:3244",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "53:627",
+        "cover": "I53:627;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "59:2534",
+        "cover": "I59:2534;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "59:2535",
+        "cover": "I59:2535;133:3244",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "59:2536",
+        "cover": "I59:2536;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:5555",
+        "cover": "I135:5555;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:5556",
+        "cover": "I135:5556;133:3244",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:5557",
+        "cover": "I135:5557;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:5709",
+        "cover": "I135:5709;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:5711",
+        "cover": "I135:5711;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:5881",
+        "cover": "I135:5881;133:3244",
+        "state": "Default-mascot",
+        "reactions": 1
+      },
+      {
+        "card": "135:6070",
+        "cover": "I135:6070;133:3241",
+        "state": "Default-mascot",
+        "reactions": 1
+      }
+    ],
+    "visualReview": [
+      "populated project home shows original mascot fallback",
+      "branding empty upload retains Empty presentation"
+    ],
+    "nativeSpecs": [
+      "209:1916",
+      "209:7141",
+      "213:2020"
+    ],
+    "limits": "Native prototype demonstrates editable hover; real upload, keyboard/touch events, permissions and data-derived restoration are application implementation requirements"
+  }
+}

@@ -1,5 +1,7 @@
 # Agentplace
 
+> Historical scaffold brief. The later approved product is a project-based AI agent builder. Read [DEVELOPMENT_CONTEXT.md](DEVELOPMENT_CONTEXT.md), [CONVERSATION_CONTEXT.md](CONVERSATION_CONTEXT.md), and the [design handoff](design-handoff/README.md) for current requirements before implementing product flows. The original notes below are retained for history.
+
 An online platform for AI agents that answer questions, book appointments,
 handle customer service, and deliver services.
 

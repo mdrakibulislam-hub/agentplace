@@ -1,0 +1,1466 @@
+[
+	{
+		"id": "components-01-brand-logo--default",
+		"expected": {
+			"width": 180,
+			"height": 33.848
+		},
+		"actual": {
+			"width": 180,
+			"height": 33.84375
+		},
+		"pass": true
+	},
+	{
+		"id": "components-01-brand-logo--inverse",
+		"expected": {
+			"width": 180,
+			"height": 33.848
+		},
+		"actual": {
+			"width": 180,
+			"height": 33.84375
+		},
+		"pass": true
+	},
+	{
+		"id": "components-01-brand-logo--still",
+		"expected": {
+			"width": 180,
+			"height": 33.848
+		},
+		"actual": {
+			"width": 180,
+			"height": 33.84375
+		},
+		"pass": true
+	},
+	{
+		"id": "components-01-brand-client-logos--default",
+		"expected": {
+			"width": 404.877,
+			"height": 20
+		},
+		"actual": {
+			"width": 404.875,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-original-artwork--open",
+		"expected": {
+			"width": 201,
+			"height": 227
+		},
+		"actual": {
+			"width": 201,
+			"height": 227
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-original-artwork--closed",
+		"expected": {
+			"width": 201,
+			"height": 227
+		},
+		"actual": {
+			"width": 201,
+			"height": 227
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-mascot--rest",
+		"expected": {
+			"width": 40,
+			"height": 48
+		},
+		"actual": {
+			"width": 40,
+			"height": 48
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-mascot--crouch",
+		"expected": {
+			"width": 40,
+			"height": 48
+		},
+		"actual": {
+			"width": 40,
+			"height": 48
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-mascot--air",
+		"expected": {
+			"width": 40,
+			"height": 48
+		},
+		"actual": {
+			"width": 40,
+			"height": 48
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-mascot--land",
+		"expected": {
+			"width": 40,
+			"height": 48
+		},
+		"actual": {
+			"width": 40,
+			"height": 48
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-mascot--settle",
+		"expected": {
+			"width": 40,
+			"height": 48
+		},
+		"actual": {
+			"width": 40,
+			"height": 48
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-mascot--blink",
+		"expected": {
+			"width": 40,
+			"height": 48
+		},
+		"actual": {
+			"width": 40,
+			"height": 48
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-mascot--reduced",
+		"expected": {
+			"width": 40,
+			"height": 48
+		},
+		"actual": {
+			"width": 40,
+			"height": 48
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-native-artwork--default",
+		"expected": {
+			"width": 26.564,
+			"height": 30
+		},
+		"actual": {
+			"width": 26.5625,
+			"height": 30
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-native-artwork--still",
+		"expected": {
+			"width": 26.564,
+			"height": 30
+		},
+		"actual": {
+			"width": 26.5625,
+			"height": 30
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-indicator--loop",
+		"expected": {
+			"width": 472,
+			"height": 72
+		},
+		"actual": {
+			"width": 472,
+			"height": 72
+		},
+		"pass": true
+	},
+	{
+		"id": "components-09-motion-mascot-working-indicator--reduced",
+		"expected": {
+			"width": 472,
+			"height": 72
+		},
+		"actual": {
+			"width": 472,
+			"height": 72
+		},
+		"pass": true
+	},
+	{
+		"id": "components-11-ambient-surfaces-elevation-bottom-gradient--flow",
+		"expected": {
+			"width": 1440,
+			"height": 640
+		},
+		"actual": {
+			"width": 1440,
+			"height": 640
+		},
+		"pass": true
+	},
+	{
+		"id": "components-11-ambient-surfaces-elevation-bottom-gradient--still",
+		"expected": {
+			"width": 1440,
+			"height": 640
+		},
+		"actual": {
+			"width": 1440,
+			"height": 640
+		},
+		"pass": true
+	},
+	{
+		"id": "components-11-ambient-surfaces-elevation-bottom-gradient--phase-1",
+		"expected": {
+			"width": 1440,
+			"height": 640
+		},
+		"actual": {
+			"width": 1440,
+			"height": 640
+		},
+		"pass": true
+	},
+	{
+		"id": "components-11-ambient-surfaces-elevation-bottom-gradient--phase-2",
+		"expected": {
+			"width": 1440,
+			"height": 640
+		},
+		"actual": {
+			"width": 1440,
+			"height": 640
+		},
+		"pass": true
+	},
+	{
+		"id": "components-11-ambient-surfaces-elevation-bottom-gradient--phase-3",
+		"expected": {
+			"width": 1440,
+			"height": 640
+		},
+		"actual": {
+			"width": 1440,
+			"height": 640
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:arrow-left",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "arrow-left",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:arrow-left-to-line",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "arrow-left-to-line",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:arrow-right",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "arrow-right",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:arrow-up",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "arrow-up",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:briefcase-business",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "briefcase-business",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:calendar",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "calendar",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:check",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "check",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:chevron-down",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "chevron-down",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:chevron-up",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "chevron-up",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:chevrons-up-down",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "chevrons-up-down",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:close",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "close",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:copy",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "copy",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:credit-card",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "credit-card",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:database",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "database",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:download",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "download",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:external-link",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "external-link",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:eye",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "eye",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:eye-off",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "eye-off",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:file-text",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "file-text",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:filter",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "filter",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:globe",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "globe",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:history",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "history",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:lightbulb",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "lightbulb",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:link",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "link",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:loader",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "loader",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:lock",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "lock",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:mail",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "mail",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:message-circle-question-mark",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "message-circle-question-mark",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:message-square",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "message-square",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:monitor",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "monitor",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:more-horizontal",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "more-horizontal",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:palette",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "palette",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:panel-left-close",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "panel-left-close",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:paperclip",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "paperclip",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:phone",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "phone",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:plus",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "plus",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:puzzle",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "puzzle",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:refresh",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "refresh",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:search",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "search",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:settings",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "settings",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:shield-check",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "shield-check",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:square-pen",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "square-pen",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:trash",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "trash",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:upload",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "upload",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:user-add",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "user-add",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:users",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "users",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:zap",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "zap",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon20:Google",
+		"expected": {
+			"width": 20,
+			"height": 20
+		},
+		"actual": {
+			"name": "Google",
+			"width": 20,
+			"height": 20
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:arrow-left",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:arrow-left-to-line",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:arrow-right",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:arrow-up",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:briefcase-business",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:calendar",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:check",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:chevron-down",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:chevron-up",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:chevrons-up-down",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:close",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:copy",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:credit-card",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:database",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:download",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:external-link",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:eye",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:eye-off",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:file-text",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:filter",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:globe",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:history",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:lightbulb",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:link",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:loader",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:lock",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:mail",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:message-circle-question-mark",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:message-square",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:monitor",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:more-horizontal",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:palette",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:panel-left-close",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:paperclip",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:phone",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:plus",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:puzzle",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:refresh",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:search",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:settings",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:shield-check",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:square-pen",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:trash",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:upload",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:user-add",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:users",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:zap",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	},
+	{
+		"id": "icon16:Google",
+		"expected": {
+			"width": 16,
+			"height": 16
+		},
+		"actual": {
+			"width": 16,
+			"height": 16
+		},
+		"pass": true
+	}
+]

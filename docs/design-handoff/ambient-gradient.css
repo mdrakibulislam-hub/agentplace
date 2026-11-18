@@ -1,0 +1,79 @@
+/* Integration reference: adapt these semantic tokens to the existing app. */
+:root {
+  --ambient-mint: #cffac9;
+  --ambient-cyan: #84e8ff;
+  --ambient-sky: #a4deff;
+  --ambient-duration: 32s;
+  --ambient-blur: clamp(160px, 20.833vw, 300px);
+  --ambient-travel-x: min(36px, 2.5vw);
+  --ambient-inner-x: min(48px, 3.333vw);
+  --shadow-resting: 0 1px 2px -1px rgb(24 24 27 / 3.5%), 0 3px 8px -3px rgb(24 24 27 / 3.5%);
+  --shadow-panel: 0 1px 3px -1px rgb(24 24 27 / 5%), 0 4px 10px -3px rgb(24 24 27 / 5.5%), 0 12px 28px -8px rgb(24 24 27 / 6.5%);
+  --shadow-overlay: 0 2px 4px -2px rgb(24 24 27 / 4.5%), 0 8px 20px -6px rgb(24 24 27 / 6.5%), 0 24px 56px -16px rgb(24 24 27 / 11%);
+}
+
+.ap-ambient-shell { position: relative; isolation: isolate; }
+.ap-ambient-content { position: relative; z-index: 1; }
+.ap-ambient {
+  position: absolute;
+  inset: auto 0 0;
+  height: clamp(360px, 44.444vw, 640px);
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.ap-ambient__field { position: absolute; transform-origin: center; }
+.ap-ambient__field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--ambient-mint) 0%, var(--ambient-cyan) 50%, var(--ambient-sky) 100%);
+  filter: blur(var(--ambient-blur));
+  transform-origin: center;
+}
+.ap-ambient__field--main {
+  inset: auto 0 0;
+  height: clamp(100px, 9.722vw, 140px);
+  animation: ap-ambient-drift var(--ambient-duration) ease-in-out infinite;
+}
+.ap-ambient__field--main::before {
+  animation: ap-ambient-breathe var(--ambient-duration) ease-in-out infinite;
+}
+.ap-ambient__field--inner {
+  left: -96px;
+  bottom: 2px;
+  width: calc(100% + 192px);
+  height: clamp(96px, 9.167vw, 132px);
+  opacity: .08;
+  animation: ap-ambient-inner-x var(--ambient-duration) ease-in-out infinite;
+}
+.ap-ambient__field--inner::before {
+  animation: ap-ambient-inner-y var(--ambient-duration) ease-in-out infinite;
+}
+@keyframes ap-ambient-drift {
+  0%, 50%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(var(--ambient-travel-x), -6px); }
+  75% { transform: translate(calc(-1 * var(--ambient-travel-x)), 6px); }
+}
+@keyframes ap-ambient-breathe {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.025); }
+}
+@keyframes ap-ambient-inner-x {
+  0%, 50%, 100% { transform: translateX(0); }
+  25% { transform: translateX(calc(-1 * var(--ambient-inner-x))); }
+  75% { transform: translateX(var(--ambient-inner-x)); }
+}
+@keyframes ap-ambient-inner-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.ap-ambient.is-paused .ap-ambient__field,
+.ap-ambient.is-paused .ap-ambient__field::before { animation-play-state: paused; }
+.ap-ambient[data-motion="still"] .ap-ambient__field,
+.ap-ambient[data-motion="still"] .ap-ambient__field::before { animation: none; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ap-ambient .ap-ambient__field,
+  .ap-ambient .ap-ambient__field::before { animation: none; transform: none; }
+}

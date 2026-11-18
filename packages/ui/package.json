@@ -8,7 +8,8 @@
 		"./lib/*": "./src/lib/*.ts",
 		"./components/*": "./src/components/*.tsx",
 		"./hooks/*": "./src/hooks/*.ts",
-		"./postcss.config": "./postcss.config.mjs"
+		"./postcss.config": "./postcss.config.mjs",
+		"./foundations": "./src/foundations/catalog.ts"
 	},
 	"scripts": {
 		"check-types": "tsc --noEmit"
@@ -18,6 +19,7 @@
 		"class-variance-authority": "^0.7.1",
 		"cn": "^0.5.2",
 		"lucide-react": "catalog:",
+		"motion": "^14.14.0",
 		"next-themes": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",

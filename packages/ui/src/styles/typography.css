@@ -1,0 +1,201 @@
+/* The 25 named AP text styles, with Figma variable font axes and exact metrics. */
+.ap-type-body-xs-regular {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 400;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-xs-medium {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 510;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-xs-semibold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-xs-bold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 700;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-sm-regular {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-sm-medium {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 510;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-sm-semibold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-sm-bold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 700;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-base-regular {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-base-medium {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 510;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-base-semibold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-base-bold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 700;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-lg-regular {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: 400;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-lg-medium {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: 510;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-lg-semibold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-body-lg-bold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: 700;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-heading-sm {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-heading-md {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-heading-lg {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 24px;
+	line-height: 28px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-heading-xl {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 36px;
+	line-height: 40px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-heading-2xl {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 48px;
+	line-height: 52px;
+	font-weight: 590;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-display-welcome {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 30px;
+	line-height: 36px;
+	font-weight: 400;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-control-regular {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-control-medium {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 510;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
+.ap-type-control-bold {
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 700;
+	font-variation-settings: "wdth" 100;
+	letter-spacing: 0em;
+}
