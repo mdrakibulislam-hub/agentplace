@@ -103,7 +103,7 @@ function BuilderFixture({ project: initialProject, ...args }: FixtureProps) {
 }
 
 const meta = {
-	title: "Product prototype/Agent builder",
+	title: "Product/Agent builder",
 	component: BuilderFixture,
 	parameters: { layout: "fullscreen" },
 	args: { project: ready },
