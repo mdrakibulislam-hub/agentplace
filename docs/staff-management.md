@@ -20,6 +20,7 @@ File: `m0v1MINOJA152Kil6JHeZ8`. Component family: `344:2443` (“13 · Tables & 
 | Invite / pending invitation                    | 348:2767 / 348:2850              | Invitations: Invite, Valid email, Pending, request and recovery stories                  |
 | Save error / success toast / discard           | 348:2422 / 353:2944 / 358:2946   | Member editor: Error feedback, Success toast, Discard changes                            |
 | Staff screen                                   | 59:2860                          | Product/Staff management: Members                                                        |
+| Remove workspace member                        | 366:105                          | Remove member, Remove member storage failure and retry                                   |
 | Member / Admin initial drawer                  | 349:8544 / 349:8830              | Edit member, Edit admin                                                                  |
 | Workspace / project role menus                 | 349:8724 / 349:9315              | Workspace role choices, Project role choices                                             |
 | Member / Admin staged changes                  | 354:12354 / 356:11581            | Member unsaved, Admin unsaved                                                            |
@@ -33,6 +34,7 @@ The existing Product/Workspace settings story and application route also use the
 
 - Search matches names and email addresses. Workspace-role filtering preserves the query; Clear search resets both filters.
 - Member access remains staged until Save. Admin grants all current and future projects; billing stays owner-only. Owner cannot be edited here.
+- The trash action beside Edit access opens a confirmation for an active member. The owner and the current member are protected. Pending invitations use the existing revoke action. Confirming removes the member record and its project assignments from the saved workspace. Cancel receives initial focus, and failed removals keep the member visible and allow a retry.
 - Pending requests prevent repeat submission and dismissal. Failed saves retain changes; Cancel/Escape on dirty edits asks for confirmation with Keep editing initially focused.
 - Shared Base UI dialogs/selects provide focus containment and keyboard navigation. Product closure restores the initiating action, or Invite member if its row was removed. Narrow tables scroll within a keyboard-focusable region. The 480px drawer fits the viewport, keeping its footer visible. Reduced motion removes travel/scale.
 - Member writes commit local storage before publishing updated state or success feedback. Failure leaves saved permissions intact. Other settings, projects, agent drafts and published versions are unaffected by this operation.

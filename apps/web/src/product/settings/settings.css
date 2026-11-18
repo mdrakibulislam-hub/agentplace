@@ -108,7 +108,7 @@
 }
 
 .product-settings-card .ap-field,
-.product-settings-card .ap-library-item,
+.product-settings-card .ap-rich-menu-item,
 .product-settings-card .ap-credit-balance {
 	width: 100%;
 }
@@ -222,6 +222,12 @@
 	gap: var(--space-8);
 }
 
+.product-settings-skill-options {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-8);
+}
+
 .product-settings-connection-row {
 	display: flex;
 	align-items: center;
@@ -231,7 +237,6 @@
 .product-settings-connection-row .ap-rich-menu-item {
 	flex: 1;
 	min-width: 0;
-	width: 100%;
 }
 
 .product-settings-connection-row[data-disconnected="true"] {

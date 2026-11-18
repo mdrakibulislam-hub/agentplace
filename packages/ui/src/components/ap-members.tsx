@@ -86,9 +86,11 @@ export function MemberStatus({
 export function MemberAction({
 	member,
 	onEdit,
+	onRemove,
 }: {
 	member: MemberRecord;
 	onEdit?: (member: MemberRecord) => void;
+	onRemove?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 }) {
 	return member.role === "Owner" ? (
 		<button
@@ -101,14 +103,27 @@ export function MemberAction({
 			<Icon name="lock" size={16} />
 		</button>
 	) : (
-		<Button
-			variant="ghost"
-			size="small"
-			onClick={() => onEdit?.(member)}
-			aria-label={`${member.invited ? "Manage invitation for" : "Edit access for"} ${member.name}`}
-		>
-			{member.invited ? "Manage invite" : "Edit access"}
-		</Button>
+		<div className="ap-member-actions">
+			<Button
+				variant="ghost"
+				size="small"
+				onClick={() => onEdit?.(member)}
+				aria-label={`${member.invited ? "Manage invitation for" : "Edit access for"} ${member.name}`}
+			>
+				{member.invited ? "Manage invite" : "Edit access"}
+			</Button>
+			{!member.invited && onRemove && (
+				<Button
+					className="ap-member-remove"
+					variant="ghost"
+					size="icon"
+					icon={<Icon name="trash" size={16} />}
+					aria-label={`Remove ${member.name}`}
+					title={`Remove ${member.name}`}
+					onClick={(event) => onRemove(member, event.currentTarget)}
+				/>
+			)}
+		</div>
 	);
 }
 export function MemberTableHeader() {
@@ -139,11 +154,13 @@ export function MemberTableRow({
 	projects,
 	self,
 	onEdit,
+	onRemove,
 }: {
 	member: MemberRecord;
 	projects: readonly AccessProject[];
 	self?: boolean;
 	onEdit?: (member: MemberRecord) => void;
+	onRemove?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 }) {
 	return (
 		<tr>
@@ -163,7 +180,11 @@ export function MemberTableRow({
 				<MemberStatus status={member.invited ? "Invited" : "Active"} />
 			</td>
 			<td>
-				<MemberAction member={member} onEdit={onEdit} />
+				<MemberAction
+					member={member}
+					onEdit={onEdit}
+					onRemove={self ? undefined : onRemove}
+				/>
 			</td>
 		</tr>
 	);
@@ -184,12 +205,14 @@ export function WorkspaceMembersTable({
 	projects,
 	currentMemberId,
 	onEdit,
+	onRemove,
 	onClear,
 }: {
 	members: readonly MemberRecord[];
 	projects: readonly AccessProject[];
 	currentMemberId?: string;
 	onEdit?: (member: MemberRecord) => void;
+	onRemove?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 	onClear: () => void;
 }) {
 	return (
@@ -205,7 +228,7 @@ export function WorkspaceMembersTable({
 						Workspace members and permissions
 					</caption>
 					<colgroup>
-						{[35.7143, 14.2857, 22.8571, 14.2857, 12.8572].map((width, i) => (
+						{[35.7143, 14.2857, 22.8571, 10, 17.1429].map((width, i) => (
 							<col key={i} style={{ width: `${width}%` }} />
 						))}
 					</colgroup>
@@ -218,6 +241,7 @@ export function WorkspaceMembersTable({
 								projects={projects}
 								self={member.id === currentMemberId}
 								onEdit={onEdit}
+								onRemove={onRemove}
 							/>
 						))}
 					</tbody>

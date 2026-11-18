@@ -31,6 +31,7 @@ import asset26 from "../assets/icon-mail.svg";
 import asset27 from "../assets/icon-message-circle-question-mark.svg";
 import asset28 from "../assets/icon-message-square.svg";
 import asset29 from "../assets/icon-monitor.svg";
+import moon from "../assets/icon-moon.svg";
 import asset30 from "../assets/icon-more-filled.svg";
 import asset31 from "../assets/icon-more-horizontal.svg";
 import asset32 from "../assets/icon-palette.svg";
@@ -44,6 +45,7 @@ import asset39 from "../assets/icon-search.svg";
 import asset40 from "../assets/icon-settings.svg";
 import asset41 from "../assets/icon-shield-check.svg";
 import asset42 from "../assets/icon-square-pen.svg";
+import sun from "../assets/icon-sun.svg";
 import asset43 from "../assets/icon-trash.svg";
 import asset44 from "../assets/icon-upload.svg";
 import asset45 from "../assets/icon-user-add.svg";
@@ -83,6 +85,7 @@ export const iconAssets = {
 	"message-circle-question-mark": asset27,
 	"message-square": asset28,
 	monitor: asset29,
+	moon,
 	"more-filled": asset30,
 	"more-horizontal": asset31,
 	palette: asset32,
@@ -96,6 +99,7 @@ export const iconAssets = {
 	settings: asset40,
 	"shield-check": asset41,
 	"square-pen": asset42,
+	sun,
 	trash: asset43,
 	upload: asset44,
 	"user-add": asset45,

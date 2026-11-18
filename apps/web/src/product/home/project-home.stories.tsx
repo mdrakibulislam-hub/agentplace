@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { expect, fn, userEvent, within } from "storybook/test";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 import { figma } from "../../stories/ap/fixtures";
 import { demoProjects, withLiveLink } from "../prototype-data";
 import { WorkspaceHeader } from "../workspace-header";
@@ -8,9 +8,10 @@ import { ProjectHome, type ProjectHomeProps } from "./project-home";
 
 interface SceneProps extends ProjectHomeProps {
 	switcherOpen?: boolean;
+	onSettings?: () => void;
 }
 
-function HomeScene({ switcherOpen, ...props }: SceneProps) {
+function HomeScene({ switcherOpen, onSettings, ...props }: SceneProps) {
 	const [projects, setProjects] = useState(() =>
 		props.projects.map(withLiveLink),
 	);
@@ -25,7 +26,7 @@ function HomeScene({ switcherOpen, ...props }: SceneProps) {
 				onProject={props.onOpen}
 				onProjects={() => {}}
 				onCreate={() => setFocusPromptRequest((current) => current + 1)}
-				onSettings={() => {}}
+				onSettings={onSettings ?? (() => {})}
 				onBilling={() => {}}
 				onSignOut={() => {}}
 			/>
@@ -74,6 +75,35 @@ export const NoProjects: Story = {
 };
 export const RecentProjects: Story = {
 	parameters: { design: figma("53:349") },
+};
+export const RecentProjectsDark: Story = {
+	globals: { theme: "dark" },
+	parameters: { design: figma("378:2") },
+};
+export const AccountMenu: Story = {
+	args: { onSettings: fn() },
+	parameters: { design: figma("371:5546") },
+	play: async ({ args, canvasElement }) => {
+		const canvas = within(canvasElement);
+		const body = within(canvasElement.ownerDocument.body);
+		await expect(
+			canvas.queryByRole("button", { name: "Settings" }),
+		).not.toBeInTheDocument();
+		const account = canvas.getByRole("button", { name: "Open account menu" });
+		await userEvent.click(account);
+		const menu = within(await body.findByRole("dialog", { name: "Account" }));
+		await userEvent.click(menu.getByRole("button", { name: "Settings" }));
+		await expect(args.onSettings).toHaveBeenCalledOnce();
+		await waitFor(() =>
+			expect(
+				body.queryByRole("dialog", { name: "Account" }),
+			).not.toBeInTheDocument(),
+		);
+		await userEvent.click(account);
+		await expect(
+			await body.findByRole("dialog", { name: "Account" }),
+		).toBeVisible();
+	},
 };
 export const AddWebsiteOrFile: Story = {
 	parameters: { design: figma("299:7410") },

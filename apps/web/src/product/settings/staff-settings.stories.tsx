@@ -59,12 +59,12 @@ function StaffScene({
 							members={members}
 							projects={projects}
 							currentMemberId="owner"
-							onMembersChange={async (next) => {
+							onMembersChange={async (update) => {
 								if (failSave && !failed) {
 									setFailed(true);
 									throw new Error("Your edits are still here. Try again.");
 								}
-								setMembers(next);
+								setMembers(update(members));
 							}}
 							onInvite={delivery ? invite : undefined}
 							onResend={delivery ? async () => {} : undefined}
@@ -92,6 +92,27 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const Members: Story = {};
+export const RemoveMember: Story = {
+	parameters: { design: figma("366:105") },
+	play: async ({ canvasElement }) => {
+		const body = within(canvasElement.ownerDocument.body);
+		await expect(
+			body.queryByRole("button", { name: "Remove Rakib" }),
+		).toBeNull();
+		await expect(
+			body.queryByRole("button", { name: "Remove Nora" }),
+		).toBeNull();
+		await userEvent.click(body.getByRole("button", { name: "Remove Sam" }));
+		const dialog = within(
+			await body.findByRole("dialog", {
+				name: "Remove Sam from this workspace?",
+			}),
+		);
+		await waitFor(() =>
+			expect(dialog.getByRole("button", { name: "Cancel" })).toHaveFocus(),
+		);
+	},
+};
 export const SearchEmpty: Story = {
 	parameters: { design: figma("354:12452") },
 	play: async ({ canvasElement }) => {
@@ -328,6 +349,57 @@ export const BrowserStorageFailureAndRetry: Story = {
 			await expect(storage).toHaveBeenCalledWith(
 				"agentplace.prototype.settings.v1",
 				expect.stringContaining('"customer-support":"Editor"'),
+			);
+		} finally {
+			storage.mockRestore();
+		}
+	},
+};
+
+export const RemoveMemberStorageFailureAndRetry: Story = {
+	render: () => (
+		<SettingsStateProvider workspaceId="storybook-remove-check">
+			<StoredStaff />
+		</SettingsStateProvider>
+	),
+	play: async ({ canvasElement }) => {
+		const body = within(canvasElement.ownerDocument.body);
+		const remove = body.getByRole("button", { name: "Remove Sam" });
+		await userEvent.click(remove);
+		await body.findByRole("dialog", {
+			name: "Remove Sam from this workspace?",
+		});
+		await userEvent.keyboard("{Escape}");
+		await waitFor(() => expect(remove).toHaveFocus());
+		await userEvent.click(remove);
+		const storage = spyOn(Storage.prototype, "setItem").mockImplementation(
+			() => {
+				throw new DOMException("Storage full", "QuotaExceededError");
+			},
+		);
+		try {
+			const confirm = body.getByRole("button", { name: "Remove member" });
+			await userEvent.click(confirm);
+			await expect(await body.findByRole("alert")).toHaveTextContent(
+				"Your browser couldn’t save these changes.",
+			);
+			await expect(remove).toBeInTheDocument();
+			storage.mockImplementation(() => {});
+			await userEvent.click(confirm);
+			await expect(
+				await body.findByText("Sam was removed from this workspace."),
+			).toBeVisible();
+			await expect(remove).not.toBeInTheDocument();
+			const saved = JSON.parse(storage.mock.lastCall?.[1] ?? "{}");
+			await expect(
+				saved["storybook-remove-check"].members.map(
+					(member: { id: string }) => member.id,
+				),
+			).toEqual(["owner", "admin"]);
+			await waitFor(() =>
+				expect(
+					body.getByRole("button", { name: "Invite member" }),
+				).toHaveFocus(),
 			);
 		} finally {
 			storage.mockRestore();

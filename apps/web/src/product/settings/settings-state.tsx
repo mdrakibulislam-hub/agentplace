@@ -40,6 +40,7 @@ export interface WorkspaceConnection {
 }
 
 export type WorkspaceMember = MemberRecord;
+export type MemberUpdate = (members: WorkspaceMember[]) => WorkspaceMember[];
 
 export interface WorkspaceSettings {
 	name: string;
@@ -147,7 +148,7 @@ const initialSettings: WorkspaceSettings = {
 type SettingsState = [
 	WorkspaceSettings,
 	Dispatch<SetStateAction<WorkspaceSettings>>,
-	(members: WorkspaceMember[]) => Promise<void>,
+	(update: MemberUpdate) => Promise<void>,
 ];
 const SettingsStateContext = createContext<SettingsState | null>(null);
 const storageKey = "agentplace.prototype.settings.v1";
@@ -187,8 +188,8 @@ export function SettingsStateProvider({
 	const key = workspaceId ?? "prototype";
 	const settings = workspaces[key] ?? initialSettings;
 	const workspacesRef = useRef(workspaces);
-	workspacesRef.current = workspaces;
 	useEffect(() => {
+		if (workspaces !== workspacesRef.current) return;
 		try {
 			localStorage.setItem(storageKey, JSON.stringify(workspaces));
 		} catch {
@@ -196,20 +197,24 @@ export function SettingsStateProvider({
 		}
 	}, [workspaces]);
 	function setSettings(action: SetStateAction<WorkspaceSettings>) {
-		setWorkspaces((previous) => ({
+		const previous = workspacesRef.current;
+		const next = {
 			...previous,
 			[key]:
 				typeof action === "function"
 					? action(previous[key] ?? initialSettings)
 					: action,
-		}));
+		};
+		workspacesRef.current = next;
+		setWorkspaces(next);
 	}
 	// Commit storage before showing success; a failed write leaves saved access intact.
-	async function saveMembers(members: WorkspaceMember[]) {
+	async function saveMembers(update: MemberUpdate) {
 		const previous = workspacesRef.current;
+		const workspace = previous[key] ?? initialSettings;
 		const next = {
 			...previous,
-			[key]: { ...(previous[key] ?? initialSettings), members },
+			[key]: { ...workspace, members: update(workspace.members) },
 		};
 		try {
 			localStorage.setItem(storageKey, JSON.stringify(next));
@@ -230,13 +235,14 @@ export function SettingsStateProvider({
 
 export function useSettingsState(): SettingsState {
 	const workspace = useContext(SettingsStateContext);
-	const local = useState(initialSettings);
+	const [settings, setSettings] = useState(initialSettings);
 	return (
 		workspace ?? [
-			local[0],
-			local[1],
-			async (members) => {
-				local[1]((previous) => ({ ...previous, members }));
+			settings,
+			setSettings,
+			async (update) => {
+				const members = update(settings.members);
+				setSettings((previous) => ({ ...previous, members }));
 			},
 		]
 	);

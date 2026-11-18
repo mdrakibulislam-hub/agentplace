@@ -3,8 +3,12 @@ import {
 	SelectField,
 	Textarea,
 } from "@agentplace/ui/components/ap-controls";
-import { Badge, LibraryItem, Surface } from "@agentplace/ui/components/ap-data";
-import type { MenuProject } from "@agentplace/ui/components/ap-menus";
+import { Badge, Surface } from "@agentplace/ui/components/ap-data";
+import { Icon } from "@agentplace/ui/components/ap-icon";
+import {
+	type MenuProject,
+	RichMenuItem,
+} from "@agentplace/ui/components/ap-menus";
 import { Button } from "@agentplace/ui/components/button";
 import { type FormEvent, useState } from "react";
 import {
@@ -135,28 +139,36 @@ export function SkillsSettings({
 						value={query}
 						onChange={(event) => setQuery(event.currentTarget.value)}
 					/>
-					{filteredSkills.map((skill) => {
-						const count = assigned(skill).length;
-						return (
-							<LibraryItem
-								key={skill.id}
-								name={skill.name}
-								description={
-									count
-										? `Used in ${count} ${count === 1 ? "project" : "projects"}`
-										: "Not enabled in any project"
-								}
-								selected={skill.id === selectedId}
-								disabled={adding}
-								onClick={() => {
-									setSelectedId(skill.id);
-									setError("");
-									setNotice("");
-								}}
-							/>
-						);
-					})}
-					{!filteredSkills.length && (
+					{filteredSkills.length ? (
+						<div className="product-settings-skill-options">
+							{filteredSkills.map((skill) => {
+								const count = assigned(skill).length;
+								const selected = skill.id === selectedId;
+								return (
+									<RichMenuItem
+										key={skill.id}
+										label={skill.name}
+										description={
+											count
+												? `Used in ${count} ${count === 1 ? "project" : "projects"}`
+												: "Not enabled in any project"
+										}
+										icon={
+											<Icon className="product-settings-muted" name="puzzle" />
+										}
+										state={selected ? "selected" : "default"}
+										aria-pressed={selected}
+										disabled={adding}
+										onClick={() => {
+											setSelectedId(skill.id);
+											setError("");
+											setNotice("");
+										}}
+									/>
+								);
+							})}
+						</div>
+					) : (
 						<p className="product-settings-muted">No matching skills.</p>
 					)}
 				</Surface>

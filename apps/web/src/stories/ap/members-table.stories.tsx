@@ -35,6 +35,7 @@ const meta = {
 		projects,
 		currentMemberId: "owner",
 		onEdit: fn(),
+		onRemove: fn(),
 		onClear: fn(),
 	},
 } satisfies Meta<typeof WorkspaceMembersTable>;
@@ -68,7 +69,12 @@ export const Actions: Story = {
 	render: () => (
 		<div style={{ display: "flex", gap: 32 }}>
 			{[members[0], members[2], members[3]].map((member) => (
-				<MemberAction key={member.id} member={member} onEdit={fn()} />
+				<MemberAction
+					key={member.id}
+					member={member}
+					onEdit={fn()}
+					onRemove={fn()}
+				/>
 			))}
 		</div>
 	),
@@ -97,6 +103,7 @@ export const Rows: Story = {
 							projects={projects}
 							self={member.role === "Owner"}
 							onEdit={fn()}
+							onRemove={fn()}
 						/>
 					))}
 				</tbody>
@@ -146,6 +153,9 @@ export const RowActions: Story = {
 			canvas.getByRole("button", { name: "Manage invitation for Nora" }),
 		);
 		await expect(args.onEdit).toHaveBeenCalledWith(members[3]);
+		const remove = canvas.getByRole("button", { name: "Remove Sam" });
+		await userEvent.click(remove);
+		await expect(args.onRemove).toHaveBeenCalledWith(members[2], remove);
 		await expect(
 			canvas.getByRole("button", { name: "Owner access is protected" }),
 		).toHaveAttribute("aria-disabled", "true");

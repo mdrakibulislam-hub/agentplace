@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/react-vite";
 import type { ReactNode } from "react";
 import { useLayoutEffect } from "react";
 import "@agentplace/ui/globals.css";
+import { ThemeProvider, useTheme } from "../src/components/theme-provider";
 import { DesignSystemDocs } from "./design-system-docs";
 
 function FoundationEnvironment({
@@ -13,17 +14,17 @@ function FoundationEnvironment({
 	motion: string;
 	children: ReactNode;
 }) {
+	const { resolvedTheme, setTheme } = useTheme();
 	useLayoutEffect(() => {
-		const root = document.documentElement;
-		root.classList.toggle("dark", theme === "dark");
-		root.classList.toggle("light", theme !== "dark");
-		root.dataset.apMotion = motion;
-		root.style.colorScheme = theme;
-	}, [theme, motion]);
+		setTheme(theme);
+	}, [theme, setTheme]);
+	useLayoutEffect(() => {
+		document.documentElement.dataset.apMotion = motion;
+	}, [motion]);
 	return (
 		<div
 			className="ap-story-environment"
-			data-ap-theme={theme}
+			data-ap-theme={resolvedTheme ?? theme}
 			data-ap-motion={motion}
 		>
 			{children}
@@ -57,12 +58,20 @@ const preview: Preview = {
 	initialGlobals: { theme: "light", motion: "system" },
 	decorators: [
 		(Story, context) => (
-			<FoundationEnvironment
-				theme={context.globals.theme}
-				motion={context.globals.motion}
+			<ThemeProvider
+				attribute="class"
+				defaultTheme={context.globals.theme}
+				enableSystem={false}
+				disableTransitionOnChange
+				storageKey="agentplace-storybook-theme"
 			>
-				<Story />
-			</FoundationEnvironment>
+				<FoundationEnvironment
+					theme={context.globals.theme}
+					motion={context.globals.motion}
+				>
+					<Story />
+				</FoundationEnvironment>
+			</ThemeProvider>
 		),
 	],
 	parameters: {

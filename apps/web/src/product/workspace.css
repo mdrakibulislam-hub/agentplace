@@ -54,30 +54,8 @@
 		width: auto;
 		min-width: 0;
 	}
-	.ap-workspace-header .ap-header-credits > span:not(.ap-credit-ring) {
-		padding-inline: var(--space-4);
-	}
 	.ap-workspace-logo .ap-logo {
 		zoom: 0.7;
-	}
-}
-
-@media (max-width: 470px) {
-	.ap-workspace-header .ap-header-credits > span:not(.ap-credit-ring),
-	.ap-workspace-header > .ap-button .ap-button-label {
-		position: absolute;
-		display: block;
-		width: 1px;
-		height: 1px;
-		overflow: hidden;
-		clip-path: inset(50%);
-	}
-	.ap-workspace-header .ap-header-credits {
-		padding-inline: var(--space-8);
-	}
-	.ap-workspace-header > .ap-button {
-		width: var(--size-control-sm);
-		padding: 0;
 	}
 }
 
@@ -89,7 +67,7 @@
 	.ap-workspace-logo .ap-logo {
 		zoom: 0.6;
 	}
-	.ap-workspace-header .ap-header-credits {
-		padding-inline: var(--space-4);
+	.ap-workspace-header .ap-global-header-end {
+		gap: var(--space-4);
 	}
 }

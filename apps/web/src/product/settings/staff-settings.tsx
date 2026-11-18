@@ -1,3 +1,4 @@
+import { ConfirmDialog } from "@agentplace/ui/components/ap-dialog";
 import {
 	AccessSuccessToast,
 	type InvitationDraft,
@@ -11,7 +12,7 @@ import type { MenuProject } from "@agentplace/ui/components/ap-menus";
 import { Button } from "@agentplace/ui/components/button";
 import { useRef, useState } from "react";
 import { SettingsHeading } from "./settings-parts";
-import type { WorkspaceMember } from "./settings-state";
+import type { MemberUpdate, WorkspaceMember } from "./settings-state";
 
 export function StaffSettings({
 	members,
@@ -23,7 +24,7 @@ export function StaffSettings({
 }: {
 	members: WorkspaceMember[];
 	projects: readonly MenuProject[];
-	onMembersChange: (members: WorkspaceMember[]) => void | Promise<void>;
+	onMembersChange: (update: MemberUpdate) => void | Promise<void>;
 	onInvite?: (draft: InvitationDraft) => Promise<WorkspaceMember>;
 	onResend?: (member: WorkspaceMember) => Promise<void>;
 	currentMemberId?: string;
@@ -31,6 +32,7 @@ export function StaffSettings({
 	const [query, setQuery] = useState("");
 	const [role, setRole] = useState("All roles");
 	const [editing, setEditing] = useState<WorkspaceMember | null>(null);
+	const [removing, setRemoving] = useState<WorkspaceMember | null>(null);
 	const [inviting, setInviting] = useState(false);
 	const [notice, setNotice] = useState<{
 		title: string;
@@ -53,10 +55,37 @@ export function StaffSettings({
 			: `${active} ${active === 1 ? "member" : "members"}${invited ? ` · ${invited} ${invited === 1 ? "invitation" : "invitations"}` : ""}`;
 	function close() {
 		setEditing(null);
+		setRemoving(null);
 		setInviting(false);
 		requestAnimationFrame(() => {
 			if (trigger.current?.isConnected) trigger.current.focus();
 			else inviteButton.current?.focus();
+		});
+	}
+	function canManageMembers(list: WorkspaceMember[]) {
+		if (!currentMemberId) return true;
+		const actor = list.find((member) => member.id === currentMemberId);
+		return (
+			!actor?.invited && (actor?.role === "Owner" || actor?.role === "Admin")
+		);
+	}
+	async function removeMember(member: WorkspaceMember) {
+		await onMembersChange((current) => {
+			const target = current.find((item) => item.id === member.id);
+			if (
+				!canManageMembers(current) ||
+				!target ||
+				target.role === "Owner" ||
+				target.invited ||
+				target.id === currentMemberId
+			) {
+				throw new Error("This member can no longer be removed.");
+			}
+			return current.filter((item) => item.id !== member.id);
+		});
+		setNotice({
+			title: "Member removed",
+			message: `${member.name} was removed from this workspace.`,
 		});
 	}
 	return (
@@ -100,8 +129,29 @@ export function StaffSettings({
 						setNotice(null);
 						setEditing(member);
 					}}
+					onRemove={
+						canManageMembers(members)
+							? (member, button) => {
+									trigger.current = button;
+									setNotice(null);
+									setRemoving(member);
+								}
+							: undefined
+					}
 				/>
 			</div>
+			{removing && (
+				<ConfirmDialog
+					open
+					title={`Remove ${removing.name} from this workspace?`}
+					description={`${removing.name} will lose access to this workspace and its projects.`}
+					confirmLabel="Remove member"
+					onOpenChange={(open) => {
+						if (!open) close();
+					}}
+					onConfirm={() => removeMember(removing)}
+				/>
+			)}
 			{editing && !editing.invited && (
 				<MemberAccessEditor
 					key={editing.id}
@@ -111,8 +161,8 @@ export function StaffSettings({
 					onSave={async (member) => {
 						if (editing.role === "Owner")
 							throw new Error("Owner access is protected.");
-						await onMembersChange(
-							members.map((item) => (item.id === member.id ? member : item)),
+						await onMembersChange((current) =>
+							current.map((item) => (item.id === member.id ? member : item)),
 						);
 						setNotice({
 							title: "Access updated",
@@ -134,8 +184,8 @@ export function StaffSettings({
 						await onResend(editing);
 					}}
 					onRevoke={async () => {
-						await onMembersChange(
-							members.filter((member) => member.id !== editing.id),
+						await onMembersChange((current) =>
+							current.filter((member) => member.id !== editing.id),
 						);
 						setNotice({
 							title: "Invitation revoked",
@@ -155,7 +205,7 @@ export function StaffSettings({
 								"Invitations aren’t available yet. Your invitation hasn’t been sent.",
 							);
 						const member = await onInvite(draft);
-						await onMembersChange([...members, member]);
+						await onMembersChange((current) => [...current, member]);
 						setNotice({
 							title: "Invitation sent",
 							message: `Waiting for ${member.email} to accept.`,

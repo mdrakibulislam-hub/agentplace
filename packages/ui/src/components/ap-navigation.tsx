@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import type {
 	ComponentProps,
 	KeyboardEvent,
@@ -6,9 +7,11 @@ import type {
 } from "react";
 import { useRef, useState } from "react";
 import { Logo } from "./ap-brand";
+import { Switch } from "./ap-controls";
 import { Avatar, Badge, CreditRing } from "./ap-data";
 import { ConfirmDialog } from "./ap-dialog";
 import { Icon } from "./ap-icon";
+import { springs, useMotionEnvironment } from "./ap-motion";
 import { Button } from "./button";
 import "../styles/ap-navigation.css";
 
@@ -20,10 +23,10 @@ export interface GlobalHeaderProps {
 	initials?: string;
 	logo?: ReactNode;
 	projectSwitcher?: ReactNode;
+	themeSwitch?: ReactNode;
 	accountMenu?: ReactNode;
 	onProjectSwitch?: () => void;
 	onCredits?: () => void;
-	onSettings?: () => void;
 	onAccount?: () => void;
 	className?: string;
 }
@@ -35,13 +38,17 @@ export function GlobalHeader({
 	initials = "AP",
 	logo,
 	projectSwitcher,
+	themeSwitch,
 	accountMenu,
 	onProjectSwitch,
 	onCredits,
-	onSettings,
 	onAccount,
 	className = "",
 }: GlobalHeaderProps) {
+	const creditsLabel =
+		remainingCredits === null
+			? "Credits unavailable"
+			: `${new Intl.NumberFormat().format(remainingCredits)} credits`;
 	return (
 		<header className={`ap-global-header ${className}`} data-type={type}>
 			<div className="ap-global-header-start">
@@ -58,36 +65,61 @@ export function GlobalHeader({
 				)}
 			</div>
 			<div className="ap-nav-spacer" />
-			<button type="button" className="ap-header-credits" onClick={onCredits}>
-				<CreditRing
-					remaining={remainingCredits}
-					allocation={allocatedCredits}
-					size={16}
-				/>
-				<span>
-					{remainingCredits === null
-						? "Credits unavailable"
-						: `${new Intl.NumberFormat().format(remainingCredits)} credits`}
-				</span>
-			</button>
-			<Button
-				variant="ghost"
-				onClick={onSettings}
-				icon={<Icon name="settings" />}
-			>
-				Settings
-			</Button>
-			{accountMenu ?? (
+			<div className="ap-global-header-end">
 				<button
 					type="button"
-					aria-label="Open account menu"
-					className="ap-header-account"
-					onClick={onAccount}
+					className="ap-header-credits"
+					aria-label={creditsLabel}
+					onClick={onCredits}
 				>
-					<Avatar initials={initials} size="medium" />
+					<CreditRing
+						remaining={remainingCredits}
+						allocation={allocatedCredits}
+						size={16}
+					/>
+					<span>{creditsLabel}</span>
 				</button>
-			)}
+				{themeSwitch}
+				{accountMenu ?? (
+					<button
+						type="button"
+						aria-label="Open account menu"
+						className="ap-header-account"
+						onClick={onAccount}
+					>
+						<Avatar initials={initials} size="medium" />
+					</button>
+				)}
+			</div>
 		</header>
+	);
+}
+
+export function ThemeSwitch({
+	dark,
+	onDarkChange,
+}: {
+	dark: boolean;
+	onDarkChange: (dark: boolean) => void;
+}) {
+	const { reduced } = useMotionEnvironment();
+	return (
+		<Switch
+			className="ap-theme-switch"
+			label="Dark theme"
+			checked={dark}
+			onCheckedChange={onDarkChange}
+			thumb={
+				<motion.span
+					className="ap-theme-switch-thumb"
+					initial={false}
+					animate={{ x: dark ? 22 : 0 }}
+					transition={reduced ? { duration: 0 } : springs.layout}
+				>
+					<Icon name={dark ? "moon" : "sun"} size={14} />
+				</motion.span>
+			}
+		/>
 	);
 }
 

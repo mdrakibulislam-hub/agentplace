@@ -529,8 +529,9 @@ export function Switch({
 	className,
 	label = "Enable setting",
 	onClick,
+	thumb,
 	...props
-}: ToggleProps) {
+}: ToggleProps & { thumb?: ReactNode }) {
 	const [internal, setInternal] = useState(defaultChecked);
 	const current = checked ?? internal;
 	return (
@@ -549,7 +550,7 @@ export function Switch({
 				onClick?.(event);
 			}}
 		>
-			<span className="ap-switch-thumb" />
+			{thumb ?? <span className="ap-switch-thumb" />}
 		</button>
 	);
 }

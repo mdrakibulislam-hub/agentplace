@@ -44,7 +44,12 @@ button.ap-project-cover {
 .ap-cover-mascot {
 	align-items: flex-end;
 	justify-content: flex-end;
-	background: linear-gradient(90deg, #cffaca 0%, #84e8ff 50%, #a4deff 100%);
+	background: linear-gradient(
+		90deg,
+		var(--ambient-mint) 0%,
+		var(--ambient-cyan) 50%,
+		var(--ambient-sky) 100%
+	);
 }
 .ap-cover-added {
 	padding: 0;

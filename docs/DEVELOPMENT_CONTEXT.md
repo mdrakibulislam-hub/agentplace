@@ -88,7 +88,7 @@ Branding separates company logo, agent avatar and project/agent cover; it also c
 
 ### Global header and workspace
 
-Provide quick project switching, credits, settings and account access in a global header. Settings include billing, workspace skills, plugins, staff invitations and roles/access assignment. Workspace settings are not scoped accidentally to the current project; project bindings/permissions are explicit.
+The global header provides quick project switching, credits, a light/dark theme switch, and account access. The [header design](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=371-5546) uses a sliding sun/moon thumb, 12px between the right-side controls, and a Settings action in the avatar menu. The app remembers the chosen theme in the browser. Settings include billing, workspace skills, plugins, staff invitations and roles/access assignment. Workspace settings apply across projects, with explicit project bindings and permissions.
 
 The documented role model is workspace Owner/Admin/Member plus project Editor/Viewer. Implement server-side authorization using the detailed contract; a hidden client control is not authorization. Invitations and integration connections need pending/failure/revocation behavior.
 
@@ -116,7 +116,7 @@ On leave/blur, recompute from the **current** asset and context. Hover never rem
 
 Use keyboard parity, an explicit touch action and edit permissions. A cover-edit click must not bubble into Open project. Read-only cards, public visitor previews and picker thumbnails do not expose upload affordances. Crossfade about 120ms; reduced motion changes immediately. The existing Added sample is not a real uploaded file; actual implementation must bind the real asset and preserve crop/focal point.
 
-The home card masters were updated to mascot fallback; 24 card instances across the design inherited it. Branding empty remains Empty, and uploaded branding examples remain Added with scoped hover transitions. See [cover-presentation.json](design-handoff/cover-presentation.json) for the machine-readable matrix.
+The home card masters were updated to mascot fallback; 24 card instances across the design inherited it. The fallback uses the shared mint, cyan, and sky stops, with deeper colors in dark mode. Branding empty remains Empty, and uploaded branding examples remain Added with scoped hover transitions. See the [dark project card](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=378-2) and [cover presentation matrix](design-handoff/cover-presentation.json).
 
 ## Motion, ambient color and elevation
 

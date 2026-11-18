@@ -1,6 +1,10 @@
-import { GlobalHeader } from "@agentplace/ui/components/ap-navigation";
+import {
+	GlobalHeader,
+	ThemeSwitch,
+} from "@agentplace/ui/components/ap-navigation";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
+import { useTheme } from "../../components/theme-provider";
 import { figma } from "./fixtures";
 
 const meta = {
@@ -12,7 +16,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"Figma Default and Secondary are 1440 × 64. Project switching, credits, workspace settings and account are separate actions. Credits derive from the same remaining/allocation values as billing; unknown allocation is explicit. Tab through the header and activate each action with Enter. Sample credits are Storybook-only fixtures.",
+					"Figma Default and Secondary are 1440 × 64. The right side contains credits, a light and dark theme switch, and the account menu. Workspace settings open from the account menu. Credits derive from the same remaining and allocation values as billing.",
 			},
 		},
 	},
@@ -23,8 +27,21 @@ const meta = {
 		initials: "RA",
 		onProjectSwitch: fn(),
 		onCredits: fn(),
-		onSettings: fn(),
 		onAccount: fn(),
+	},
+	render: function HeaderStory(args) {
+		const { resolvedTheme, setTheme } = useTheme();
+		return (
+			<GlobalHeader
+				{...args}
+				themeSwitch={
+					<ThemeSwitch
+						dark={resolvedTheme === "dark"}
+						onDarkChange={(dark) => setTheme(dark ? "dark" : "light")}
+					/>
+				}
+			/>
+		);
 	},
 } satisfies Meta<typeof GlobalHeader>;
 export default meta;
@@ -36,4 +53,23 @@ export const Secondary: Story = {
 };
 export const UnknownCredits: Story = {
 	args: { remainingCredits: null, allocatedCredits: null },
+};
+export const ThemeSwitching: Story = {
+	globals: { theme: "light" },
+	parameters: { design: figma("371:5546") },
+	play: async ({ canvasElement }) => {
+		const root = canvasElement.ownerDocument.documentElement;
+		const toggle = within(canvasElement).getByRole("switch", {
+			name: "Dark theme",
+		});
+		await expect(toggle).toHaveAttribute("aria-checked", "false");
+		toggle.focus();
+		await userEvent.keyboard(" ");
+		await waitFor(() => expect(root).toHaveClass("dark"));
+		await expect(toggle).toHaveAttribute("aria-checked", "true");
+		await expect(toggle).toHaveFocus();
+		await userEvent.keyboard("{Enter}");
+		await waitFor(() => expect(root).toHaveClass("light"));
+		await expect(toggle).toHaveAttribute("aria-checked", "false");
+	},
 };

@@ -8,7 +8,11 @@ import {
 	ProjectSwitcher,
 	RichMenuItem,
 } from "@agentplace/ui/components/ap-menus";
-import { GlobalHeader } from "@agentplace/ui/components/ap-navigation";
+import {
+	GlobalHeader,
+	ThemeSwitch,
+} from "@agentplace/ui/components/ap-navigation";
+import { useTheme } from "@/components/theme-provider";
 import { demoCredits } from "./prototype-data";
 import "./workspace.css";
 
@@ -39,6 +43,7 @@ export function WorkspaceHeader({
 	onBilling,
 	onSignOut,
 }: WorkspaceHeaderProps) {
+	const { resolvedTheme, setTheme } = useTheme();
 	const name = showProjectName
 		? (projects.find((project) => project.id === currentProjectId)?.name ??
 			"All projects")
@@ -52,7 +57,12 @@ export function WorkspaceHeader({
 			allocatedCredits={demoCredits.allocation}
 			initials="RA"
 			onCredits={onBilling}
-			onSettings={onSettings}
+			themeSwitch={
+				<ThemeSwitch
+					dark={resolvedTheme === "dark"}
+					onDarkChange={(dark) => setTheme(dark ? "dark" : "light")}
+				/>
+			}
 			logo={
 				<button
 					type="button"
@@ -113,7 +123,7 @@ export function WorkspaceHeader({
 						<MenuPanel title="Account" onClose={close}>
 							<RichMenuItem
 								data-menu-choice
-								label="Workspace settings"
+								label="Settings"
 								icon="settings"
 								onClick={() => {
 									close();

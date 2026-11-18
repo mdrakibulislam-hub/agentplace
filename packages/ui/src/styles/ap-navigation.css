@@ -5,7 +5,7 @@
 	max-width: 100%;
 	height: 64px;
 	align-items: center;
-	gap: 24px;
+	gap: var(--space-12);
 	padding: 0 24px;
 	border: 0;
 	outline: 1px solid var(--border-default);
@@ -26,6 +26,12 @@
 }
 .ap-global-header-start > .ap-logo {
 	flex-shrink: 0;
+}
+.ap-global-header-end {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	gap: var(--space-12);
 }
 .ap-project-switch-trigger {
 	appearance: none;
@@ -58,8 +64,10 @@
 .ap-header-credits {
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	min-width: var(--size-control-sm);
 	height: 32px;
-	gap: 0;
+	gap: var(--space-12);
 	white-space: nowrap;
 	background: transparent;
 	border: 0;
@@ -69,9 +77,6 @@
 	font-weight: 510;
 	cursor: pointer;
 }
-.ap-header-credits > span:not(.ap-credit-ring) {
-	padding: 0 12px;
-}
 .ap-header-account {
 	display: flex;
 	background: transparent;
@@ -79,6 +84,43 @@
 	border-radius: 9999px;
 	padding: 0;
 	cursor: pointer;
+}
+.ap-switch.ap-theme-switch[aria-checked] {
+	width: 52px;
+	height: var(--size-control-sm);
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+}
+.ap-theme-switch::before {
+	content: "";
+	position: absolute;
+	inset: 2px 0;
+	border-radius: inherit;
+	background: var(--muted-hover);
+}
+.ap-switch.ap-theme-switch::after {
+	content: none;
+}
+.ap-switch.ap-theme-switch:focus-visible {
+	outline: var(--stroke-focus) solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-theme-switch-thumb {
+	position: absolute;
+	top: 5px;
+	left: 4px;
+	display: grid;
+	place-items: center;
+	width: 22px;
+	height: 22px;
+	border-radius: var(--radius-full);
+	background: var(--card-background);
+	color: var(--foreground-default);
+}
+.ap-theme-switch[aria-checked="true"] .ap-theme-switch-thumb {
+	background: var(--action-default);
+	color: var(--card-background);
 }
 .ap-global-header button:focus-visible,
 .ap-sidebar button:focus-visible {
@@ -297,7 +339,6 @@
 }
 @media (max-width: 800px) {
 	.ap-global-header {
-		gap: 12px;
 		padding: 0 16px;
 	}
 	.ap-project-switch-trigger {
@@ -313,6 +354,11 @@
 	}
 	.ap-toolbar-save {
 		display: none;
+	}
+}
+@media (max-width: 600px) {
+	.ap-global-header-end {
+		gap: var(--space-8);
 	}
 }
 

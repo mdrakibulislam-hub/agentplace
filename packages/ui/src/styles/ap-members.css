@@ -93,9 +93,26 @@
 .ap-members-table tbody tr:hover {
 	background: var(--action-ghost-hover, var(--muted-background));
 }
-.ap-members-table td:last-child .ap-button {
+.ap-member-actions {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	vertical-align: middle;
+}
+.ap-member-actions > .ap-button:not(.ap-member-remove) {
 	padding-inline: 12px;
 	white-space: nowrap;
+}
+.ap-member-actions:has(.ap-member-remove) > .ap-button:not(.ap-member-remove) {
+	padding-inline: var(--space-8);
+}
+.ap-member-remove.ap-button {
+	--ap-button-hover: var(--transparent);
+	--ap-button-pressed: var(--transparent);
+	--ap-button-fg: var(--foreground-muted);
+}
+.ap-member-remove.ap-button:hover {
+	--ap-button-fg: var(--status-error-foreground);
 }
 .ap-member-person {
 	display: flex;
