@@ -25,7 +25,7 @@ export const demoProjects: PrototypeProject[] = [
 	{
 		id: "whiteframe-advisor",
 		name: "WhiteFrame Advisor",
-		company: "WhiteFrame Creative",
+		company: "Whiteframe Creative",
 		prompt:
 			"Create an advisor for whiteframe.agency that recommends services and collects project enquiries.",
 		status: "Published",

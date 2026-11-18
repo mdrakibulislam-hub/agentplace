@@ -14,7 +14,7 @@ import { initialBuilderData } from "./builder-model";
 const base: PrototypeProject = {
 	id: "whiteframe-advisor",
 	name: "WhiteFrame Advisor",
-	company: "WhiteFrame Creative",
+	company: "Whiteframe Creative",
 	status: "Unpublished",
 	updated: "Edited 2 hours ago",
 	prompt:
@@ -440,6 +440,7 @@ export const VisitorRetryAndReset: Story = {
 		await expect(
 			await canvas.findByText("What are you working on?"),
 		).toBeVisible();
+		await expect(canvas.getByText("Whiteframe Creative")).toBeVisible();
 		await expect(
 			canvas.queryByText(visitorMessages[0].text),
 		).not.toBeInTheDocument();

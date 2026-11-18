@@ -80,9 +80,8 @@ export function BuilderVisitorPreview({
 		if (messages.length && transcript.current && !reduced)
 			transcript.current.scrollTop = transcript.current.scrollHeight;
 	}, [messages, reduced]);
-	const company = branding.company ?? branding.name;
-	const companyLabel = company.replace(/ Creative$/, "");
-	const displayName = companyLabel || branding.name;
+	const company = branding.company?.trim() || branding.name;
+	const displayName = company.replace(/ Creative$/, "") || branding.name;
 	const colors = {
 		"--ap-visitor-accent": branding.color,
 		"--ap-visitor-accent-text": contrastText(branding.color),
@@ -146,7 +145,7 @@ export function BuilderVisitorPreview({
 			style={colors}
 		>
 			<AgentPreview
-				company={messages.length ? company : displayName.toUpperCase()}
+				company={company}
 				agentName={branding.name}
 				conversation={messages.length > 0}
 				onReset={reset}

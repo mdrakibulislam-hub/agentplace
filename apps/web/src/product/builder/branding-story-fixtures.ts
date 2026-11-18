@@ -1,7 +1,7 @@
 import type { BrandingDraft } from "./builder-model";
 
 export const brandingFixture: BrandingDraft = {
-	company: "WhiteFrame Creative",
+	company: "Whiteframe Creative",
 	name: "WhiteFrame Advisor",
 	color: "#2A2A2A",
 	typography: "SF Pro",

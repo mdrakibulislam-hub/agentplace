@@ -17,7 +17,7 @@ const meta = {
 		},
 	},
 	args: {
-		company: "WHITEFRAME",
+		company: "Whiteframe Creative",
 		companyInitials: "W",
 		title: "What are you working on?",
 		description:
