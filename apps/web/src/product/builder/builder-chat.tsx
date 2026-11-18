@@ -1,5 +1,9 @@
 import { AmbientBottomGradient } from "@agentplace/ui/components/ap-ambient";
 import { ChatComposer } from "@agentplace/ui/components/ap-builder";
+import {
+	ConversationMessage,
+	ConversationStatus,
+} from "@agentplace/ui/components/ap-conversation";
 import { Badge, Spinner } from "@agentplace/ui/components/ap-data";
 import { Icon } from "@agentplace/ui/components/ap-icon";
 import {
@@ -7,6 +11,7 @@ import {
 	MenuPanel,
 	MenuPopover,
 } from "@agentplace/ui/components/ap-menus";
+import { useMotionEnvironment } from "@agentplace/ui/components/ap-motion";
 import { WorkingIndicator } from "@agentplace/ui/components/ap-working-indicator";
 import { Button } from "@agentplace/ui/components/button";
 import { type ChangeEvent, useLayoutEffect, useRef, useState } from "react";
@@ -19,9 +24,13 @@ const modelOptions = ["Automatic", "Fast", "Detailed"];
 export function BuilderChat({
 	conversation,
 	working,
+	submitting = false,
+	requestState,
+	requestError,
+	onRetry,
+	onStop,
+	onPreview,
 	onSubmit,
-	onBranding,
-	onReview,
 	onDestination,
 	onSkipDestination,
 	destination,
@@ -30,9 +39,13 @@ export function BuilderChat({
 }: {
 	conversation?: BuilderConversation;
 	working: boolean;
+	submitting?: boolean;
+	requestState?: "working" | "error" | "stopped";
+	requestError?: string;
+	onRetry?: () => void;
+	onStop?: () => void;
+	onPreview?: () => void;
 	onSubmit: (message: string) => void;
-	onBranding: () => void;
-	onReview: () => void;
 	onDestination: () => void;
 	onSkipDestination: () => void;
 	destination?: string;
@@ -44,9 +57,10 @@ export function BuilderChat({
 	const file = useRef<HTMLInputElement>(null);
 	const messageList = useRef<HTMLDivElement>(null);
 	const pendingScroll = useRef(false);
+	const { reduced } = useMotionEnvironment();
 	const updates = conversation?.messages.slice(1) ?? [];
 	const initial = conversation?.messages[0];
-	const firstConversation = conversation?.id === "build";
+	const firstConversation = working && conversation?.id === "build";
 
 	useLayoutEffect(() => {
 		if (
@@ -54,10 +68,11 @@ export function BuilderChat({
 			conversation?.messages.length &&
 			messageList.current
 		) {
-			messageList.current.scrollTop = messageList.current.scrollHeight;
+			if (!reduced)
+				messageList.current.scrollTop = messageList.current.scrollHeight;
 			pendingScroll.current = false;
 		}
-	}, [conversation]);
+	}, [conversation, reduced]);
 
 	function selectFile(event: ChangeEvent<HTMLInputElement>) {
 		setAttachment(event.currentTarget.files?.[0]);
@@ -78,57 +93,54 @@ export function BuilderChat({
 							: "Describe a change. We’ll take care of the build."
 					}
 				/>
-				{firstConversation && initial && (
-					<>
-						<Message speaker="you" text={initial.text} sources={sources} />
-						<Message
-							speaker="agent"
-							text={getDraftReply(working, usesWebsite)}
-						/>
-						{working ? (
-							<>
-								{destination ? (
-									<BuilderNote title="Enquiry destination">
-										{destination}
-									</BuilderNote>
-								) : (
-									<div className="ap-builder-quick-actions">
-										<Button variant="secondary" onClick={onDestination}>
-											Connect a destination
-										</Button>
-										<Button variant="ghost" onClick={onSkipDestination}>
-											Set up later
-										</Button>
-									</div>
-								)}
-								<WorkingIndicator />
-							</>
-						) : (
-							<>
-								<BuilderNote title="Ready to test" tone="success">
-									Company knowledge, branding and lead storage are connected.
+				<div className="ap-chat-thread">
+					{firstConversation && initial && (
+						<>
+							<Message speaker="you" text={initial.text} sources={sources} />
+							<Message
+								speaker="agent"
+								text={getDraftReply(working, usesWebsite)}
+							/>
+
+							{destination ? (
+								<BuilderNote title="Enquiry destination">
+									{destination}
 								</BuilderNote>
+							) : (
 								<div className="ap-builder-quick-actions">
-									<Button variant="secondary" onClick={onBranding}>
-										Customize branding
+									<Button variant="secondary" onClick={onDestination}>
+										Connect a destination
 									</Button>
-									<Button variant="ghost" onClick={onReview}>
-										Review setup
+									<Button variant="ghost" onClick={onSkipDestination}>
+										Set up later
 									</Button>
 								</div>
-							</>
-						)}
-					</>
-				)}
-				{(firstConversation ? updates : conversation?.messages)?.map(
-					(message) => (
-						<Message
-							key={message.id}
-							speaker={message.role}
-							text={message.text}
-						/>
-					),
-				)}
+							)}
+							<WorkingIndicator />
+						</>
+					)}
+					{(firstConversation ? updates : conversation?.messages)?.map(
+						(message) => (
+							<Message
+								key={message.id}
+								speaker={message.role}
+								text={message.text}
+							/>
+						),
+					)}
+					<ConversationStatus
+						state={
+							requestState ??
+							(conversation?.messages.at(-1)?.role === "agent"
+								? "ready"
+								: "idle")
+						}
+						error={requestError}
+						onRetry={onRetry}
+						onStop={onStop}
+						onPreview={onPreview}
+					/>
+				</div>
 			</div>
 			<div className="ap-builder-chat-compose">
 				{attachment && (
@@ -153,6 +165,8 @@ export function BuilderChat({
 					onChange={selectFile}
 				/>
 				<ChatComposer
+					submitting={submitting}
+					onStop={onStop}
 					modelControl={
 						<MenuPopover
 							trigger={
@@ -208,14 +222,7 @@ function Message({
 	sources?: ProjectSource[];
 }) {
 	return (
-		<div className="ap-builder-message" data-role={speaker}>
-			<div>
-				{speaker === "agent" && (
-					<span className="ap-builder-agent-bolt" aria-hidden="true" />
-				)}
-				{speaker === "you" ? "You" : "Agentplace"}
-			</div>
-			<p>{text}</p>
+		<ConversationMessage speaker={speaker} text={text}>
 			{Boolean(sources?.length) && (
 				<ul className="ap-builder-sources" aria-label="Project sources">
 					{sources?.map(({ kind, value }) => (
@@ -226,7 +233,7 @@ function Message({
 					))}
 				</ul>
 			)}
-		</div>
+		</ConversationMessage>
 	);
 }
 
@@ -237,7 +244,7 @@ function getDraftReply(working: boolean, usesWebsite: boolean) {
 			: "I’ll use your brief to draft the visitor experience. Where should new enquiries be sent?";
 	}
 	return usesWebsite
-		? "Your first draft is ready. I imported your services and created an enquiry flow. Try it in the preview before publishing."
+		? "Your draft is ready to review. Try the visitor experience in the preview before publishing."
 		: "Your first draft is ready. Try the visitor experience in the preview before publishing.";
 }
 

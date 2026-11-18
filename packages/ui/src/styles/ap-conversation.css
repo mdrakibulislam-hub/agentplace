@@ -1,0 +1,119 @@
+.ap-chat-thread {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	min-width: 0;
+}
+.ap-chat-message {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--space-12);
+	min-width: 0;
+	color: var(--foreground-default);
+	font-size: 14px;
+	line-height: 20px;
+}
+.ap-chat-message[data-experience="visitor"] {
+	font-size: 16px;
+	line-height: 24px;
+}
+.ap-chat-message[data-role="you"] {
+	align-self: flex-end;
+	max-width: min(392px, 100%);
+	padding: var(--space-12);
+	border-radius: var(--radius-md);
+	background: var(--muted-background);
+}
+.ap-chat-message-content {
+	min-width: 0;
+}
+.ap-chat-message p {
+	margin: 0;
+	overflow-wrap: anywhere;
+	white-space: pre-wrap;
+}
+.ap-chat-message .ap-chat-message-name {
+	margin-bottom: var(--space-8);
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 590;
+}
+.ap-chat-message-avatar {
+	display: grid;
+	place-items: center;
+	width: 24px;
+	height: 24px;
+	flex-shrink: 0;
+}
+.ap-chat-message-avatar .ap-avatar {
+	width: 24px;
+	height: 24px;
+	font-size: 10px;
+}
+.ap-chat-status {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-8);
+	font-size: 14px;
+	line-height: 20px;
+}
+.ap-chat-status p {
+	margin: 0;
+}
+.ap-chat-status-detail,
+.ap-chat-replying {
+	color: var(--foreground-muted);
+}
+.ap-chat-error {
+	color: var(--status-error-foreground);
+}
+.ap-chat-result {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: var(--space-8);
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--foreground-muted);
+}
+.ap-chat-result > button {
+	margin-left: auto;
+}
+.ap-chat-replying {
+	margin: 0;
+	font-size: 16px;
+	line-height: 24px;
+}
+.ap-chat-reply-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-8);
+	padding-left: 36px;
+}
+.ap-chat-reply-chips button {
+	min-height: 32px;
+	max-width: 100%;
+	padding: 6px 12px;
+	border: 0;
+	border-radius: var(--radius-full);
+	background: var(--muted-background);
+	color: var(--foreground-default);
+	font: inherit;
+	font-size: 14px;
+	line-height: 20px;
+	cursor: pointer;
+}
+.ap-chat-reply-chips button:hover {
+	background: var(--muted-hover);
+}
+.ap-chat-reply-chips button:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 2px;
+}
+.ap-composer-stop-mark {
+	width: 10px;
+	height: 10px;
+	border-radius: 2px;
+	background: currentColor;
+}

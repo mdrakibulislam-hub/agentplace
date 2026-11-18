@@ -493,13 +493,13 @@
 	},
 	{
 		"name": "icon-zap.svg",
-		"nodeId": "49:1534",
-		"kind": "figma-instance-vector",
-		"sha256": "fa5b51ad6ef7fc35a2f331bb5ab5dca881181ca1baf1958778b22f79fafaf6c0",
+		"nodeId": "49:620",
+		"kind": "figma-component-vector",
+		"sha256": "a8e8f1a80cf2c3b13cf3ccd1d81c52e061ca98df6f7993445f016470015b9d57",
 		"nativeGeometry": {
-			"width": "16",
-			"height": "16",
-			"viewBox": "0 0 16 16"
+			"width": "20",
+			"height": "20",
+			"viewBox": "0 0 20 20"
 		},
 		"canonicalIconId": "49:620"
 	},

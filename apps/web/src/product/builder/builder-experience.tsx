@@ -6,6 +6,7 @@ import {
 	MenuPopover,
 } from "@agentplace/ui/components/ap-menus";
 import {
+	ConversationList,
 	ProjectNavigation,
 	type ProjectNavValue,
 	ProjectToolbar,
@@ -13,7 +14,7 @@ import {
 	Tabs,
 } from "@agentplace/ui/components/ap-navigation";
 import { Button } from "@agentplace/ui/components/button";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { liveProjectPath, type PrototypeProject } from "../prototype-data";
 import { useSettingsState } from "../settings/settings-state";
 import { BuilderBranding } from "./builder-branding";
@@ -25,8 +26,10 @@ import {
 } from "./builder-configuration";
 import {
 	type BrandingDraft,
+	type BuilderConfiguration,
 	type BuilderData,
 	type BuilderVersion,
+	type ConversationMessage,
 	initialBuilderData,
 	type PublishedSnapshot,
 	recordVersion,
@@ -60,6 +63,15 @@ export interface BuilderExperienceProps {
 	initialPublishAction?: PublishAction;
 	initialManagePublish?: boolean;
 	initialCoverMenu?: boolean;
+	/** Optional live provider. The local prototype otherwise saves directions to instructions. */
+	onBuild?: (
+		text: string,
+		configuration: BuilderConfiguration,
+		signal: AbortSignal,
+	) => Promise<{ configuration: BuilderConfiguration; reply: string }>;
+	visitorReply?: import("./visitor-experience").VisitorReply;
+	initialVisitorSuggestions?: string[];
+	initialVisitorMessages?: import("@agentplace/ui/components/ap-conversation").ChatMessage[];
 }
 
 export function BuilderExperience({
@@ -73,7 +85,24 @@ export function BuilderExperience({
 	initialPublishAction,
 	initialManagePublish = false,
 	initialCoverMenu = false,
+	onBuild,
+	visitorReply,
+	initialVisitorMessages,
+	initialVisitorSuggestions,
 }: BuilderExperienceProps) {
+	const [request, setRequest] = useState<{
+		conversationId: string;
+		message: ConversationMessage;
+		state: "working" | "error" | "stopped";
+		error?: string;
+	}>();
+	const [unsavedMessages, setUnsavedMessages] = useState<
+		Record<string, ConversationMessage[]>
+	>({});
+	const [committing, setCommitting] = useState(false);
+	const operation = useRef<AbortController | null>(null);
+	const latestData = useRef<BuilderData>(initialBuilderData(project));
+	useEffect(() => () => operation.current?.abort(), []);
 	const [workspace, setWorkspace] = useSettingsState();
 	const [section, setSection] = useState(initialSection);
 	const [conversationId, setConversationId] = useState("build");
@@ -85,6 +114,8 @@ export function BuilderExperience({
 	const [manage, setManage] = useState(initialManagePublish);
 	const [configValue, setConfigValue] = useState("");
 	const data = initialBuilderData(project);
+	latestData.current = data;
+	const busy = request?.state === "working";
 	const working = Boolean(project.needsFirstDraft);
 	const usesWebsite =
 		Boolean(project.sources?.some((source) => source.kind === "website")) ||
@@ -117,6 +148,7 @@ export function BuilderExperience({
 	);
 
 	function showSection(next: ProjectNavValue) {
+		if (operation.current) return;
 		setSection(next);
 		setView("editor");
 	}
@@ -171,6 +203,7 @@ export function BuilderExperience({
 	}
 
 	function newConversation() {
+		if (operation.current || committing) return;
 		const id = crypto.randomUUID();
 		change({
 			...data,
@@ -182,36 +215,135 @@ export function BuilderExperience({
 		selectConversation(id);
 	}
 
-	function submitChat(text: string) {
-		if (!activeConversation) return;
-		const conversations = data.conversations.map((conversation) => {
-			if (conversation.id !== activeConversation.id) return conversation;
-			return {
+	async function deleteConversation(id: string) {
+		if (operation.current || committing)
+			throw new Error(
+				"Wait for the current update to finish before deleting a conversation.",
+			);
+		const current = latestData.current;
+		const conversations = current.conversations.filter(
+			(item) => item.id !== id,
+		);
+		if (conversations.length === current.conversations.length) return;
+		await onSaveDraft({ builder: { ...current, conversations } });
+		if (request?.conversationId === id) setRequest(undefined);
+		setUnsavedMessages((current) => {
+			const next = { ...current };
+			delete next[id];
+			return next;
+		});
+		if (activeConversation?.id === id)
+			setConversationId(conversations[0]?.id ?? "");
+	}
+
+	function stopChat() {
+		if (committing) return;
+		operation.current?.abort();
+		operation.current = null;
+		setRequest((current) =>
+			current ? { ...current, state: "stopped", error: undefined } : undefined,
+		);
+	}
+
+	async function runChat(text: string, retry = false) {
+		if (operation.current || committing) return;
+		const current = latestData.current;
+		const existing = retry ? request : undefined;
+		const id =
+			existing?.conversationId ??
+			activeConversation?.id ??
+			request?.conversationId ??
+			crypto.randomUUID();
+		const message = existing?.message ?? {
+			id: crypto.randomUUID(),
+			role: "you" as const,
+			text,
+		};
+		const pendingMessages = retry
+			? (unsavedMessages[id] ?? [message])
+			: [...(unsavedMessages[id] ?? []), message];
+		setUnsavedMessages((current) => ({ ...current, [id]: pendingMessages }));
+		const controller = new AbortController();
+		operation.current = controller;
+		setRequest({ conversationId: id, message, state: "working" });
+		try {
+			const configuration = {
+				branding: current.branding,
+				instructions: current.instructions,
+				skills: current.skills,
+				destination: current.destination,
+				skillNotes: current.skillNotes,
+			};
+			const result = onBuild
+				? await onBuild(message.text, configuration, controller.signal)
+				: {
+						configuration: {
+							...configuration,
+							instructions: `${current.instructions}\n\n## Builder direction\n${message.text}`,
+						},
+						reply:
+							"Saved this direction to your draft instructions. Review it before publishing.",
+					};
+			if (controller.signal.aborted) return;
+			setCommitting(true);
+			const conversation = current.conversations.find(
+				(item) => item.id === id,
+			) ?? { id, title: "New chat", messages: [] };
+			const nextConversation = {
 				...conversation,
 				title: conversation.messages.length
 					? conversation.title
-					: text.split("\n", 1)[0]?.trim() || conversation.title,
+					: message.text.split("\n", 1)[0]?.trim() || "New chat",
 				messages: [
 					...conversation.messages,
-					{ id: crypto.randomUUID(), role: "you" as const, text },
+					...pendingMessages,
 					{
 						id: crypto.randomUUID(),
 						role: "agent" as const,
-						text: working
-							? "I’ve added that direction to your first draft."
-							: "I’ve added your change to the draft instructions. You can review it before publishing an update.",
+						text: result.reply,
 					},
 				],
 			};
-		});
-		save(
-			{
-				...data,
-				conversations,
-				instructions: `${data.instructions}\n\n## Builder direction\n${text}`,
-			},
-			"Updated from a conversation",
-		);
+			const conversations = current.conversations.some((item) => item.id === id)
+				? current.conversations.map((item) =>
+						item.id === id ? nextConversation : item,
+					)
+				: [...current.conversations, nextConversation];
+			await onSaveDraft({
+				builder: recordVersion(
+					{ ...current, ...result.configuration, conversations },
+					"Updated from a conversation",
+				),
+				updated: "Edited just now",
+			});
+			setConversationId(id);
+			setRequest(undefined);
+			setUnsavedMessages((current) => {
+				const next = { ...current };
+				delete next[id];
+				return next;
+			});
+		} catch (error) {
+			if (!controller.signal.aborted)
+				setRequest({
+					conversationId: id,
+					message,
+					state: "error",
+					error:
+						error instanceof Error
+							? error.message
+							: "The update could not be saved. Try again.",
+				});
+		} finally {
+			if (operation.current === controller) {
+				operation.current = null;
+				setCommitting(false);
+			}
+		}
+	}
+
+	function submitChat(text: string) {
+		void runChat(text);
 	}
 
 	function completeFirstDraft() {
@@ -281,7 +413,7 @@ export function BuilderExperience({
 	}
 
 	function publish(audience: string, requireSignIn: boolean) {
-		if (dirty || working) return;
+		if (dirty || working || busy) return;
 		change(data, {
 			status: "Published",
 			published: { ...snapshot(data), audience, requireSignIn },
@@ -306,6 +438,7 @@ export function BuilderExperience({
 				onNewConversation={newConversation}
 				onManageAccess={() => onSettings("Staff & roles")}
 				onConversation={selectConversation}
+				onDeleteConversation={deleteConversation}
 				conversations={data.conversations.map((conversation) => ({
 					id: conversation.id,
 					title: conversation.title,
@@ -328,36 +461,30 @@ export function BuilderExperience({
 								className="ap-builder-conversation-menu"
 								onClose={dismiss}
 							>
-								<div
+								<nav
 									className="ap-menu-list"
-									role="menu"
 									aria-label="Project conversations"
 								>
 									<MenuItem
 										label="New chat"
 										icon="plus"
-										role="menuitem"
-										data-menu-choice
 										onClick={() => {
 											dismiss();
 											newConversation();
 										}}
 									/>
-									{data.conversations.map((conversation) => (
-										<MenuItem
-											key={conversation.id}
-											label={conversation.title}
-											title={conversation.title}
-											icon="message-square"
-											role="menuitem"
-											data-menu-choice
-											onClick={() => {
-												dismiss();
-												selectConversation(conversation.id);
-											}}
-										/>
-									))}
-								</div>
+									<ConversationList
+										conversations={data.conversations.map((item) => ({
+											...item,
+											selected: item.id === activeConversation?.id,
+										}))}
+										onSelect={(id) => {
+											dismiss();
+											selectConversation(id);
+										}}
+										onDelete={deleteConversation}
+									/>
+								</nav>
 							</MenuPanel>
 						)}
 					</MenuPopover>
@@ -371,9 +498,9 @@ export function BuilderExperience({
 				</div>
 				<ProjectToolbar
 					name={project.name}
-					saved={!dirty}
+					saved={!dirty && !busy}
 					status={draftChanges ? "changes" : live ? "published" : "draft"}
-					publishDisabled={working}
+					publishDisabled={working || busy}
 					onPublish={() => setOverlay({ type: "publish" })}
 					publishControl={
 						live ? (
@@ -414,6 +541,9 @@ export function BuilderExperience({
 									/>
 								) : (
 									<BuilderVisitorPreview
+										onReply={visitorReply}
+										initialMessages={initialVisitorMessages}
+										initialSuggestions={initialVisitorSuggestions}
 										branding={
 											section === "Branding" ? stagedBranding : data.branding
 										}
@@ -425,14 +555,43 @@ export function BuilderExperience({
 							{section === "Chat" ? (
 								<BuilderChat
 									key={activeConversation?.id}
-									conversation={activeConversation}
+									conversation={
+										activeConversation
+											? {
+													...activeConversation,
+													messages: [
+														...activeConversation.messages,
+														...(unsavedMessages[activeConversation.id] ?? []),
+													],
+												}
+											: request
+												? {
+														id: request.conversationId,
+														title: "New chat",
+														messages:
+															unsavedMessages[request.conversationId] ?? [],
+													}
+												: undefined
+									}
+									requestState={
+										request &&
+										(request.conversationId === activeConversation?.id ||
+											!activeConversation)
+											? request.state
+											: undefined
+									}
+									requestError={request?.error}
+									onRetry={() => {
+										if (request) void runChat(request.message.text, true);
+									}}
+									onStop={committing ? undefined : stopChat}
+									submitting={busy}
+									onPreview={() => setView("preview")}
 									working={working}
 									usesWebsite={usesWebsite}
 									sources={project.sources}
 									destination={data.destination}
 									onSubmit={submitChat}
-									onBranding={() => showSection("Branding")}
-									onReview={() => showSection("Skills")}
 									onDestination={() => {
 										setConfigValue("");
 										setOverlay({ type: "destination" });
@@ -494,7 +653,7 @@ export function BuilderExperience({
 					name={project.name}
 					url={url}
 					draftChanges={draftChanges}
-					ready={!dirty && !working}
+					ready={!dirty && !working && !busy}
 					audience={published?.audience}
 					requireSignIn={published?.requireSignIn}
 					onConfirm={publish}

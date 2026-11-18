@@ -56,7 +56,7 @@ export function ConfirmDialog({
 			setError(
 				cause instanceof Error
 					? cause.message
-					: "Unable to delete this project. Please try again.",
+					: "Unable to delete. Please try again.",
 			);
 		} finally {
 			setPending(false);

@@ -1,6 +1,13 @@
-import type { ComponentProps, KeyboardEvent, ReactNode } from "react";
+import type {
+	ComponentProps,
+	KeyboardEvent,
+	ReactNode,
+	RefObject,
+} from "react";
+import { useRef, useState } from "react";
 import { Logo } from "./ap-brand";
 import { Avatar, Badge, CreditRing } from "./ap-data";
+import { ConfirmDialog } from "./ap-dialog";
 import { Icon } from "./ap-icon";
 import { Button } from "./button";
 import "../styles/ap-navigation.css";
@@ -113,6 +120,7 @@ export function ProjectNavigation({
 	onNewConversation,
 	onManageAccess,
 	onConversation,
+	onDeleteConversation,
 	conversations = [],
 	className = "",
 }: SidebarProps & {
@@ -121,12 +129,14 @@ export function ProjectNavigation({
 	onNewConversation?: () => void;
 	onManageAccess?: () => void;
 	onConversation?: (id: string) => void;
+	onDeleteConversation?: (id: string) => void | Promise<void>;
 	conversations?: {
 		id: string;
 		title: string;
 		selected?: boolean;
 	}[];
 }) {
+	const newChat = useRef<HTMLButtonElement>(null);
 	return (
 		<aside
 			className={`ap-sidebar ap-project-sidebar ${className}`}
@@ -139,26 +149,22 @@ export function ProjectNavigation({
 			<nav className="ap-sidebar-conversations" aria-label="Conversations">
 				<button
 					type="button"
+					ref={newChat}
 					className="ap-sidebar-new"
 					onClick={onNewConversation}
 				>
 					<Icon name="plus" />
 					New chat
 				</button>
-				{conversations.map((conversation) => (
-					<button
-						key={conversation.id}
-						type="button"
-						className="ap-conversation-item"
-						aria-current={
-							active === "Chat" && conversation.selected ? "true" : undefined
-						}
-						title={conversation.title}
-						onClick={() => onConversation?.(conversation.id)}
-					>
-						<span>{conversation.title}</span>
-					</button>
-				))}
+				<ConversationList
+					conversations={conversations.map((item) => ({
+						...item,
+						selected: active === "Chat" && item.selected,
+					}))}
+					onSelect={onConversation}
+					onDelete={onDeleteConversation}
+					fallbackFocus={newChat}
+				/>
 			</nav>
 			<nav className="ap-sidebar-links" aria-label="Project">
 				{projectNavItems.map((item) => (
@@ -184,6 +190,90 @@ export function ProjectNavigation({
 				Project access
 			</button>
 		</aside>
+	);
+}
+
+export interface ConversationListItem {
+	id: string;
+	title: string;
+	selected?: boolean;
+}
+
+/** Shared by desktop navigation and the compact conversation picker. */
+export function ConversationList({
+	conversations,
+	onSelect,
+	onDelete,
+	fallbackFocus,
+}: {
+	conversations: ConversationListItem[];
+	onSelect?: (id: string) => void;
+	onDelete?: (id: string) => void | Promise<void>;
+	fallbackFocus?: RefObject<HTMLElement | null>;
+}) {
+	const [target, setTarget] = useState<ConversationListItem>();
+	const [open, setOpen] = useState(false);
+	const list = useRef<HTMLDivElement>(null);
+	const returnFocus = useRef<HTMLElement | null>(null);
+	return (
+		<>
+			<div ref={list} className="ap-conversation-list" tabIndex={-1}>
+				{conversations.map((conversation) => (
+					<div
+						className="ap-conversation-row"
+						data-selected={conversation.selected || undefined}
+						key={conversation.id}
+					>
+						<button
+							type="button"
+							className="ap-conversation-item"
+							aria-current={conversation.selected ? "true" : undefined}
+							title={conversation.title}
+							onClick={() => onSelect?.(conversation.id)}
+						>
+							<span>{conversation.title}</span>
+						</button>
+						{onDelete && (
+							<button
+								type="button"
+								className="ap-conversation-delete"
+								aria-label={`Delete conversation “${conversation.title}”`}
+								onClick={(event) => {
+									returnFocus.current = event.currentTarget;
+									setTarget(conversation);
+									setOpen(true);
+								}}
+							>
+								<Icon name="trash" />
+							</button>
+						)}
+					</div>
+				))}
+			</div>
+			<ConfirmDialog
+				open={open}
+				onOpenChange={setOpen}
+				returnFocus={returnFocus}
+				title="Delete conversation?"
+				description={
+					<>
+						Permanently delete “{target?.title}”? Your agent and published
+						version will stay as they are.
+					</>
+				}
+				confirmLabel="Delete conversation"
+				onConfirm={async () => {
+					if (!target || !onDelete) return;
+					await onDelete(target.id);
+					returnFocus.current =
+						fallbackFocus?.current ??
+						list.current?.querySelector<HTMLButtonElement>(
+							".ap-conversation-item",
+						) ??
+						list.current;
+				}}
+			/>
+		</>
 	);
 }
 

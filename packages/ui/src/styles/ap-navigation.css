@@ -320,3 +320,69 @@
 	display: inline-block;
 	width: calc-size(max-content, round(up, size, 1px));
 }
+
+.ap-conversation-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+	min-width: 0;
+}
+.ap-conversation-row {
+	display: flex;
+	align-items: center;
+	min-width: 0;
+	border-radius: var(--radius-md);
+}
+.ap-conversation-row:hover,
+.ap-conversation-row:focus-within {
+	background: var(--muted-background);
+}
+.ap-conversation-row[data-selected] {
+	background: var(--muted-hover);
+}
+.ap-conversation-row .ap-conversation-item {
+	flex: 1;
+	min-width: 0;
+	height: 32px;
+	padding: 0 12px;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+.ap-conversation-row .ap-conversation-item:hover,
+.ap-conversation-row .ap-conversation-item[aria-current] {
+	background: transparent;
+}
+.ap-conversation-row .ap-conversation-delete {
+	display: grid;
+	place-items: center;
+	flex-shrink: 0;
+	width: 32px;
+	height: 32px;
+	border: 0;
+	border-radius: var(--radius-sm);
+	background: transparent;
+	color: var(--foreground-muted);
+	cursor: pointer;
+	opacity: 0;
+}
+.ap-conversation-row:is(:hover, :focus-within, [data-selected])
+	.ap-conversation-delete {
+	opacity: 1;
+}
+.ap-conversation-row .ap-conversation-delete:hover {
+	color: var(--danger-foreground);
+	background: var(--danger-background);
+}
+.ap-conversation-list button:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: -2px;
+}
+@media (hover: none) {
+	.ap-conversation-delete {
+		opacity: 1;
+	}
+}

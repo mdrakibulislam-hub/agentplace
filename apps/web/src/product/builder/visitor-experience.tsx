@@ -1,8 +1,19 @@
 import { AgentPreview } from "@agentplace/ui/components/ap-builder";
-import { Avatar } from "@agentplace/ui/components/ap-data";
+import {
+	type ChatMessage,
+	ConversationMessage,
+	ConversationStatus,
+} from "@agentplace/ui/components/ap-conversation";
 import { Icon } from "@agentplace/ui/components/ap-icon";
+import { useMotionEnvironment } from "@agentplace/ui/components/ap-motion";
 import { Button } from "@agentplace/ui/components/button";
-import { type CSSProperties, useState } from "react";
+import {
+	type CSSProperties,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from "react";
 import type { PrototypeProject } from "../prototype-data";
 import {
 	type BrandingDraft,
@@ -15,23 +26,60 @@ import { BuilderDialog } from "./builder-primitives";
 import "./builder.css";
 
 type VisitorBranding = BrandingDraft | PublishedSnapshot;
+export type VisitorReply = (
+	question: string,
+	history: ChatMessage[],
+	signal: AbortSignal,
+) => Promise<{ text: string; suggestions?: string[] }>;
+
+/** Local prototype only. A live runtime can supply onReply without changing the UI. */
+const prototypeReply: VisitorReply = async (question) => {
+	if (/website|web design/i.test(question))
+		return {
+			text: "Are you starting a new website or redesigning an existing one?",
+		};
+	if (/ux|product|research/i.test(question))
+		return { text: "What part of the product would you like to improve?" };
+	return {
+		text: "Tell me a little about your project and what you’d like to achieve.",
+	};
+};
 
 export function BuilderVisitorPreview({
 	branding,
 	standalone = false,
 	published = false,
 	onOpenExternal,
+	onReply = prototypeReply,
+	initialMessages = [],
+	initialSuggestions = [],
 }: {
 	branding: VisitorBranding;
 	standalone?: boolean;
 	published?: boolean;
 	onOpenExternal?: () => void;
+	onReply?: VisitorReply;
+	initialMessages?: ChatMessage[];
+	initialSuggestions?: string[];
 }) {
 	const [mobile, setMobile] = useState(false);
 	const [call, setCall] = useState<"setup" | "connected">();
-	const [messages, setMessages] = useState<
-		{ question: string; response: string }[]
-	>([]);
+	const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
+	const [suggestedReplies, setSuggestedReplies] =
+		useState<string[]>(initialSuggestions);
+	const [request, setRequest] = useState<{
+		state: "working" | "error" | "stopped";
+		message: ChatMessage;
+		error?: string;
+	}>();
+	const operation = useRef<AbortController | null>(null);
+	const transcript = useRef<HTMLDivElement>(null);
+	const { reduced } = useMotionEnvironment();
+	useEffect(() => () => operation.current?.abort(), []);
+	useLayoutEffect(() => {
+		if (messages.length && transcript.current && !reduced)
+			transcript.current.scrollTop = transcript.current.scrollHeight;
+	}, [messages, reduced]);
 	const company = branding.company ?? branding.name;
 	const companyLabel = company.replace(/ Creative$/, "");
 	const displayName = companyLabel || branding.name;
@@ -40,20 +88,53 @@ export function BuilderVisitorPreview({
 		"--ap-visitor-accent-text": contrastText(branding.color),
 	} as CSSProperties;
 
-	function reply(question: string) {
-		let response =
-			"I can help you choose a service. Tell me a little about your project and what you’d like to achieve.";
-		if (/website|web design/i.test(question)) {
-			response =
-				"I can help with website design and development. Are you starting a new website or redesigning an existing one?";
-		} else if (/ux|product|research/i.test(question)) {
-			response =
-				"I can help with product design and UX research. What part of the product would you like to improve?";
-		} else if (/contact|enquir/i.test(question)) {
-			response =
-				"Tell me what you’re looking for and I’ll help you prepare an enquiry to review.";
+	async function reply(question: string, retry = false) {
+		if (operation.current) return;
+		const message =
+			retry && request
+				? request.message
+				: { id: crypto.randomUUID(), role: "you" as const, text: question };
+		const history = retry ? messages : [...messages, message];
+		if (!retry) setMessages(history);
+		const controller = new AbortController();
+		operation.current = controller;
+		setRequest({ state: "working", message });
+		setSuggestedReplies([]);
+		try {
+			const response = await onReply(message.text, history, controller.signal);
+			if (controller.signal.aborted) return;
+			if (!response?.text?.trim())
+				throw new Error("The agent returned an empty reply. Try again.");
+			setMessages((current) => [
+				...current,
+				{ id: crypto.randomUUID(), role: "agent", text: response.text },
+			]);
+			setSuggestedReplies(response.suggestions ?? []);
+			setRequest(undefined);
+		} catch (error) {
+			if (!controller.signal.aborted)
+				setRequest({
+					state: "error",
+					message,
+					error: error instanceof Error ? error.message : undefined,
+				});
+		} finally {
+			if (operation.current === controller) operation.current = null;
 		}
-		setMessages((current) => [...current, { question, response }]);
+	}
+	function stop() {
+		operation.current?.abort();
+		operation.current = null;
+		setRequest((current) =>
+			current ? { ...current, state: "stopped", error: undefined } : undefined,
+		);
+	}
+	function reset() {
+		operation.current?.abort();
+		operation.current = null;
+		setMessages([]);
+		setRequest(undefined);
+		setSuggestedReplies([]);
 	}
 
 	return (
@@ -65,7 +146,12 @@ export function BuilderVisitorPreview({
 			style={colors}
 		>
 			<AgentPreview
-				company={displayName.toUpperCase()}
+				company={messages.length ? company : displayName.toUpperCase()}
+				agentName={branding.name}
+				conversation={messages.length > 0}
+				onReset={reset}
+				onStop={stop}
+				submitting={request?.state === "working"}
 				companyInitials={displayName.slice(0, 1).toUpperCase()}
 				companyLogo={branding.companyLogo}
 				title="What are you working on?"
@@ -76,24 +162,65 @@ export function BuilderVisitorPreview({
 				mode={published ? "public" : standalone ? "standalone" : "test"}
 				onDevice={() => setMobile((current) => !current)}
 				onOpenExternal={onOpenExternal}
-				onSend={reply}
+				onSend={(question) => {
+					void reply(question);
+				}}
 				onCall={() => setCall("setup")}
 			>
 				{messages.length > 0 && (
-					<div className="ap-builder-test-messages" aria-live="polite">
-						{messages.map(({ question, response }, index) => (
-							<div key={`${index}-${question}`}>
-								<p>
-									<strong>You</strong> {question}
-								</p>
-								<p className="ap-builder-visitor-reply">
-									{branding.avatar && (
-										<Avatar size="small" src={branding.avatar} alt="" />
-									)}
-									<strong>{branding.name}</strong> {response}
-								</p>
-							</div>
+					<div
+						ref={transcript}
+						className="ap-visitor-transcript"
+						role="log"
+						aria-label="Visitor conversation"
+					>
+						{messages.map((message) => (
+							<ConversationMessage
+								key={message.id}
+								{...message}
+								speaker={message.role}
+								experience="visitor"
+								name={branding.name}
+								avatar={branding.avatar}
+							/>
 						))}
+						{request?.state === "working" ? (
+							<ConversationMessage
+								speaker="agent"
+								text=""
+								experience="visitor"
+								name={branding.name}
+								avatar={branding.avatar}
+							>
+								<ConversationStatus experience="visitor" state="working" />
+							</ConversationMessage>
+						) : (
+							request && (
+								<ConversationStatus
+									experience="visitor"
+									state={request.state}
+									error={request.error}
+									onRetry={() => {
+										void reply(request.message.text, true);
+									}}
+								/>
+							)
+						)}
+						{suggestedReplies.length > 0 && (
+							<div className="ap-chat-reply-chips">
+								{suggestedReplies.map((text) => (
+									<button
+										type="button"
+										key={text}
+										onClick={() => {
+											void reply(text);
+										}}
+									>
+										{text}
+									</button>
+								))}
+							</div>
+						)}
 					</div>
 				)}
 			</AgentPreview>

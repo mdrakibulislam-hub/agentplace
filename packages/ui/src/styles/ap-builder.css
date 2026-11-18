@@ -548,3 +548,51 @@ button.ap-project-cover {
 	mask: url("../assets/builder-agent-zap.svg") center / contain no-repeat;
 	background: currentColor;
 }
+
+.ap-visitor-experience[data-conversation] {
+	gap: var(--space-24);
+	min-height: 0;
+	flex-shrink: 1;
+}
+.ap-preview-conversation-header {
+	display: flex;
+	align-items: center;
+	gap: var(--space-12);
+	flex-shrink: 0;
+	min-width: 0;
+	height: 40px;
+}
+.ap-preview-conversation-header > div {
+	flex: 1;
+	min-width: 0;
+}
+.ap-preview-conversation-header p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 590;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ap-preview-conversation-header span {
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--foreground-muted);
+}
+.ap-visitor-transcript {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-24);
+	flex: 1;
+	min-height: 0;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	scrollbar-width: thin;
+}
+.ap-visitor-transcript > * {
+	flex-shrink: 0;
+}
+.ap-visitor-experience[data-conversation] .ap-visitor-footer {
+	flex-shrink: 0;
+}

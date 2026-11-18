@@ -30,6 +30,7 @@ const meta = {
 		onNewConversation: fn(),
 		onManageAccess: fn(),
 		onConversation: fn(),
+		onDeleteConversation: fn(),
 	},
 } satisfies Meta<typeof ProjectNavigation>;
 export default meta;

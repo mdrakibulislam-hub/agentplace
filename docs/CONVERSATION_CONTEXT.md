@@ -175,6 +175,12 @@ The user asked to save this conversation's context into their `Personal Projects
 
 Outcome: an outer workspace entry point, repository `AGENTS.md`, current development context, this chronological record, a suggested next-agent prompt and a copied complete design handoff bundle. The bundle is repository-local and hash verified. Existing application code and dependencies remain the integration starting point. No production application behavior was implemented by this transfer.
 
+## 20. Conversation design and code synchronization
+
+The user chose both builder and visitor conversation experiences, then requested a simpler project switcher (hide Create new and View all), conversation trash actions and a confirmation modal. They explicitly asked to implement those and the earlier design updates in shared components, Storybook and the frontend.
+
+Outcome: Figma conversation panels/states in section `212:6270`, reusable messages in `312:1984`, and deletion scene `325:348`; simplified switcher `131:1318`; trash controls across sidebar variants `49:1206`. Shared message/status and conversation-list/dialog components now power the product scenes and frontend. Deletion persists only the conversation collection, supports cancellation/failure/retry, and preserves the agent draft/history/published version. Builder and visitor async state are independent. Storybook exercises deletion, retry without duplicate messages, Stop and visitor Reset. Browser-local persistence and simulated agent execution remain prototype boundaries; no live AI service was added. The original Reicon zap asset was corrected from the Figma master `49:620` after finding that its old export contained a chevron.
+
 ## Decisions still requiring implementation or later product input
 
 Provider selection for AI execution, voice, email/Google configuration, billing, uploads/storage and real integrations is not fixed here. Responsive/mobile layouts and dark-mode behavior require review. Use the existing code and explicit user direction to resolve active implementation needs; do not fabricate completed services from sample Figma data.

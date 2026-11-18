@@ -123,6 +123,7 @@
 }
 
 .ap-builder-chat {
+	padding-block: 24px;
 	display: flex;
 	flex-direction: column;
 	height: max(640px, calc(100svh - 128px));
@@ -196,40 +197,6 @@
 .ap-builder-dialog-content > p {
 	margin: 0;
 	color: var(--foreground-muted);
-}
-
-.ap-builder-message {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-}
-
-.ap-builder-message[data-role="you"] {
-	padding: 16px;
-	gap: 8px;
-	border-radius: var(--radius-lg);
-	background: var(--background-secondary);
-}
-
-.ap-builder-message > div {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	font-weight: 510;
-	min-height: 24px;
-}
-
-.ap-builder-message:where([data-role="you"]) > div {
-	min-height: 16px;
-	font-size: 12px;
-	line-height: 16px;
-	color: var(--foreground-muted);
-}
-
-.ap-builder-message p {
-	margin: 0;
-	white-space: pre-wrap;
-	overflow-wrap: anywhere;
 }
 
 .ap-builder-note {
@@ -377,12 +344,13 @@
 }
 
 .ap-builder-visitor .ap-agent-preview {
-	height: auto;
+	height: max(644px, calc(100svh - 128px));
 	width: 100%;
 	min-height: 644px;
 }
 
 .ap-builder-visitor .ap-visitor-experience {
+	min-height: 0;
 	height: auto;
 	flex: 1;
 }
@@ -1147,4 +1115,12 @@
 		padding: 0 12px 8px;
 		background: var(--background-secondary);
 	}
+}
+
+.ap-builder-conversation-menu .ap-conversation-row {
+	font-size: 14px;
+	line-height: 20px;
+}
+.ap-builder-conversation-menu .ap-conversation-delete {
+	opacity: 1;
 }

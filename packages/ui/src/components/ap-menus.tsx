@@ -309,6 +309,7 @@ export interface ProjectPickerProps {
 	onCreate?: () => void;
 	onViewAll?: () => void;
 	mode?: "switcher" | "search";
+	showActions?: boolean;
 }
 
 export function ProjectSwitcher({
@@ -321,6 +322,7 @@ export function ProjectSwitcher({
 	onCreate,
 	onViewAll,
 	mode = "switcher",
+	showActions = false,
 }: ProjectPickerProps) {
 	const [query, setQuery] = useState("");
 	const value = controlledQuery ?? query;
@@ -389,7 +391,7 @@ export function ProjectSwitcher({
 					/>
 				</>
 			)}
-			{!search && (
+			{!search && showActions && (
 				<>
 					<div className="ap-menu-divider" />
 					<RichMenuItem

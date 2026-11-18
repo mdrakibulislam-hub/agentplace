@@ -16,7 +16,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"384px panel with heading, search, project rows and create/view-all actions. Keyboard ArrowDown/Up moves results, Enter selects; typing remains in the search box. Use the anchored example for Escape/outside dismissal and focus restoration. The selected project check is independent of publication status.",
+					"384px panel with heading, search, project rows. Create and view-all actions are hidden for now, including their divider. Keyboard ArrowDown/Up moves results, Enter selects; typing remains in the search box. Use the anchored example for Escape/outside dismissal and focus restoration. The selected project check is independent of publication status.",
 			},
 		},
 	},
@@ -60,5 +60,18 @@ export const KeyboardAndDismiss: Story = {
 		await expect(args.onSelect).toHaveBeenCalledWith("storybook-booking");
 		await userEvent.keyboard("{Escape}");
 		await waitFor(() => expect(trigger).toHaveFocus());
+	},
+};
+
+export const Simplified: Story = {
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		await expect(
+			canvas.queryByRole("button", { name: "Create new project" }),
+		).not.toBeInTheDocument();
+		await expect(
+			canvas.queryByRole("button", { name: "View all projects" }),
+		).not.toBeInTheDocument();
+		await expect(canvas.getAllByRole("option")).toHaveLength(3);
 	},
 };

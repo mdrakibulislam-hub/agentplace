@@ -3,6 +3,7 @@ import {
 	type FormEvent,
 	type KeyboardEvent,
 	type ReactNode,
+	useEffect,
 	useId,
 	useRef,
 	useState,
@@ -316,6 +317,7 @@ export function ChatComposer({
 	onSubmit,
 	onAttach,
 	onModel,
+	onStop,
 	submitting = false,
 	error,
 	placeholder = "Describe a change to your agent…",
@@ -324,6 +326,7 @@ export function ChatComposer({
 	className = "",
 }: ComposerProps & {
 	onModel?: () => void;
+	onStop?: () => void;
 	placeholder?: string;
 	model?: string;
 	modelControl?: ReactNode;
@@ -336,6 +339,12 @@ export function ChatComposer({
 	const [localError, setLocalError] = useState("");
 	const errorId = useId();
 	const busy = submitting || pending;
+	const wasBusy = useRef(false);
+	useEffect(() => {
+		if (wasBusy.current && !busy && !document.querySelector('[role="dialog"]'))
+			textarea.current?.focus();
+		wasBusy.current = busy;
+	}, [busy]);
 	function change(value: string) {
 		setInternalValue(value);
 		onValueChange?.(value);
@@ -412,13 +421,24 @@ export function ChatComposer({
 					)}
 					<div className="ap-builder-spacer" />
 					<button
-						type="submit"
+						type={busy && onStop ? "button" : "submit"}
+						onClick={busy && onStop ? onStop : undefined}
 						className="ap-composer-send"
-						aria-label={busy ? "Sending message" : "Send message"}
+						aria-label={
+							busy && onStop
+								? "Stop editing"
+								: busy
+									? "Sending message"
+									: "Send message"
+						}
 						aria-busy={busy}
-						disabled={busy || !value.trim()}
+						disabled={busy ? !onStop : !value.trim()}
 					>
-						<Icon name={busy ? "loader" : "arrow-up"} />
+						{busy && onStop ? (
+							<span className="ap-composer-stop-mark" />
+						) : (
+							<Icon name={busy ? "loader" : "arrow-up"} />
+						)}
 					</button>
 				</div>
 			</form>
@@ -435,6 +455,10 @@ export interface AgentPreviewProps {
 	company: string;
 	companyInitials?: string;
 	companyLogo?: string;
+	agentName?: string;
+	conversation?: boolean;
+	onReset?: () => void;
+	onStop?: () => void;
 	title: string;
 	description: string;
 	suggestions: string[];
@@ -454,6 +478,10 @@ export function AgentPreview({
 	company,
 	companyInitials = "",
 	companyLogo,
+	agentName,
+	conversation = false,
+	onReset,
+	onStop,
 	title,
 	description,
 	suggestions,
@@ -476,6 +504,12 @@ export function AgentPreview({
 	const lock = useRef(false);
 	const input = useRef<HTMLInputElement>(null);
 	const busy = submitting || pending;
+	const wasBusy = useRef(false);
+	useEffect(() => {
+		if (wasBusy.current && !busy && !document.querySelector('[role="dialog"]'))
+			input.current?.focus();
+		wasBusy.current = busy;
+	}, [busy]);
 	async function send(event: FormEvent) {
 		event.preventDefault();
 		if (!value.trim() || busy || lock.current) return;
@@ -504,7 +538,7 @@ export function AgentPreview({
 		>
 			{mode === "test" && (
 				<>
-					<AmbientBottomGradient variant="preview" />
+					{!conversation && <AmbientBottomGradient variant="preview" />}
 					<div className="ap-preview-toolbar">
 						<Icon name="eye" />
 						<span>Test as a visitor</span>
@@ -527,46 +561,79 @@ export function AgentPreview({
 					</div>
 				</>
 			)}
-			<div className="ap-visitor-experience">
-				{coverImage ? (
-					<div className="ap-preview-cover">
-						<img src={coverImage} alt={company} />
-					</div>
-				) : (
-					<div className="ap-preview-company">
+			<div
+				className="ap-visitor-experience"
+				data-conversation={conversation || undefined}
+			>
+				{conversation ? (
+					<div className="ap-preview-conversation-header">
 						<Avatar
 							initials={companyInitials}
 							src={companyLogo}
 							alt={company}
 							size="large"
 						/>
-						<span>{company}</span>
-					</div>
-				)}
-				<h1>
-					<span className="ap-glyph-heading-xl">{title}</span>
-				</h1>
-				<p className="ap-preview-description">
-					<span className="ap-glyph-body-base">{description}</span>
-				</p>
-				<div className="ap-preview-suggestions">
-					{suggestions.map((suggestion) => (
+						<div>
+							<p>{agentName || company}</p>
+							<span>{company}</span>
+						</div>
 						<button
 							type="button"
-							key={suggestion}
+							className="ap-composer-icon"
+							aria-label="Start new visitor conversation"
 							onClick={() => {
-								setValue(suggestion);
-								onSuggestion?.(suggestion);
+								onReset?.();
+								setValue("");
+								setSendError("");
 								input.current?.focus();
 							}}
 						>
-							{suggestion}
-							<Icon name="arrow-right" />
+							<Icon name="refresh" />
 						</button>
-					))}
-				</div>
+					</div>
+				) : (
+					<>
+						{coverImage ? (
+							<div className="ap-preview-cover">
+								<img src={coverImage} alt={company} />
+							</div>
+						) : (
+							<div className="ap-preview-company">
+								<Avatar
+									initials={companyInitials}
+									src={companyLogo}
+									alt={company}
+									size="large"
+								/>
+								<span>{company}</span>
+							</div>
+						)}
+						<h1>
+							<span className="ap-glyph-heading-xl">{title}</span>
+						</h1>
+						<p className="ap-preview-description">
+							<span className="ap-glyph-body-base">{description}</span>
+						</p>
+						<div className="ap-preview-suggestions">
+							{suggestions.map((suggestion) => (
+								<button
+									type="button"
+									key={suggestion}
+									onClick={() => {
+										setValue(suggestion);
+										onSuggestion?.(suggestion);
+										input.current?.focus();
+									}}
+								>
+									{suggestion}
+									<Icon name="arrow-right" />
+								</button>
+							))}
+						</div>
+					</>
+				)}
 				{children}
-				<div className="ap-builder-spacer" />
+				{!conversation && <div className="ap-builder-spacer" />}
 				<div className="ap-visitor-footer">
 					{mode !== "public" && (
 						<p className="ap-preview-test-mode">
@@ -581,19 +648,28 @@ export function AgentPreview({
 								aria-label="Ask your agent a question"
 								aria-invalid={Boolean(sendError)}
 								aria-describedby={sendError ? errorId : undefined}
-								placeholder="Ask your agent a question…"
+								placeholder={
+									conversation
+										? "Message the agent…"
+										: "Ask your agent a question…"
+								}
 								value={value}
 								onInput={(e) => setValue(e.currentTarget.value)}
 								disabled={busy}
 							/>
 							<button
-								type="submit"
-								aria-label="Send question"
+								type={busy && onStop ? "button" : "submit"}
+								onClick={busy && onStop ? onStop : undefined}
+								aria-label={busy && onStop ? "Stop reply" : "Send question"}
 								className="ap-composer-send"
-								disabled={busy || !value.trim()}
+								disabled={busy ? !onStop : !value.trim()}
 								aria-busy={busy}
 							>
-								<Icon name={busy ? "loader" : "arrow-up"} />
+								{busy && onStop ? (
+									<span className="ap-composer-stop-mark" />
+								) : (
+									<Icon name={busy ? "loader" : "arrow-up"} />
+								)}
 							</button>
 						</form>
 						<button type="button" className="ap-visitor-call" onClick={onCall}>
