@@ -151,6 +151,13 @@
 	gap: 24px;
 	padding-bottom: 24px;
 	overscroll-behavior: contain;
+	scrollbar-width: thin;
+	scrollbar-color: color-mix(
+			in srgb,
+			var(--border-strong) 45%,
+			var(--background-default)
+		)
+		transparent;
 }
 
 .ap-builder-chat-scroll > * {
