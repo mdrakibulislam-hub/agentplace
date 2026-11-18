@@ -1,0 +1,210 @@
+.product-auth-shell {
+	position: relative;
+	isolation: isolate;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100svh;
+	padding: var(--space-48);
+	overflow: clip;
+	background: var(--background-secondary);
+	color: var(--foreground-default);
+	font-family: var(--font-family-ui), var(--font-family-fallback);
+	font-variation-settings: "wdth" 100;
+}
+
+.product-auth-shell .product-auth-ambient {
+	position: absolute;
+	inset: auto 0 0;
+	z-index: -1;
+	width: 100%;
+}
+
+.product-auth-brand,
+.product-auth-footer {
+	display: flex;
+	flex: none;
+	justify-content: center;
+}
+
+.product-auth-card.ap-surface {
+	width: 400px;
+	height: auto;
+	margin-block: auto;
+	padding: calc(var(--space-32) - var(--stroke-default));
+	border: var(--stroke-default) solid var(--border-default);
+}
+
+.product-auth-brand {
+	margin-bottom: var(--space-24);
+}
+
+.product-auth-footer {
+	margin-top: var(--space-24);
+}
+
+.product-auth-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-24);
+}
+
+.product-auth-form h1 {
+	position: relative;
+	top: 1px;
+	margin: 0;
+	outline: none;
+	text-align: center;
+	font-size: var(--type-heading-lg-size);
+	line-height: var(--type-heading-lg-line-height);
+	font-weight: 590;
+}
+
+.product-auth-destination {
+	color: var(--foreground-muted);
+	text-align: center;
+	font-size: var(--type-body-sm-regular-size);
+	line-height: var(--type-body-sm-regular-line-height);
+}
+
+.product-auth-destination {
+	display: grid;
+	gap: var(--space-8);
+}
+
+.product-auth-destination p {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
+.product-auth-destination p:last-child {
+	color: var(--foreground-default);
+	font-weight: 510;
+}
+
+.product-auth-google.ap-button::before {
+	box-shadow: inset 0 0 0 var(--stroke-default) var(--border-default);
+}
+
+.product-auth-google-label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-8);
+}
+
+.product-auth-google:has(.ap-badge) .product-auth-google-label {
+	width: 214px;
+	max-width: calc(100% - var(--space-80));
+}
+
+.product-auth-alternative {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-8);
+	min-height: var(--space-24);
+	color: var(--foreground-muted);
+	font-size: var(--type-body-xs-medium-size);
+	line-height: var(--type-body-xs-medium-line-height);
+	font-weight: 510;
+}
+
+.product-auth-fields,
+.product-auth-password,
+.product-auth-verification,
+.product-auth-actions {
+	display: flex;
+	flex-direction: column;
+}
+
+.product-auth-fields {
+	gap: var(--space-20);
+}
+
+.product-auth-password {
+	gap: var(--space-6);
+}
+
+.product-auth-fields .ap-field {
+	width: 100%;
+}
+
+.product-auth-fields .ap-input {
+	/* Align SF Pro's browser baseline with the native 16px field text. */
+	padding-block-start: calc(var(--space-4) + 2px);
+}
+
+.product-auth-fields .ap-password-control .ap-input {
+	padding-block-start: 2px;
+}
+
+.product-auth-verification {
+	gap: var(--space-8);
+}
+
+.product-auth-verification .ap-input:focus {
+	border-color: var(--focus-ring);
+	background: var(--card-background);
+	box-shadow: inset 0 0 0 calc(var(--stroke-focus) - var(--stroke-default))
+		var(--focus-ring);
+}
+
+.product-auth-code-label {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-8);
+}
+
+.product-auth-code-label > :not(.ap-field-label),
+.product-auth-hint,
+.product-auth-legal {
+	margin: 0;
+	color: var(--foreground-muted);
+	font-size: var(--type-body-xs-regular-size);
+	font-weight: 400;
+	line-height: var(--type-body-xs-regular-line-height);
+}
+
+.product-auth-legal {
+	text-align: center;
+	text-wrap: pretty;
+}
+
+.product-auth-resend {
+	cursor: pointer;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.product-auth-resend:focus-visible {
+	outline: var(--stroke-focus) solid var(--focus-ring);
+	outline-offset: 2px;
+}
+
+.product-auth-actions {
+	gap: var(--space-12);
+}
+
+@media (max-width: 520px) {
+	.product-auth-shell {
+		padding-inline: var(--space-16);
+	}
+
+	.product-auth-footer .ap-client-logos {
+		zoom: 0.7;
+	}
+
+	.product-auth-google:has(.ap-badge) .product-auth-google-label {
+		width: auto;
+		max-width: none;
+	}
+}
+
+@media (max-width: 380px) {
+	.product-auth-card.ap-surface {
+		padding: calc(var(--space-20) - var(--stroke-default));
+	}
+}

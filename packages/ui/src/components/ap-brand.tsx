@@ -27,10 +27,12 @@ import "../styles/ap-brand.css";
 export function Logo({
 	inverse = false,
 	animated = true,
+	cycleDuration = 6.8,
 	className,
 }: {
 	inverse?: boolean;
 	animated?: boolean;
+	cycleDuration?: number;
 	className?: string;
 }) {
 	const ref = useRef<HTMLSpanElement>(null);
@@ -38,6 +40,7 @@ export function Logo({
 	useEffect(() => {
 		const node = ref.current;
 		if (!node || environment.reduced) return;
+		const duration = Math.max(2.04, cycleDuration);
 		const controls = [
 			...node.querySelectorAll<HTMLElement>("[data-ap-logo-lid]"),
 		].map((lid) => {
@@ -49,8 +52,15 @@ export function Logo({
 					y: [0, 0, direction * 0.906, direction * 0.906, 0, 0],
 				},
 				{
-					duration: 6.8,
-					times: [0, 0.25, 0.2647, 0.2721, 0.3, 1],
+					duration,
+					times: [
+						0,
+						1.7 / duration,
+						1.8 / duration,
+						1.85 / duration,
+						2.04 / duration,
+						1,
+					],
 					ease: ["linear", "easeIn", "linear", "easeOut", "linear"],
 					repeat: Number.POSITIVE_INFINITY,
 				},
@@ -68,7 +78,7 @@ export function Logo({
 			document.removeEventListener("visibilitychange", update);
 			for (const c of controls) c.cancel();
 		};
-	}, [environment.reduced, environment.offscreen]);
+	}, [cycleDuration, environment.reduced, environment.offscreen]);
 	return (
 		<span
 			ref={ref}
