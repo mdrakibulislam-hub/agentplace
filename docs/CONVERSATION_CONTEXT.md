@@ -181,6 +181,10 @@ The user chose both builder and visitor conversation experiences, then requested
 
 Outcome: Figma conversation panels/states in section `212:6270`, reusable messages in `312:1984`, and deletion scene `325:348`; simplified switcher `131:1318`; trash controls across sidebar variants `49:1206`. Shared message/status and conversation-list/dialog components now power the product scenes and frontend. Deletion persists only the conversation collection, supports cancellation/failure/retry, and preserves the agent draft/history/published version. Builder and visitor async state are independent. Storybook exercises deletion, retry without duplicate messages, Stop and visitor Reset. Browser-local persistence and simulated agent execution remain prototype boundaries; no live AI service was added. The original Reicon zap asset was corrected from the Figma master `49:620` after finding that its old export contained a chevron.
 
+## 21. Refine conversation delete affordance
+
+The user corrected the trash icon proportions and hover behavior: use the smaller frontend-sized icon in Figma, reveal it only when hovering a conversation row whether selected or unselected, and turn only the icon danger red on button hover without a filled red background. The Figma nested artwork is now scaled to 16px inside the existing 32px target, with Hidden/Revealed/Hover variants. The shared sidebar and compact picker follow the same rules; keyboard focus reveals the action and touch layouts retain an explicit action.
+
 ## Decisions still requiring implementation or later product input
 
 Provider selection for AI execution, voice, email/Google configuration, billing, uploads/storage and real integrations is not fixed here. Responsive/mobile layouts and dark-mode behavior require review. Use the existing code and explicit user direction to resolve active implementation needs; do not fabricate completed services from sample Figma data.

@@ -493,6 +493,7 @@ export const ConversationDeletion: Story = {
 			name: "Delete conversation “Follow up”",
 		});
 		await userEvent.tab();
+		trigger.focus();
 		await userEvent.click(trigger);
 		const dialog = await popup.findByRole("dialog", {
 			name: "Delete conversation?",
@@ -540,6 +541,11 @@ export const DeleteLastConversationWithRetry: Story = {
 	play: async ({ canvasElement, args }) => {
 		const canvas = within(canvasElement);
 		const popup = within(canvasElement.ownerDocument.body);
+		canvas
+			.getByRole("button", {
+				name: "Delete conversation “Refine conversation”",
+			})
+			.focus();
 		await userEvent.click(
 			canvas.getByRole("button", {
 				name: "Delete conversation “Refine conversation”",

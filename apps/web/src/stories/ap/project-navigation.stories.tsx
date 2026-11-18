@@ -12,7 +12,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"224 × 896 project-scoped navigation. New chat and conversation entries provide access to Chat; there is no duplicate Chat link in Project tools. Skills, Instructions.md, History and Branding retain their active states. Conversation and tool rows are 32px high. Project access is one left-aligned bottom action. Home has no sidebar.",
+					"224 × 896 project-scoped navigation. New chat and conversation entries provide access to Chat; there is no duplicate Chat link in Project tools. Skills, Instructions.md, History and Branding retain their active states. Conversation and tool rows are 32px high. The 16px conversation trash icon is hidden at rest on all rows, revealed on row hover or focus, and turns danger red on icon hover with a transparent background. Touch layouts keep it visible. Project access is one left-aligned bottom action. Home has no sidebar.",
 			},
 		},
 	},

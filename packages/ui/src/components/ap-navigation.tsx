@@ -244,7 +244,7 @@ export function ConversationList({
 									setOpen(true);
 								}}
 							>
-								<Icon name="trash" />
+								<Icon name="trash" size={16} />
 							</button>
 						)}
 					</div>

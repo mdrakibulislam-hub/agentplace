@@ -368,21 +368,22 @@
 	color: var(--foreground-muted);
 	cursor: pointer;
 	opacity: 0;
+	pointer-events: none;
 }
-.ap-conversation-row:is(:hover, :focus-within, [data-selected])
-	.ap-conversation-delete {
+.ap-conversation-row:is(:hover, :has(:focus-visible)) .ap-conversation-delete {
 	opacity: 1;
+	pointer-events: auto;
 }
 .ap-conversation-row .ap-conversation-delete:hover {
-	color: var(--danger-foreground);
-	background: var(--danger-background);
+	color: var(--danger-background);
 }
 .ap-conversation-list button:focus-visible {
 	outline: 2px solid var(--focus-ring);
 	outline-offset: -2px;
 }
 @media (hover: none) {
-	.ap-conversation-delete {
+	.ap-conversation-row .ap-conversation-delete {
 		opacity: 1;
+		pointer-events: auto;
 	}
 }
