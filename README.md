@@ -41,15 +41,15 @@ Storybook opens at http://localhost:6006. The web server uses a fixed port so au
 
 ## Workspace
 
-| Path              | Purpose                                                                          |
-| ----------------- | -------------------------------------------------------------------------------- |
-| `apps/web`        | React product prototype, TanStack Router routes, and Storybook                   |
-| `apps/server`     | Hono API, Better Auth endpoints, and tRPC transport                              |
-| `packages/api`    | Shared tRPC router, context, and authenticated procedures                        |
-| `packages/auth`   | Better Auth configuration and Drizzle adapter                                    |
-| `packages/db`     | SQLite client, authentication schema, and migrations                             |
-| `packages/ui`     | Shared UI components, styles, and light/dark design tokens                       |
-| `packages/config` | Shared TypeScript configuration                                                  |
+| Path              | Purpose                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| `apps/web`        | React product prototype, TanStack Router routes, and Storybook |
+| `apps/server`     | Hono API, Better Auth endpoints, and tRPC transport            |
+| `packages/api`    | Shared tRPC router, context, and authenticated procedures      |
+| `packages/auth`   | Better Auth configuration and Drizzle adapter                  |
+| `packages/db`     | SQLite client, authentication schema, and migrations           |
+| `packages/ui`     | Shared UI components, styles, and light/dark design tokens     |
+| `packages/config` | Shared TypeScript configuration                                |
 
 ## Design system
 
