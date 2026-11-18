@@ -1,0 +1,263 @@
+.ap-project-home {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	min-height: calc(100svh - 64px);
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-48);
+	padding: var(--space-48);
+	background: var(--background-secondary);
+	color: var(--foreground-default);
+}
+
+.ap-ambient.ap-home-ambient {
+	position: absolute;
+	z-index: -1;
+	inset: auto 0 0;
+	width: 100%;
+	max-height: 100%;
+}
+
+.ap-home-start {
+	display: grid;
+	justify-items: center;
+	gap: var(--space-24);
+	width: 100%;
+}
+
+.ap-home-intro {
+	display: grid;
+	justify-items: center;
+	gap: var(--space-8);
+	text-align: center;
+}
+
+.ap-home-intro h1 {
+	font-size: var(--type-display-welcome-size);
+	line-height: var(--type-display-welcome-line-height);
+	font-weight: 400;
+}
+
+.ap-home-intro p {
+	color: var(--foreground-muted);
+	font-size: var(--type-body-base-regular-size);
+	line-height: var(--type-body-base-regular-line-height);
+}
+
+.ap-home-prompt {
+	width: min(100%, 768px);
+}
+
+.ap-home-prompt .ap-new-project-prompt :is(textarea, .ap-prompt-actions) {
+	max-width: calc(100% + 2px);
+}
+
+.ap-home-suggestions,
+.ap-home-sources {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--space-8);
+}
+
+.ap-home-sources {
+	margin-top: var(--space-8);
+}
+
+.ap-home-suggestions .ap-button-secondary {
+	--ap-button-bg: var(--muted-hover);
+	--ap-button-hover: var(--action-secondary);
+}
+
+.ap-home-projects {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-12);
+	width: min(100%, 1088px);
+	margin-top: var(--space-40);
+}
+
+.ap-home-projects:focus {
+	outline: 0;
+}
+
+.ap-home-project-bar {
+	display: flex;
+	align-items: center;
+	gap: var(--space-12);
+	min-height: 40px;
+}
+
+.ap-home-project-bar h2 {
+	flex: 1;
+	font-size: var(--type-heading-md-size);
+	line-height: var(--type-heading-md-line-height);
+	font-weight: 590;
+}
+
+.ap-home-project-bar .ap-button:last-child {
+	padding-inline: var(--space-8);
+}
+
+.ap-home-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: var(--space-16);
+}
+
+.ap-home-grid .ap-project-card {
+	width: 100%;
+}
+
+.ap-home-grid .ap-project-card .ap-project-cover {
+	width: min(320px, calc(100% + 2px));
+}
+
+.ap-home-empty,
+.ap-home-no-matches {
+	display: grid;
+	place-content: center;
+	justify-items: center;
+	gap: var(--space-8);
+	min-height: 168px;
+	width: 100%;
+	padding: var(--space-24);
+	text-align: center;
+	color: var(--foreground-muted);
+}
+
+.ap-home-empty {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--card-background);
+}
+
+.ap-home-empty h2 {
+	color: var(--foreground-default);
+	font-size: var(--type-body-base-medium-size);
+	line-height: var(--type-body-base-medium-line-height);
+	font-weight: 510;
+}
+
+.ap-home-empty > .ap-icon {
+	color: var(--content-tertiary);
+}
+
+.ap-home-footer {
+	margin-top: auto;
+	padding-top: var(--space-32);
+	color: var(--foreground-muted);
+	font-size: var(--type-body-xs-regular-size);
+	line-height: var(--type-body-xs-regular-line-height);
+	text-align: center;
+}
+
+.ap-home-notice,
+.ap-home-manual-link {
+	position: fixed;
+	z-index: 4;
+	bottom: 56px;
+	left: 50%;
+	translate: -50% 0;
+	display: flex;
+	align-items: center;
+	gap: var(--space-8);
+	width: min(272px, calc(100vw - 32px));
+	min-height: 44px;
+	padding-inline: var(--space-16);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--card-background);
+	box-shadow: var(--shadow-panel);
+}
+
+.ap-home-notice .ap-icon {
+	color: var(--status-success-foreground);
+}
+
+.ap-home-manual-link {
+	width: min(480px, calc(100vw - 32px));
+}
+
+.ap-home-manual-link input {
+	flex: 1;
+	min-width: 0;
+}
+
+.ap-confirm-dialog.ap-home-delete {
+	top: clamp(16px, 33.333vh, calc(100vh - 240px));
+}
+
+.ap-dialog-backdrop.ap-home-delete-backdrop {
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.ap-home-error {
+	color: var(--status-error-foreground);
+}
+
+.ap-home-attach {
+	inset: 0;
+	margin: auto;
+	width: min(480px, calc(100vw - 32px));
+	padding: var(--space-24);
+	border-radius: var(--radius-xl);
+	background: var(--card-background);
+	box-shadow: var(--shadow-overlay);
+	color: var(--foreground-default);
+}
+
+.ap-home-attach::backdrop {
+	background: var(--overlay-modal);
+}
+
+.ap-home-attach form {
+	display: grid;
+	gap: var(--space-12);
+}
+
+.ap-home-attach h2 {
+	font-size: var(--type-heading-sm-size);
+	font-weight: 590;
+}
+
+.ap-home-attach-row {
+	display: flex;
+	gap: var(--space-8);
+}
+
+.ap-home-attach-row input {
+	min-width: 0;
+	flex: 1;
+	padding-inline: var(--space-12);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md);
+	background: var(--muted-background);
+}
+
+.ap-home-attach form > .ap-button {
+	justify-self: end;
+}
+
+@media (max-width: 900px) {
+	.ap-home-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 600px) {
+	.ap-project-home {
+		gap: var(--space-24);
+		padding: var(--space-24) var(--space-16);
+	}
+	.ap-home-projects {
+		margin-top: var(--space-16);
+	}
+	.ap-home-grid {
+		grid-template-columns: 1fr;
+	}
+	.ap-home-grid .ap-project-card .ap-project-cover {
+		width: 100%;
+	}
+}

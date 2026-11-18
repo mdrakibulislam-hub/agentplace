@@ -4,7 +4,10 @@ import { mergeConfig } from "vite";
 
 const config: StorybookConfig = {
 	staticDirs: ["../public"],
-	stories: ["../src/stories/**/*.stories.@(ts|tsx)"],
+	stories: [
+		"../src/stories/**/*.stories.@(ts|tsx)",
+		"../src/product/**/*.stories.@(ts|tsx)",
+	],
 	addons: ["@storybook/addon-docs", "@storybook/addon-a11y"],
 	framework: "@storybook/react-vite",
 	// Storybook uses the UI library without the app's router or environment plugin.

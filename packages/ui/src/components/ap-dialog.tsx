@@ -14,6 +14,7 @@ export function ConfirmDialog({
 	description = "This permanently deletes the project and its conversations. This action cannot be undone.",
 	confirmLabel = "Delete project",
 	className,
+	backdropClassName,
 	open: controlledOpen,
 	onOpenChange,
 	returnFocus,
@@ -24,6 +25,7 @@ export function ConfirmDialog({
 	description?: ReactNode;
 	confirmLabel?: string;
 	className?: string;
+	backdropClassName?: string;
 	open?: boolean;
 	onOpenChange?: (open: boolean) => void;
 	returnFocus?: RefObject<HTMLElement | null>;
@@ -73,7 +75,11 @@ export function ConfirmDialog({
 		>
 			{trigger && <Dialog.Trigger render={trigger} />}
 			<Dialog.Portal>
-				<Dialog.Backdrop className="ap-dialog-backdrop" />
+				<Dialog.Backdrop
+					className={["ap-dialog-backdrop", backdropClassName]
+						.filter(Boolean)
+						.join(" ")}
+				/>
 				<Dialog.Popup
 					ref={popup}
 					initialFocus={cancel}

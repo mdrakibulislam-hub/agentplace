@@ -88,6 +88,7 @@ const preview: Preview = {
 					],
 					"Guides",
 					["Start here", "Figma comparison", "Interaction recipes"],
+					"Product",
 				],
 			},
 		},
