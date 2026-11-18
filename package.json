@@ -1,0 +1,70 @@
+{
+	"name": "agentplace",
+	"private": true,
+	"workspaces": {
+		"packages": [
+			"apps/*",
+			"packages/*"
+		],
+		"catalog": {
+			"zod": "^4.6.7",
+			"typescript": "^6.0.3",
+			"@types/bun": "^1.4.4",
+			"varlock": "1.25.0",
+			"libsql": "0.5.29",
+			"@trpc/server": "^11.28.0",
+			"better-auth": "1.7.22",
+			"lucide-react": "^1.72.0",
+			"next-themes": "^0.4.6",
+			"react": "^19.3.1",
+			"react-dom": "^19.3.1",
+			"sonner": "^2.0.8",
+			"@trpc/client": "^11.28.0",
+			"@types/react": "^19.3.0",
+			"@types/react-dom": "^19.3.0",
+			"tailwindcss": "^4.3.5",
+			"drizzle-orm": "1.0.0-rc.5"
+		}
+	},
+	"type": "module",
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"check-types": "turbo run check-types",
+		"dev:web": "turbo run dev -F web --",
+		"dev:server": "turbo run dev -F server --",
+		"db:push": "bun run --cwd packages/db db:push",
+		"db:studio": "bun run --cwd packages/db db:studio",
+		"db:generate": "bun run --cwd packages/db db:generate",
+		"db:migrate": "bun run --cwd packages/db db:migrate",
+		"env:generate": "varlock codegen --path ./apps/web/ && varlock codegen --path ./apps/server/ && varlock codegen --path ./packages/db/",
+		"postinstall": "varlock codegen --path ./apps/web/ && varlock codegen --path ./apps/server/ && varlock codegen --path ./packages/db/",
+		"auth:generate": "cd apps/server && bun run auth:generate",
+		"check": "biome check .",
+		"prepare": "husky",
+		"storybook": "turbo run storybook --filter=web",
+		"build-storybook": "turbo run build-storybook --filter=web",
+		"check:fix": "biome check --write .",
+		"typecheck": "bun run check-types",
+		"setup": "bun run scripts/setup.ts && bun run env:generate && bun run db:migrate"
+	},
+	"dependencies": {
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@agentplace/config": "workspace:*",
+		"@biomejs/biome": "^2.6.7",
+		"@types/bun": "catalog:",
+		"husky": "^9.1.7",
+		"lint-staged": "^17.6.0",
+		"turbo": "^2.11.11",
+		"typescript": "catalog:",
+		"varlock": "catalog:"
+	},
+	"lint-staged": {
+		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+			"biome check --write --no-errors-on-unmatched"
+		]
+	},
+	"packageManager": "bun@1.4.2"
+}

@@ -1,0 +1,3 @@
+{
+	"extends": "@agentplace/config/tsconfig.base.json"
+}

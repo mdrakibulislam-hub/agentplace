@@ -1,0 +1,22 @@
+{
+	"name": "@agentplace/api",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./*": "./src/*.ts"
+	},
+	"scripts": {
+		"check-types": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@agentplace/auth": "workspace:*",
+		"@agentplace/db": "workspace:*",
+		"@trpc/client": "catalog:",
+		"@trpc/server": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@agentplace/config": "workspace:*",
+		"typescript": "catalog:"
+	}
+}
