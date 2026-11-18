@@ -236,14 +236,12 @@ export function ManagePublication({
 						/>
 					)}
 					{draftChanges && (
-						<>
-							<BuilderNote
-								title="Draft changes are not live yet"
-								tone="warning"
-							>
-								Publish an update when you’re ready to share your latest
-								changes.
-							</BuilderNote>
+						<BuilderNote title="Draft changes are not live yet" tone="warning">
+							Publish an update when you’re ready to share your latest changes.
+						</BuilderNote>
+					)}
+					<div className="ap-builder-publish-buttons">
+						{draftChanges && (
 							<Button
 								size="medium"
 								onClick={() => {
@@ -253,17 +251,17 @@ export function ManagePublication({
 							>
 								Publish update
 							</Button>
-						</>
-					)}
-					<Button
-						variant="ghost"
-						onClick={() => {
-							close();
-							onUnpublish();
-						}}
-					>
-						Unpublish agent
-					</Button>
+						)}
+						<Button
+							variant="ghost"
+							onClick={() => {
+								close();
+								onUnpublish();
+							}}
+						>
+							Unpublish agent
+						</Button>
+					</div>
 				</section>
 			)}
 		</MenuPopover>

@@ -1,4 +1,5 @@
 import { Icon } from "@agentplace/ui/components/ap-icon";
+import { useDialogEntrance } from "@agentplace/ui/components/ap-motion";
 import { type ReactNode, useId, useLayoutEffect, useRef } from "react";
 
 export function BuilderTitle({
@@ -70,6 +71,7 @@ export function BuilderDialog({
 			}
 		};
 	}, []);
+	useDialogEntrance(dialog);
 	return (
 		<dialog
 			ref={dialog}

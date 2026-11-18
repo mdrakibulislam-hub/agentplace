@@ -1,4 +1,10 @@
 import { SelectField, Textarea } from "@agentplace/ui/components/ap-controls";
+import { Icon } from "@agentplace/ui/components/ap-icon";
+import {
+	MenuItem,
+	MenuPanel,
+	MenuPopover,
+} from "@agentplace/ui/components/ap-menus";
 import {
 	ProjectNavigation,
 	type ProjectNavValue,
@@ -9,6 +15,7 @@ import {
 import { Button } from "@agentplace/ui/components/button";
 import { useState } from "react";
 import { liveProjectPath, type PrototypeProject } from "../prototype-data";
+import { useSettingsState } from "../settings/settings-state";
 import { BuilderBranding } from "./builder-branding";
 import { BuilderChat, BuilderProgress } from "./builder-chat";
 import {
@@ -36,7 +43,8 @@ import "./builder.css";
 
 type PublishAction = "publish" | "unpublish";
 type BuilderOverlay =
-	| { type: PublishAction | "destination" | "skills" | "preview" }
+	| { type: PublishAction | "destination" | "skills" }
+	| { type: "preview"; published: boolean }
 	| { type: "configure"; id: string }
 	| { type: "view" | "restore"; version: BuilderVersion };
 
@@ -65,11 +73,13 @@ export function BuilderExperience({
 	initialManagePublish = false,
 	initialCoverMenu = false,
 	demoCover = false,
-	staffCount = 3,
+	staffCount,
 }: BuilderExperienceProps) {
+	const [workspace, setWorkspace] = useSettingsState();
 	const [section, setSection] = useState(initialSection);
 	const [conversationId, setConversationId] = useState("build");
 	const [view, setView] = useState("editor");
+	const [demoCoverVisible, setDemoCoverVisible] = useState(demoCover);
 	const [overlay, setOverlay] = useState<BuilderOverlay | undefined>(
 		initialPublishAction ? { type: initialPublishAction } : undefined,
 	);
@@ -77,6 +87,11 @@ export function BuilderExperience({
 	const [configValue, setConfigValue] = useState("");
 	const data = initialBuilderData(project);
 	const working = Boolean(project.needsFirstDraft);
+	const usesWebsite =
+		Boolean(project.sources?.some((source) => source.kind === "website")) ||
+		/\b(?:https?:\/\/|www\.|[a-z0-9-]+\.(?:com|org|net|agency|io|co)\b)/i.test(
+			project.prompt ?? "",
+		);
 	const live = project.status === "Published";
 	const published = project.published ?? (live ? snapshot(data) : undefined);
 	const currentVersion = data.versions[0];
@@ -93,7 +108,21 @@ export function BuilderExperience({
 			(conversation) => conversation.id === conversationId,
 		) ?? data.conversations[0];
 	const splitView = section === "Chat" || section === "Branding";
-	const selectedSkills = data.skills;
+	const selectedSkills = Object.fromEntries(
+		workspace.skills
+			.filter((skill) => skill.projects.includes(project.id))
+			.map((skill) => [skill.id, data.skills[skill.id] ?? true]),
+	);
+	const catalog = workspace.skills.map(
+		(skill) => skills.find((authored) => authored.id === skill.id) ?? skill,
+	);
+	const projectStaff =
+		staffCount ??
+		workspace.members.filter(
+			(member) =>
+				!member.invited &&
+				(member.role !== "Member" || member.access[project.id]),
+		).length;
 
 	function showSection(next: ProjectNavValue) {
 		setSection(next);
@@ -192,6 +221,7 @@ export function BuilderExperience({
 	}
 
 	function completeFirstDraft() {
+		bindSkills(Object.keys(data.skills), false);
 		save(data, "Created first draft", { needsFirstDraft: false });
 		setView("preview");
 	}
@@ -210,14 +240,16 @@ export function BuilderExperience({
 	}
 
 	function setSkill(id: string, enabled: boolean) {
+		if (enabled) bindSkills([id], false);
 		save(
-			{ ...data, skills: { ...data.skills, [id]: enabled } },
+			{ ...data, skills: { ...selectedSkills, [id]: enabled } },
 			"Updated project skills",
 		);
 	}
 
 	function restore(version: BuilderVersion) {
 		const configuration = version.configuration;
+		bindSkills(Object.keys(configuration.skills), true);
 		save(
 			{
 				...data,
@@ -235,6 +267,25 @@ export function BuilderExperience({
 		setOverlay(undefined);
 	}
 
+	function bindSkills(ids: string[], replace: boolean) {
+		setWorkspace((current) => ({
+			...current,
+			skills: current.skills.map((skill) => {
+				const hasProject = skill.projects.includes(project.id);
+				if (ids.includes(skill.id) && !hasProject) {
+					return { ...skill, projects: [...skill.projects, project.id] };
+				}
+				if (replace && hasProject && !ids.includes(skill.id)) {
+					return {
+						...skill,
+						projects: skill.projects.filter((id) => id !== project.id),
+					};
+				}
+				return skill;
+			}),
+		}));
+	}
+
 	function publish(audience: string, requireSignIn: boolean) {
 		if (dirty || working) return;
 		change(data, {
@@ -247,7 +298,7 @@ export function BuilderExperience({
 
 	function openVisitor(isLive: boolean) {
 		if (onOpenVisitor) onOpenVisitor(project.id, isLive);
-		else setOverlay({ type: "preview" });
+		else setOverlay({ type: "preview", published: isLive });
 	}
 
 	const close = () => setOverlay(undefined);
@@ -261,16 +312,66 @@ export function BuilderExperience({
 				onNewConversation={newConversation}
 				onManageAccess={() => onSettings("Staff & roles")}
 				onConversation={selectConversation}
-				staffCount={staffCount}
+				staffCount={projectStaff}
 				conversations={data.conversations.map((conversation) => ({
 					id: conversation.id,
 					title: conversation.title,
-					detail: `Today · ${conversation.id === "build" ? Math.max(4, conversation.messages.length) : conversation.messages.length} messages`,
+					detail: `Today · ${conversation.messages.length + (conversation.id === "build" && project.prompt ? 3 : 0)} messages`,
 					selected:
 						section === "Chat" && conversation.id === activeConversation?.id,
 				}))}
 			/>
 			<main className="ap-builder-main">
+				<div className="ap-builder-mobile-actions">
+					<MenuPopover
+						trigger={
+							<Button variant="ghost" icon={<Icon name="message-square" />}>
+								Conversations
+							</Button>
+						}
+					>
+						{(dismiss) => (
+							<MenuPanel title="Conversations" onClose={dismiss}>
+								<div
+									className="ap-menu-list"
+									role="menu"
+									aria-label="Project conversations"
+								>
+									<MenuItem
+										label="New conversation"
+										icon="plus"
+										role="menuitem"
+										data-menu-choice
+										onClick={() => {
+											dismiss();
+											newConversation();
+										}}
+									/>
+									{data.conversations.map((conversation) => (
+										<MenuItem
+											key={conversation.id}
+											label={conversation.title}
+											icon="message-square"
+											role="menuitem"
+											data-menu-choice
+											onClick={() => {
+												dismiss();
+												selectConversation(conversation.id);
+											}}
+										/>
+									))}
+								</div>
+							</MenuPanel>
+						)}
+					</MenuPopover>
+					<Button
+						variant="ghost"
+						icon={<Icon name="users" />}
+						onClick={() => onSettings("Staff & roles")}
+					>
+						Manage access
+					</Button>
+				</div>
 				<ProjectToolbar
 					name={project.name}
 					saved={!dirty}
@@ -310,6 +411,8 @@ export function BuilderExperience({
 									key={activeConversation?.id}
 									conversation={activeConversation}
 									working={working}
+									usesWebsite={usesWebsite}
+									sources={project.sources}
 									destination={data.destination}
 									onSubmit={submitChat}
 									onBranding={() => showSection("Branding")}
@@ -324,7 +427,8 @@ export function BuilderExperience({
 								<BuilderBranding
 									branding={stagedBranding}
 									initialCoverMenu={initialCoverMenu}
-									demoCover={demoCover}
+									demoCover={demoCoverVisible}
+									onClearDemoCover={() => setDemoCoverVisible(false)}
 									saved={!data.stagedBranding}
 									onChange={stageBranding}
 									onSave={saveBranding}
@@ -332,13 +436,18 @@ export function BuilderExperience({
 								/>
 							)}
 							{section === "Chat" && working ? (
-								<BuilderProgress onReady={completeFirstDraft} />
+								<BuilderProgress
+									onReady={completeFirstDraft}
+									usesWebsite={usesWebsite}
+								/>
 							) : (
 								<BuilderVisitorPreview
 									branding={
 										section === "Branding" ? stagedBranding : data.branding
 									}
-									showCover={section === "Chat" || demoCover ? true : undefined}
+									showCover={
+										section === "Chat" || demoCoverVisible ? true : undefined
+									}
 									onOpenExternal={() => openVisitor(false)}
 								/>
 							)}
@@ -360,6 +469,7 @@ export function BuilderExperience({
 				{section === "Skills" && (
 					<BuilderSkills
 						selected={selectedSkills}
+						catalog={catalog}
 						onToggle={setSkill}
 						onConfigure={(id) => {
 							setConfigValue(data.skillNotes?.[id] ?? "");
@@ -455,7 +565,7 @@ export function BuilderExperience({
 					description="Choose a skill the agent can use in this project."
 					onClose={close}
 				>
-					{skills
+					{catalog
 						.filter((skill) => !selectedSkills[skill.id])
 						.map((skill) => (
 							<Button
@@ -470,7 +580,7 @@ export function BuilderExperience({
 							</Button>
 						))}
 					{Object.values(selectedSkills).filter(Boolean).length ===
-						skills.length && (
+						catalog.length && (
 						<p>All workspace skills are enabled in this project.</p>
 					)}
 				</BuilderDialog>
@@ -478,7 +588,7 @@ export function BuilderExperience({
 			{overlay?.type === "configure" && (
 				<BuilderDialog
 					title={
-						skills.find((skill) => skill.id === overlay.id)?.name ??
+						catalog.find((skill) => skill.id === overlay.id)?.name ??
 						"Configure skill"
 					}
 					description="Set the instructions that apply to this project."
@@ -557,7 +667,13 @@ export function BuilderExperience({
 			)}
 			{overlay?.type === "preview" && (
 				<BuilderDialog title="Visitor experience" onClose={close} wide>
-					<BuilderVisitorPreview branding={data.branding} standalone />
+					<BuilderVisitorPreview
+						branding={
+							overlay.published ? (published ?? data.branding) : stagedBranding
+						}
+						standalone
+						published={overlay.published}
+					/>
 				</BuilderDialog>
 			)}
 		</div>

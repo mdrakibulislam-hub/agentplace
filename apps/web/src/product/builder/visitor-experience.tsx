@@ -1,4 +1,5 @@
 import { AgentPreview } from "@agentplace/ui/components/ap-builder";
+import { Avatar } from "@agentplace/ui/components/ap-data";
 import { Icon } from "@agentplace/ui/components/ap-icon";
 import { Button } from "@agentplace/ui/components/button";
 import { type CSSProperties, useState } from "react";
@@ -88,7 +89,10 @@ export function BuilderVisitorPreview({
 								<p>
 									<strong>You</strong> {question}
 								</p>
-								<p>
+								<p className="ap-builder-visitor-reply">
+									{branding.avatar && (
+										<Avatar size="small" src={branding.avatar} alt="" />
+									)}
 									<strong>{branding.name}</strong> {response}
 								</p>
 							</div>
@@ -140,9 +144,10 @@ export function VisitorExperience({
 	project: PrototypeProject;
 	published?: boolean;
 }) {
+	const data = initialBuilderData(project);
 	const branding = published
-		? (project.published ?? initialBuilderData(project).branding)
-		: initialBuilderData(project).branding;
+		? (project.published ?? data.branding)
+		: (data.stagedBranding ?? data.branding);
 	return (
 		<main className="ap-builder-visitor-page">
 			<BuilderVisitorPreview

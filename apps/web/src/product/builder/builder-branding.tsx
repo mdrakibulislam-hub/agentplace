@@ -7,7 +7,7 @@ import {
 	MenuPopover,
 } from "@agentplace/ui/components/ap-menus";
 import { Button } from "@agentplace/ui/components/button";
-import { type ChangeEvent, useRef, useState } from "react";
+import { type ChangeEvent, useLayoutEffect, useRef, useState } from "react";
 import { type BrandingDraft, initials } from "./builder-model";
 import { BuilderTitle } from "./builder-primitives";
 
@@ -26,6 +26,7 @@ export function BuilderBranding({
 	saved,
 	initialCoverMenu = false,
 	demoCover = false,
+	onClearDemoCover,
 }: {
 	branding: BrandingDraft;
 	onChange: (updates: Partial<BrandingDraft>) => void;
@@ -34,16 +35,28 @@ export function BuilderBranding({
 	saved: boolean;
 	initialCoverMenu?: boolean;
 	demoCover?: boolean;
+	onClearDemoCover?: () => void;
 }) {
 	const fileInput = useRef<HTMLInputElement>(null);
 	const colorInput = useRef<HTMLInputElement>(null);
 	const imageField = useRef<ImageField>("cover");
 	const request = useRef(0);
+	const latestChange = useRef(onChange);
 	const [isReading, setIsReading] = useState(false);
 	const [fileError, setFileError] = useState("");
 	const [coverMenu, setCoverMenu] = useState(initialCoverMenu);
-	const [showDemoCover, setShowDemoCover] = useState(demoCover);
-	const hasCover = Boolean(branding.cover) || showDemoCover;
+	const hasCover = Boolean(branding.cover) || demoCover;
+
+	useLayoutEffect(() => {
+		latestChange.current = onChange;
+	}, [onChange]);
+
+	useLayoutEffect(
+		() => () => {
+			request.current++;
+		},
+		[],
+	);
 
 	function pickImage(field: ImageField) {
 		imageField.current = field;
@@ -86,8 +99,8 @@ export function BuilderBranding({
 				if (request.current !== token) return;
 				setIsReading(false);
 				setFileError("");
-				if (field === "cover") setShowDemoCover(false);
-				onChange({ [field]: source });
+				if (field === "cover") onClearDemoCover?.();
+				latestChange.current({ [field]: source });
 			};
 			image.src = source;
 		};
@@ -98,7 +111,7 @@ export function BuilderBranding({
 		request.current++;
 		setIsReading(false);
 		setFileError("");
-		setShowDemoCover(false);
+		onClearDemoCover?.();
 		onChange({ cover: undefined });
 	}
 
@@ -168,7 +181,7 @@ export function BuilderBranding({
 						<ProjectCover
 							context="branding-upload"
 							image={branding.cover}
-							presentation={showDemoCover ? "added" : undefined}
+							presentation={demoCover ? "added" : undefined}
 							emptyLabel={hasCover ? "Replace cover" : "No cover"}
 							canEdit
 							onEdit={() =>

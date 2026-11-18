@@ -1,6 +1,11 @@
 import { animate } from "motion";
 import type { RefObject } from "react";
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import {
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useSyncExternalStore,
+} from "react";
 
 export const springs = {
 	press: { type: "spring", mass: 1, stiffness: 520, damping: 38 },
@@ -67,6 +72,37 @@ export function useMotionEnvironment<T extends HTMLElement>(
 		paused,
 		offscreen,
 	};
+}
+
+export function useDialogEntrance(ref: RefObject<HTMLElement | null>) {
+	const { reduced } = useMotionEnvironment(ref, false, true, false);
+	useLayoutEffect(() => {
+		const dialog = ref.current;
+		if (!dialog) return;
+		if (reduced) {
+			dialog.style.removeProperty("opacity");
+			dialog.style.removeProperty("transform");
+			return;
+		}
+
+		const geometry = animate(
+			dialog,
+			{ y: [12, 0], scale: [0.98, 1] },
+			springs.dialog,
+		);
+		const fade = animate(
+			dialog,
+			{ opacity: [0, 1] },
+			{
+				duration: 0.16,
+				ease: "easeOut",
+			},
+		);
+		return () => {
+			geometry.stop();
+			fade.stop();
+		};
+	}, [ref, reduced]);
 }
 
 // The native Figma motion snippets use these exact spring curves.

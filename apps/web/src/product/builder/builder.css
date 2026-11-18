@@ -88,7 +88,6 @@
 	font-size: 24px;
 	line-height: 28px;
 	font-weight: 590;
-	letter-spacing: -0.02em;
 }
 
 .ap-builder-title > p,
@@ -287,7 +286,7 @@
 	flex: 1;
 }
 
-.ap-builder-visitor[data-device="mobile"] .ap-visitor-experience {
+.ap-builder-visitor:where([data-device="mobile"]) .ap-visitor-experience {
 	width: min(100%, 390px);
 	align-self: center;
 	padding: 24px;
@@ -330,21 +329,56 @@
 	color: var(--ap-visitor-accent-text, var(--action-foreground));
 }
 
-.ap-builder-visitor[data-typography="SF Pro Rounded"] .ap-visitor-experience {
+.ap-builder-visitor:where([data-typography="SF Pro Rounded"])
+	.ap-visitor-experience {
 	font-family: "SF Pro Rounded", ui-rounded, var(--font-sans);
 }
 
-.ap-builder-visitor[data-appearance="dark"] .ap-visitor-experience {
-	--card-background: var(--ap-primitive-color-18181b);
-	--background-default: var(--ap-primitive-color-18181b);
-	--foreground-default: var(--ap-primitive-color-fafafa);
-	--foreground-muted: var(--ap-primitive-color-a1a1aa);
-	--foreground-placeholder: var(--ap-primitive-color-a1a1aa);
-	--muted-background: var(--ap-primitive-color-27272a);
-	--muted-hover: var(--ap-primitive-color-27272a);
-	--border-default: var(--ap-primitive-color-3f3f46);
-	--action-secondary: var(--ap-primitive-color-27272a);
+/* Preview appearance is chosen independently of the editor color scheme. */
+.ap-builder-visitor .ap-visitor-experience {
+	color-scheme: light;
+	--card-background: light-dark(
+		var(--ap-primitive-color-ffffff),
+		var(--ap-primitive-color-0a0a0a)
+	);
+	--background-default: light-dark(
+		var(--ap-primitive-color-ffffff),
+		var(--ap-primitive-color-0f0f0f)
+	);
+	--foreground-default: light-dark(
+		var(--ap-primitive-color-2a2a2a),
+		var(--ap-primitive-color-e3e3e3)
+	);
+	--foreground-muted: light-dark(
+		var(--ap-primitive-color-4b5563),
+		var(--ap-primitive-color-b3b3b3)
+	);
+	--foreground-placeholder: light-dark(
+		var(--ap-primitive-color-6b7280),
+		var(--ap-primitive-color-88898f)
+	);
+	--muted-background: light-dark(
+		var(--ap-primitive-color-f2f2f2),
+		var(--ap-primitive-color-1f1f1f)
+	);
+	--muted-hover: light-dark(
+		var(--ap-primitive-color-e6e6e6),
+		var(--ap-primitive-color-353434)
+	);
+	--border-default: light-dark(
+		var(--ap-primitive-color-e5e7eb),
+		var(--ap-primitive-color-3f3f46)
+	);
+	--action-secondary: var(--muted-background);
 	color: var(--foreground-default);
+}
+
+.ap-builder-visitor[data-appearance="dark"] .ap-visitor-experience {
+	color-scheme: dark;
+}
+
+.ap-builder-visitor[data-appearance="system"] .ap-visitor-experience {
+	color-scheme: light dark;
 }
 
 .ap-builder-test-messages {
@@ -367,6 +401,12 @@
 	margin: 0;
 }
 
+.ap-builder-visitor-reply .ap-avatar {
+	display: inline-flex;
+	margin-right: 8px;
+	vertical-align: middle;
+}
+
 .ap-builder-dialog {
 	inset: 0;
 	margin: auto;
@@ -382,10 +422,6 @@
 	font: inherit;
 	font-size: 14px;
 	line-height: 20px;
-	animation:
-		ap-builder-dialog-open 380ms
-		linear(0, 0.32, 0.67, 0.9, 0.99, 1.02, 1.02, 1.01, 1) both,
-		ap-builder-dialog-fade 160ms ease-out both;
 }
 
 .ap-builder-dialog[data-wide="true"] {
@@ -405,6 +441,7 @@
 
 .ap-builder-dialog-content > header {
 	display: flex;
+	min-height: 32px;
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
@@ -419,17 +456,9 @@
 	flex: 1;
 }
 
-.ap-builder-layout-tabs {
+.ap-builder-layout-tabs,
+.ap-builder-mobile-actions {
 	display: none;
-}
-
-@keyframes ap-builder-dialog-open {
-	from {
-		transform: translateY(12px) scale(0.98);
-	}
-	to {
-		transform: translateY(0) scale(1);
-	}
 }
 
 @keyframes ap-builder-dialog-fade {
@@ -701,7 +730,7 @@
 .ap-builder-markdown textarea {
 	width: 100%;
 	display: block;
-	resize: vertical;
+	resize: none;
 	border: 0;
 	padding: 0;
 	background: transparent;
@@ -833,6 +862,7 @@
 
 .ap-builder-publish-switch {
 	display: flex;
+	min-height: 24px;
 	justify-content: space-between;
 	align-items: center;
 	gap: 12px;
@@ -905,4 +935,76 @@
 	white-space: pre-wrap;
 	font: inherit;
 	color: var(--foreground-default);
+}
+
+.ap-builder-branding .ap-field,
+.ap-builder-branding .ap-field input,
+.ap-builder-branding .ap-select-wrap,
+.ap-builder-branding .ap-select,
+.ap-builder-dialog-content .ap-field,
+.ap-builder-dialog-content .ap-field input,
+.ap-builder-dialog-content .ap-field textarea,
+.ap-builder-dialog-content .ap-select-wrap,
+.ap-builder-dialog-content .ap-select,
+.ap-builder-publish-panel .ap-field,
+.ap-builder-publish-panel .ap-field input {
+	width: 100%;
+	min-width: 0;
+}
+
+.ap-builder-sources {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ap-builder-sources > li {
+	max-width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 8px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xs);
+	background: var(--card-background);
+	color: var(--foreground-muted);
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.ap-builder-sources > li > span:last-child {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ap-builder-publish-buttons {
+	display: grid;
+	gap: 8px;
+}
+
+.ap-builder-publish-panel .ap-builder-note {
+	padding-block: 12px;
+}
+
+[data-ap-motion="reduced"] .ap-builder-dialog::backdrop {
+	animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ap-builder-dialog::backdrop {
+		animation: none;
+	}
+}
+
+@media (max-width: 620px) {
+	.ap-builder-mobile-actions {
+		display: flex;
+		gap: 8px;
+		padding: 0 12px 8px;
+		background: var(--background-secondary);
+	}
 }

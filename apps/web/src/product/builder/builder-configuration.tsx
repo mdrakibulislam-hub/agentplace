@@ -3,10 +3,10 @@ import { Icon } from "@agentplace/ui/components/ap-icon";
 import { Tabs } from "@agentplace/ui/components/ap-navigation";
 import { Button } from "@agentplace/ui/components/button";
 import { useState } from "react";
-import {
-	type BuilderConversation,
-	type BuilderVersion,
-	skills,
+import type {
+	BuilderConversation,
+	BuilderSkill,
+	BuilderVersion,
 } from "./builder-model";
 import { BuilderNote, BuilderTitle } from "./builder-primitives";
 
@@ -94,6 +94,7 @@ export function BuilderInstructions({
 
 export function BuilderSkills({
 	selected,
+	catalog,
 	onToggle,
 	onConfigure,
 	onAdd,
@@ -101,6 +102,7 @@ export function BuilderSkills({
 	onLibrary,
 }: {
 	selected: Record<string, boolean>;
+	catalog: BuilderSkill[];
 	onToggle: (id: string, enabled: boolean) => void;
 	onConfigure: (id: string) => void;
 	onAdd: (id: string) => void;
@@ -115,7 +117,7 @@ export function BuilderSkills({
 				action={<Button onClick={onPick}>Add skill</Button>}
 			/>
 			<div className="ap-builder-skill-list">
-				{skills.map((skill) => (
+				{catalog.map((skill) => (
 					<CapabilityRow
 						key={skill.id}
 						name={skill.name}

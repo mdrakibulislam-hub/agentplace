@@ -9,6 +9,7 @@ import {
 import { WorkingIndicator } from "@agentplace/ui/components/ap-working-indicator";
 import { Button } from "@agentplace/ui/components/button";
 import { type ChangeEvent, useLayoutEffect, useRef, useState } from "react";
+import type { ProjectSource } from "../prototype-data";
 import type { BuilderConversation } from "./builder-model";
 import { BuilderNote, BuilderTitle } from "./builder-primitives";
 
@@ -23,6 +24,8 @@ export function BuilderChat({
 	onDestination,
 	onSkipDestination,
 	destination,
+	sources = [],
+	usesWebsite,
 }: {
 	conversation?: BuilderConversation;
 	working: boolean;
@@ -32,6 +35,8 @@ export function BuilderChat({
 	onDestination: () => void;
 	onSkipDestination: () => void;
 	destination?: string;
+	sources?: ProjectSource[];
+	usesWebsite: boolean;
 }) {
 	const [model, setModel] = useState("Model");
 	const [attachment, setAttachment] = useState<File>();
@@ -74,14 +79,10 @@ export function BuilderChat({
 				/>
 				{firstConversation && initial && (
 					<>
-						<Message speaker="you" text={initial.text} />
+						<Message speaker="you" text={initial.text} sources={sources} />
 						<Message
 							speaker="agent"
-							text={
-								working
-									? "I’ll use your website to draft the services and visitor experience. Where should new enquiries be sent?"
-									: "Your first draft is ready. I imported your services and created an enquiry flow. Try it in the preview before publishing."
-							}
+							text={getDraftReply(working, usesWebsite)}
 						/>
 						{working ? (
 							<>
@@ -199,9 +200,11 @@ export function BuilderChat({
 function Message({
 	speaker,
 	text,
+	sources,
 }: {
 	speaker: "you" | "agent";
 	text: string;
+	sources?: ProjectSource[];
 }) {
 	return (
 		<div className="ap-builder-message" data-role={speaker}>
@@ -212,11 +215,38 @@ function Message({
 				{speaker === "you" ? "You" : "Agentplace"}
 			</div>
 			<p>{text}</p>
+			{Boolean(sources?.length) && (
+				<ul className="ap-builder-sources" aria-label="Project sources">
+					{sources?.map(({ kind, value }) => (
+						<li key={`${kind}-${value}`}>
+							<Icon name={kind === "website" ? "link" : "file-text"} />
+							<span>{value}</span>
+						</li>
+					))}
+				</ul>
+			)}
 		</div>
 	);
 }
 
-export function BuilderProgress({ onReady }: { onReady: () => void }) {
+function getDraftReply(working: boolean, usesWebsite: boolean) {
+	if (working) {
+		return usesWebsite
+			? "I’ll use your website to draft the services and visitor experience. Where should new enquiries be sent?"
+			: "I’ll use your brief to draft the visitor experience. Where should new enquiries be sent?";
+	}
+	return usesWebsite
+		? "Your first draft is ready. I imported your services and created an enquiry flow. Try it in the preview before publishing."
+		: "Your first draft is ready. Try the visitor experience in the preview before publishing.";
+}
+
+export function BuilderProgress({
+	onReady,
+	usesWebsite,
+}: {
+	onReady: () => void;
+	usesWebsite: boolean;
+}) {
 	return (
 		<section className="ap-builder-progress" aria-label="Build progress">
 			<div className="ap-preview-diffusion" aria-hidden="true" />
@@ -224,13 +254,13 @@ export function BuilderProgress({ onReady }: { onReady: () => void }) {
 				<Badge tone="info">In progress</Badge>
 				<h2>Your project is saved</h2>
 				<p>
-					We’re turning your website into a visitor experience. You can leave
-					and return while it builds.
+					We’re turning your {usesWebsite ? "website" : "brief"} into a visitor
+					experience. You can leave and return while it builds.
 				</p>
 				<ul>
 					{[
-						"Website imported",
-						"Services identified",
+						usesWebsite ? "Website imported" : "Project brief saved",
+						usesWebsite ? "Services identified" : "First draft outlined",
 						"Creating visitor experience",
 						"Checking your draft",
 					].map((step, index) => (
