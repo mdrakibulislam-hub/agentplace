@@ -39,6 +39,21 @@ bun run storybook
 
 Storybook opens at http://localhost:6006. The web server uses a fixed port so auth origins stay consistent. If you change ports, update `apps/web/vite.config.ts`, `PORT` and the origins in `apps/server/.env`, and `VITE_SERVER_URL` in `apps/web/.env` together.
 
+## Deploy the web prototype to Cloudflare Workers
+
+Connect this repository to Workers Builds and set the project name to `agentplace`, matching `wrangler.jsonc`. Leave the root directory at the repository root, set the build command to `bun run --cwd apps/web build`, and set the deploy command to `npx wrangler deploy`. For branch previews, use `npx wrangler preview`.
+
+If the Git setup screen fails to load the Worker, you can deploy it once with Wrangler, then open the Worker in Cloudflare and connect GitHub under **Settings → Builds**. Run these commands from the root of a clean checkout:
+
+```sh
+bun install --frozen-lockfile
+bun run --cwd apps/web build
+npx wrangler login
+npx wrangler deploy
+```
+
+The Worker serves `apps/web/dist` and supports direct navigation to client-side routes like `/login`. The prototype runs in the browser without API credentials. To deploy the Bun API and its SQLite database, use a host with Bun and persistent storage, or adapt the API for Workers and a managed database such as D1. `VITE_SERVER_URL` can be set at build time when a separate API is available.
+
 ## Workspace
 
 | Path              | Purpose                                                        |
