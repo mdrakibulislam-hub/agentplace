@@ -1,6 +1,6 @@
 import { Dialog } from "@base-ui/react/dialog";
 import { motion } from "motion/react";
-import type { ReactElement } from "react";
+import type { ReactElement, ReactNode, RefObject } from "react";
 import { useRef, useState } from "react";
 import { Icon } from "./ap-icon";
 import { springs, useMotionEnvironment } from "./ap-motion";
@@ -12,14 +12,25 @@ export function ConfirmDialog({
 	trigger,
 	title = "Delete WhiteFrame Advisor?",
 	description = "This permanently deletes the project and its conversations. This action cannot be undone.",
+	confirmLabel = "Delete project",
+	className,
+	open: controlledOpen,
+	onOpenChange,
+	returnFocus,
 	onConfirm,
 }: {
-	trigger: ReactElement;
+	trigger?: ReactElement;
 	title?: string;
-	description?: string;
+	description?: ReactNode;
+	confirmLabel?: string;
+	className?: string;
+	open?: boolean;
+	onOpenChange?: (open: boolean) => void;
+	returnFocus?: RefObject<HTMLElement | null>;
 	onConfirm?: () => void | Promise<void>;
 }) {
-	const [open, setOpen] = useState(false);
+	const [internalOpen, setInternalOpen] = useState(false);
+	const open = controlledOpen ?? internalOpen;
 	const [pending, setPending] = useState(false);
 	const [error, setError] = useState("");
 	const cancel = useRef<HTMLButtonElement>(null);
@@ -28,6 +39,10 @@ export function ConfirmDialog({
 		null,
 	);
 	const { reduced } = useMotionEnvironment(popup);
+	function setOpen(next: boolean) {
+		setInternalOpen(next);
+		onOpenChange?.(next);
+	}
 	const confirm = async () => {
 		if (pending) return;
 		setPending(true);
@@ -56,13 +71,14 @@ export function ConfirmDialog({
 				if (next) setError("");
 			}}
 		>
-			<Dialog.Trigger render={trigger} />
+			{trigger && <Dialog.Trigger render={trigger} />}
 			<Dialog.Portal>
 				<Dialog.Backdrop className="ap-dialog-backdrop" />
 				<Dialog.Popup
 					ref={popup}
 					initialFocus={cancel}
-					className="ap-confirm-dialog"
+					finalFocus={returnFocus}
+					className={["ap-confirm-dialog", className].filter(Boolean).join(" ")}
 					render={
 						<motion.div
 							initial={reduced ? false : { opacity: 0, scale: 0.98, y: 12 }}
@@ -123,7 +139,7 @@ export function ConfirmDialog({
 							reserveLoadingSpace
 							onClick={confirm}
 						>
-							Delete project
+							{confirmLabel}
 						</Button>
 					</div>
 				</Dialog.Popup>

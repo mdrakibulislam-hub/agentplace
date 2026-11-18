@@ -158,6 +158,9 @@ export function MenuPopover({
 	open,
 	onOpenChange,
 	align = "start",
+	side = "bottom",
+	sideOffset = 8,
+	alignOffset = 0,
 }: {
 	trigger: ReactElement;
 	children: ReactNode | ((close: () => void) => ReactNode);
@@ -165,6 +168,9 @@ export function MenuPopover({
 	open?: boolean;
 	onOpenChange?: (open: boolean) => void;
 	align?: "start" | "center" | "end";
+	side?: "top" | "bottom";
+	sideOffset?: number;
+	alignOffset?: number;
 }) {
 	const [internalOpen, setInternalOpen] = useState(defaultOpen);
 	const shown = open ?? internalOpen;
@@ -189,9 +195,11 @@ export function MenuPopover({
 			<Popover.Trigger render={trigger} />
 			<Popover.Portal>
 				<Popover.Positioner
-					sideOffset={8}
+					side={side}
+					sideOffset={sideOffset}
 					collisionPadding={8}
 					align={align}
+					alignOffset={alignOffset}
 					className="ap-menu-positioner"
 				>
 					<Popover.Popup

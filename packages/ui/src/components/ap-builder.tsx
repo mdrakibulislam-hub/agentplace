@@ -120,6 +120,7 @@ export interface ProjectCardProps {
 	onOpen?: (projectId: string) => void;
 	onCoverEdit?: (projectId: string) => void;
 	onAction?: (action: ProjectAction, projectId: string) => void;
+	defaultActionsOpen?: boolean;
 	className?: string;
 }
 export function ProjectCard({
@@ -129,6 +130,7 @@ export function ProjectCard({
 	onOpen,
 	onCoverEdit,
 	onAction,
+	defaultActionsOpen,
 	className = "",
 }: ProjectCardProps) {
 	return (
@@ -158,6 +160,9 @@ export function ProjectCard({
 					<div className="ap-builder-spacer" />
 					<MenuPopover
 						align="end"
+						side="top"
+						sideOffset={-12}
+						defaultOpen={defaultActionsOpen}
 						trigger={
 							<ProjectActions
 								className="ap-project-overflow"
@@ -283,7 +288,7 @@ export function NewProjectPrompt({
 					<Button
 						type="submit"
 						variant="default"
-						icon={<Icon name="plus" />}
+						icon={<Icon name="arrow-right" />}
 						loading={busy}
 					>
 						Create project

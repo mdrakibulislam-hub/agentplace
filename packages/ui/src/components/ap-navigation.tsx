@@ -11,7 +11,9 @@ export interface GlobalHeaderProps {
 	remainingCredits?: number | null;
 	allocatedCredits?: number | null;
 	initials?: string;
+	logo?: ReactNode;
 	projectSwitcher?: ReactNode;
+	accountMenu?: ReactNode;
 	onProjectSwitch?: () => void;
 	onCredits?: () => void;
 	onSettings?: () => void;
@@ -24,7 +26,9 @@ export function GlobalHeader({
 	remainingCredits = null,
 	allocatedCredits = null,
 	initials = "AP",
+	logo,
 	projectSwitcher,
+	accountMenu,
 	onProjectSwitch,
 	onCredits,
 	onSettings,
@@ -34,7 +38,7 @@ export function GlobalHeader({
 	return (
 		<header className={`ap-global-header ${className}`} data-type={type}>
 			<div className="ap-global-header-start">
-				<Logo />
+				{logo ?? <Logo />}
 				{projectSwitcher ?? (
 					<button
 						type="button"
@@ -66,14 +70,16 @@ export function GlobalHeader({
 			>
 				Settings
 			</Button>
-			<button
-				type="button"
-				aria-label="Open account menu"
-				className="ap-header-account"
-				onClick={onAccount}
-			>
-				<Avatar initials={initials} size="medium" />
-			</button>
+			{accountMenu ?? (
+				<button
+					type="button"
+					aria-label="Open account menu"
+					className="ap-header-account"
+					onClick={onAccount}
+				>
+					<Avatar initials={initials} size="medium" />
+				</button>
+			)}
 		</header>
 	);
 }
