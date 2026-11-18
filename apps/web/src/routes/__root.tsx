@@ -1,15 +1,11 @@
-import { Toaster } from "@agentplace/ui/components/sonner";
 import type { QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
 	createRootRouteWithContext,
 	HeadContent,
 	Outlet,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-
-import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { PrototypeProvider } from "@/product/prototype-state";
 import type { trpc } from "@/utils/trpc";
 
 import "../index.css";
@@ -23,13 +19,10 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 	component: RootComponent,
 	head: () => ({
 		meta: [
-			{
-				title: "Agentplace — AI agents that get things done",
-			},
+			{ title: "Agentplace" },
 			{
 				name: "description",
-				content:
-					"AI agents for questions, appointments, customer service, and online services.",
+				content: "Describe the agent you want and build it together.",
 			},
 		],
 	}),
@@ -41,20 +34,14 @@ function RootComponent() {
 			<HeadContent />
 			<ThemeProvider
 				attribute="class"
-				defaultTheme="system"
+				defaultTheme="light"
 				disableTransitionOnChange
-				storageKey="vite-ui-theme"
+				storageKey="agentplace-ui-theme"
 			>
-				<div className="grid min-h-svh grid-rows-[auto_1fr]">
-					<Header />
+				<PrototypeProvider>
 					<Outlet />
-				</div>
-				<Toaster richColors />
+				</PrototypeProvider>
 			</ThemeProvider>
-			{import.meta.env.DEV && <TanStackRouterDevtools position="bottom-left" />}
-			{import.meta.env.DEV && (
-				<ReactQueryDevtools position="bottom" buttonPosition="bottom-right" />
-			)}
 		</>
 	);
 }
