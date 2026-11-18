@@ -90,7 +90,7 @@ export function SettingsExperience({
 	initialSection = "Billing & usage",
 	onSectionChange,
 }: SettingsExperienceProps) {
-	const [settings, setSettings] = useSettingsState();
+	const [settings, setSettings, saveMembers] = useSettingsState();
 	const [active, setActive] = useState(initialSection);
 	const [previousEntry, setPreviousEntry] = useState(initialSection);
 	if (initialSection !== previousEntry) {
@@ -170,9 +170,7 @@ export function SettingsExperience({
 					<StaffSettings
 						members={settings.members}
 						projects={projects}
-						onMembersChange={(members) =>
-							setSettings((previous) => ({ ...previous, members }))
-						}
+						onMembersChange={saveMembers}
 					/>
 				</section>
 			</main>

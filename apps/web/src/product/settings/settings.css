@@ -421,3 +421,10 @@
 		grid-template-columns: minmax(0, 1fr);
 	}
 }
+
+.product-staff-table-layout {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-16);
+	min-width: 0;
+}

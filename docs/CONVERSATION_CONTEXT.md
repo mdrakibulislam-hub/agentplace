@@ -185,6 +185,14 @@ Outcome: Figma conversation panels/states in section `212:6270`, reusable messag
 
 The user corrected the trash icon proportions and hover behavior: use the smaller frontend-sized icon in Figma, reveal it only when hovering a conversation row whether selected or unselected, and turn only the icon danger red on button hover without a filled red background. The Figma nested artwork is now scaled to 16px inside the existing 32px target, with Hidden/Revealed/Hover variants. The shared sidebar and compact picker follow the same rules; keyboard focus reveals the action and touch layouts retain an explicit action.
 
+## 22. Professional staff table and staged access editing
+
+The user requested a more professional staff/roles screen, reusable table-item components and improved role editing. They first limited work to Figma, then explicitly approved adding all new components to Storybook and implementing the new screens/flows in the codebase.
+
+The approved design replaces the split list/invitation layout with a full-width members table, compact search and role filter, and a 480px member drawer. Workspace and per-project roles are edited together through an explicit Save; Admin includes all projects while billing stays owner-only. Invitations move into a dialog, and pending invitations have resend/revoke recovery. Dirty changes require discard confirmation; save errors preserve drafts. All use the existing semantic AP tokens and local Reicon assets.
+
+Shared components now power Storybook and the frontend. Local member saves report browser-storage failures rather than false success. Invitation delivery and server authorization are still unimplemented; the application presents a recoverable unavailable state, while Storybook exercises successful service adapters with isolated data. Existing builder, conversation, branding and source-picker updates remain intact. Implementation detail and validation evidence live in [staff-management.md](staff-management.md).
+
 ## Decisions still requiring implementation or later product input
 
 Provider selection for AI execution, voice, email/Google configuration, billing, uploads/storage and real integrations is not fixed here. Responsive/mobile layouts and dark-mode behavior require review. Use the existing code and explicit user direction to resolve active implementation needs; do not fabricate completed services from sample Figma data.

@@ -185,6 +185,16 @@ The provider choices and production services are not fixed by this conversation.
 
 This is an integration order, not a mandate to implement the entire product in one change. Preserve finished work and validate coherent slices.
 
+## Staff management implementation · 18 November 2026
+
+The approved [staff screen](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=59-2860) now uses the shared table and access UI in `packages/ui/src/components/ap-members.tsx`. The legacy `StaffRow` remains available for historical component coverage. The product no longer uses the split staff card, persistent invitation form or large role-explanation boxes.
+
+The new `Components/13 Tables & member access` and `Product/Staff management` Storybook groups cover member cells, status/action variants, toolbar/search, rows/table/empty state, project permissions, explanatory role menus, member/Admin drawers, invitations, save/discard/error feedback and complete screen flows. Figma links are stored with each story. See [staff management implementation notes](staff-management.md) for references and validation boundaries.
+
+Workspace roles and project permissions remain separate. Changes are staged; Owner is protected; Admin includes current/future projects; saving blocks duplicate submission/dismissal; dirty dismissal asks to discard. Focus is trapped and returned. Failed saves retain edits. Staff saves write the existing workspace-specific browser store before updating state and reporting success; quota/unavailable-storage errors can be retried. This does **not** establish server-side authorization.
+
+Invite/resend/revoke dialogs accept async callbacks. The current frontend has no delivery service, so invite/resend report unavailability without adding a pending invitation or claiming delivery. Existing pending prototype records can be revoked from local settings. Storybook alone supplies isolated invitation-success fixtures. Live invitation acceptance/expiry, email delivery and authoritative membership APIs remain future backend work.
+
 ## Validation and commands
 
 Use `README.md` for the current setup and commands. Snapshot commands include `bun run dev`, `bun run storybook`, `bun run check`, `bun run check-types`, `bun run build`, and `bun run build-storybook`. Setup is documented there; do not overwrite existing environment files. Default local ports are web 4101, API 4100, Storybook 6006.

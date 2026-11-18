@@ -13,6 +13,7 @@ export function ConfirmDialog({
 	title = "Delete WhiteFrame Advisor?",
 	description = "This permanently deletes the project and its conversations. This action cannot be undone.",
 	confirmLabel = "Delete project",
+	cancelLabel = "Cancel",
 	className,
 	backdropClassName,
 	open: controlledOpen,
@@ -24,6 +25,7 @@ export function ConfirmDialog({
 	title?: string;
 	description?: ReactNode;
 	confirmLabel?: string;
+	cancelLabel?: string;
 	className?: string;
 	backdropClassName?: string;
 	open?: boolean;
@@ -136,7 +138,7 @@ export function ConfirmDialog({
 								/>
 							}
 						>
-							Cancel
+							{cancelLabel}
 						</Dialog.Close>
 						<Button
 							className="ap-dialog-confirm"

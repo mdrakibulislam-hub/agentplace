@@ -1,4 +1,9 @@
 import type { IconName } from "@agentplace/ui/components/ap-icon";
+import type {
+	MemberProjectRole,
+	MemberRecord,
+	MemberWorkspaceRole,
+} from "@agentplace/ui/components/ap-members";
 import {
 	createContext,
 	type Dispatch,
@@ -6,11 +11,12 @@ import {
 	type SetStateAction,
 	useContext,
 	useEffect,
+	useRef,
 	useState,
 } from "react";
 
-export type WorkspaceRole = "Owner" | "Admin" | "Member";
-export type ProjectRole = "Editor" | "Viewer";
+export type WorkspaceRole = MemberWorkspaceRole;
+export type ProjectRole = MemberProjectRole;
 export type ConnectionId = "leads" | "calendar" | "knowledge";
 
 export interface WorkspaceSkill {
@@ -33,15 +39,7 @@ export interface WorkspaceConnection {
 	access: string[];
 }
 
-export interface WorkspaceMember {
-	id: string;
-	name: string;
-	email: string;
-	initials: string;
-	role: WorkspaceRole;
-	access: Record<string, ProjectRole>;
-	invited?: boolean;
-}
+export type WorkspaceMember = MemberRecord;
 
 export interface WorkspaceSettings {
 	name: string;
@@ -149,6 +147,7 @@ const initialSettings: WorkspaceSettings = {
 type SettingsState = [
 	WorkspaceSettings,
 	Dispatch<SetStateAction<WorkspaceSettings>>,
+	(members: WorkspaceMember[]) => Promise<void>,
 ];
 const SettingsStateContext = createContext<SettingsState | null>(null);
 const storageKey = "agentplace.prototype.settings.v1";
@@ -187,6 +186,8 @@ export function SettingsStateProvider({
 	const [workspaces, setWorkspaces] = useState(readSettings);
 	const key = workspaceId ?? "prototype";
 	const settings = workspaces[key] ?? initialSettings;
+	const workspacesRef = useRef(workspaces);
+	workspacesRef.current = workspaces;
 	useEffect(() => {
 		try {
 			localStorage.setItem(storageKey, JSON.stringify(workspaces));
@@ -203,8 +204,25 @@ export function SettingsStateProvider({
 					: action,
 		}));
 	}
+	// Commit storage before showing success; a failed write leaves saved access intact.
+	async function saveMembers(members: WorkspaceMember[]) {
+		const previous = workspacesRef.current;
+		const next = {
+			...previous,
+			[key]: { ...(previous[key] ?? initialSettings), members },
+		};
+		try {
+			localStorage.setItem(storageKey, JSON.stringify(next));
+		} catch {
+			throw new Error(
+				"Your browser couldn’t save these changes. Your edits are still here. Try again.",
+			);
+		}
+		workspacesRef.current = next;
+		setWorkspaces(next);
+	}
 	return (
-		<SettingsStateContext.Provider value={[settings, setSettings]}>
+		<SettingsStateContext.Provider value={[settings, setSettings, saveMembers]}>
 			{children}
 		</SettingsStateContext.Provider>
 	);
@@ -213,5 +231,13 @@ export function SettingsStateProvider({
 export function useSettingsState(): SettingsState {
 	const workspace = useContext(SettingsStateContext);
 	const local = useState(initialSettings);
-	return workspace ?? local;
+	return (
+		workspace ?? [
+			local[0],
+			local[1],
+			async (members) => {
+				local[1]((previous) => ({ ...previous, members }));
+			},
+		]
+	);
 }
