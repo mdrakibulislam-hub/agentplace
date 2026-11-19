@@ -183,7 +183,8 @@ button.ap-project-cover {
 }
 .ap-new-project-prompt {
 	width: 768px;
-	height: 144px;
+	min-height: 144px;
+	max-height: 224px;
 	padding: 24px;
 	gap: 16px;
 	container: project-prompt / inline-size;
@@ -220,6 +221,20 @@ button.ap-project-cover {
 .ap-chat-composer textarea::placeholder {
 	color: var(--foreground-placeholder);
 	opacity: 1;
+}
+.ap-new-project-prompt textarea::placeholder {
+	opacity: var(--ap-prompt-placeholder-opacity, 1);
+}
+@property --ap-prompt-placeholder-opacity {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+	.ap-new-project-prompt textarea[data-placeholder-fade-out] {
+		transition: --ap-prompt-placeholder-opacity 200ms ease-out;
+		--ap-prompt-placeholder-opacity: 0;
+	}
 }
 .ap-new-project-prompt:has(textarea:focus),
 .ap-chat-composer:focus-within {
@@ -589,12 +604,54 @@ button.ap-project-cover {
 }
 .ap-new-project-prompt textarea {
 	--ap-glyph-baseline-body-base: 1px;
+	--ap-prompt-scrollbar: color-mix(
+		in srgb,
+		var(--foreground-muted) 25%,
+		transparent
+	);
+	--ap-prompt-scrollbar-hover: color-mix(
+		in srgb,
+		var(--foreground-muted) 44%,
+		transparent
+	);
+	--ap-prompt-scrollbar-active: color-mix(
+		in srgb,
+		var(--foreground-muted) 55%,
+		transparent
+	);
+	flex: 1 1 auto;
+	field-sizing: content;
 	padding-top: var(--ap-glyph-baseline-body-base);
+	padding-inline-end: var(--space-8);
 	overflow-y: auto;
-	scrollbar-width: none;
+	scrollbar-gutter: stable;
 }
-.ap-new-project-prompt textarea::-webkit-scrollbar {
-	display: none;
+@supports selector(::-webkit-scrollbar) {
+	.ap-new-project-prompt textarea::-webkit-scrollbar {
+		width: var(--space-6);
+	}
+	.ap-new-project-prompt textarea::-webkit-scrollbar-thumb {
+		border-radius: var(--radius-full);
+		background: var(--ap-prompt-scrollbar);
+	}
+	.ap-new-project-prompt textarea::-webkit-scrollbar-thumb:hover {
+		background: var(--ap-prompt-scrollbar-hover);
+	}
+	.ap-new-project-prompt textarea::-webkit-scrollbar-thumb:active {
+		background: var(--ap-prompt-scrollbar-active);
+	}
+}
+@supports not selector(::-webkit-scrollbar) {
+	.ap-new-project-prompt textarea {
+		scrollbar-width: thin;
+		scrollbar-color: var(--ap-prompt-scrollbar) transparent;
+	}
+	.ap-new-project-prompt textarea:hover {
+		scrollbar-color: var(--ap-prompt-scrollbar-hover) transparent;
+	}
+	.ap-new-project-prompt textarea:active {
+		scrollbar-color: var(--ap-prompt-scrollbar-active) transparent;
+	}
 }
 
 .ap-project-name-status h3 {

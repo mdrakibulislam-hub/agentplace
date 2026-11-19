@@ -16,7 +16,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"Each model mode has a leading Reicon. The current mode is highlighted and appears on the composer trigger. The picker opens 8px from the trigger and repositions at viewport edges.",
+					"Each model mode has a leading Reicon. The current mode is highlighted and appears on the composer trigger in the secondary foreground color. The picker opens 8px from the trigger and repositions at viewport edges.",
 			},
 		},
 	},

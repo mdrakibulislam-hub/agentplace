@@ -12,7 +12,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"The paperclip opens website and file attachments. The model control shows the current mode and opens the shared picker below the toolbar. Create project submits once with Enter, and Shift+Enter inserts a line. A rejected callback preserves the prompt and mode.",
+					"The idle placeholder loops through three examples prefixed with e.g. and the original instruction. Interaction or reduced motion brings back the instruction immediately. Longer prompts grow the composer from 144px to 224px, then scroll inside the field. The paperclip opens attachments, and the model control opens the picker below the toolbar. Enter submits once, Shift+Enter inserts a line, and a rejected callback preserves the prompt and mode.",
 			},
 		},
 	},
@@ -25,10 +25,18 @@ export const Filled: Story = {
 	args: { defaultValue: "Build an AI advisor for our design studio" },
 };
 export const LongPrompt: Story = {
-	globals: { theme: "dark" },
+	parameters: { design: figma("456:2544") },
 	args: {
-		defaultValue:
-			"Build an agent that introduces our design studio and answers common questions.\nExplain our services, typical timelines, and how projects are scoped.\nWhen someone is ready to get in touch, collect a short project brief.\nUse our website as the source for service and contact details.",
+		defaultValue: [
+			"Build an agent that introduces our design studio and answers common questions.",
+			"Explain our services, typical timelines, and how projects are scoped.",
+			"Collect a short project brief when someone is ready to get in touch.",
+			"Use our website as the source for service and contact details.",
+			"Ask about the visitor’s goals, timeline, and budget.",
+			"Suggest the best next step based on their answers.",
+			"Hand off enquiries that need a personal reply.",
+			"Keep responses clear and concise.",
+		].join("\n"),
 	},
 };
 export const Submitting: Story = {

@@ -1,6 +1,9 @@
 .ap-button.ap-model-picker-trigger {
 	padding-inline: var(--space-8) var(--space-12);
 }
+.ap-model-picker-trigger:not(:disabled) .ap-button-label {
+	color: var(--foreground-secondary);
+}
 
 .ap-menu-panel.ap-model-picker {
 	width: 280px;

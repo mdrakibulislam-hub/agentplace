@@ -3,6 +3,7 @@ import {
 	type FormEvent,
 	type KeyboardEvent,
 	type ReactNode,
+	type RefObject,
 	useEffect,
 	useId,
 	useRef,
@@ -25,6 +26,7 @@ import {
 	Tooltip,
 } from "./ap-menus";
 import { type ModelMode, ModelPicker } from "./ap-model-picker";
+import { useMotionEnvironment } from "./ap-motion";
 import { Button } from "./button";
 import "../styles/ap-builder.css";
 
@@ -217,6 +219,94 @@ interface ComposerProps {
 	error?: string;
 	className?: string;
 }
+
+interface PromptPlaceholder {
+	text: string;
+	fadeOut?: boolean;
+}
+
+type PromptPlaceholderFrame = PromptPlaceholder & { delay: number };
+
+const projectPromptPlaceholder: PromptPlaceholder = {
+	text: "Describe the agent you want to build…",
+};
+const projectPromptLines = [
+	"Answer common customer questions",
+	"Recommend the right service",
+	"Help visitors book appointments",
+	projectPromptPlaceholder.text,
+];
+const projectPromptIntro: PromptPlaceholderFrame[] = [
+	{ ...projectPromptPlaceholder, fadeOut: true, delay: 1100 },
+	{ text: "", delay: 220 },
+];
+const projectPromptFrames: PromptPlaceholderFrame[] = [
+	...projectPromptIntro,
+	...projectPromptLines.flatMap((line, lineIndex) => {
+		const instructional = line === projectPromptPlaceholder.text;
+		const prefix = instructional ? "" : "e.g. ";
+		const longerPause = lineIndex >= projectPromptLines.length - 2;
+		const startDelay = lineIndex === 0 || instructional ? 660 : 460;
+		const readingDelay = longerPause ? 2700 : 2200;
+		const eraseDelay = longerPause ? 40 : 32;
+		const typing = Array.from({ length: line.length }, (_, index) => {
+			const characterDelay =
+				line[index - 1] === " " ? 90 : 48 + (index % 3) * 5;
+			return {
+				text: prefix + line.slice(0, index + 1),
+				delay: index === 0 ? startDelay : characterDelay,
+			};
+		});
+		const erasing = Array.from({ length: line.length }, (_, index) => ({
+			text:
+				index === line.length - 1
+					? ""
+					: prefix + line.slice(0, line.length - index - 1),
+			delay: index === 0 ? readingDelay : eraseDelay,
+		}));
+		return [...typing, ...erasing];
+	}),
+];
+
+function useProjectPromptPlaceholder(
+	ref: RefObject<HTMLTextAreaElement | null>,
+	enabled: boolean,
+) {
+	const { reduced, paused } = useMotionEnvironment();
+	const nextFrame = useRef(0);
+	const [example, setExample] = useState(projectPromptPlaceholder);
+
+	useEffect(() => {
+		const field = ref.current;
+		if (!field || !enabled || reduced || paused) return;
+
+		let timer: number | undefined;
+		function advance() {
+			const frame = projectPromptFrames[nextFrame.current];
+			if (!frame) return;
+			timer = window.setTimeout(() => {
+				setExample(frame);
+				nextFrame.current =
+					nextFrame.current === projectPromptFrames.length - 1
+						? projectPromptIntro.length
+						: nextFrame.current + 1;
+				advance();
+			}, frame.delay);
+		}
+		const observer = new IntersectionObserver(([entry]) => {
+			window.clearTimeout(timer);
+			if (entry?.isIntersecting) advance();
+		});
+		observer.observe(field);
+		return () => {
+			observer.disconnect();
+			window.clearTimeout(timer);
+		};
+	}, [enabled, paused, reduced, ref]);
+
+	return enabled && !paused && !reduced ? example : projectPromptPlaceholder;
+}
+
 export function NewProjectPrompt({
 	value: controlledValue,
 	defaultValue = "",
@@ -239,8 +329,13 @@ export function NewProjectPrompt({
 	const inFlight = useRef(false);
 	const [pending, setPending] = useState(false);
 	const [localError, setLocalError] = useState("");
+	const [promptInteracted, setPromptInteracted] = useState(false);
 	const errorId = useId();
 	const busy = submitting || pending;
+	const placeholder = useProjectPromptPlaceholder(
+		textarea,
+		!(value || busy || error || localError || promptInteracted),
+	);
 	function change(value: string) {
 		setInternalValue(value);
 		onValueChange?.(value);
@@ -285,6 +380,8 @@ export function NewProjectPrompt({
 			<form
 				aria-label="New project prompt"
 				className={`ap-new-project-prompt ${className}`}
+				onFocus={() => setPromptInteracted(true)}
+				onPointerDown={() => setPromptInteracted(true)}
 				onSubmit={submit}
 			>
 				<textarea
@@ -292,7 +389,8 @@ export function NewProjectPrompt({
 					aria-label="Describe the agent you want to build"
 					aria-invalid={Boolean(error || localError)}
 					aria-describedby={error || localError ? errorId : undefined}
-					placeholder="Describe the agent you want to build…"
+					placeholder={placeholder.text}
+					data-placeholder-fade-out={placeholder.fadeOut || undefined}
 					value={value}
 					onInput={(event) => change(event.currentTarget.value)}
 					onKeyDown={key}
