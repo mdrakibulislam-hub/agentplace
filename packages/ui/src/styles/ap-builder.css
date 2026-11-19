@@ -65,6 +65,10 @@ button.ap-project-cover {
 	height: 100%;
 	object-fit: cover;
 }
+.ap-cover-mascot > img {
+	position: absolute;
+	inset: 0;
+}
 .ap-project-cover:focus-visible {
 	outline: 2px solid var(--focus-ring);
 	outline-offset: 2px;

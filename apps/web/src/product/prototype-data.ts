@@ -1,5 +1,6 @@
 import type { CreditValues } from "@agentplace/ui/components/ap-data";
 import type { MenuProject } from "@agentplace/ui/components/ap-menus";
+import type { ProjectCoverBackground } from "@agentplace/ui/lib/project-cover-backgrounds";
 import type { BuilderData, PublishedSnapshot } from "./builder/builder-model";
 
 export interface ProjectSource {
@@ -11,6 +12,7 @@ export interface PrototypeProject extends MenuProject {
 	company?: string;
 	prompt?: string;
 	cover?: string;
+	coverBackground?: ProjectCoverBackground;
 	sources?: ProjectSource[];
 	needsFirstDraft?: boolean;
 	builder?: BuilderData;
@@ -28,6 +30,7 @@ export const demoProjects: PrototypeProject[] = [
 		company: "Whiteframe Creative",
 		prompt:
 			"Create an advisor for whiteframe.agency that recommends services and collects project enquiries.",
+		coverBackground: "blue-haze",
 		status: "Published",
 		updated: "Edited 2 hours ago",
 		icon: "briefcase-business",
@@ -35,6 +38,7 @@ export const demoProjects: PrototypeProject[] = [
 	{
 		id: "customer-support",
 		name: "Customer Support",
+		coverBackground: "blue-pink",
 		status: "Unpublished",
 		updated: "Edited yesterday",
 		icon: "message-square",
@@ -42,6 +46,7 @@ export const demoProjects: PrototypeProject[] = [
 	{
 		id: "booking-assistant",
 		name: "Booking Assistant",
+		coverBackground: "mint-peach",
 		status: "Published",
 		updated: "Edited 3 days ago",
 		icon: "calendar",

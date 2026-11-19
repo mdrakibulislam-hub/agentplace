@@ -815,5 +815,95 @@
 			"height": "16",
 			"viewBox": "0 0 16 16"
 		}
+	},
+	{
+		"name": "project-cover-blue-pink.jpg",
+		"nodeId": "411:13469",
+		"kind": "figma-cover-artwork",
+		"sha256": "5117dbed92c33a22ed3908795de37a6d6b7a7ca0d588c0c268cfaab423c5011c",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
+	},
+	{
+		"name": "project-cover-lavender.jpg",
+		"nodeId": "411:13470",
+		"kind": "figma-cover-artwork",
+		"sha256": "2991ade1a5d1df38a59dc65b64d31b299130f0da9a54d0ec83060c50078e104e",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
+	},
+	{
+		"name": "project-cover-pastel.jpg",
+		"nodeId": "411:13471",
+		"kind": "figma-cover-artwork",
+		"sha256": "cb153ac97ad7a968be9779281af1a7c602b475de17a06230aa32fd08878222ff",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
+	},
+	{
+		"name": "project-cover-peach-blue.jpg",
+		"nodeId": "411:13472",
+		"kind": "figma-cover-artwork",
+		"sha256": "4b607942b9ea31cc76b0990d4b50169942c6e508c528acb5a1908275684a3577",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
+	},
+	{
+		"name": "project-cover-prism.jpg",
+		"nodeId": "411:13474",
+		"kind": "figma-cover-artwork",
+		"sha256": "e2b27817b8d0f32d0b89461a6a17815cf32c2cd58d9b4c9f0e4ce8a8ac3bbbf9",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
+	},
+	{
+		"name": "project-cover-lime.jpg",
+		"nodeId": "411:13475",
+		"kind": "figma-cover-artwork",
+		"sha256": "63c1a71ade76f7c6403e370ab95b7810a2a8531fce51a765830bc512d8e621a7",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
+	},
+	{
+		"name": "project-cover-blue-haze.jpg",
+		"nodeId": "411:13476",
+		"kind": "figma-cover-artwork",
+		"sha256": "2e363331483f8ecc8dea1ccadc203d710f7e80240f6d2d1c5cf7de5741a0db40",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
+	},
+	{
+		"name": "project-cover-violet.jpg",
+		"nodeId": "411:13477",
+		"kind": "figma-cover-artwork",
+		"sha256": "08a67c3ecf645e018d379c2bb9805a6ed04cb8e0aafb0ebfb5e87bf71c8bb04a",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
+	},
+	{
+		"name": "project-cover-mint-peach.jpg",
+		"nodeId": "411:13478",
+		"kind": "figma-cover-artwork",
+		"sha256": "00ff763f09930d7682d4ae79efed1f70e4b0e0bd1b94909813a87bbb3cde3cbe",
+		"nativeGeometry": {
+			"width": "640",
+			"height": "248"
+		}
 	}
 ]

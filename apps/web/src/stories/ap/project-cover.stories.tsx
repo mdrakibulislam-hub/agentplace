@@ -1,4 +1,8 @@
 import { ProjectCover } from "@agentplace/ui/components/ap-builder";
+import {
+	projectCoverBackgroundIds,
+	projectCoverBackgrounds,
+} from "@agentplace/ui/lib/project-cover-backgrounds";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -20,7 +24,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"Exactly three presentations: Empty, Added, Default-mascot. Home with no uploaded image uses Default-mascot; branding with no image uses Empty. Uploaded image uses Added. Editable hover and keyboard focus show Empty; leave/blur recomputes the current asset-derived rest state. Click/Enter/Space requests editing, never on hover. Touch has an explicit action. Read-only contexts have no edit controls. Added below matches the supplied blank upload slot; bind a real image prop in the application.",
+					"Home cards show the project's assigned background with the original mascot. Unassigned projects use the mascot gradient. Branding without an upload shows Empty. An uploaded image takes precedence in both contexts. Editable hover and keyboard focus show Empty temporarily, then restore the current cover. Click or keyboard activation opens the picker. Touch has an explicit action. Read-only contexts have no edit controls.",
 			},
 		},
 	},
@@ -36,6 +40,57 @@ export const Added: Story = {
 export const DefaultMascot: Story = {
 	parameters: { figmaVariantId: "189:13673" },
 	args: { context: "home-card" },
+};
+export const BlueAndPink: Story = {
+	parameters: { figmaVariantId: "421:2363" },
+	args: { context: "home-card", background: "blue-pink" },
+};
+export const Lavender: Story = {
+	parameters: { figmaVariantId: "421:2365" },
+	args: { context: "home-card", background: "lavender" },
+};
+export const Pastel: Story = {
+	parameters: { figmaVariantId: "421:2367" },
+	args: { context: "home-card", background: "pastel" },
+};
+export const PeachAndBlue: Story = {
+	parameters: { figmaVariantId: "421:2369" },
+	args: { context: "home-card", background: "peach-blue" },
+};
+export const Prism: Story = {
+	parameters: { figmaVariantId: "421:2371" },
+	args: { context: "home-card", background: "prism" },
+};
+export const Lime: Story = {
+	parameters: { figmaVariantId: "421:2373" },
+	args: { context: "home-card", background: "lime" },
+};
+export const BlueHaze: Story = {
+	parameters: { figmaVariantId: "421:2375" },
+	args: { context: "home-card", background: "blue-haze" },
+};
+export const Violet: Story = {
+	parameters: { figmaVariantId: "421:2377" },
+	args: { context: "home-card", background: "violet" },
+};
+export const MintAndPeach: Story = {
+	parameters: { figmaVariantId: "421:2379" },
+	args: { context: "home-card", background: "mint-peach" },
+};
+export const BackgroundGallery: Story = {
+	parameters: { design: figma("421:2362") },
+	render: () => (
+		<div style={{ display: "flex", flexWrap: "wrap", gap: 24, maxWidth: 1056 }}>
+			{projectCoverBackgroundIds.map((background) => (
+				<figure key={background} style={{ margin: 0 }}>
+					<ProjectCover background={background} />
+					<figcaption style={{ marginTop: 8 }}>
+						{projectCoverBackgrounds[background].label}
+					</figcaption>
+				</figure>
+			))}
+		</div>
+	),
 };
 export const EditableHome: Story = {
 	args: { context: "home-card", canEdit: true },
@@ -95,6 +150,7 @@ function CoverLifecycleFixture() {
 			<div data-testid="home-cover">
 				<ProjectCover
 					context="home-card"
+					background="lavender"
 					image={image}
 					canEdit
 					onEdit={() =>
@@ -164,7 +220,7 @@ export const ContextAndAssetLifecycle: Story = {
 		docs: {
 			description: {
 				story:
-					"Both home/branding contexts use one locally staged file. Upload in this example means an in-memory Storybook file preview, not a server request. Cancel/fail keep the current image; removal derives the different no-image fallbacks. The read-only copy has no edit control.",
+					"Both home and branding use one locally staged file. Cancel and failure keep the current image. Removal restores the assigned background on the home card and the empty upload control in Branding. The read-only copy has no edit control.",
 			},
 		},
 	},
@@ -174,6 +230,10 @@ export const ContextAndAssetLifecycle: Story = {
 		const branding = within(canvas.getByTestId("branding-cover")).getByRole(
 			"button",
 		);
+		const assignedBackground = home.querySelector<HTMLImageElement>(
+			".ap-cover-mascot img",
+		)?.src;
+		await expect(assignedBackground).toBeDefined();
 		await expect(home).toHaveAttribute("data-presentation", "default-mascot");
 		await expect(branding).toHaveAttribute("data-presentation", "empty");
 		await userEvent.hover(home);
@@ -182,6 +242,9 @@ export const ContextAndAssetLifecycle: Story = {
 		);
 		await userEvent.unhover(home);
 		await expect(home).toHaveAttribute("data-presentation", "default-mascot");
+		await expect(
+			home.querySelector<HTMLImageElement>(".ap-cover-mascot img")?.src,
+		).toBe(assignedBackground);
 		await userEvent.hover(branding);
 		await expect(branding).toHaveAttribute("data-presentation", "empty");
 		await userEvent.unhover(branding);
@@ -194,7 +257,9 @@ export const ContextAndAssetLifecycle: Story = {
 		await userEvent.tab();
 		fireEvent.focusOut(home);
 		fireEvent.focusIn(branding);
-		await expect(home).toHaveAttribute("data-presentation", "default-mascot");
+		await waitFor(() =>
+			expect(home).toHaveAttribute("data-presentation", "default-mascot"),
+		);
 		await userEvent.tab();
 		fireEvent.focusOut(branding);
 		const bytes = Uint8Array.from(
@@ -230,11 +295,15 @@ export const ContextAndAssetLifecycle: Story = {
 		await userEvent.tab();
 		fireEvent.focusOut(home);
 		fireEvent.focusIn(branding);
-		await expect(home).toHaveAttribute("data-presentation", "added");
+		await waitFor(() =>
+			expect(home).toHaveAttribute("data-presentation", "added"),
+		);
 		await expect(branding).toHaveFocus();
 		await userEvent.tab();
 		fireEvent.focusOut(branding);
-		await expect(branding).toHaveAttribute("data-presentation", "added");
+		await waitFor(() =>
+			expect(branding).toHaveAttribute("data-presentation", "added"),
+		);
 		await userEvent.click(
 			canvas.getByRole("button", { name: "Cancel replacement" }),
 		);
@@ -262,6 +331,9 @@ export const ContextAndAssetLifecycle: Story = {
 			canvas.getByRole("button", { name: "Remove staged cover" }),
 		);
 		await expect(home).toHaveAttribute("data-presentation", "default-mascot");
+		await expect(
+			home.querySelector<HTMLImageElement>(".ap-cover-mascot img")?.src,
+		).toBe(assignedBackground);
 		await expect(branding).toHaveAttribute("data-presentation", "empty");
 	},
 };

@@ -1,3 +1,4 @@
+import { projectCoverBackgroundIds } from "@agentplace/ui/lib/project-cover-backgrounds";
 import {
 	createContext,
 	type ReactNode,
@@ -87,8 +88,18 @@ function readStore(): Store {
 				parsed.workspaces &&
 				(parsed.activeWorkspace === null ||
 					typeof parsed.activeWorkspace === "string")
-			)
+			) {
+				const demo = parsed.workspaces.demo;
+				if (Array.isArray(demo?.projects)) {
+					demo.projects = demo.projects.map((project) => {
+						const sample = demoProjects.find(({ id }) => id === project.id);
+						return sample
+							? { ...project, coverBackground: sample.coverBackground }
+							: project;
+					});
+				}
 				return parsed;
+			}
 		}
 	} catch {
 		// The prototype can operate in memory when browser storage is unavailable.
@@ -207,6 +218,10 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 							: "New project",
 						prompt,
 						sources,
+						coverBackground:
+							projectCoverBackgroundIds[
+								Math.floor(Math.random() * projectCoverBackgroundIds.length)
+							],
 						needsFirstDraft: true,
 						status: "Unpublished",
 						updated: "Edited just now",

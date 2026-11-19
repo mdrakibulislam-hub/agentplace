@@ -309,7 +309,10 @@ export function ProjectHome({
 									<ProjectCard
 										key={project.id}
 										project={project}
-										cover={{ image: project.cover }}
+										cover={{
+											background: project.coverBackground,
+											image: project.cover,
+										}}
 										defaultActionsOpen={initialActionsId === project.id}
 										onOpen={onOpen}
 										onCoverEdit={(id) => {

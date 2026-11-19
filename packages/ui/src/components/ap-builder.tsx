@@ -8,6 +8,10 @@ import {
 	useRef,
 	useState,
 } from "react";
+import {
+	type ProjectCoverBackground,
+	projectCoverBackgrounds,
+} from "../lib/project-cover-backgrounds";
 import { AmbientBottomGradient } from "./ap-ambient";
 import { Mascot } from "./ap-brand";
 import { ProjectActions } from "./ap-controls";
@@ -26,6 +30,7 @@ export type CoverPresentation = "empty" | "added" | "default-mascot";
 export type CoverContext = "home-card" | "branding-upload";
 export interface ProjectCoverProps {
 	context?: CoverContext;
+	background?: ProjectCoverBackground;
 	image?: string | null;
 	alt?: string;
 	objectPosition?: CSSProperties["objectPosition"];
@@ -47,6 +52,7 @@ export function coverPresentation(
 }
 export function ProjectCover({
 	context = "home-card",
+	background,
 	image,
 	alt = "Project cover",
 	objectPosition = "center",
@@ -58,6 +64,10 @@ export function ProjectCover({
 }: ProjectCoverProps) {
 	const [hovered, setHovered] = useState(false);
 	const [focused, setFocused] = useState(false);
+	const backgroundImage =
+		context === "home-card" && !image && background
+			? projectCoverBackgrounds[background]?.image
+			: undefined;
 	const state =
 		canEdit && (hovered || focused)
 			? "empty"
@@ -76,6 +86,7 @@ export function ProjectCover({
 				className="ap-cover-art ap-cover-mascot"
 				aria-hidden={state !== "default-mascot"}
 			>
+				{backgroundImage && <img src={backgroundImage} alt="" />}
 				<Mascot animated={state === "default-mascot"} />
 			</span>
 			<span

@@ -103,20 +103,20 @@ Credits use a small donut in the header and a compact remaining-credit bar in bi
 - Keep related buttons grouped: about 12px internal action gaps inside a 24px parent form rhythm. Avoid oversized settings rows, tall empty cards, large numbers and excessive vertical whitespace.
 - Professional compact live/published feedback, menu alignment, smaller credit numbers and consistent leading/trailing icon alignment matter; do not revert them to generic oversized dashboard components.
 
-## Latest cover rule: preserve this exactly
+## Project cover backgrounds and uploads
 
-`AP / Media / Project cover` has three variants: `Empty`, `Added`, `Default-mascot`.
+The [project cover component](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=130-1323) keeps `Empty`, `Added`, and `Default-mascot` and includes nine [artwork backgrounds](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=421-2362). The app picks one background when a project is created and saves its ID with the project. The home card renders that artwork behind the original mascot. Projects saved before this update retain the mascot gradient when they have no assigned background.
 
-| Context         | No uploaded asset at rest | Uploaded asset at rest  | Editable hover/focus         |
-| --------------- | ------------------------- | ----------------------- | ---------------------------- |
-| Homepage card   | Default-mascot            | Added with actual image | Empty upload/edit affordance |
-| Branding upload | Empty                     | Added with actual image | Empty upload/edit affordance |
+| Context         | No uploaded asset at rest                       | Uploaded asset at rest  | Editable hover/focus         |
+| --------------- | ----------------------------------------------- | ----------------------- | ---------------------------- |
+| Homepage card   | Assigned artwork with mascot or mascot gradient | Added with actual image | Empty upload/edit affordance |
+| Branding upload | Empty                                           | Added with actual image | Empty upload/edit affordance |
 
-On leave/blur, recompute from the **current** asset and context. Hover never removes or changes `coverAssetId`, persists a variant name or starts uploading. Upload cancellation/failure retains the prior image. Successful removal yields different contextual fallbacks: mascot on home, empty upload in branding. Publish separately.
+On leave or blur, recompute from the current asset, assigned background, and context. Upload cancellation or failure retains the prior image. Removing an upload restores the assigned background or mascot gradient on home and the empty upload control in Branding. The assignment is separate from branding drafts and published snapshots.
 
 Use keyboard parity, an explicit touch action and edit permissions. A cover-edit click must not bubble into Open project. Read-only cards, public visitor previews and picker thumbnails do not expose upload affordances. Crossfade about 120ms; reduced motion changes immediately. The existing Added sample is not a real uploaded file; actual implementation must bind the real asset and preserve crop/focal point.
 
-The home card masters were updated to the mascot fallback, which 24 card instances across the design inherited. The thumbnail and cover use the 8px `radius/sm` token. The fallback uses `cover/mint`, `cover/cyan`, and `cover/sky`, with quieter tones in Dark. The `border/default` Dark alias is `color/313135`. Branding uses Empty for a missing cover and Added for an uploaded image, with scoped hover transitions. See the [dark project card](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=378-2) and [cover presentation matrix](design-handoff/cover-presentation.json).
+The [recent-project screen](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=53-349) uses Lavender, Blue haze, and Lime for the sample projects. The thumbnail and cover use the 8px `radius/sm` token. The unassigned fallback uses `cover/mint`, `cover/cyan`, and `cover/sky`, with quieter tones in Dark. See the [dark project card](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=378-2) and the [original cover presentation matrix](design-handoff/cover-presentation.json).
 
 ## Motion, ambient color and elevation
 
