@@ -105,7 +105,7 @@ Credits use a small donut in the header and a compact remaining-credit bar in bi
 
 ## Project cover backgrounds and uploads
 
-The [project cover component](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=130-1323) keeps `Empty`, `Added`, and `Default-mascot` and includes nine [artwork backgrounds](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=421-2362). The app picks one background when a project is created and saves its ID with the project. The home card renders that artwork behind the original mascot. Projects saved before this update retain the mascot gradient when they have no assigned background.
+The [project cover component](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=130-1323) keeps `Empty`, `Added`, and `Default-mascot` and includes nine [artwork backgrounds](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=421-2362). The app picks one background when a project is created and saves its ID with the project. The home card renders that artwork behind the original mascot. On load, saved projects missing an assignment receive a background. The demo fills its first row in Blue Haze, Blue & Pink, and Mint & Peach order, using those backgrounds on unassigned projects and any seeded samples needed to complete the row.
 
 | Context         | No uploaded asset at rest                       | Uploaded asset at rest  | Editable hover/focus         |
 | --------------- | ----------------------------------------------- | ----------------------- | ---------------------------- |

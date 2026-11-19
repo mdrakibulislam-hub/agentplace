@@ -54,6 +54,34 @@ function seedDemoProjects() {
 	});
 }
 
+function assignSavedCoverBackgrounds(
+	projects: PrototypeProject[],
+	isDemo: boolean,
+) {
+	const demoSamples = isDemo ? demoProjects : [];
+	const fillingDemoRow = demoSamples.some((_, index) => {
+		const project = projects[index];
+		return project && !project.coverBackground && !project.cover;
+	});
+
+	return projects.map((project, index) => {
+		const demoBackground = demoSamples[index]?.coverBackground;
+		// While filling an old demo row, let seeded cards complete the palette.
+		const placeSample =
+			fillingDemoRow &&
+			demoBackground &&
+			demoSamples.some(({ id }) => id === project.id);
+		if (project.coverBackground && !placeSample) return project;
+
+		return {
+			...project,
+			coverBackground:
+				demoBackground ??
+				projectCoverBackgroundIds[index % projectCoverBackgroundIds.length],
+		};
+	});
+}
+
 function withCover(project: PrototypeProject, cover: string): PrototypeProject {
 	const data = initialBuilderData(project);
 	const published =
@@ -89,14 +117,13 @@ function readStore(): Store {
 				(parsed.activeWorkspace === null ||
 					typeof parsed.activeWorkspace === "string")
 			) {
-				const demo = parsed.workspaces.demo;
-				if (Array.isArray(demo?.projects)) {
-					demo.projects = demo.projects.map((project) => {
-						const sample = demoProjects.find(({ id }) => id === project.id);
-						return sample
-							? { ...project, coverBackground: sample.coverBackground }
-							: project;
-					});
+				for (const [key, workspace] of Object.entries(parsed.workspaces)) {
+					if (Array.isArray(workspace?.projects)) {
+						workspace.projects = assignSavedCoverBackgrounds(
+							workspace.projects,
+							key === "demo",
+						);
+					}
 				}
 				return parsed;
 			}
