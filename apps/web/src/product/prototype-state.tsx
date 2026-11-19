@@ -1,3 +1,4 @@
+import type { ModelMode } from "@agentplace/ui/components/ap-model-picker";
 import { projectCoverBackgroundIds } from "@agentplace/ui/lib/project-cover-backgrounds";
 import {
 	createContext,
@@ -32,7 +33,11 @@ interface PrototypeState {
 	focusPrompt: () => void;
 	signIn: (account: { email?: string; isNewAccount: boolean }) => void;
 	signOut: () => void;
-	createProject: (prompt: string, sources: ProjectSource[]) => string;
+	createProject: (
+		prompt: string,
+		sources: ProjectSource[],
+		mode: ModelMode,
+	) => string;
 	selectProject: (id: string) => void;
 	updateProject: (id: string, updates: Partial<PrototypeProject>) => void;
 	saveProject: (id: string, updates: Partial<PrototypeProject>) => void;
@@ -229,7 +234,7 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 				},
 				signOut: () =>
 					replaceStore({ ...latestStore.current, activeWorkspace: null }),
-				createProject: (prompt, sources) => {
+				createProject: (prompt, sources, modelMode) => {
 					const id = crypto.randomUUID();
 					const words = prompt
 						.trim()
@@ -245,6 +250,7 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 							: "New project",
 						prompt,
 						sources,
+						modelMode,
 						coverBackground:
 							projectCoverBackgroundIds[
 								Math.floor(Math.random() * projectCoverBackgroundIds.length)

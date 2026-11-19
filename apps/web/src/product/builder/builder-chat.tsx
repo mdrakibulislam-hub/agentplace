@@ -6,20 +6,14 @@ import {
 } from "@agentplace/ui/components/ap-conversation";
 import { Badge, Spinner } from "@agentplace/ui/components/ap-data";
 import { Icon } from "@agentplace/ui/components/ap-icon";
-import {
-	MenuItem,
-	MenuPanel,
-	MenuPopover,
-} from "@agentplace/ui/components/ap-menus";
+import type { ModelMode } from "@agentplace/ui/components/ap-model-picker";
 import { useMotionEnvironment } from "@agentplace/ui/components/ap-motion";
 import { WorkingIndicator } from "@agentplace/ui/components/ap-working-indicator";
 import { Button } from "@agentplace/ui/components/button";
 import { type ChangeEvent, useLayoutEffect, useRef, useState } from "react";
 import type { ProjectSource } from "../prototype-data";
 import type { BuilderConversation } from "./builder-model";
-import { BuilderNote, BuilderTitle } from "./builder-primitives";
-
-const modelOptions = ["Automatic", "Fast", "Detailed"];
+import { BuilderNote } from "./builder-primitives";
 
 export function BuilderChat({
 	conversation,
@@ -35,6 +29,7 @@ export function BuilderChat({
 	onSkipDestination,
 	destination,
 	sources = [],
+	defaultModelMode,
 	usesWebsite,
 }: {
 	conversation?: BuilderConversation;
@@ -50,9 +45,9 @@ export function BuilderChat({
 	onSkipDestination: () => void;
 	destination?: string;
 	sources?: ProjectSource[];
+	defaultModelMode?: ModelMode;
 	usesWebsite: boolean;
 }) {
-	const [model, setModel] = useState("Model");
 	const [attachment, setAttachment] = useState<File>();
 	const file = useRef<HTMLInputElement>(null);
 	const messageList = useRef<HTMLDivElement>(null);
@@ -85,14 +80,6 @@ export function BuilderChat({
 			aria-label="Conversation"
 		>
 			<div ref={messageList} className="ap-builder-chat-scroll">
-				<BuilderTitle
-					title={working ? "Let’s build your agent" : "Edit your agent"}
-					description={
-						working
-							? "A few details will help shape the first draft."
-							: "Describe a change. We’ll take care of the build."
-					}
-				/>
 				<div className="ap-chat-thread">
 					{firstConversation && initial && (
 						<>
@@ -166,36 +153,8 @@ export function BuilderChat({
 				/>
 				<ChatComposer
 					submitting={submitting}
+					defaultModelMode={defaultModelMode}
 					onStop={onStop}
-					modelControl={
-						<MenuPopover
-							trigger={
-								<Button variant="ghost" icon={<Icon name="chevron-down" />}>
-									{model}
-								</Button>
-							}
-						>
-							{(close) => (
-								<MenuPanel title="Model" onClose={close}>
-									<div className="ap-menu-list" role="menu" aria-label="Models">
-										{modelOptions.map((option) => (
-											<MenuItem
-												key={option}
-												label={option}
-												icon={model === option ? "check" : null}
-												data-menu-choice
-												role="menuitem"
-												onClick={() => {
-													setModel(option);
-													close();
-												}}
-											/>
-										))}
-									</div>
-								</MenuPanel>
-							)}
-						</MenuPopover>
-					}
 					onAttach={() => file.current?.click()}
 					onSubmit={(message) => {
 						pendingScroll.current = true;

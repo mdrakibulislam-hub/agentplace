@@ -590,6 +590,7 @@ export function BuilderExperience({
 									working={working}
 									usesWebsite={usesWebsite}
 									sources={project.sources}
+									defaultModelMode={project.modelMode}
 									destination={data.destination}
 									onSubmit={submitChat}
 									onDestination={() => {

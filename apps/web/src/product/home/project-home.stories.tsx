@@ -76,6 +76,30 @@ export const NoProjects: Story = {
 export const RecentProjects: Story = {
 	parameters: { design: figma("53:349") },
 };
+export const ModelPickerOpen: Story = {
+	parameters: { design: figma("446:13941") },
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const composer = within(
+			canvas.getByRole("form", { name: "New project prompt" }),
+		);
+		await expect(
+			composer.getByRole("button", { name: "Add website or file" }),
+		).toBeVisible();
+		await userEvent.click(
+			composer.getByRole("button", { name: "Model: Automatic" }),
+		);
+		await expect(
+			await within(canvasElement.ownerDocument.body).findByRole(
+				"menuitemradio",
+				{
+					name: "Automatic",
+					checked: true,
+				},
+			),
+		).toBeVisible();
+	},
+};
 export const RecentProjectsDark: Story = {
 	globals: { theme: "dark" },
 	parameters: { design: figma("428:2416") },

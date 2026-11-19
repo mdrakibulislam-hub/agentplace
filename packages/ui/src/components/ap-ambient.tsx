@@ -33,7 +33,9 @@ export function AmbientBottomGradient({
 			}
 		>
 			<div className="ap-ambient-field ap-ambient-main" />
-			<div className="ap-ambient-field ap-ambient-inner" />
+			{variant !== "preview" && (
+				<div className="ap-ambient-field ap-ambient-inner" />
+			)}
 		</div>
 	);
 }

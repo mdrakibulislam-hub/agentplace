@@ -292,6 +292,7 @@
 	position: relative;
 	isolation: isolate;
 	min-width: 0;
+	overflow: clip;
 	background: var(--background-secondary);
 	padding: 152px 48px 48px;
 }
@@ -614,6 +615,9 @@
 	}
 	.ap-builder-visitor .ap-agent-preview {
 		padding: 16px;
+	}
+	.ap-builder-visitor .ap-agent-preview[data-mode="test"] {
+		min-height: 672px;
 	}
 	.ap-builder-visitor .ap-visitor-experience,
 	.ap-builder-visitor[data-device="mobile"] .ap-visitor-experience {

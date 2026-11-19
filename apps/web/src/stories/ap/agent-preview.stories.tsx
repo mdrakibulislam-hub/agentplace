@@ -12,7 +12,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"680 × 832 preview with a 632 × 736 visitor surface. Suggested questions fill the editable prompt. The send action remains inside the 48px prompt; Call is a sibling outside it with an 8px gap and 24px horizontal padding. Testing never creates live enquiries. Company logo, agent cover and avatar are separate inputs. Tab/Enter supports all controls; send failures preserve the message. The existing inner diffusion belongs to this master; the full auth/home wash is not inherited.",
+					"680 × 832 preview with 16px outer padding, an 8px toolbar gap, and a 648 × 760 visitor surface. The clipped bottom diffusion stays beneath the visitor card when a conversation starts. Suggested questions fill the editable prompt. The 48px prompt and Call button sit 8px apart, with 24px horizontal padding on Call. Company logo, agent cover and avatar are separate inputs. Tab and Enter support the controls, and send failures preserve the message.",
 			},
 		},
 	},

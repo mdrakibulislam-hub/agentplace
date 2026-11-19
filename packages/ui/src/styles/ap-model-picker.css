@@ -1,0 +1,21 @@
+.ap-button.ap-model-picker-trigger {
+	padding-inline: var(--space-8) var(--space-12);
+}
+
+.ap-menu-panel.ap-model-picker {
+	width: 280px;
+	max-height: var(--available-height, none);
+	overflow: auto;
+	overscroll-behavior: contain;
+	border: var(--stroke-default) solid var(--border-default);
+	border-radius: var(--radius-lg);
+	outline: none;
+}
+
+.ap-model-picker .ap-menu-close {
+	color: var(--foreground-default);
+}
+
+.ap-model-picker .ap-rich-menu-item[data-state="default"]:hover {
+	background: var(--muted-hover);
+}

@@ -17,8 +17,8 @@ function ProjectsPage() {
 			<ProjectHome
 				projects={state.workspace.projects.map(withLiveLink)}
 				onOpen={openProject}
-				onCreate={(prompt, sources) => {
-					const projectId = state.createProject(prompt, sources);
+				onCreate={(prompt, sources, mode) => {
+					const projectId = state.createProject(prompt, sources, mode);
 					openProject(projectId);
 				}}
 				onChangeCover={state.updateCover}

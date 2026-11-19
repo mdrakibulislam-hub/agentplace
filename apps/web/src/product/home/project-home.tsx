@@ -12,6 +12,10 @@ import {
 	type ProjectFilterValue,
 	ProjectSearchResults,
 } from "@agentplace/ui/components/ap-menus";
+import {
+	defaultModelMode,
+	type ModelMode,
+} from "@agentplace/ui/components/ap-model-picker";
 import { SourceAttachmentDialog } from "@agentplace/ui/components/ap-source-dialog";
 import { Button } from "@agentplace/ui/components/button";
 import { useEffect, useRef, useState } from "react";
@@ -58,7 +62,7 @@ const filterLabels: Record<ProjectFilterValue, string> = {
 export interface ProjectHomeProps {
 	projects: PrototypeProject[];
 	onOpen: (id: string, entry?: ProjectEntry) => void;
-	onCreate: (prompt: string, sources: ProjectSource[]) => void;
+	onCreate: (prompt: string, sources: ProjectSource[], mode: ModelMode) => void;
 	onChangeCover: (id: string, cover: string) => void;
 	onDelete: (id: string) => void;
 	focusPromptRequest?: number;
@@ -86,6 +90,7 @@ export function ProjectHome({
 }: ProjectHomeProps) {
 	const [prompt, setPrompt] = useState("");
 	const [sources, setSources] = useState<ProjectSource[]>([]);
+	const [modelMode, setModelMode] = useState<ModelMode>(defaultModelMode);
 	const [attachmentOpen, setAttachmentOpen] = useState(false);
 	const [filter, setFilter] = useState(initialFilter);
 	const [query, setQuery] = useState(initialQuery);
@@ -189,12 +194,11 @@ export function ProjectHome({
 						<NewProjectPrompt
 							value={prompt}
 							onValueChange={setPrompt}
-							onSubmit={(value) => onCreate(value, sources)}
-							onAttach={() => {
-								attachmentReturnFocus.current =
-									document.activeElement instanceof HTMLElement
-										? document.activeElement
-										: null;
+							modelMode={modelMode}
+							onModelModeChange={setModelMode}
+							onSubmit={(value) => onCreate(value, sources, modelMode)}
+							onAttach={(trigger) => {
+								attachmentReturnFocus.current = trigger;
 								setAttachmentOpen(true);
 							}}
 						/>

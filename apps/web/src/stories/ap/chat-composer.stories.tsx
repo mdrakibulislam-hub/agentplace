@@ -16,7 +16,7 @@ const meta = {
 			},
 		},
 	},
-	args: { onSubmit: fn(), onAttach: fn(), onModel: fn() },
+	args: { onSubmit: fn(), onAttach: fn() },
 } satisfies Meta<typeof ChatComposer>;
 export default meta;
 type Story = StoryObj<typeof meta>;

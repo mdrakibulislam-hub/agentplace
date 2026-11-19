@@ -22,7 +22,9 @@ import {
 	type MenuProject,
 	type ProjectAction,
 	ProjectActionsMenu,
+	Tooltip,
 } from "./ap-menus";
+import { type ModelMode, ModelPicker } from "./ap-model-picker";
 import { Button } from "./button";
 import "../styles/ap-builder.css";
 
@@ -221,10 +223,16 @@ export function NewProjectPrompt({
 	onValueChange,
 	onSubmit,
 	onAttach,
+	modelMode,
+	onModelModeChange,
 	submitting = false,
 	error,
 	className = "",
-}: ComposerProps) {
+}: Omit<ComposerProps, "onAttach"> & {
+	onAttach?: (trigger: HTMLButtonElement) => void;
+	modelMode?: ModelMode;
+	onModelModeChange?: (mode: ModelMode) => void;
+}) {
 	const [internalValue, setInternalValue] = useState(defaultValue);
 	const value = controlledValue ?? internalValue;
 	const textarea = useRef<HTMLTextAreaElement>(null);
@@ -291,24 +299,39 @@ export function NewProjectPrompt({
 					disabled={busy}
 				/>
 				<div className="ap-prompt-actions">
-					<Button
-						type="button"
-						variant="ghost"
-						onClick={onAttach}
-						icon={<Icon name="plus" />}
-						disabled={busy}
-					>
-						Add website or file
-					</Button>
-					<div className="ap-builder-spacer" />
+					<div className="ap-new-project-tools">
+						<Tooltip label="Add website or file">
+							<Button
+								type="button"
+								variant="ghost"
+								size="icon"
+								className="ap-new-project-attach"
+								aria-label="Add website or file"
+								aria-haspopup="dialog"
+								onClick={(event) => onAttach?.(event.currentTarget)}
+								icon={<Icon name="paperclip" />}
+								disabled={busy}
+							/>
+						</Tooltip>
+						<ModelPicker
+							side="bottom"
+							value={modelMode}
+							onValueChange={onModelModeChange}
+							disabled={busy}
+						/>
+					</div>
 					<Button
 						type="submit"
 						variant="default"
+						aria-label="Create project"
 						className="ap-create-project-button"
-						icon={<Icon name="arrow-right" />}
+						icon={
+							<Icon name="arrow-right" className="ap-create-project-icon" />
+						}
 						loading={busy}
 					>
-						Create project
+						<span className="ap-create-project-label">Create project</span>
+						<span className="ap-create-project-short">Create</span>
 					</Button>
 				</div>
 			</form>
@@ -332,8 +355,9 @@ export function ChatComposer({
 	submitting = false,
 	error,
 	placeholder = "Describe a change to your agent…",
-	model = "Model",
+	model,
 	modelControl,
+	defaultModelMode,
 	className = "",
 }: ComposerProps & {
 	onModel?: () => void;
@@ -341,6 +365,7 @@ export function ChatComposer({
 	placeholder?: string;
 	model?: string;
 	modelControl?: ReactNode;
+	defaultModelMode?: ModelMode;
 }) {
 	const [internalValue, setInternalValue] = useState(defaultValue);
 	const value = controlledValue ?? internalValue;
@@ -410,26 +435,30 @@ export function ChatComposer({
 					disabled={busy}
 				/>
 				<div className="ap-prompt-actions">
-					<button
+					<Button
 						type="button"
-						className="ap-composer-icon"
+						variant="ghost"
+						size="icon"
 						aria-label="Attach a file"
 						onClick={onAttach}
+						icon={<Icon name="paperclip" />}
 						disabled={busy}
-					>
-						<Icon name="paperclip" />
-					</button>
-					{modelControl ?? (
-						<Button
-							type="button"
-							variant="ghost"
-							onClick={onModel}
-							icon={<Icon name="chevron-down" />}
-							disabled={busy}
-						>
-							{model}
-						</Button>
-					)}
+					/>
+					{modelControl ??
+						(onModel || model !== undefined ? (
+							<Button
+								type="button"
+								variant="ghost"
+								className="ap-model-picker-trigger"
+								onClick={onModel}
+								icon={<Icon name="chevron-down" />}
+								disabled={busy}
+							>
+								{model ?? "Model"}
+							</Button>
+						) : (
+							<ModelPicker defaultValue={defaultModelMode} disabled={busy} />
+						))}
 					<div className="ap-builder-spacer" />
 					<button
 						type={busy && onStop ? "button" : "submit"}
@@ -545,11 +574,12 @@ export function AgentPreview({
 	return (
 		<section
 			className={`ap-agent-preview ${className}`}
+			data-mode={mode}
 			aria-label={mode === "test" ? "Agent preview" : "Visitor experience"}
 		>
 			{mode === "test" && (
 				<>
-					{!conversation && <AmbientBottomGradient variant="preview" />}
+					<AmbientBottomGradient variant="preview" />
 					<div className="ap-preview-toolbar">
 						<Icon name="eye" />
 						<span>Test as a visitor</span>

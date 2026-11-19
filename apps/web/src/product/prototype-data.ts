@@ -1,5 +1,6 @@
 import type { CreditValues } from "@agentplace/ui/components/ap-data";
 import type { MenuProject } from "@agentplace/ui/components/ap-menus";
+import type { ModelMode } from "@agentplace/ui/components/ap-model-picker";
 import type { ProjectCoverBackground } from "@agentplace/ui/lib/project-cover-backgrounds";
 import type { BuilderData, PublishedSnapshot } from "./builder/builder-model";
 
@@ -14,6 +15,7 @@ export interface PrototypeProject extends MenuProject {
 	cover?: string;
 	coverBackground?: ProjectCoverBackground;
 	sources?: ProjectSource[];
+	modelMode?: ModelMode;
 	needsFirstDraft?: boolean;
 	builder?: BuilderData;
 	published?: PublishedSnapshot;

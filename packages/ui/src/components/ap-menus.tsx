@@ -212,8 +212,12 @@ export function MenuPopover({
 							kind === "touch"
 								? popup.current
 								: (popup.current?.querySelector<HTMLElement>(
+										"[data-menu-autofocus]:not(:disabled)",
+									) ??
+									popup.current?.querySelector<HTMLElement>(
 										"input,[data-menu-choice]:not(:disabled)",
-									) ?? true)
+									) ??
+									true)
 						}
 						render={
 							<motion.div

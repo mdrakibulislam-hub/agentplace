@@ -11,7 +11,7 @@ import {
 } from "./builder-experience";
 import { initialBuilderData } from "./builder-model";
 
-const base: PrototypeProject = {
+const base = {
 	id: "whiteframe-advisor",
 	name: "WhiteFrame Advisor",
 	company: "Whiteframe Creative",
@@ -19,7 +19,7 @@ const base: PrototypeProject = {
 	updated: "Edited 2 hours ago",
 	prompt:
 		"Create an advisor for whiteframe.agency that recommends services and collects project enquiries.",
-};
+} satisfies PrototypeProject;
 
 const authoredData = initialBuilderData(base);
 const configuration = {
@@ -161,10 +161,62 @@ type Story = StoryObj<typeof meta>;
 export const CreatingDraft: Story = {
 	args: { project: { ...base, needsFirstDraft: true } },
 	parameters: { design: figma("54:1385"), figmaNodeId: "54:1385" },
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const conversation = within(
+			canvas.getByRole("region", { name: "Conversation" }),
+		);
+		await expect(conversation.getByText(base.prompt)).toBeVisible();
+		await expect(
+			conversation.queryByRole("heading", { name: "Let’s build your agent" }),
+		).not.toBeInTheDocument();
+		await expect(
+			conversation.queryByText(
+				"A few details will help shape the first draft.",
+			),
+		).not.toBeInTheDocument();
+		await expect(
+			canvas.getByRole("button", { name: "View first draft" }),
+		).toBeVisible();
+	},
 };
 
 export const ChatAndPreview: Story = {
 	parameters: { design: figma("54:1624"), figmaNodeId: "54:1624" },
+};
+
+export const ModelPickerOpen: Story = {
+	parameters: { design: figma("434:13726"), figmaNodeId: "434:13726" },
+	play: async ({ canvasElement }) => {
+		const conversation = within(
+			within(canvasElement).getByRole("region", { name: "Conversation" }),
+		);
+		await expect(
+			conversation.queryByRole("heading", { name: "Edit your agent" }),
+		).not.toBeInTheDocument();
+		await expect(
+			conversation.queryByText(
+				"Describe a change. We’ll take care of the build.",
+			),
+		).not.toBeInTheDocument();
+		await userEvent.click(
+			conversation.getByRole("button", { name: "Model: Automatic" }),
+		);
+		const page = within(canvasElement.ownerDocument.body);
+		const picker = await page.findByRole("dialog", { name: "Model" });
+		const panelBounds = picker.getBoundingClientRect();
+		await expect(
+			within(picker).getByRole("menuitemradio", {
+				name: "Automatic",
+				checked: true,
+			}),
+		).toBeVisible();
+		for (const option of within(picker).getAllByRole("menuitemradio")) {
+			const bounds = option.getBoundingClientRect();
+			await expect(bounds.left).toBeGreaterThanOrEqual(panelBounds.left);
+			await expect(bounds.right).toBeLessThanOrEqual(panelBounds.right);
+		}
+	},
 };
 
 export const Instructions: Story = {

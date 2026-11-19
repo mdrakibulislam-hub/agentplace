@@ -61,10 +61,6 @@
 	width: min(100%, 768px);
 }
 
-.ap-home-prompt .ap-new-project-prompt :is(textarea, .ap-prompt-actions) {
-	max-width: calc(100% + 2px);
-}
-
 .ap-home-suggestions,
 .ap-home-sources {
 	display: flex;
@@ -235,16 +231,5 @@
 	}
 	.ap-home-grid .ap-project-card .ap-project-cover {
 		width: 100%;
-	}
-}
-
-@media (max-width: 420px) {
-	.ap-home-prompt .ap-prompt-actions > .ap-button-ghost {
-		min-width: 0;
-		flex-shrink: 1;
-	}
-	.ap-home-prompt .ap-button-ghost .ap-button-label {
-		line-height: var(--type-body-xs-regular-line-height);
-		white-space: normal;
 	}
 }

@@ -30,7 +30,6 @@
 	width: 100%;
 	height: 176px;
 	--ap-ambient-main-x: 24%;
-	--ap-ambient-inner-x: 29%;
 	--ap-ambient-css-blur: 39.329px;
 }
 .ap-ambient-field {
@@ -85,14 +84,8 @@
 }
 
 .ap-ambient[data-variant="preview"] .ap-ambient-main {
-	inset: auto -16px 0;
-	height: 58px;
-	opacity: 0.47;
-}
-
-.ap-ambient[data-variant="preview"] .ap-ambient-inner {
-	height: 56px;
-	opacity: 0.06;
+	inset: auto -15px -0.294px -17px;
+	height: 57.588px;
 }
 
 @keyframes ap-ambient-drift {

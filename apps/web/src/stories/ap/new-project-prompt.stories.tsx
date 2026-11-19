@@ -12,7 +12,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"768 × 144 prompt with 24px padding and no shadow. Create project uses 16px left and right padding. Enter submits once and Shift+Enter inserts a line. Empty prompts are blocked. Long prompts scroll within the text area with the scrollbar hidden. Loading locks the request and keeps layout stable. A rejected callback preserves input and displays its error. Suggestions insert editable text. Website/file attachment is an explicit callback.",
+					"The paperclip opens website and file attachments. The model control shows the current mode and opens the shared picker below the toolbar. Create project submits once with Enter, and Shift+Enter inserts a line. A rejected callback preserves the prompt and mode.",
 			},
 		},
 	},
