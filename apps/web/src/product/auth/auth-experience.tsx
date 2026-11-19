@@ -1,4 +1,4 @@
-import { AmbientBottomGradient } from "@agentplace/ui/components/ap-ambient";
+import { AuthGradient } from "@agentplace/ui/components/ap-ambient";
 import { ClientLogos, Logo } from "@agentplace/ui/components/ap-brand";
 import {
 	FormField,
@@ -205,7 +205,7 @@ export function AuthExperience({
 
 	return (
 		<main className="product-auth-shell">
-			<AmbientBottomGradient variant="page" className="product-auth-ambient" />
+			<AuthGradient className="product-auth-ambient" />
 			<header className="product-auth-brand">
 				<Logo cycleDuration={32} />
 			</header>

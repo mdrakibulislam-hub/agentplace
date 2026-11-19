@@ -1,5 +1,17 @@
 [
 	{
+		"name": "auth-gradient-left.webp",
+		"nodeId": "495:2609",
+		"kind": "figma-layer-export",
+		"sha256": "0adbc1ee2364863c7af88f1b73c95791760cb7d0bfa99692bed4e5f18c40437f"
+	},
+	{
+		"name": "auth-gradient-right.webp",
+		"nodeId": "495:2610",
+		"kind": "figma-layer-export",
+		"sha256": "b0c096f1d1e1d39bfc1070d1a8a11ae8f96d3333ac40e8d864b3676b4c19d11c"
+	},
+	{
 		"name": "icon-arrow-left.svg",
 		"nodeId": "49:634",
 		"kind": "figma-master",

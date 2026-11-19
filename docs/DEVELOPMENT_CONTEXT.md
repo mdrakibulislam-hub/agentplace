@@ -45,12 +45,13 @@ File: https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace
 | Agent spec                      | [213:2020](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=213-2020) |
 | Cover variants                  | [130:1323](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=130-1323) |
 | Spring recipes                  | [214:2034](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=214-2034) |
-| Ambient gradient                | [237:1980](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=237-1980) |
+| Auth gradient                   | [495:2607](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=495-2607) |
+| Project home gradient           | [237:1980](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=237-1980) |
 | Exact native ambient cycle      | [242:1966](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=242-1966) |
 
 Screens are grouped into login/signup, OTP, project start/switch, filter/search, project actions, builder/configuration, branding/covers, publishing, workspace settings and reference copies. `screens.json` maps the 34 preserved product frames. Components are grouped into numbered families; the latest snapshot has 97 top-level component definitions, 395 variables, 25 text styles and three elevation styles. Counts describe this snapshot, not a constraint on future development.
 
-Canonical entry examples: login `53:8`, signup `53:208`, OTP empty `53:284`, OTP complete `186:5625`, OTP verifying `186:5647`, empty home `135:5210`, populated home `53:349`, builder working `54:1385`, builder ready `54:1624`, branding `54:1876`, branding without a cover `135:6409`. `186:5603` is an OTP review copy, not the canonical entry.
+Canonical entry examples: login `493:14551`, signup `53:208`, OTP empty `53:284`, OTP complete `186:5625`, OTP verifying `186:5647`, empty home `135:5210`, populated home `53:349`, builder working `54:1385`, builder ready `54:1624`, branding `54:1876`, branding without a cover `135:6409`. `186:5603` is an OTP review copy, not the canonical entry.
 
 ## Approved product structure
 
@@ -60,7 +61,7 @@ Support the designed login/signup experience with email/password and a Google pa
 
 Signup verification uses six OTP digits, with empty/partial, complete and processing states. Treat the code as a string, preserve leading zeroes, support full-code paste/autofill and numeric entry, advance/backspace correctly, and disable duplicate requests. Actual server outcomes determine success/failure; the Figma processing timer is illustrative. Include resend cooldown, expiry, incorrect-code and transport recovery.
 
-All login, signup and OTP screens use the original client-logo footer and the shared bottom color wash. Preserve vector logos, proportions and the desktop 48px bottom inset. Do not replace logos with typed brand names.
+Login, signup and OTP share a full-bleed blue-and-gold background. The footer uses the original logo vectors tinted by `logo/partner`, black at 30% alpha. Preserve their proportions and the desktop 48px bottom inset. [Figma component guide](https://www.figma.com/design/m0v1MINOJA152Kil6JHeZ8/Agentplace?node-id=209-1916)
 
 ### Project home
 
@@ -134,9 +135,9 @@ Press visual scale is 0.97. Popovers start around scale 0.97/y=6px and settle in
 
 The original A mascot blinks and makes a small looping hop for real chat work. Stop on completion/error/cancel and pause when hidden. It is not fake percentage progress. Preserve the original vector, not a replacement illustration. The compact example's hop is about 2.64px; native and prototype timelines differ, as documented in the component guide.
 
-The bottom ambient wash uses mint/cyan/sky colors, a broad 300px blur at desktop, constant opacity and a very slow inner drift. It appears on the 19 current login/signup/OTP/home states, not automatically on builder/settings/visitor screens. Keep it bottom-anchored, below all content and scrims, clipped, noninteractive and hidden from accessibility APIs.
+The project home wash uses mint, cyan and sky with a 300px design blur and a slow drift at constant opacity. Keep it bottom-anchored. On auth, the two full-bleed blue-and-gold fields have baked blur and grain. The runtime moves them independently using CSS transforms. Keep both backgrounds clipped to their shells and below content and scrims. They are noninteractive and hidden from accessibility APIs.
 
-The runtime cycle is exactly 32 seconds, ease-in-out, seamless, with no bounce, brightness pulse or pointer tracking. Use Still for reduced motion and pause when hidden/offscreen. Figma has a four-phase prototype loop of approximately 32 seconds and a separate exact native preview. This is an editable shader-like gradient, not an account-library custom shader. The separate preview avoids Figma nested-instance clip-duration limitations. The earlier reference nodes `189:13473`/`189:13476` were observed removed during that task; use current component and home links instead.
+The auth color fields sweep in opposing directions over a 16-second loop with up to 120px of horizontal offset from rest at the reference size. The auth shell retains its phase as the form changes. Reduced motion uses the resting composition. Pause while hidden or offscreen and resume from the same phase. The auth prototype uses four 4-second component transitions. Project home follows its separate 32-second timeline.
 
 Elevation uses **Resting**, **Panel** and **Overlay** with faint layered neutral shadows and negative spread. Keep real borders separate; remove the old hard shadow outline and single heavy dialog shadow. Inputs and nested content stay flat. Exact values are in [elevation.json](design-handoff/elevation.json) and the component guide. Do not stack multiple elevation levels on one surface or animate large blur kernels each frame.
 

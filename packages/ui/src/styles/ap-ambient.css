@@ -1,3 +1,87 @@
+.ap-auth-gradient {
+	--ap-auth-gradient-duration: 16s;
+	position: relative;
+	inline-size: 100%;
+	aspect-ratio: 3 / 2;
+	container-type: size;
+	overflow: hidden;
+	background: var(--background-secondary);
+	pointer-events: none;
+	user-select: none;
+}
+
+.ap-auth-color-field {
+	/* Each field extends 144px past the 1440 × 960 frame on every side. */
+	--ap-auth-reference-pixel: max(calc(100cqw / 1440), calc(100cqh / 960));
+	position: absolute;
+	inset: 50% auto auto 50%;
+	inline-size: calc(1728 * var(--ap-auth-reference-pixel));
+	aspect-ratio: 1728 / 1248;
+	translate: -50% -50%;
+	background-size: 100% 100%;
+	animation: ap-auth-gradient-drift var(--ap-auth-gradient-duration) ease-in-out
+		infinite;
+	animation-delay: calc(
+		var(--ap-auth-gradient-duration) *
+		var(--ap-auth-gradient-phase, 0) /
+		-4
+	);
+}
+
+.ap-auth-color-field-left {
+	background-image: url("../assets/auth-gradient-left.webp");
+	--ap-auth-phase-1-x: 120;
+	--ap-auth-phase-1-y: -56;
+	--ap-auth-phase-2-x: 34;
+	--ap-auth-phase-2-y: -96;
+	--ap-auth-phase-3-x: -88;
+	--ap-auth-phase-3-y: -32;
+}
+
+.ap-auth-color-field-right {
+	background-image: url("../assets/auth-gradient-right.webp");
+	--ap-auth-phase-1-x: -108;
+	--ap-auth-phase-1-y: 64;
+	--ap-auth-phase-2-x: -42;
+	--ap-auth-phase-2-y: 96;
+	--ap-auth-phase-3-x: 96;
+	--ap-auth-phase-3-y: 38;
+}
+
+@keyframes ap-auth-gradient-drift {
+	0%,
+	100% {
+		transform: translate(0, 0);
+	}
+	25% {
+		transform: translate(
+			calc(var(--ap-auth-phase-1-x) * var(--ap-auth-reference-pixel)),
+			calc(var(--ap-auth-phase-1-y) * var(--ap-auth-reference-pixel))
+		);
+	}
+	50% {
+		transform: translate(
+			calc(var(--ap-auth-phase-2-x) * var(--ap-auth-reference-pixel)),
+			calc(var(--ap-auth-phase-2-y) * var(--ap-auth-reference-pixel))
+		);
+	}
+	75% {
+		transform: translate(
+			calc(var(--ap-auth-phase-3-x) * var(--ap-auth-reference-pixel)),
+			calc(var(--ap-auth-phase-3-y) * var(--ap-auth-reference-pixel))
+		);
+	}
+}
+
+:where(.ap-auth-gradient.is-paused) .ap-auth-color-field {
+	animation-play-state: paused;
+}
+
+html[data-ap-motion="reduced"] .ap-auth-color-field,
+.ap-auth-gradient[data-motion="still"] .ap-auth-color-field {
+	animation: none;
+}
+
 .ap-ambient {
 	position: relative;
 	isolation: isolate;
@@ -282,6 +366,7 @@ html[data-ap-motion="reduced"] .ap-working-indicator .ap-working-diffusion {
 	transform: translateX(-50%);
 }
 @media (prefers-reduced-motion: reduce) {
+	.ap-auth-color-field,
 	.ap-ambient-field,
 	.ap-ambient-field:before,
 	.ap-working-diffusion {

@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Login: Story = {
-	parameters: { design: figma("53:8") },
+	parameters: { design: figma("493:14551") },
 	args: { initialLastMethod: "email" },
 };
 

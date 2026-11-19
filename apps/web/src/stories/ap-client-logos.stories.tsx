@@ -12,7 +12,7 @@ export default {
 		docs: {
 			description: {
 				component:
-					"Original VentureBeat, USA Today, and Fast Company SVGs with exact proportions and404.877 ×20 group bounds. Shared footer on login/signup/OTP,48px from the desktop bottom at1440 ×960. Logos stay above the decorative color wash. Never replace with typed brand names.",
+					"The shared login, signup and OTP footer uses the original VentureBeat, USA Today and Fast Company SVGs. The logo/partner token applies black at 30% alpha over the auth gradient. The footer is 48px from the bottom at 1440 × 960.",
 			},
 		},
 	},

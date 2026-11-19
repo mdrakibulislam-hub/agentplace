@@ -526,6 +526,18 @@ export const tokenCollections: TokenCollection[] = [
 				aliases: {},
 			},
 			{
+				id: "VariableID:497:2557",
+				name: "color/0000004d",
+				cssVariable: "--ap-primitive-color-0000004d",
+				type: "COLOR",
+				webSyntax: "var(--ap-primitive-color-0000004d)",
+				values: {
+					light: "rgb(0 0 0 / 0.3)",
+					dark: "rgb(0 0 0 / 0.3)",
+				},
+				aliases: {},
+			},
+			{
 				id: "VariableID:29:73",
 				name: "color/ffffff14",
 				cssVariable: "--ap-primitive-color-ffffff14",
@@ -3855,6 +3867,21 @@ export const tokenCollections: TokenCollection[] = [
 				aliases: {
 					light: "--color-fcfcfc",
 					dark: "--color-fcfcfc",
+				},
+			},
+			{
+				id: "VariableID:497:2558",
+				name: "logo/partner",
+				cssVariable: "--logo-partner",
+				type: "COLOR",
+				webSyntax: "var(--logo-partner)",
+				values: {
+					light: "rgb(0 0 0 / 0.3)",
+					dark: "rgb(0 0 0 / 0.3)",
+				},
+				aliases: {
+					light: "--ap-primitive-color-0000004d",
+					dark: "--ap-primitive-color-0000004d",
 				},
 			},
 			{

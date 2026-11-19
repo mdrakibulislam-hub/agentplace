@@ -13,7 +13,7 @@ export default {
 		docs: {
 			description: {
 				component:
-					"Transparent1440 ×640 decorative field anchored to the page bottom. Theme aliases mint→cyan→sky;140px main field and132px/8% diffusion. Exact32-second native cycle with cubic-bezier(.42,0,.58,1), constant opacity, matching0s/32s endpoints. Flow starts at internalPhase0; other phases are inspection specimens, not product settings. Still has the identical resting image without animation. One wash only on auth/OTP/home, below all content and overlays. No pointer interaction or accessible status; pause hidden/offscreen. Mobile scales blur and travel; builder/settings do not inherit this wash.",
+					"Transparent 1440 × 640 decorative field anchored to the bottom of project home. A 140px mint-to-cyan-to-sky field and a 132px diffusion layer drift over a 32-second loop. Flow starts at Phase 0. Still uses the same resting composition. The wash stays below content and overlays and pauses while hidden or offscreen.",
 			},
 		},
 	},

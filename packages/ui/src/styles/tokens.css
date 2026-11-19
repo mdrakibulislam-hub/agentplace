@@ -46,6 +46,7 @@
 	--ap-primitive-color-b81e1e: #b81e1e;
 	--ap-primitive-color-f98686: #f98686;
 	--ap-primitive-color-00000033: rgb(0 0 0 / 0.2);
+	--ap-primitive-color-0000004d: rgb(0 0 0 / 0.3);
 	--ap-primitive-color-ffffff14: rgb(255 255 255 / 0.0784314);
 	--ap-primitive-color-c2c0d9: #c2c0d9;
 	--ap-primitive-color-424daf: #424daf;
@@ -295,6 +296,7 @@
 	--status-neutral-background: var(--ap-primitive-color-f2f2f2);
 	--status-neutral-foreground: var(--ap-primitive-color-464646);
 	--logo-inverse: var(--color-fcfcfc);
+	--logo-partner: var(--ap-primitive-color-0000004d);
 	--ambient-mint: var(--ap-primitive-color-cffac9);
 	--ambient-cyan: var(--ap-primitive-color-84e8ff);
 	--ambient-sky: var(--ap-primitive-color-a4deff);

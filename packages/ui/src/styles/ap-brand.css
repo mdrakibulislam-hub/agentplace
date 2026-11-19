@@ -92,10 +92,12 @@
 	height: 20px;
 	flex: none;
 }
-.ap-client-logos img {
+.ap-client-logo-mark {
 	display: block;
 	flex: none;
-	max-width: none;
+	background: var(--logo-partner);
+	mask-repeat: no-repeat;
+	mask-size: 100% 100%;
 }
 .ap-client-venture {
 	display: flex;
@@ -107,7 +109,7 @@
 	align-items: center;
 	gap: 5.405px;
 }
-.ap-client-usa > span {
+.ap-client-usa-wordmark {
 	display: flex;
 	align-items: center;
 	gap: 4.324px;

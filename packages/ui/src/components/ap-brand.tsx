@@ -125,6 +125,23 @@ export function Logo({
 	);
 }
 
+function ClientLogoMark({
+	src,
+	width,
+	height,
+}: {
+	src: string;
+	width: number;
+	height: number;
+}) {
+	return (
+		<span
+			className="ap-client-logo-mark"
+			style={{ width, height, maskImage: `url("${src}")` }}
+		/>
+	);
+}
+
 export function ClientLogos({ className }: { className?: string }) {
 	return (
 		<div
@@ -133,17 +150,17 @@ export function ClientLogos({ className }: { className?: string }) {
 			aria-label="VentureBeat, USA Today, and Fast Company"
 		>
 			<span className="ap-client-venture">
-				<img src={clientVenture} width="84.814" height="16.78" alt="" />
-				<img src={clientBeat} width="46.836" height="16.784" alt="" />
+				<ClientLogoMark src={clientVenture} width={84.814} height={16.78} />
+				<ClientLogoMark src={clientBeat} width={46.836} height={16.784} />
 			</span>
 			<span className="ap-client-usa">
-				<img src={clientUsaMark} width="20.27" height="20" alt="" />
-				<span>
-					<img src={clientUsa} width="39.992" height="14.099" alt="" />
-					<img src={clientToday} width="67.887" height="14.101" alt="" />
+				<ClientLogoMark src={clientUsaMark} width={20.27} height={20} />
+				<span className="ap-client-usa-wordmark">
+					<ClientLogoMark src={clientUsa} width={39.992} height={14.099} />
+					<ClientLogoMark src={clientToday} width={67.887} height={14.101} />
 				</span>
 			</span>
-			<img src={clientFastCompany} width="102.26" height="16.021" alt="" />
+			<ClientLogoMark src={clientFastCompany} width={102.26} height={16.021} />
 		</div>
 	);
 }
