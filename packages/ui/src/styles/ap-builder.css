@@ -69,6 +69,9 @@ button.ap-project-cover {
 	position: absolute;
 	inset: 0;
 }
+.ap-cover-mascot > img + .ap-mascot {
+	color: var(--ap-primitive-color-2a2a2a);
+}
 .ap-project-cover:focus-visible {
 	outline: 2px solid var(--focus-ring);
 	outline-offset: 2px;

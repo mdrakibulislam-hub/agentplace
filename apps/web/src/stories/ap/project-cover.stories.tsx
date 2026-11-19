@@ -24,7 +24,7 @@ const meta = {
 		docs: {
 			description: {
 				component:
-					"Home cards show the project's assigned background with the original mascot. Unassigned projects use the mascot gradient. Branding without an upload shows Empty. An uploaded image takes precedence in both contexts. Editable hover and keyboard focus show Empty temporarily, then restore the current cover. Click or keyboard activation opens the picker. Touch has an explicit action. Read-only contexts have no edit controls.",
+					"Home cards show the project's assigned background with the original dark mascot in both themes. The default gradient uses the active theme's foreground. Branding without an upload shows Empty. An uploaded image takes precedence in both contexts. Editable hover and keyboard focus show Empty temporarily, then restore the current cover. Click or keyboard activation opens the picker. Touch has an explicit action. Read-only contexts have no edit controls.",
 			},
 		},
 	},
@@ -91,6 +91,30 @@ export const BackgroundGallery: Story = {
 			))}
 		</div>
 	),
+};
+export const DarkModeMascot: Story = {
+	globals: { theme: "dark" },
+	parameters: { design: figma("428:2416") },
+	render: () => (
+		<div style={{ display: "flex", flexWrap: "wrap", gap: 24 }}>
+			<figure style={{ margin: 0 }}>
+				<ProjectCover background="blue-haze" />
+				<figcaption style={{ marginTop: 8 }}>Illustrated cover</figcaption>
+			</figure>
+			<figure style={{ margin: 0 }}>
+				<ProjectCover />
+				<figcaption style={{ marginTop: 8 }}>Default gradient</figcaption>
+			</figure>
+		</div>
+	),
+	play: async ({ canvasElement }) => {
+		const [illustrated, gradient] =
+			canvasElement.querySelectorAll(".ap-mascot-face");
+		await waitFor(async () => {
+			await expect(illustrated).toHaveStyle({ backgroundColor: "#2a2a2a" });
+			await expect(gradient).toHaveStyle({ backgroundColor: "#e3e3e3" });
+		});
+	},
 };
 export const EditableHome: Story = {
 	args: { context: "home-card", canEdit: true },

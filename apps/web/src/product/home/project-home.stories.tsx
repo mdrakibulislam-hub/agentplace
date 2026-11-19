@@ -78,7 +78,7 @@ export const RecentProjects: Story = {
 };
 export const RecentProjectsDark: Story = {
 	globals: { theme: "dark" },
-	parameters: { design: figma("378:2") },
+	parameters: { design: figma("428:2416") },
 };
 export const AccountMenu: Story = {
 	args: { onSettings: fn() },
