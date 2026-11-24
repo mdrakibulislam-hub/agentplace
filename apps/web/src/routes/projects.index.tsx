@@ -19,7 +19,7 @@ function ProjectsPage() {
 				onOpen={openProject}
 				onCreate={(prompt, sources, mode) => {
 					const projectId = state.createProject(prompt, sources, mode);
-					openProject(projectId);
+					return openProject(projectId);
 				}}
 				onChangeCover={state.updateCover}
 				onDelete={state.deleteProject}

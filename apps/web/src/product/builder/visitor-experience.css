@@ -1,0 +1,64 @@
+.ap-builder-visitor[data-device] .ap-visitor-experience {
+	inline-size: 100%;
+	max-inline-size: 100%;
+	align-self: center;
+	transition: max-inline-size var(--motion-duration-slow)
+		var(--motion-easing-enter);
+}
+
+.ap-builder-visitor[data-device="mobile"] .ap-visitor-experience {
+	max-inline-size: 390px;
+}
+
+.ap-builder-visitor .ap-visitor-input .ap-composer-send {
+	transition:
+		background-color var(--motion-duration-fast) var(--motion-easing-standard),
+		box-shadow var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.ap-builder-visitor
+	.ap-visitor-input
+	.ap-composer-send:disabled:not([aria-busy]) {
+	background: var(--muted-background);
+	color: var(--foreground-muted);
+}
+
+.ap-builder-visitor .ap-visitor-input .ap-composer-send:enabled:active {
+	box-shadow: inset 0 0 0 32px color-mix(in srgb, currentColor 12%, transparent);
+}
+
+@media (hover: hover) {
+	.ap-builder-visitor
+		.ap-visitor-input
+		.ap-composer-send:enabled:hover:not(:active) {
+		box-shadow: inset 0 0 0 32px
+			color-mix(in srgb, currentColor 8%, transparent);
+	}
+}
+
+@media (pointer: coarse) {
+	.ap-builder-visitor .ap-visitor-input input {
+		font-size: var(--type-body-base-regular-size);
+	}
+}
+
+@media (max-width: 600px) {
+	.ap-builder-visitor-page:has(.ap-builder-visitor[data-conversation]) {
+		min-height: 100dvh;
+		padding: var(--space-12);
+	}
+
+	.ap-builder-visitor-standalone[data-conversation] {
+		min-height: 0;
+	}
+
+	.ap-builder-visitor-standalone[data-conversation] .ap-agent-preview {
+		min-height: 0;
+		height: calc(100dvh - var(--space-24));
+		padding: 0;
+	}
+
+	.ap-builder-visitor-standalone[data-conversation] .ap-visitor-experience {
+		min-height: 0;
+	}
+}

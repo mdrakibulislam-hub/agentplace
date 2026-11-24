@@ -14,7 +14,7 @@ import {
 	type ProjectSource,
 	type PrototypeProject,
 } from "./prototype-data";
-import { SettingsStateProvider } from "./settings/settings-experience";
+import { SettingsStateProvider } from "./settings/settings-state";
 
 interface Workspace {
 	projects: PrototypeProject[];
@@ -161,17 +161,25 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 		setStore(next);
 	}
 
-	function changeWorkspace(change: (workspace: Workspace) => Workspace) {
+	function changeWorkspace(
+		change: (workspace: Workspace) => Workspace,
+		persist = false,
+	) {
 		const current = latestStore.current;
 		const key = current.activeWorkspace;
-		if (!key || !current.workspaces[key]) return;
-		replaceStore({
+		if (!key || !current.workspaces[key]) {
+			if (persist) throw new Error("Your workspace is no longer available.");
+			return;
+		}
+		const next = {
 			...current,
 			workspaces: {
 				...current.workspaces,
 				[key]: change(current.workspaces[key]),
 			},
-		});
+		};
+		if (persist) saveStore(next);
+		else replaceStore(next);
 	}
 
 	function saveProject(id: string, updates: Partial<PrototypeProject>) {
@@ -193,6 +201,10 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 				},
 			},
 		};
+		saveStore(next);
+	}
+
+	function saveStore(next: Store) {
 		try {
 			localStorage.setItem(storageKey, JSON.stringify(next));
 		} catch (error) {
@@ -260,10 +272,13 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 						updated: "Edited just now",
 						icon: "briefcase-business",
 					};
-					changeWorkspace((current) => ({
-						projects: [project, ...current.projects],
-						selectedId: id,
-					}));
+					changeWorkspace(
+						(current) => ({
+							projects: [project, ...current.projects],
+							selectedId: id,
+						}),
+						true,
+					);
 					return id;
 				},
 				selectProject: (id) =>
@@ -277,12 +292,19 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 					})),
 				saveProject,
 				updateCover: (id, cover) =>
-					changeWorkspace((current) => ({
-						...current,
-						projects: current.projects.map((project) =>
-							project.id === id ? withCover(project, cover) : project,
-						),
-					})),
+					changeWorkspace((current) => {
+						if (!current.projects.some((project) => project.id === id)) {
+							throw new Error(
+								"This project is no longer available in your workspace.",
+							);
+						}
+						return {
+							...current,
+							projects: current.projects.map((project) =>
+								project.id === id ? withCover(project, cover) : project,
+							),
+						};
+					}, true),
 				deleteProject: (id) =>
 					changeWorkspace((current) => {
 						const projects = current.projects.filter(
@@ -295,7 +317,7 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
 									? projects[0]?.id
 									: current.selectedId,
 						};
-					}),
+					}, true),
 			}}
 		>
 			<SettingsStateProvider workspaceId={store.activeWorkspace}>

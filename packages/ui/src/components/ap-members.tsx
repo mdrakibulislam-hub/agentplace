@@ -89,7 +89,7 @@ export function MemberAction({
 	onRemove,
 }: {
 	member: MemberRecord;
-	onEdit?: (member: MemberRecord) => void;
+	onEdit?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 	onRemove?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 }) {
 	return member.role === "Owner" ? (
@@ -102,16 +102,18 @@ export function MemberAction({
 		>
 			<Icon name="lock" size={16} />
 		</button>
-	) : (
+	) : onEdit || onRemove ? (
 		<div className="ap-member-actions">
-			<Button
-				variant="ghost"
-				size="small"
-				onClick={() => onEdit?.(member)}
-				aria-label={`${member.invited ? "Manage invitation for" : "Edit access for"} ${member.name}`}
-			>
-				{member.invited ? "Manage invite" : "Edit access"}
-			</Button>
+			{onEdit && (
+				<Button
+					variant="ghost"
+					size="small"
+					onClick={(event) => onEdit(member, event.currentTarget)}
+					aria-label={`${member.invited ? "Manage invite for" : "Edit access for"} ${member.name}`}
+				>
+					{member.invited ? "Manage invite" : "Edit access"}
+				</Button>
+			)}
 			{!member.invited && onRemove && (
 				<Button
 					className="ap-member-remove"
@@ -124,7 +126,7 @@ export function MemberAction({
 				/>
 			)}
 		</div>
-	);
+	) : null;
 }
 export function MemberTableHeader() {
 	return (
@@ -159,7 +161,7 @@ export function MemberTableRow({
 	member: MemberRecord;
 	projects: readonly AccessProject[];
 	self?: boolean;
-	onEdit?: (member: MemberRecord) => void;
+	onEdit?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 	onRemove?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 }) {
 	return (
@@ -202,6 +204,8 @@ export function MembersSearchEmpty({ onClear }: { onClear: () => void }) {
 }
 export function WorkspaceMembersTable({
 	members,
+	totalMembers = members.length,
+	filtering = false,
 	projects,
 	currentMemberId,
 	onEdit,
@@ -209,9 +213,11 @@ export function WorkspaceMembersTable({
 	onClear,
 }: {
 	members: readonly MemberRecord[];
+	totalMembers?: number;
+	filtering?: boolean;
 	projects: readonly AccessProject[];
 	currentMemberId?: string;
-	onEdit?: (member: MemberRecord) => void;
+	onEdit?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 	onRemove?: (member: MemberRecord, trigger: HTMLButtonElement) => void;
 	onClear: () => void;
 }) {
@@ -247,9 +253,14 @@ export function WorkspaceMembersTable({
 					</tbody>
 				</table>
 			</section>
-			{!members.length && <MembersSearchEmpty onClear={onClear} />}
+			{!members.length &&
+				(filtering ? (
+					<MembersSearchEmpty onClear={onClear} />
+				) : (
+					<p className="ap-members-empty">No members to show.</p>
+				))}
 			<div className="ap-members-table-footer">
-				{members.length} {members.length === 1 ? "person" : "people"} in this
+				{totalMembers} {totalMembers === 1 ? "person" : "people"} in this
 				workspace
 			</div>
 		</div>
@@ -258,20 +269,45 @@ export function WorkspaceMembersTable({
 export function MemberSearch({
 	value,
 	onChange,
+	inputRef,
 }: {
 	value: string;
 	onChange: (value: string) => void;
+	inputRef?: RefObject<HTMLInputElement | null>;
 }) {
+	const internalRef = useRef<HTMLInputElement>(null);
+	const input = inputRef ?? internalRef;
+	function clear() {
+		onChange("");
+		input.current?.focus({ preventScroll: true });
+	}
 	return (
 		<div className="ap-member-search">
 			<Icon name="search" size={16} />
 			<Input
+				ref={input}
 				type="search"
 				aria-label="Search members"
 				placeholder="Search members…"
 				value={value}
 				onChange={(event) => onChange(event.target.value)}
+				onKeyDown={(event) => {
+					if (event.key === "Escape" && value) {
+						event.preventDefault();
+						clear();
+					}
+				}}
 			/>
+			{value && (
+				<Button
+					variant="ghost"
+					size="icon"
+					className="ap-member-search-clear"
+					aria-label="Clear member search"
+					icon={<Icon name="close" />}
+					onClick={clear}
+				/>
+			)}
 		</div>
 	);
 }
@@ -281,16 +317,22 @@ export function MemberToolbar({
 	role,
 	onRoleChange,
 	count,
+	searchRef,
 }: {
 	query: string;
 	onQueryChange: (query: string) => void;
 	role: string;
 	onRoleChange: (role: string) => void;
 	count: string;
+	searchRef?: RefObject<HTMLInputElement | null>;
 }) {
 	return (
 		<div className="ap-member-toolbar">
-			<MemberSearch value={query} onChange={onQueryChange} />
+			<MemberSearch
+				value={query}
+				onChange={onQueryChange}
+				inputRef={searchRef}
+			/>
 			<SelectField
 				label="Filter by workspace role"
 				showLabel={false}
@@ -551,7 +593,7 @@ export function AccessSuccessToast({
 	onDismiss?: () => void;
 }) {
 	return (
-		<div className="ap-access-toast" role="status">
+		<div className="ap-access-toast" role="status" data-ap-enter="message">
 			<span className="ap-access-success-icon">
 				<Icon name="check" size={16} />
 			</span>
@@ -594,8 +636,12 @@ function AccessOverlay({
 	return (
 		<Dialog.Root
 			open
-			onOpenChange={(open) => {
-				if (!open && !pending) onClose();
+			onOpenChange={(open, details) => {
+				if (pending) {
+					details.cancel();
+					return;
+				}
+				if (!open) onClose();
 			}}
 		>
 			<Dialog.Portal>
@@ -706,7 +752,7 @@ export function MemberAccessEditor({
 				onClose={close}
 				footer={
 					<>
-						<span className="ap-access-helper">
+						<span className="ap-access-helper" role="status">
 							{pending
 								? "Saving…"
 								: dirty

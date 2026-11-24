@@ -1,9 +1,23 @@
 import type { ReactNode } from "react";
-import { Avatar } from "./ap-data";
+import { Avatar, LoadingStatus } from "./ap-data";
 import { Icon } from "./ap-icon";
 import { WorkingIndicator } from "./ap-working-indicator";
 import { Button } from "./button";
 import "../styles/ap-conversation.css";
+
+export function ConversationJump({ onClick }: { onClick: () => void }) {
+	return (
+		<Button
+			variant="secondary"
+			className="ap-conversation-jump"
+			icon={<Icon name="chevron-down" />}
+			onClick={onClick}
+			data-ap-enter="message"
+		>
+			Jump to latest
+		</Button>
+	);
+}
 
 export interface ChatMessage {
 	id: string;
@@ -17,6 +31,7 @@ export function ConversationMessage({
 	experience = "builder",
 	name = "Agentplace",
 	avatar,
+	entering = false,
 	children,
 }: {
 	speaker: ChatMessage["role"];
@@ -24,6 +39,7 @@ export function ConversationMessage({
 	experience?: "builder" | "visitor";
 	name?: string;
 	avatar?: string;
+	entering?: boolean;
 	children?: ReactNode;
 }) {
 	return (
@@ -31,6 +47,7 @@ export function ConversationMessage({
 			className="ap-chat-message"
 			data-role={speaker}
 			data-experience={experience}
+			data-ap-enter={entering ? "message" : undefined}
 		>
 			{speaker === "agent" && (
 				<div className="ap-chat-message-avatar">
@@ -77,7 +94,7 @@ export function ConversationStatus({
 	if (state === "idle") return null;
 	if (state === "working")
 		return experience === "builder" ? (
-			<div className="ap-chat-status">
+			<div className="ap-chat-status" data-ap-enter="message">
 				<WorkingIndicator
 					title="Updating your agent"
 					detail="Refining the conversation flow…"
@@ -89,14 +106,13 @@ export function ConversationStatus({
 				)}
 			</div>
 		) : (
-			<p className="ap-chat-replying" role="status">
-				Replying…
-			</p>
+			<LoadingStatus className="ap-chat-replying">Replying…</LoadingStatus>
 		);
 	if (state === "error" || state === "stopped")
 		return (
 			<div
 				className="ap-chat-status"
+				data-ap-enter="message"
 				role={state === "error" ? "alert" : "status"}
 			>
 				<p className={state === "error" ? "ap-chat-error" : undefined}>
@@ -122,7 +138,7 @@ export function ConversationStatus({
 			</div>
 		);
 	return experience === "builder" ? (
-		<div className="ap-chat-result" role="status">
+		<div className="ap-chat-result" role="status" data-ap-enter="message">
 			<Icon name="check" />
 			<span>Draft updated · Not published</span>
 			{onPreview && (

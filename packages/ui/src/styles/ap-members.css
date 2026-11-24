@@ -30,7 +30,15 @@
 .ap-member-search input {
 	height: 40px;
 	padding-left: 36px;
+	padding-right: 36px;
 	border-radius: var(--radius-full);
+}
+.ap-member-search input::-webkit-search-cancel-button {
+	appearance: none;
+}
+.ap-member-search-clear {
+	position: absolute;
+	inset-inline-end: var(--space-4);
 }
 .ap-member-toolbar > .ap-field {
 	width: 144px;
@@ -90,7 +98,11 @@
 .ap-members-table td {
 	height: 72px;
 }
-.ap-members-table tbody tr:hover {
+.ap-members-table tbody tr {
+	transition: background-color var(--motion-duration-fast)
+		var(--motion-easing-standard);
+}
+.ap-members-table tbody tr:is(:hover, :focus-within) {
 	background: var(--action-ghost-hover, var(--muted-background));
 }
 .ap-member-actions {

@@ -15,6 +15,8 @@ export function BuilderInstructions({
 	value,
 	version,
 	skillCount,
+	dirty,
+	saving,
 	onChange,
 	onSave,
 	onSkills,
@@ -24,6 +26,8 @@ export function BuilderInstructions({
 	value: string;
 	version?: BuilderVersion;
 	skillCount: number;
+	dirty: boolean;
+	saving: boolean;
 	onChange: (next: string) => void;
 	onSave: () => void;
 	onSkills: () => void;
@@ -35,13 +39,29 @@ export function BuilderInstructions({
 	return (
 		<section
 			className="ap-builder-config ap-builder-instructions"
+			data-ap-enter=""
 			aria-label="Project instructions"
+			onKeyDown={(event) => {
+				if (
+					(event.metaKey || event.ctrlKey) &&
+					event.key.toLowerCase() === "s"
+				) {
+					event.preventDefault();
+					if (dirty && !saving && !event.repeat) onSave();
+				}
+			}}
 		>
 			<BuilderTitle
 				title="Instructions.md"
 				description="Define what your agent does and where its boundaries are."
 				action={
-					<Button onClick={onSave} disabled={!value.trim()}>
+					<Button
+						onClick={onSave}
+						disabled={!dirty || !value.trim()}
+						loading={saving}
+						reserveLoadingSpace
+						aria-keyshortcuts="Control+s Meta+s"
+					>
 						Save instructions
 					</Button>
 				}
@@ -51,19 +71,23 @@ export function BuilderInstructions({
 					<input
 						aria-label="Instructions heading"
 						value={heading}
+						readOnly={saving}
 						onChange={(event) => onChange(`${event.target.value}\n${body}`)}
 					/>
 					<textarea
 						aria-label="Markdown instructions"
 						value={body}
+						readOnly={saving}
 						onChange={(event) => onChange(`${heading}\n${event.target.value}`)}
 						spellCheck={false}
 					/>
 					<div className="ap-builder-markdown-meta">
-						<small className="ap-builder-small">
-							{version
-								? `Last saved ${version.meta.toLowerCase()} · Version ${version.id}`
-								: "New draft"}
+						<small className="ap-builder-small" role="status">
+							{dirty && !saving
+								? "Unsaved instructions"
+								: version
+									? `Last saved ${version.meta.toLowerCase()} · Version ${version.id}`
+									: "New draft"}
 						</small>
 						<Button variant="ghost" onClick={onHistory}>
 							Version history
@@ -95,6 +119,7 @@ export function BuilderInstructions({
 export function BuilderSkills({
 	selected,
 	catalog,
+	saving,
 	onToggle,
 	onConfigure,
 	onAdd,
@@ -103,6 +128,7 @@ export function BuilderSkills({
 }: {
 	selected: Record<string, boolean>;
 	catalog: BuilderSkill[];
+	saving: boolean;
 	onToggle: (id: string, enabled: boolean) => void;
 	onConfigure: (id: string) => void;
 	onAdd: (id: string) => void;
@@ -110,16 +136,28 @@ export function BuilderSkills({
 	onLibrary: () => void;
 }) {
 	return (
-		<section className="ap-builder-config" aria-label="Project skills">
+		<section
+			className="ap-builder-config"
+			aria-label="Project skills"
+			data-ap-enter=""
+		>
 			<BuilderTitle
 				title="Project skills"
 				description="Capabilities this agent can use. Connections stay scoped to this project."
-				action={<Button onClick={onPick}>Add skill</Button>}
+				action={
+					<Button
+						onClick={onPick}
+						disabled={saving || catalog.every(({ id }) => selected[id])}
+					>
+						Add skill
+					</Button>
+				}
 			/>
 			<div className="ap-builder-skill-list">
 				{catalog.map((skill) => (
 					<CapabilityRow
 						key={skill.id}
+						disabled={saving}
 						name={skill.name}
 						description={skill.description}
 						state={Object.hasOwn(selected, skill.id) ? "enabled" : "available"}
@@ -162,7 +200,11 @@ export function BuilderHistory({
 }) {
 	const [tab, setTab] = useState("versions");
 	return (
-		<section className="ap-builder-config" aria-label="Project history">
+		<section
+			className="ap-builder-config"
+			aria-label="Project history"
+			data-ap-enter=""
+		>
 			<BuilderTitle
 				title="History"
 				description="Track changes and return to an earlier version of your agent."
@@ -188,7 +230,11 @@ export function BuilderHistory({
 									key={version.id}
 									version={`V${version.id}`}
 									title={version.title}
-									meta={version.meta}
+									meta={
+										index === 0 && version.id === liveVersion
+											? `${version.meta} · Live version`
+											: version.meta
+									}
 									current={index === 0}
 									status={
 										index === 0
@@ -211,13 +257,18 @@ export function BuilderHistory({
 					</div>
 				</>
 			) : (
-				<div className="ap-builder-version-list">
+				<div className="ap-builder-version-list" data-ap-enter="">
+					{!conversations.length && (
+						<p className="ap-builder-small">
+							Conversations will appear here after you start a chat.
+						</p>
+					)}
 					{conversations.map((conversation) => (
 						<VersionRow
 							key={conversation.id}
 							version="Chat"
 							title={conversation.title}
-							meta={`${conversation.messages.length} messages`}
+							meta={`${conversation.messages.length} ${conversation.messages.length === 1 ? "message" : "messages"}`}
 							current={false}
 							onView={() => onConversation(conversation.id)}
 						/>

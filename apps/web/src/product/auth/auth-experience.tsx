@@ -7,21 +7,44 @@ import {
 } from "@agentplace/ui/components/ap-controls";
 import { Badge, Surface } from "@agentplace/ui/components/ap-data";
 import { Icon } from "@agentplace/ui/components/ap-icon";
+import { useContentEntrance } from "@agentplace/ui/components/ap-motion";
 import { Button } from "@agentplace/ui/components/button";
-import { type FormEvent, useEffect, useId, useRef, useState } from "react";
+import {
+	type FormEvent,
+	useEffect,
+	useId,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from "react";
 import "./auth-experience.css";
 
 type AuthScreen = "login" | "signup" | "verify" | "recovery";
 type SignInMethod = "email" | "google";
 
 const methodPreference = "agentplace-prototype-sign-in-method";
-const resendDelay = 55;
-const verificationPreviewDuration = 1400;
-
 interface VerificationPreview {
 	email: string;
 	code?: string;
 	processing?: boolean;
+	resendDelaySeconds?: number;
+}
+
+function secondsUntil(deadline: number | null) {
+	return deadline === null || !Number.isFinite(deadline)
+		? 0
+		: Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+}
+
+function validateEmail(address: string, typeMismatch: boolean) {
+	return !address.trim() || typeMismatch
+		? "Enter a valid email address."
+		: undefined;
+}
+
+function validatePassword(password: string, signup: boolean) {
+	if (!password) return "Enter your password.";
+	if (signup && password.length < 8) return "Use at least 8 characters.";
 }
 
 function readLastMethod(): SignInMethod {
@@ -44,6 +67,15 @@ function rememberMethod(method: SignInMethod) {
 
 export interface AuthExperienceProps {
 	onAuthenticated: (account: { email?: string; isNewAccount: boolean }) => void;
+	onVerify?: (
+		email: string,
+		code: string,
+		signal: AbortSignal,
+	) => Promise<void>;
+	onResendCode?: (
+		email: string,
+		signal: AbortSignal,
+	) => Promise<{ resendAt?: number }>;
 	initialScreen?: AuthScreen;
 	initialLastMethod?: SignInMethod;
 	verificationPreview?: VerificationPreview;
@@ -51,6 +83,8 @@ export interface AuthExperienceProps {
 
 export function AuthExperience({
 	onAuthenticated,
+	onVerify,
+	onResendCode,
 	initialScreen = "login",
 	initialLastMethod,
 	verificationPreview,
@@ -63,15 +97,30 @@ export function AuthExperience({
 		{},
 	);
 	const [code, setCode] = useState(verificationPreview?.code ?? "");
-	const [verifying, setVerifying] = useState(
-		verificationPreview?.processing ?? false,
+	const [pending, setPending] = useState<"verify" | "resend" | null>(
+		verificationPreview?.processing ? "verify" : null,
 	);
-	const [resendUntil, setResendUntil] = useState<number | null>(null);
-	const [resendSeconds, setResendSeconds] = useState(resendDelay);
+	const [resendUntil, setResendUntil] = useState<number | null>(() =>
+		verificationPreview?.resendDelaySeconds
+			? Date.now() + verificationPreview.resendDelaySeconds * 1000
+			: null,
+	);
+	const [resendSeconds, setResendSeconds] = useState(() =>
+		secondsUntil(resendUntil),
+	);
 	const [notice, setNotice] = useState("");
-	const pendingVerification = useRef<number | undefined>(undefined);
+	const [verificationError, setVerificationError] = useState<{
+		action: "verify" | "resend";
+		message: string;
+	}>();
+	const pendingVerification = useRef<AbortController | null>(null);
 	const form = useRef<HTMLFormElement>(null);
 	const heading = useRef<HTMLHeadingElement>(null);
+	const backToLogin = useRef<HTMLButtonElement>(null);
+	const verifyButton = useRef<HTMLButtonElement>(null);
+	const resendButton = useRef<HTMLButtonElement>(null);
+	const restoreVerificationFocus = useRef<"code" | "resend" | null>(null);
+	const focusEmail = useRef(false);
 	const previousScreen = useRef(screen);
 	const resultCallback = useRef(onAuthenticated);
 	const id = useId();
@@ -80,15 +129,39 @@ export function AuthExperience({
 	const verification = screen === "verify";
 	const recovery = screen === "recovery";
 	const googleLastUsed = screen === "login" && lastMethod === "google";
+	const verifying = pending === "verify";
+	const resending = pending === "resend";
+	useContentEntrance(form, screen);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (screen === "verify" && !verificationPreview?.code) {
 			form.current?.querySelector<HTMLInputElement>(".ap-otp input")?.focus();
+		} else if (focusEmail.current) {
+			focusEmail.current = false;
+			const emailInput =
+				form.current?.querySelector<HTMLInputElement>('[name="email"]');
+			emailInput?.focus();
+			emailInput?.select();
+		} else if (screen === "login" && previousScreen.current === "recovery") {
+			form.current
+				?.querySelector<HTMLElement>(".ap-password-recovery")
+				?.focus();
+		} else if (screen === "login" && previousScreen.current === "signup") {
+			backToLogin.current?.focus();
 		} else if (previousScreen.current !== screen) {
 			heading.current?.focus();
 		}
 		previousScreen.current = screen;
 	}, [screen, verificationPreview?.code]);
+
+	useLayoutEffect(() => {
+		if (pending || !restoreVerificationFocus.current) return;
+		const target = restoreVerificationFocus.current;
+		restoreVerificationFocus.current = null;
+		if (target === "resend") resendButton.current?.focus();
+		else
+			form.current?.querySelector<HTMLInputElement>(".ap-otp input")?.focus();
+	}, [pending]);
 
 	useEffect(() => {
 		resultCallback.current = onAuthenticated;
@@ -97,32 +170,29 @@ export function AuthExperience({
 	useEffect(() => {
 		if (!verification || resendUntil === null) return;
 		function tick() {
-			if (resendUntil === null) return;
-			const seconds = Math.max(0, Math.ceil((resendUntil - Date.now()) / 1000));
+			const seconds = secondsUntil(resendUntil);
 			setResendSeconds(seconds);
 			if (seconds === 0) setResendUntil(null);
 		}
-		const interval = window.setInterval(tick, 250);
+		const interval = window.setInterval(tick, 1000);
 		return () => window.clearInterval(interval);
 	}, [verification, resendUntil]);
 
-	useEffect(() => () => window.clearTimeout(pendingVerification.current), []);
-
-	function startCooldown() {
-		setResendSeconds(resendDelay);
-		setResendUntil(Date.now() + resendDelay * 1000);
-	}
+	useEffect(() => () => pendingVerification.current?.abort(), []);
 
 	function switchScreen(next: AuthScreen) {
-		window.clearTimeout(pendingVerification.current);
-		pendingVerification.current = undefined;
+		pendingVerification.current?.abort();
+		pendingVerification.current = null;
 		setScreen(next);
 		setErrors({});
 		setNotice("");
+		setVerificationError(undefined);
 		setPassword("");
 		setCode("");
-		setVerifying(false);
+		setPending(null);
+		restoreVerificationFocus.current = null;
 		setResendUntil(null);
+		setResendSeconds(0);
 	}
 
 	function signInWithGoogle() {
@@ -130,38 +200,60 @@ export function AuthExperience({
 		onAuthenticated({ isNewAccount: false });
 	}
 
+	async function verify() {
+		if (code.length !== 6 || pending || pendingVerification.current) return;
+		if (onVerify) {
+			const controller = new AbortController();
+			pendingVerification.current = controller;
+			setPending("verify");
+			setVerificationError(undefined);
+			try {
+				await onVerify(email, code, controller.signal);
+				if (controller.signal.aborted) return;
+			} catch (error) {
+				if (!controller.signal.aborted) {
+					if (
+						document.activeElement === document.body ||
+						document.activeElement === verifyButton.current
+					)
+						restoreVerificationFocus.current = "code";
+					setVerificationError({
+						action: "verify",
+						message:
+							error instanceof Error
+								? error.message
+								: "Couldn’t verify the code. Try again.",
+					});
+				}
+				return;
+			} finally {
+				if (pendingVerification.current === controller) {
+					pendingVerification.current = null;
+					setPending(null);
+				}
+			}
+		}
+		rememberMethod("email");
+		resultCallback.current({ email, isNewAccount: true });
+	}
+
 	function submit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		if (verification) {
-			if (
-				code.length !== 6 ||
-				verifying ||
-				pendingVerification.current !== undefined
-			)
-				return;
-			setVerifying(true);
-			// The local prototype accepts any six digits and briefly shows the designed pending state.
-			pendingVerification.current = window.setTimeout(() => {
-				pendingVerification.current = undefined;
-				setVerifying(false);
-				rememberMethod("email");
-				resultCallback.current({ email, isNewAccount: true });
-			}, verificationPreviewDuration);
+			void verify();
 			return;
 		}
 		const address = email.trim();
-		const emailInvalid =
-			form.current?.querySelector<HTMLInputElement>('[name="email"]')?.validity
-				.typeMismatch;
-		const emailError =
-			!address || emailInvalid ? "Enter a valid email address." : undefined;
+		const emailError = validateEmail(
+			address,
+			Boolean(
+				form.current?.querySelector<HTMLInputElement>('[name="email"]')
+					?.validity.typeMismatch,
+			),
+		);
 		const passwordError = recovery
 			? undefined
-			: !password
-				? "Enter your password."
-				: signup && password.length < 8
-					? "Use at least 8 characters."
-					: undefined;
+			: validatePassword(password, signup);
 		setErrors({ email: emailError, password: passwordError });
 		if (emailError || passwordError) {
 			form.current
@@ -180,19 +272,58 @@ export function AuthExperience({
 		}
 		if (signup) {
 			switchScreen("verify");
-			startCooldown();
 			return;
 		}
 		rememberMethod("email");
 		onAuthenticated({ email: address, isNewAccount: false });
 	}
 
-	function resendCode() {
-		if (resendSeconds > 0 || verifying) return;
+	async function resendCode() {
+		if (secondsUntil(resendUntil) > 0 || pending || pendingVerification.current)
+			return;
+		if (onResendCode) {
+			const controller = new AbortController();
+			pendingVerification.current = controller;
+			setPending("resend");
+			setVerificationError(undefined);
+			setNotice("");
+			try {
+				const result = await onResendCode(email, controller.signal);
+				if (controller.signal.aborted) return;
+				const deadline = result.resendAt ?? null;
+				setResendUntil(deadline);
+				setResendSeconds(secondsUntil(deadline));
+				if (
+					document.activeElement === document.body ||
+					document.activeElement === resendButton.current
+				)
+					restoreVerificationFocus.current = "code";
+				setNotice("A new code was sent.");
+			} catch (error) {
+				if (!controller.signal.aborted) {
+					if (document.activeElement === document.body)
+						restoreVerificationFocus.current = "resend";
+					setVerificationError({
+						action: "resend",
+						message:
+							error instanceof Error
+								? error.message
+								: "Couldn’t send a new code. Try again.",
+					});
+				}
+				return;
+			} finally {
+				if (pendingVerification.current === controller) {
+					pendingVerification.current = null;
+					setPending(null);
+				}
+			}
+		} else {
+			setNotice("Code cleared.");
+			form.current?.querySelector<HTMLInputElement>(".ap-otp input")?.focus();
+		}
 		setCode("");
-		startCooldown();
-		setNotice("Code reset. Enter any six digits to continue in the prototype.");
-		form.current?.querySelector<HTMLInputElement>(".ap-otp input")?.focus();
+		setVerificationError(undefined);
 	}
 
 	const title = verification
@@ -223,7 +354,11 @@ export function AuthExperience({
 					{verification ? (
 						<>
 							<div className="product-auth-destination">
-								<p>Check your email for a 6-digit code.</p>
+								<p>
+									{onVerify || verificationPreview
+										? "Check your email for a 6-digit code."
+										: "Enter any 6-digit code to continue in the prototype."}
+								</p>
 								<p>{email}</p>
 							</div>
 							<div className="product-auth-verification">
@@ -232,32 +367,55 @@ export function AuthExperience({
 									{resendSeconds > 0 ? (
 										<span>Resend code in {resendSeconds}s</span>
 									) : (
-										<button
+										<Button
+											ref={resendButton}
 											type="button"
+											variant="ghost"
 											className="product-auth-resend"
 											disabled={verifying}
+											loading={resending}
+											aria-describedby={
+												verificationError?.action === "resend"
+													? `${id}-resend-error`
+													: undefined
+											}
 											onClick={resendCode}
 										>
-											Resend code
-										</button>
+											{onResendCode ? "Resend code" : "Reset code"}
+										</Button>
 									)}
 								</div>
 								<OtpField
 									value={code}
-									onValueChange={setCode}
+									onValueChange={(value) => {
+										setCode(value);
+										setVerificationError(undefined);
+										setNotice("");
+									}}
 									processing={verifying}
+									disabled={resending}
+									error={
+										verificationError?.action === "verify"
+											? verificationError.message
+											: undefined
+									}
 									initialFocus={false}
 								/>
-								<p
-									className="product-auth-hint"
-									title="For this prototype, any six digits work."
-								>
+								{verificationError?.action === "resend" && (
+									<p
+										id={`${id}-resend-error`}
+										className="ap-field-support ap-field-error"
+										role="alert"
+									>
+										{verificationError.message}
+									</p>
+								)}
+								<p className="product-auth-hint" role="status">
 									{verifying
-										? "Verifying your email. This will only take a moment."
-										: "You can paste the full code from your email."}
-								</p>
-								<p className="sr-only">
-									For this prototype, you can enter any six digits.
+										? "Verifying your email…"
+										: resending
+											? "Sending a new code…"
+											: "You can paste the full code."}
 								</p>
 								{notice && (
 									<p role="status" className="product-auth-hint">
@@ -267,10 +425,11 @@ export function AuthExperience({
 							</div>
 							<div className="product-auth-actions">
 								<Button
+									ref={verifyButton}
 									type="submit"
 									size="medium"
 									loading={verifying}
-									disabled={code.length !== 6}
+									disabled={code.length !== 6 || resending}
 								>
 									{verifying ? "Verifying…" : "Verify email"}
 								</Button>
@@ -278,7 +437,10 @@ export function AuthExperience({
 									type="button"
 									variant="ghost"
 									size="medium"
-									onClick={() => switchScreen("signup")}
+									onClick={() => {
+										switchScreen("signup");
+										focusEmail.current = true;
+									}}
 								>
 									Use a different email
 								</Button>
@@ -336,14 +498,21 @@ export function AuthExperience({
 									showSupportingText={Boolean(errors.email)}
 									errorMessage={errors.email}
 									onChange={(event) => {
-										setEmail(event.target.value);
-										setErrors((current) => ({ ...current, email: undefined }));
+										const { value, validity } = event.currentTarget;
+										setEmail(value);
+										if (errors.email) {
+											setErrors((current) => ({
+												...current,
+												email: validateEmail(value, validity.typeMismatch),
+											}));
+										}
 										setNotice("");
 									}}
 								/>
 								{!recovery && (
 									<div className="product-auth-password">
 										<PasswordField
+											key={screen}
 											name="password"
 											placeholder={
 												signup ? "Create a password" : "Enter your password"
@@ -361,11 +530,14 @@ export function AuthExperience({
 											}
 											aria-invalid={errors.password ? true : undefined}
 											onChange={(event) => {
-												setPassword(event.target.value);
-												setErrors((current) => ({
-													...current,
-													password: undefined,
-												}));
+												const { value } = event.currentTarget;
+												setPassword(value);
+												if (errors.password) {
+													setErrors((current) => ({
+														...current,
+														password: validatePassword(value, signup),
+													}));
+												}
 											}}
 										/>
 										{errors.password && (
@@ -394,6 +566,7 @@ export function AuthExperience({
 											: "Sign in"}
 								</Button>
 								<Button
+									ref={backToLogin}
 									type="button"
 									variant="ghost"
 									size="medium"

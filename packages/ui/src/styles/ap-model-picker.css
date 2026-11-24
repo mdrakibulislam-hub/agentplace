@@ -4,6 +4,14 @@
 .ap-model-picker-trigger:not(:disabled) .ap-button-label {
 	color: var(--foreground-secondary);
 }
+.ap-model-picker-trigger[aria-expanded="true"] .ap-model-picker-chevron {
+	rotate: 180deg;
+}
+@media (prefers-reduced-motion: no-preference) {
+	html:not([data-ap-motion="reduced"]) .ap-model-picker-chevron {
+		transition: rotate var(--motion-duration-fast) var(--motion-easing-enter);
+	}
+}
 
 .ap-menu-panel.ap-model-picker {
 	width: 280px;
@@ -19,6 +27,6 @@
 	color: var(--foreground-default);
 }
 
-.ap-model-picker .ap-rich-menu-item[data-state="default"]:hover {
+.ap-model-picker .ap-rich-menu-item[data-state="default"]:hover:not(:active) {
 	background: var(--muted-hover);
 }

@@ -10,6 +10,8 @@ const router = createRouter({
 	routeTree,
 	defaultPreload: "intent",
 	scrollRestoration: true,
+	defaultPendingMs: 250,
+	defaultPendingMinMs: 0,
 	defaultPendingComponent: () => <Loader />,
 	context: { trpc, queryClient },
 	Wrap: function WrapComponent({ children }: { children: React.ReactNode }) {

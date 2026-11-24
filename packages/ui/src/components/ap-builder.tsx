@@ -6,6 +6,7 @@ import {
 	type RefObject,
 	useEffect,
 	useId,
+	useLayoutEffect,
 	useRef,
 	useState,
 } from "react";
@@ -16,7 +17,7 @@ import {
 import { AmbientBottomGradient } from "./ap-ambient";
 import { Mascot } from "./ap-brand";
 import { ProjectActions } from "./ap-controls";
-import { Avatar, Badge } from "./ap-data";
+import { Avatar, Badge, LoadingStatus, Spinner } from "./ap-data";
 import { Icon } from "./ap-icon";
 import {
 	MenuPopover,
@@ -25,7 +26,11 @@ import {
 	ProjectActionsMenu,
 	Tooltip,
 } from "./ap-menus";
-import { type ModelMode, ModelPicker } from "./ap-model-picker";
+import {
+	defaultModelMode,
+	type ModelMode,
+	ModelPicker,
+} from "./ap-model-picker";
 import { useMotionEnvironment } from "./ap-motion";
 import { Button } from "./button";
 import "../styles/ap-builder.css";
@@ -39,6 +44,7 @@ export interface ProjectCoverProps {
 	alt?: string;
 	objectPosition?: CSSProperties["objectPosition"];
 	canEdit?: boolean;
+	preparing?: boolean;
 	onEdit?: () => void;
 	presentation?: CoverPresentation;
 	emptyLabel?: string;
@@ -61,19 +67,26 @@ export function ProjectCover({
 	alt = "Project cover",
 	objectPosition = "center",
 	canEdit = false,
+	preparing = false,
 	onEdit,
 	presentation,
-	emptyLabel = "Add a project cover",
+	emptyLabel,
 	className = "",
 }: ProjectCoverProps) {
 	const [hovered, setHovered] = useState(false);
 	const [focused, setFocused] = useState(false);
+	const actionLabel = image ? "Change project cover" : "Add project cover";
+	const label = emptyLabel
+		? image
+			? `${emptyLabel} for this project`
+			: `${actionLabel}. ${emptyLabel}`
+		: actionLabel;
 	const backgroundImage =
 		context === "home-card" && !image && background
 			? projectCoverBackgrounds[background]?.image
 			: undefined;
 	const state =
-		canEdit && (hovered || focused)
+		canEdit && !preparing && (hovered || focused)
 			? "empty"
 			: (presentation ??
 				coverPresentation(context, Boolean(image), canEdit, false));
@@ -84,7 +97,7 @@ export function ProjectCover({
 				aria-hidden={state !== "empty"}
 			>
 				<Icon name="upload" />
-				<span>{emptyLabel}</span>
+				<span>{emptyLabel ?? actionLabel}</span>
 			</span>
 			<span
 				className="ap-cover-art ap-cover-mascot"
@@ -99,10 +112,10 @@ export function ProjectCover({
 			>
 				{image && <img src={image} alt={alt} style={{ objectPosition }} />}
 			</span>
-			{canEdit && state !== "empty" && (
+			{canEdit && !preparing && state !== "empty" && (
 				<span className="ap-cover-touch-action">
 					<Icon name="upload" />
-					{image ? "Change cover" : "Add cover"}
+					{emptyLabel ?? actionLabel}
 				</span>
 			)}
 		</>
@@ -110,7 +123,8 @@ export function ProjectCover({
 	return canEdit ? (
 		<button
 			type="button"
-			aria-label={image ? "Change project cover" : "Add project cover"}
+			aria-label={label}
+			aria-disabled={preparing || undefined}
 			className={`ap-project-cover ${className}`}
 			data-presentation={state}
 			onPointerEnter={(event) => {
@@ -121,7 +135,7 @@ export function ProjectCover({
 			onBlur={() => setFocused(false)}
 			onClick={(event) => {
 				event.stopPropagation();
-				onEdit?.();
+				if (!preparing) onEdit?.();
 			}}
 		>
 			{content}
@@ -167,6 +181,11 @@ export function ProjectCard({
 				canEdit={canEdit}
 				onEdit={() => onCoverEdit?.(project.id)}
 			/>
+			{cover?.preparing && (
+				<LoadingStatus className="ap-cover-loading">
+					Preparing image…
+				</LoadingStatus>
+			)}
 			<div className="ap-project-details">
 				<div className="ap-project-card-heading">
 					<div className="ap-project-name-status">
@@ -328,15 +347,21 @@ export function NewProjectPrompt({
 	const textarea = useRef<HTMLTextAreaElement>(null);
 	const inFlight = useRef(false);
 	const [pending, setPending] = useState(false);
-	const [localError, setLocalError] = useState("");
+	const [localError, setLocalError] = useState<{
+		message: string;
+		value: string;
+	}>();
 	const [promptInteracted, setPromptInteracted] = useState(false);
 	const errorId = useId();
 	const busy = submitting || pending;
+	const feedback =
+		error || (localError?.value === value ? localError.message : "");
 	const placeholder = useProjectPromptPlaceholder(
 		textarea,
-		!(value || busy || error || localError || promptInteracted),
+		!(value || busy || feedback || promptInteracted),
 	);
 	function change(value: string) {
+		setLocalError(undefined);
 		setInternalValue(value);
 		onValueChange?.(value);
 	}
@@ -344,25 +369,31 @@ export function NewProjectPrompt({
 		event?.preventDefault();
 		if (busy || inFlight.current) return;
 		if (!value.trim()) {
-			setLocalError("Describe the agent you want to build.");
+			setLocalError({
+				message: "Describe the agent you want to build.",
+				value,
+			});
 			textarea.current?.focus();
 			return;
 		}
 		inFlight.current = true;
 		setPending(true);
-		setLocalError("");
+		setLocalError(undefined);
 		try {
 			await onSubmit?.(value.trim());
 		} catch (cause) {
-			setLocalError(
-				cause instanceof Error
-					? cause.message
-					: "The request could not be completed. Try again.",
-			);
+			setLocalError({
+				message:
+					cause instanceof Error
+						? cause.message
+						: "The request could not be completed. Try again.",
+				value,
+			});
 		} finally {
 			inFlight.current = false;
 			setPending(false);
-			textarea.current?.focus();
+			if (document.activeElement === document.body)
+				textarea.current?.focus({ preventScroll: true });
 		}
 	}
 	function key(event: KeyboardEvent<HTMLTextAreaElement>) {
@@ -387,14 +418,14 @@ export function NewProjectPrompt({
 				<textarea
 					ref={textarea}
 					aria-label="Describe the agent you want to build"
-					aria-invalid={Boolean(error || localError)}
-					aria-describedby={error || localError ? errorId : undefined}
+					aria-invalid={Boolean(feedback)}
+					aria-describedby={feedback ? errorId : undefined}
 					placeholder={placeholder.text}
 					data-placeholder-fade-out={placeholder.fadeOut || undefined}
 					value={value}
 					onInput={(event) => change(event.currentTarget.value)}
 					onKeyDown={key}
-					disabled={busy}
+					readOnly={busy}
 				/>
 				<div className="ap-prompt-actions">
 					<div className="ap-new-project-tools">
@@ -433,9 +464,9 @@ export function NewProjectPrompt({
 					</Button>
 				</div>
 			</form>
-			{(error || localError) && (
+			{feedback && (
 				<p id={errorId} role="alert" className="ap-composer-error">
-					{error || localError}
+					{feedback}
 				</p>
 			)}
 		</div>
@@ -455,9 +486,10 @@ export function ChatComposer({
 	placeholder = "Describe a change to your agent…",
 	model,
 	modelControl,
-	defaultModelMode,
+	defaultModelMode: initialModelMode = defaultModelMode,
 	className = "",
-}: ComposerProps & {
+}: Omit<ComposerProps, "onSubmit"> & {
+	onSubmit?: (message: string, mode: ModelMode) => void | Promise<void>;
 	onModel?: () => void;
 	onStop?: () => void;
 	placeholder?: string;
@@ -466,6 +498,7 @@ export function ChatComposer({
 	defaultModelMode?: ModelMode;
 }) {
 	const [internalValue, setInternalValue] = useState(defaultValue);
+	const [selectedModel, setSelectedModel] = useState(initialModelMode);
 	const value = controlledValue ?? internalValue;
 	const textarea = useRef<HTMLTextAreaElement>(null);
 	const lock = useRef(false);
@@ -474,12 +507,20 @@ export function ChatComposer({
 	const errorId = useId();
 	const busy = submitting || pending;
 	const wasBusy = useRef(false);
+	const send = useRef<HTMLButtonElement>(null);
 	useEffect(() => {
-		if (wasBusy.current && !busy && !document.querySelector('[role="dialog"]'))
-			textarea.current?.focus();
+		const focused = document.activeElement;
+		if (
+			wasBusy.current &&
+			!busy &&
+			(focused === document.body || focused === send.current) &&
+			!document.querySelector("dialog[open], [role=dialog]:not([inert])")
+		)
+			textarea.current?.focus({ preventScroll: true });
 		wasBusy.current = busy;
 	}, [busy]);
 	function change(value: string) {
+		setLocalError("");
 		setInternalValue(value);
 		onValueChange?.(value);
 	}
@@ -490,7 +531,7 @@ export function ChatComposer({
 		setPending(true);
 		setLocalError("");
 		try {
-			await onSubmit?.(value.trim());
+			await onSubmit?.(value.trim(), selectedModel);
 			change("");
 		} catch (cause) {
 			setLocalError(
@@ -501,7 +542,6 @@ export function ChatComposer({
 		} finally {
 			lock.current = false;
 			setPending(false);
-			textarea.current?.focus();
 		}
 	}
 	function key(event: KeyboardEvent<HTMLTextAreaElement>) {
@@ -530,7 +570,7 @@ export function ChatComposer({
 					value={value}
 					onInput={(event) => change(event.currentTarget.value)}
 					onKeyDown={key}
-					disabled={busy}
+					readOnly={busy}
 				/>
 				<div className="ap-prompt-actions">
 					<Button
@@ -555,10 +595,15 @@ export function ChatComposer({
 								{model ?? "Model"}
 							</Button>
 						) : (
-							<ModelPicker defaultValue={defaultModelMode} disabled={busy} />
+							<ModelPicker
+								value={selectedModel}
+								onValueChange={setSelectedModel}
+								disabled={busy}
+							/>
 						))}
 					<div className="ap-builder-spacer" />
 					<button
+						ref={send}
 						type={busy && onStop ? "button" : "submit"}
 						onClick={busy && onStop ? onStop : undefined}
 						className="ap-composer-send"
@@ -574,8 +619,10 @@ export function ChatComposer({
 					>
 						{busy && onStop ? (
 							<span className="ap-composer-stop-mark" />
+						) : busy ? (
+							<Spinner aria-hidden="true" />
 						) : (
-							<Icon name={busy ? "loader" : "arrow-up"} />
+							<Icon name="arrow-up" />
 						)}
 					</button>
 				</div>
@@ -610,6 +657,7 @@ export interface AgentPreviewProps {
 	onDevice?: () => void;
 	onOpenExternal?: () => void;
 	submitting?: boolean;
+	inputRef?: RefObject<HTMLInputElement | null>;
 	className?: string;
 }
 export function AgentPreview({
@@ -633,6 +681,7 @@ export function AgentPreview({
 	onDevice,
 	onOpenExternal,
 	submitting = false,
+	inputRef,
 	className = "",
 }: AgentPreviewProps) {
 	const [value, setValue] = useState("");
@@ -640,24 +689,41 @@ export function AgentPreview({
 	const [sendError, setSendError] = useState("");
 	const errorId = useId();
 	const lock = useRef(false);
-	const input = useRef<HTMLInputElement>(null);
+	const internalInput = useRef<HTMLInputElement>(null);
+	const draftRevision = useRef(0);
+	const resetFocus = useRef(false);
+	const input = inputRef ?? internalInput;
 	const busy = submitting || pending;
-	const wasBusy = useRef(false);
-	useEffect(() => {
-		if (wasBusy.current && !busy && !document.querySelector('[role="dialog"]'))
+	const canSend = Boolean(onSend && value.trim() && !busy);
+
+	useLayoutEffect(() => {
+		if (!conversation && resetFocus.current) {
+			resetFocus.current = false;
 			input.current?.focus();
-		wasBusy.current = busy;
-	}, [busy]);
+		}
+	}, [conversation, input]);
+
+	function changeValue(next: string) {
+		draftRevision.current += 1;
+		setValue(next);
+		setSendError("");
+	}
+
 	async function send(event: FormEvent) {
 		event.preventDefault();
-		if (!value.trim() || busy || lock.current) return;
+		if (!onSend || !canSend || lock.current) return;
+		input.current?.focus({ preventScroll: true });
+		const draft = value;
+		const submittedRevision = draftRevision.current;
 		lock.current = true;
 		setPending(true);
+		setValue("");
 		setSendError("");
 		try {
-			await onSend?.(value.trim());
-			setValue("");
+			const result = onSend(draft.trim());
+			if (result) await result;
 		} catch (error) {
+			if (draftRevision.current === submittedRevision) setValue(draft);
 			setSendError(
 				error instanceof Error
 					? error.message
@@ -666,7 +732,6 @@ export function AgentPreview({
 		} finally {
 			lock.current = false;
 			setPending(false);
-			input.current?.focus();
 		}
 	}
 	return (
@@ -682,21 +747,36 @@ export function AgentPreview({
 						<Icon name="eye" />
 						<span>Test as a visitor</span>
 						<div className="ap-builder-spacer" />
-						<Button
-							variant="ghost"
-							icon={<Icon name="monitor" />}
-							onClick={onDevice}
-						>
-							{device}
-						</Button>
-						<button
-							type="button"
-							aria-label="Open preview in new window"
-							className="ap-composer-icon"
-							onClick={onOpenExternal}
-						>
-							<Icon name="external-link" />
-						</button>
+						{onDevice && (
+							<Tooltip
+								label={
+									device === "Desktop"
+										? "Switch to mobile"
+										: "Switch to desktop"
+								}
+							>
+								<Button
+									variant="ghost"
+									icon={<Icon name="monitor" />}
+									aria-pressed={device === "Mobile"}
+									onClick={onDevice}
+								>
+									{device}
+								</Button>
+							</Tooltip>
+						)}
+						{onOpenExternal && (
+							<Tooltip label="Open preview in new window">
+								<button
+									type="button"
+									aria-label="Open preview in new window"
+									className="ap-composer-icon"
+									onClick={onOpenExternal}
+								>
+									<Icon name="external-link" />
+								</button>
+							</Tooltip>
+						)}
 					</div>
 				</>
 			)}
@@ -705,7 +785,10 @@ export function AgentPreview({
 				data-conversation={conversation || undefined}
 			>
 				{conversation ? (
-					<div className="ap-preview-conversation-header">
+					<div
+						className="ap-preview-conversation-header"
+						data-ap-enter="message"
+					>
 						<Avatar
 							initials={companyInitials}
 							src={companyLogo}
@@ -716,19 +799,22 @@ export function AgentPreview({
 							<p>{agentName || company}</p>
 							<span>{company}</span>
 						</div>
-						<button
-							type="button"
-							className="ap-composer-icon"
-							aria-label="Start new visitor conversation"
-							onClick={() => {
-								onReset?.();
-								setValue("");
-								setSendError("");
-								input.current?.focus();
-							}}
-						>
-							<Icon name="refresh" />
-						</button>
+						{onReset && (
+							<Tooltip label="Start a new conversation">
+								<button
+									type="button"
+									className="ap-composer-icon"
+									aria-label="Start new visitor conversation"
+									onClick={() => {
+										resetFocus.current = true;
+										onReset();
+										changeValue("");
+									}}
+								>
+									<Icon name="refresh" />
+								</button>
+							</Tooltip>
+						)}
 					</div>
 				) : (
 					<>
@@ -753,13 +839,13 @@ export function AgentPreview({
 						<p className="ap-preview-description">
 							<span className="ap-glyph-body-base">{description}</span>
 						</p>
-						<div className="ap-preview-suggestions">
+						<div className="ap-preview-suggestions" data-ap-enter="message">
 							{suggestions.map((suggestion) => (
 								<button
 									type="button"
 									key={suggestion}
 									onClick={() => {
-										setValue(suggestion);
+										changeValue(suggestion);
 										onSuggestion?.(suggestion);
 										input.current?.focus();
 									}}
@@ -793,28 +879,42 @@ export function AgentPreview({
 										: "Ask your agent a question…"
 								}
 								value={value}
-								onInput={(e) => setValue(e.currentTarget.value)}
-								disabled={busy}
+								onInput={(event) => changeValue(event.currentTarget.value)}
 							/>
 							<button
 								type={busy && onStop ? "button" : "submit"}
-								onClick={busy && onStop ? onStop : undefined}
+								onClick={
+									busy && onStop
+										? () => {
+												onStop();
+												input.current?.focus({ preventScroll: true });
+											}
+										: undefined
+								}
 								aria-label={busy && onStop ? "Stop reply" : "Send question"}
 								className="ap-composer-send"
-								disabled={busy ? !onStop : !value.trim()}
-								aria-busy={busy}
+								disabled={busy ? !onStop : !canSend}
+								aria-busy={busy && !onStop ? true : undefined}
 							>
 								{busy && onStop ? (
 									<span className="ap-composer-stop-mark" />
+								) : busy ? (
+									<Spinner aria-hidden="true" />
 								) : (
-									<Icon name={busy ? "loader" : "arrow-up"} />
+									<Icon name="arrow-up" />
 								)}
 							</button>
 						</form>
-						<button type="button" className="ap-visitor-call" onClick={onCall}>
-							<Icon name="phone" />
-							Call
-						</button>
+						{onCall && (
+							<button
+								type="button"
+								className="ap-visitor-call"
+								onClick={onCall}
+							>
+								<Icon name="phone" />
+								Call
+							</button>
+						)}
 					</div>
 					{sendError && (
 						<p id={errorId} role="alert" className="ap-composer-error">

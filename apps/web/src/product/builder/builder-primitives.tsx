@@ -1,6 +1,12 @@
 import { Icon } from "@agentplace/ui/components/ap-icon";
 import { useDialogEntrance } from "@agentplace/ui/components/ap-motion";
-import { type ReactNode, useId, useLayoutEffect, useRef } from "react";
+import {
+	type ReactNode,
+	type RefObject,
+	useId,
+	useLayoutEffect,
+	useRef,
+} from "react";
 
 export function BuilderTitle({
 	title,
@@ -45,12 +51,18 @@ export function BuilderDialog({
 	description,
 	onClose,
 	wide = false,
+	busy = false,
+	error,
+	returnFocus,
 }: {
 	children: ReactNode;
 	title: string;
 	description?: string;
 	onClose: () => void;
 	wide?: boolean;
+	busy?: boolean;
+	error?: string;
+	returnFocus?: RefObject<HTMLElement | null>;
 }) {
 	const dialog = useRef<HTMLDialogElement>(null);
 	const heading = useId();
@@ -66,11 +78,12 @@ export function BuilderDialog({
 		initialFocus?.focus();
 		return () => {
 			element.close();
-			if (focused instanceof HTMLElement && focused.isConnected) {
-				focused.focus();
+			const target = returnFocus?.current ?? focused;
+			if (target instanceof HTMLElement && target.isConnected) {
+				target.focus({ preventScroll: true });
 			}
 		};
-	}, []);
+	}, [returnFocus]);
 	useDialogEntrance(dialog);
 	return (
 		<dialog
@@ -81,10 +94,10 @@ export function BuilderDialog({
 			aria-describedby={description ? details : undefined}
 			onCancel={(event) => {
 				event.preventDefault();
-				onClose();
+				if (!busy) onClose();
 			}}
 		>
-			<div className="ap-builder-dialog-content">
+			<div className="ap-builder-dialog-content" aria-busy={busy || undefined}>
 				<header>
 					<h2 id={heading}>{title}</h2>
 					<button
@@ -92,11 +105,17 @@ export function BuilderDialog({
 						aria-label="Close dialog"
 						className="ap-builder-icon-action"
 						onClick={onClose}
+						disabled={busy}
 					>
 						<Icon name="close" />
 					</button>
 				</header>
 				{description && <p id={details}>{description}</p>}
+				{error && (
+					<p className="ap-builder-error" role="alert">
+						{error}
+					</p>
+				)}
 				{children}
 			</div>
 		</dialog>

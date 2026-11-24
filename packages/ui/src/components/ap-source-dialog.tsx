@@ -1,16 +1,24 @@
 import { Dialog } from "@base-ui/react/dialog";
-import { motion } from "motion/react";
 import { type RefObject, useId, useRef, useState } from "react";
 import { Spinner } from "./ap-data";
+import { SpringDialogPopup } from "./ap-dialog";
 import { Icon } from "./ap-icon";
-import { springs, useMotionEnvironment } from "./ap-motion";
+import { Button } from "./button";
 import { Input } from "./input";
-import "../styles/ap-dialog.css";
 import "../styles/ap-source-dialog.css";
 
 export const SOURCE_FILE_ACCEPT = ".pdf,.docx,.txt,.md,.csv";
 export const SOURCE_FILE_MAX_BYTES = 10 * 1024 * 1024;
 const fileExtensions = new Set(SOURCE_FILE_ACCEPT.split(","));
+
+export function sourceFileError(file: File) {
+	const extension = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
+	if (!fileExtensions.has(extension))
+		return "Choose a PDF, DOCX, TXT, MD or CSV file.";
+	if (file.size > SOURCE_FILE_MAX_BYTES)
+		return "This file is larger than 10 MB. Choose a smaller file.";
+	return file.size ? "" : "This file is empty. Choose a file with content.";
+}
 
 export interface SourceAttachmentDialogProps {
 	open: boolean;
@@ -41,11 +49,6 @@ export function SourceAttachmentDialog({
 	const inFlight = useRef(false);
 	const input = useRef<HTMLInputElement>(null);
 	const fileInput = useRef<HTMLInputElement>(null);
-	const popup = useRef<HTMLDivElement>(null);
-	const actions = useRef<{ unmount: () => void; close: () => void } | null>(
-		null,
-	);
-	const { reduced } = useMotionEnvironment(popup);
 
 	async function add(
 		kind: "website" | "file",
@@ -93,14 +96,7 @@ export function SourceAttachmentDialog({
 
 	function addFile(file: File) {
 		if (inFlight.current) return;
-		const extension = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
-		const message = !fileExtensions.has(extension)
-			? "Choose a PDF, DOCX, TXT, MD or CSV file."
-			: file.size > SOURCE_FILE_MAX_BYTES
-				? "This file is larger than 10 MB. Choose a smaller file."
-				: file.size === 0
-					? "This file is empty. Choose a file with content."
-					: "";
+		const message = sourceFileError(file);
 		if (message) {
 			setError({ kind: "file", message });
 			return;
@@ -111,10 +107,11 @@ export function SourceAttachmentDialog({
 	return (
 		<Dialog.Root
 			open={open}
-			actionsRef={actions}
 			onOpenChange={(next, details) => {
-				if (inFlight.current) return;
-				if (!next) details.preventUnmountOnClose();
+				if (inFlight.current) {
+					details.cancel();
+					return;
+				}
 				setError(null);
 				setDragging(false);
 				onOpenChange(next);
@@ -122,36 +119,13 @@ export function SourceAttachmentDialog({
 		>
 			<Dialog.Portal>
 				<Dialog.Backdrop className="ap-dialog-backdrop" />
-				<Dialog.Popup
-					ref={popup}
+				<SpringDialogPopup
+					open={open}
 					className="ap-source-dialog"
 					initialFocus={input}
 					finalFocus={returnFocus}
 					aria-describedby={undefined}
 					aria-busy={Boolean(pending)}
-					render={
-						<motion.div
-							initial={reduced ? false : { opacity: 0, scale: 0.98, y: 12 }}
-							animate={
-								open
-									? { opacity: 1, scale: 1, y: 0 }
-									: { opacity: 0, scale: 1, y: reduced ? 0 : 4 }
-							}
-							transition={
-								reduced
-									? { duration: 0 }
-									: open
-										? {
-												...springs.dialog,
-												opacity: { type: "tween", duration: 0.16 },
-											}
-										: { type: "tween", duration: 0.12, ease: "easeOut" }
-							}
-							onAnimationComplete={() => {
-								if (!open) actions.current?.unmount();
-							}}
-						/>
-					}
 				>
 					<div className="ap-dialog-heading">
 						<Dialog.Title>Add website or file</Dialog.Title>
@@ -172,7 +146,10 @@ export function SourceAttachmentDialog({
 						}}
 					>
 						<label htmlFor={`${id}-website`}>Website</label>
-						<div className="ap-source-website-field">
+						<div
+							className="ap-source-website-field"
+							data-has-action={Boolean(website.trim()) || undefined}
+						>
 							<Input
 								ref={input}
 								id={`${id}-website`}
@@ -190,6 +167,16 @@ export function SourceAttachmentDialog({
 								}}
 							/>
 							{pending === "website" && <Spinner label="Adding website" />}
+							{website.trim() && !pending && (
+								<Button
+									type="submit"
+									size="icon"
+									variant="ghost"
+									className="ap-source-website-submit"
+									aria-label="Add website"
+									icon={<Icon name="arrow-right" />}
+								/>
+							)}
 						</div>
 						<span id={`${id}-website-hint`} className="sr-only">
 							Press Enter to add the website.
@@ -248,7 +235,11 @@ export function SourceAttachmentDialog({
 								if (file) addFile(file);
 							}}
 						>
-							<Icon name={pending === "file" ? "loader" : "upload"} size={20} />
+							{pending === "file" ? (
+								<Spinner aria-hidden="true" />
+							) : (
+								<Icon name="upload" size={20} />
+							)}
 							<span className="ap-source-drop-title">
 								{pending === "file" ? (
 									"Adding file…"
@@ -283,7 +274,7 @@ export function SourceAttachmentDialog({
 							</p>
 						)}
 					</div>
-				</Dialog.Popup>
+				</SpringDialogPopup>
 			</Dialog.Portal>
 		</Dialog.Root>
 	);

@@ -1,11 +1,42 @@
 import { Dialog } from "@base-ui/react/dialog";
 import { motion } from "motion/react";
-import type { ReactElement, ReactNode, RefObject } from "react";
-import { useRef, useState } from "react";
+import type { ComponentProps, ReactElement, ReactNode, RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "./ap-icon";
 import { springs, useMotionEnvironment } from "./ap-motion";
 import { Button } from "./button";
 import "../styles/ap-dialog.css";
+
+export function SpringDialogPopup({
+	open,
+	className,
+	...props
+}: Omit<ComponentProps<typeof Dialog.Popup>, "className" | "render"> & {
+	open: boolean;
+	className?: string;
+}) {
+	const { reduced } = useMotionEnvironment();
+	return (
+		<Dialog.Popup
+			{...props}
+			className={`ap-dialog-popup ${className ?? ""}`}
+			inert={!open}
+			render={
+				<motion.div
+					initial={reduced ? false : { scale: 0.98, y: 12 }}
+					animate={{ scale: 1, y: open || reduced ? 0 : 4 }}
+					transition={
+						reduced
+							? { duration: 0 }
+							: open
+								? springs.dialog
+								: { type: "tween", duration: 0.12, ease: "easeOut" }
+					}
+				/>
+			}
+		/>
+	);
+}
 
 /** Native480px confirmation recipe with real focus, cancellation and request/error state. */
 export function ConfirmDialog({
@@ -38,17 +69,19 @@ export function ConfirmDialog({
 	const [pending, setPending] = useState(false);
 	const [error, setError] = useState("");
 	const cancel = useRef<HTMLButtonElement>(null);
-	const popup = useRef<HTMLDivElement>(null);
-	const actions = useRef<{ unmount: () => void; close: () => void } | null>(
-		null,
-	);
-	const { reduced } = useMotionEnvironment(popup);
+	const confirmButton = useRef<HTMLButtonElement>(null);
+	const inFlight = useRef(false);
+	useEffect(() => {
+		if (!open) setError("");
+		else if (error) confirmButton.current?.focus({ preventScroll: true });
+	}, [open, error]);
 	function setOpen(next: boolean) {
 		setInternalOpen(next);
 		onOpenChange?.(next);
 	}
 	const confirm = async () => {
-		if (pending) return;
+		if (inFlight.current) return;
+		inFlight.current = true;
 		setPending(true);
 		setError("");
 		try {
@@ -61,16 +94,18 @@ export function ConfirmDialog({
 					: "Unable to delete. Please try again.",
 			);
 		} finally {
+			inFlight.current = false;
 			setPending(false);
 		}
 	};
 	return (
 		<Dialog.Root
 			open={open}
-			actionsRef={actions}
 			onOpenChange={(next, details) => {
-				if (pending) return;
-				if (!next) details.preventUnmountOnClose();
+				if (inFlight.current) {
+					details.cancel();
+					return;
+				}
 				setOpen(next);
 				if (next) setError("");
 			}}
@@ -82,34 +117,11 @@ export function ConfirmDialog({
 						.filter(Boolean)
 						.join(" ")}
 				/>
-				<Dialog.Popup
-					ref={popup}
+				<SpringDialogPopup
+					open={open}
 					initialFocus={cancel}
 					finalFocus={returnFocus}
 					className={["ap-confirm-dialog", className].filter(Boolean).join(" ")}
-					render={
-						<motion.div
-							initial={reduced ? false : { opacity: 0, scale: 0.98, y: 12 }}
-							animate={
-								open
-									? { opacity: 1, scale: 1, y: 0 }
-									: { opacity: 0, scale: 1, y: reduced ? 0 : 4 }
-							}
-							transition={
-								reduced
-									? { duration: 0 }
-									: open
-										? {
-												...springs.dialog,
-												opacity: { type: "tween", duration: 0.16 },
-											}
-										: { type: "tween", duration: 0.12, ease: "easeOut" }
-							}
-							onAnimationComplete={() => {
-								if (!open) actions.current?.unmount();
-							}}
-						/>
-					}
 				>
 					<div className="ap-dialog-heading">
 						<Dialog.Title>{title}</Dialog.Title>
@@ -141,6 +153,7 @@ export function ConfirmDialog({
 							{cancelLabel}
 						</Dialog.Close>
 						<Button
+							ref={confirmButton}
 							className="ap-dialog-confirm"
 							variant="danger"
 							size="medium"
@@ -150,7 +163,7 @@ export function ConfirmDialog({
 							{confirmLabel}
 						</Button>
 					</div>
-				</Dialog.Popup>
+				</SpringDialogPopup>
 			</Dialog.Portal>
 		</Dialog.Root>
 	);

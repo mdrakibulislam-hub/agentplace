@@ -68,6 +68,11 @@
 	color: var(--foreground-muted);
 	animation: ap-control-spin 1s linear infinite;
 }
+.ap-loading-status {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-8);
+}
 .ap-surface {
 	box-sizing: border-box;
 	width: 320px;

@@ -94,6 +94,21 @@ export function Spinner({
 	);
 }
 
+export function LoadingStatus({
+	children,
+	className,
+}: {
+	children: string;
+	className?: string;
+}) {
+	return (
+		<span className={cn("ap-loading-status", className)} role="status">
+			<Spinner aria-hidden="true" />
+			{children}
+		</span>
+	);
+}
+
 export function Surface({
 	elevation = "flat",
 	className,

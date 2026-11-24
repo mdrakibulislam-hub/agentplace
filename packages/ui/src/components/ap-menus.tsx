@@ -6,6 +6,7 @@ import {
 	type KeyboardEvent,
 	type ReactElement,
 	type ReactNode,
+	type RefObject,
 	useId,
 	useRef,
 	useState,
@@ -176,24 +177,15 @@ export function MenuPopover({
 }) {
 	const [internalOpen, setInternalOpen] = useState(defaultOpen);
 	const shown = open ?? internalOpen;
-	const actions = useRef<{ unmount: () => void; close: () => void } | null>(
-		null,
-	);
+	const actions = useRef<Popover.Root.Actions>(null);
 	const popup = useRef<HTMLDivElement>(null);
-	const { reduced } = useMotionEnvironment(popup);
+	const { reduced } = useMotionEnvironment();
 	function change(next: boolean) {
 		setInternalOpen(next);
 		onOpenChange?.(next);
 	}
 	return (
-		<Popover.Root
-			open={shown}
-			actionsRef={actions}
-			onOpenChange={(next, details) => {
-				if (!next) details.preventUnmountOnClose();
-				change(next);
-			}}
-		>
+		<Popover.Root open={shown} actionsRef={actions} onOpenChange={change}>
 			<Popover.Trigger render={trigger} />
 			<Popover.Portal>
 				<Popover.Positioner
@@ -208,6 +200,7 @@ export function MenuPopover({
 						ref={popup}
 						role="presentation"
 						className="ap-menu-popup"
+						inert={!shown}
 						initialFocus={(kind) =>
 							kind === "touch"
 								? popup.current
@@ -221,25 +214,15 @@ export function MenuPopover({
 						}
 						render={
 							<motion.div
-								initial={reduced ? false : { opacity: 0, scale: 0.97, y: 6 }}
-								animate={
-									shown
-										? { opacity: 1, scale: 1, y: 0 }
-										: { opacity: 0, scale: 1, y: reduced ? 0 : 4 }
-								}
+								initial={reduced ? false : { scale: 0.97, y: 6 }}
+								animate={{ scale: 1, y: shown || reduced ? 0 : 4 }}
 								transition={
 									reduced
 										? { duration: 0 }
 										: shown
-											? {
-													...springs.popover,
-													opacity: { type: "tween", duration: 0.14 },
-												}
+											? springs.popover
 											: { type: "tween", duration: 0.12, ease: "easeOut" }
 								}
-								onAnimationComplete={() => {
-									if (!shown) actions.current?.unmount();
-								}}
 							/>
 						}
 					>
@@ -266,12 +249,15 @@ function MenuSearch({
 	value,
 	onChange,
 	id,
+	input,
+	onEnter,
 }: {
 	value: string;
 	onChange: (value: string) => void;
 	id: string;
+	input: RefObject<HTMLInputElement | null>;
+	onEnter: () => void;
 }) {
-	const input = useRef<HTMLInputElement>(null);
 	return (
 		<label className="ap-menu-search">
 			<Icon name="search" />
@@ -285,6 +271,11 @@ function MenuSearch({
 				placeholder="Search projects…"
 				value={value}
 				onInput={(e) => onChange(e.currentTarget.value)}
+				onKeyDown={(event) => {
+					if (event.key !== "Enter" || event.nativeEvent.isComposing) return;
+					event.preventDefault();
+					onEnter();
+				}}
 			/>
 			{value && (
 				<button
@@ -331,6 +322,7 @@ export function ProjectSwitcher({
 	const [query, setQuery] = useState("");
 	const value = controlledQuery ?? query;
 	const id = useId();
+	const input = useRef<HTMLInputElement>(null);
 	function change(next: string) {
 		setQuery(next);
 		onQueryChange?.(next);
@@ -346,7 +338,15 @@ export function ProjectSwitcher({
 			onClose={onClose}
 			wide
 		>
-			<MenuSearch value={value} onChange={change} id={id} />
+			<MenuSearch
+				value={value}
+				onChange={change}
+				id={id}
+				input={input}
+				onEnter={() => {
+					if (results[0]) onSelect?.(results[0].id);
+				}}
+			/>
 			{search && results.length > 0 && (
 				<p className="ap-menu-count" aria-live="polite">
 					{results.length} {results.length === 1 ? "project" : "projects"} found
@@ -383,16 +383,21 @@ export function ProjectSwitcher({
 			</div>
 			{results.length === 0 && (
 				<>
-					<div className="ap-menu-empty">
-						<p>No matching projects</p>
-						<span>Try a different name or clear your search.</span>
+					<div className="ap-menu-empty" role="status">
+						<p>{needle ? "No matching projects" : "No projects yet"}</p>
+						{needle && <span>Try a different name or clear your search.</span>}
 					</div>
-					<RichMenuItem
-						data-menu-choice
-						label="Clear search"
-						icon="close"
-						onClick={() => change("")}
-					/>
+					{needle && (
+						<RichMenuItem
+							data-menu-choice
+							label="Clear search"
+							icon="close"
+							onClick={() => {
+								change("");
+								input.current?.focus();
+							}}
+						/>
+					)}
 				</>
 			)}
 			{!search && showActions && (
@@ -620,11 +625,15 @@ export function Tooltip({
 			<BaseTooltip.Root open={open}>
 				<BaseTooltip.Trigger aria-describedby={tooltipId} render={children} />
 				<BaseTooltip.Portal>
-					<BaseTooltip.Positioner sideOffset={8} collisionPadding={8}>
+					<BaseTooltip.Positioner
+						sideOffset={8}
+						collisionPadding={8}
+						className="ap-tooltip-positioner"
+					>
 						<BaseTooltip.Popup
 							id={tooltipId}
 							role="tooltip"
-							className="ap-tooltip"
+							className="ap-tooltip ap-tooltip-popup"
 						>
 							{label}
 						</BaseTooltip.Popup>

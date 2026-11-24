@@ -24,9 +24,6 @@
 	white-space: nowrap;
 	cursor: pointer;
 	outline: none;
-	transition:
-		background-color 120ms,
-		color 120ms;
 }
 .ap-button-small {
 	height: var(--size-control-sm);
@@ -121,9 +118,6 @@
 	font-weight: 400;
 	line-height: var(--type-body-base-regular-line-height);
 	outline: none;
-	transition:
-		border-color 120ms,
-		background-color 120ms;
 }
 .ap-input {
 	height: 48px;
@@ -357,7 +351,6 @@
 	top: 1px;
 	background: var(--foreground-muted);
 	border-radius: var(--radius-full);
-	transition: transform 120ms;
 }
 .ap-switch[aria-checked="true"] .ap-switch-thumb {
 	background: var(--action-foreground);
@@ -381,20 +374,9 @@
 	.ap-button-spinner {
 		animation: none;
 	}
-	.ap-button,
-	.ap-input,
-	.ap-textarea,
-	.ap-select,
-	.ap-password-control,
-	.ap-switch-thumb {
-		transition: none;
-	}
 }
 [data-ap-motion="reduced"] .ap-button-spinner {
 	animation: none;
-}
-[data-ap-motion="reduced"] .ap-switch .ap-switch-thumb {
-	transition: none;
 }
 .ap-control-sr-only {
 	position: absolute;
@@ -452,7 +434,6 @@
 	border-radius: inherit;
 	transform: scale(var(--ap-press-scale, 1));
 	pointer-events: none;
-	transition: background-color 120ms;
 }
 .ap-button-contents {
 	display: inline-flex;
@@ -471,13 +452,32 @@
 .ap-button[data-state="focus"] {
 	outline: none;
 }
-@media (prefers-reduced-motion: reduce) {
-	.ap-button::before {
-		transition: none;
+@media (prefers-reduced-motion: no-preference) {
+	html:not([data-ap-motion="reduced"]) .ap-button {
+		transition: color var(--motion-duration-fast) var(--motion-easing-standard);
 	}
-}
-[data-ap-motion="reduced"] .ap-button::before {
-	transition: none;
+	html:not([data-ap-motion="reduced"]) .ap-button::before {
+		transition: background-color var(--motion-duration-fast)
+			var(--motion-easing-standard);
+	}
+	html:not([data-ap-motion="reduced"])
+		:is(
+			.ap-input,
+			.ap-textarea,
+			.ap-select,
+			.ap-password-control,
+			.ap-check,
+			.ap-switch
+		) {
+		transition:
+			border-color var(--motion-duration-fast) var(--motion-easing-standard),
+			background-color var(--motion-duration-fast) var(--motion-easing-standard);
+	}
+	html:not([data-ap-motion="reduced"]) .ap-switch-thumb {
+		transition:
+			transform var(--motion-duration-standard) var(--motion-easing-enter),
+			background-color var(--motion-duration-fast) var(--motion-easing-standard);
+	}
 }
 .ap-select-wrap:has(.ap-select:disabled) .ap-select-icon {
 	color: var(--foreground-disabled);

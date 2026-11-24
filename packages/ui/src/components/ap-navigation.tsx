@@ -1,11 +1,13 @@
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import type {
 	ComponentProps,
+	FocusEvent,
 	KeyboardEvent,
+	PointerEvent,
 	ReactNode,
 	RefObject,
 } from "react";
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { Logo } from "./ap-brand";
 import { Switch } from "./ap-controls";
 import { Avatar, Badge, CreditRing } from "./ap-data";
@@ -14,6 +16,54 @@ import { Icon } from "./ap-icon";
 import { springs, useMotionEnvironment } from "./ap-motion";
 import { Button } from "./button";
 import "../styles/ap-navigation.css";
+
+function useNavigationHighlight() {
+	const id = useId();
+	const { reduced } = useMotionEnvironment();
+	const [hovered, setHovered] = useState<string>();
+	const [focused, setFocused] = useState<string>();
+	const active = hovered ?? focused;
+
+	return {
+		clearHover: () => setHovered(undefined),
+		itemEvents: (value: string, disabled = false) => ({
+			onPointerEnter: (event: PointerEvent<HTMLElement>) => {
+				if (event.pointerType === "mouse") {
+					setHovered(disabled ? undefined : value);
+				}
+			},
+			onFocus: (event: FocusEvent<HTMLElement>) => {
+				if (event.target.matches(":focus-visible")) {
+					setHovered(undefined);
+					setFocused(value);
+				}
+			},
+			onBlur: (event: FocusEvent<HTMLElement>) => {
+				if (!event.currentTarget.contains(event.relatedTarget)) {
+					setFocused((current) => (current === value ? undefined : current));
+				}
+			},
+		}),
+		highlight: (value: string) => (
+			<AnimatePresence>
+				{active === value && (
+					<motion.span
+						aria-hidden="true"
+						className="ap-nav-highlight"
+						layoutId={reduced ? undefined : id}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{
+							layout: springs.layout,
+							opacity: { duration: reduced ? 0 : 0.12, ease: "easeOut" },
+						}}
+					/>
+				)}
+			</AnimatePresence>
+		),
+	};
+}
 
 export interface GlobalHeaderProps {
 	project: string;
@@ -83,7 +133,7 @@ export function GlobalHeader({
 				{accountMenu ?? (
 					<button
 						type="button"
-						aria-label="Open account menu"
+						aria-label={`Open account menu for ${initials}`}
 						className="ap-header-account"
 						onClick={onAccount}
 					>
@@ -145,8 +195,50 @@ interface SidebarProps {
 	onHome?: () => void;
 	className?: string;
 }
+
+function SidebarLinks<Value extends string>({
+	items,
+	active,
+	label,
+	onChange,
+	disabled,
+}: {
+	items: readonly { label: Value; icon: ComponentProps<typeof Icon>["name"] }[];
+	active?: NoInfer<Value>;
+	label: string;
+	onChange?: (value: Value) => void;
+	disabled?: boolean;
+}) {
+	const { clearHover, itemEvents, highlight } = useNavigationHighlight();
+	return (
+		<motion.nav
+			className="ap-sidebar-links"
+			aria-label={label}
+			onPointerLeave={clearHover}
+			layoutScroll
+		>
+			{items.map((item) => (
+				<button
+					key={item.label}
+					type="button"
+					className="ap-sidebar-link"
+					aria-current={active === item.label ? "page" : undefined}
+					disabled={disabled}
+					onClick={() => onChange?.(item.label)}
+					{...itemEvents(item.label, disabled)}
+				>
+					{highlight(item.label)}
+					<Icon name={item.icon} />
+					{item.label}
+				</button>
+			))}
+		</motion.nav>
+	);
+}
+
 export function ProjectNavigation({
 	active = "Chat",
+	disabled,
 	onChange,
 	onHome,
 	onNewConversation,
@@ -157,6 +249,7 @@ export function ProjectNavigation({
 	className = "",
 }: SidebarProps & {
 	active?: ProjectNavValue;
+	disabled?: boolean;
 	onChange?: (value: ProjectNavValue) => void;
 	onNewConversation?: () => void;
 	onManageAccess?: () => void;
@@ -170,9 +263,10 @@ export function ProjectNavigation({
 }) {
 	const newChat = useRef<HTMLButtonElement>(null);
 	return (
-		<aside
+		<motion.aside
 			className={`ap-sidebar ap-project-sidebar ${className}`}
 			aria-label="Project navigation"
+			layoutScroll
 		>
 			<button type="button" className="ap-sidebar-home" onClick={onHome}>
 				<Icon name="arrow-left" />
@@ -184,6 +278,7 @@ export function ProjectNavigation({
 					ref={newChat}
 					className="ap-sidebar-new"
 					onClick={onNewConversation}
+					disabled={disabled}
 				>
 					<Icon name="plus" />
 					New chat
@@ -196,22 +291,16 @@ export function ProjectNavigation({
 					onSelect={onConversation}
 					onDelete={onDeleteConversation}
 					fallbackFocus={newChat}
+					disabled={disabled}
 				/>
 			</nav>
-			<nav className="ap-sidebar-links" aria-label="Project">
-				{projectNavItems.map((item) => (
-					<button
-						key={item.label}
-						type="button"
-						className="ap-sidebar-link"
-						aria-current={active === item.label ? "page" : undefined}
-						onClick={() => onChange?.(item.label)}
-					>
-						<Icon name={item.icon} />
-						{item.label}
-					</button>
-				))}
-			</nav>
+			<SidebarLinks
+				items={projectNavItems}
+				active={active === "Chat" ? undefined : active}
+				label="Project"
+				onChange={onChange}
+				disabled={disabled}
+			/>
 			<div className="ap-nav-spacer" />
 			<button
 				type="button"
@@ -221,7 +310,7 @@ export function ProjectNavigation({
 				<Icon name="users" />
 				Project access
 			</button>
-		</aside>
+		</motion.aside>
 	);
 }
 
@@ -237,31 +326,42 @@ export function ConversationList({
 	onSelect,
 	onDelete,
 	fallbackFocus,
+	disabled,
 }: {
 	conversations: ConversationListItem[];
 	onSelect?: (id: string) => void;
 	onDelete?: (id: string) => void | Promise<void>;
 	fallbackFocus?: RefObject<HTMLElement | null>;
+	disabled?: boolean;
 }) {
 	const [target, setTarget] = useState<ConversationListItem>();
 	const [open, setOpen] = useState(false);
 	const list = useRef<HTMLDivElement>(null);
 	const returnFocus = useRef<HTMLElement | null>(null);
+	const { clearHover, itemEvents, highlight } = useNavigationHighlight();
 	return (
 		<>
-			<div ref={list} className="ap-conversation-list" tabIndex={-1}>
+			<div
+				ref={list}
+				className="ap-conversation-list"
+				tabIndex={-1}
+				onPointerLeave={clearHover}
+			>
 				{conversations.map((conversation) => (
 					<div
 						className="ap-conversation-row"
 						data-selected={conversation.selected || undefined}
 						key={conversation.id}
+						{...itemEvents(conversation.id, disabled)}
 					>
+						{highlight(conversation.id)}
 						<button
 							type="button"
 							className="ap-conversation-item"
 							aria-current={conversation.selected ? "true" : undefined}
 							title={conversation.title}
 							onClick={() => onSelect?.(conversation.id)}
+							disabled={disabled}
 						>
 							<span>{conversation.title}</span>
 						</button>
@@ -269,6 +369,7 @@ export function ConversationList({
 							<button
 								type="button"
 								className="ap-conversation-delete"
+								disabled={disabled}
 								aria-label={`Delete conversation “${conversation.title}”`}
 								onClick={(event) => {
 									returnFocus.current = event.currentTarget;
@@ -331,20 +432,12 @@ export function SettingsNavigation({
 			</button>
 			<div className="ap-sidebar-top-space" />
 			<p className="ap-sidebar-heading">WORKSPACE SETTINGS</p>
-			<nav className="ap-sidebar-links" aria-label="Workspace">
-				{settingsNavItems.map((item) => (
-					<button
-						key={item.label}
-						type="button"
-						className="ap-sidebar-link"
-						aria-current={active === item.label ? "page" : undefined}
-						onClick={() => onChange?.(item.label)}
-					>
-						<Icon name={item.icon} />
-						{item.label}
-					</button>
-				))}
-			</nav>
+			<SidebarLinks
+				items={settingsNavItems}
+				active={active}
+				label="Workspace"
+				onChange={onChange}
+			/>
 			<div className="ap-nav-spacer" />
 			<div className="ap-sidebar-workspace">
 				<p>{workspace} workspace</p>
@@ -358,8 +451,10 @@ export function ProjectToolbar({
 	name,
 	status = "draft",
 	saved = true,
+	activity,
 	publishing = false,
 	publishDisabled,
+	publishButtonRef,
 	publishControl,
 	onPublish,
 	className = "",
@@ -367,8 +462,10 @@ export function ProjectToolbar({
 	name: string;
 	status?: "draft" | "published" | "changes";
 	saved?: boolean;
+	activity?: string;
 	publishing?: boolean;
 	publishDisabled?: boolean;
+	publishButtonRef?: RefObject<HTMLButtonElement | null>;
 	publishControl?: ReactNode;
 	onPublish?: () => void;
 	className?: string;
@@ -382,11 +479,12 @@ export function ProjectToolbar({
 			{status === "changes" && <Badge tone="warning">Draft changes</Badge>}
 			<div className="ap-nav-spacer" />
 			<span className="ap-toolbar-save" role="status">
-				{saved && <Icon name="check" />}
-				{saved ? "All changes saved" : "Unsaved changes"}
+				{saved && !activity && <Icon name="check" />}
+				{activity ?? (saved ? "All changes saved" : "Unsaved changes")}
 			</span>
 			{publishControl ?? (
 				<Button
+					ref={publishButtonRef}
 					variant="default"
 					loading={publishing}
 					disabled={publishDisabled}
@@ -436,6 +534,7 @@ export function Tabs({
 	onChange: (value: string) => void;
 	label?: string;
 }) {
+	const { clearHover, itemEvents, highlight } = useNavigationHighlight();
 	function navigate(event: KeyboardEvent<HTMLDivElement>) {
 		if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
 		const enabled = tabs.filter((tab) => !tab.disabled);
@@ -463,6 +562,7 @@ export function Tabs({
 			role="tablist"
 			aria-label={label}
 			onKeyDown={navigate}
+			onPointerLeave={clearHover}
 		>
 			{tabs.map((tab) => (
 				<Tab
@@ -477,8 +577,10 @@ export function Tabs({
 								: "default"
 					}
 					onClick={() => onChange(tab.value)}
+					{...itemEvents(tab.value, tab.disabled)}
 				>
-					{tab.label}
+					{!tab.disabled && highlight(tab.value)}
+					<span className="ap-tab-label">{tab.label}</span>
 				</Tab>
 			))}
 		</div>

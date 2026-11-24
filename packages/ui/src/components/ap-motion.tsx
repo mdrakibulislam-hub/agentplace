@@ -74,6 +74,72 @@ export function useMotionEnvironment<T extends HTMLElement>(
 	};
 }
 
+/** Refreshes the contents of a persistent surface as its view changes. */
+export function useContentEntrance<T extends HTMLElement>(
+	ref: RefObject<T | null>,
+	view: string,
+) {
+	const { reduced, paused } = useMotionEnvironment();
+	const previousView = useRef<string>(undefined);
+	useLayoutEffect(() => {
+		if (previousView.current === view) return;
+		previousView.current = view;
+		if (reduced || paused) return;
+		const node = ref.current;
+		const animation = node?.animate(
+			[
+				{ opacity: 0.8, translate: "0 4px" },
+				{ opacity: 1, translate: "0 0" },
+			],
+			{ duration: 180, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
+		);
+		return () => animation?.cancel();
+	}, [ref, view, reduced, paused]);
+}
+
+/** Plays once when an initially below-the-fold section enters the viewport. */
+export function useScrollEntrance<T extends HTMLElement>(
+	ref: RefObject<T | null>,
+	active = true,
+) {
+	const { reduced, paused } = useMotionEnvironment();
+	const played = useRef(false);
+	useEffect(() => {
+		const node = ref.current;
+		if (!node || !active || reduced || paused || played.current) return;
+		if (node.getBoundingClientRect().top < window.innerHeight) {
+			played.current = true;
+			return;
+		}
+
+		let animation: Animation | undefined;
+		function finish() {
+			played.current = true;
+			observer.disconnect();
+			animation?.cancel();
+		}
+		const observer = new IntersectionObserver(([entry]) => {
+			if (!entry?.isIntersecting || played.current) return;
+			finish();
+			if (node.matches(":focus-within")) return;
+			animation = node.animate(
+				[
+					{ opacity: 0.75, translate: "0 6px" },
+					{ opacity: 1, translate: "0 0" },
+				],
+				{ duration: 200, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
+			);
+		});
+		observer.observe(node);
+		node.addEventListener("focusin", finish);
+		return () => {
+			observer.disconnect();
+			animation?.cancel();
+			node.removeEventListener("focusin", finish);
+		};
+	}, [ref, active, reduced, paused]);
+}
+
 export function useDialogEntrance(ref: RefObject<HTMLElement | null>) {
 	const { reduced } = useMotionEnvironment(ref, false, true, false);
 	useLayoutEffect(() => {

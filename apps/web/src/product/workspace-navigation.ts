@@ -9,7 +9,7 @@ export function useWorkspaceNavigation() {
 
 	function openProject(projectId: string, entry?: ProjectEntry) {
 		state.selectProject(projectId);
-		void navigate({
+		return navigate({
 			to: "/projects/$projectId",
 			params: { projectId },
 			search: { entry },

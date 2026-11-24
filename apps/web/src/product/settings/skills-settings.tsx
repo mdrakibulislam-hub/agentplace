@@ -10,11 +10,15 @@ import {
 	RichMenuItem,
 } from "@agentplace/ui/components/ap-menus";
 import { Button } from "@agentplace/ui/components/button";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useLayoutEffect, useRef, useState } from "react";
 import {
 	SettingsDialog,
+	SettingsFeedback,
 	SettingsHeading,
 	SettingsNote,
+	settingsError,
+	useSettingsDetail,
+	useSettingsDialog,
 } from "./settings-parts";
 import type { WorkspaceConnection, WorkspaceSkill } from "./settings-state";
 
@@ -22,23 +26,44 @@ export function SkillsSettings({
 	skills,
 	connections,
 	projects,
+	active,
 	onSkillsChange,
 }: {
 	skills: WorkspaceSkill[];
 	connections: WorkspaceConnection[];
 	projects: readonly MenuProject[];
-	onSkillsChange: (skills: WorkspaceSkill[]) => void;
+	active: boolean;
+	onSkillsChange: (
+		update: (skills: WorkspaceSkill[]) => WorkspaceSkill[],
+	) => void;
 }) {
 	const [query, setQuery] = useState("");
 	const [selectedId, setSelectedId] = useState(skills[0]?.id ?? "");
 	const [drafts, setDrafts] = useState<Record<string, WorkspaceSkill>>({});
 	const [adding, setAdding] = useState(false);
-	const [assigning, setAssigning] = useState(false);
+	const [assigning, setAssigning] = useSettingsDialog(active, false);
 	const [projectId, setProjectId] = useState("");
 	const [error, setError] = useState("");
+	const [saveError, setSaveError] = useState("");
+	const [assignmentError, setAssignmentError] = useState("");
 	const [notice, setNotice] = useState("");
+	const detail = useRef<HTMLDivElement>(null);
+	const nameInput = useRef<HTMLInputElement>(null);
+	const search = useRef<HTMLInputElement>(null);
+	const createButton = useRef<HTMLButtonElement>(null);
+	const assignButton = useRef<HTMLButtonElement>(null);
+	const lastSelectedId = useRef(selectedId);
+	const revealDetails = useSettingsDetail(detail, selectedId);
 	const saved = skills.find((skill) => skill.id === selectedId);
 	const selected = drafts[selectedId] ?? saved;
+	const dirty = Boolean(
+		adding ||
+			(saved &&
+				selected &&
+				(saved.name !== selected.name ||
+					saved.connection !== selected.connection ||
+					saved.guidance !== selected.guidance)),
+	);
 	const filteredSkills = skills.filter((skill) =>
 		skill.name.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()),
 	);
@@ -54,6 +79,15 @@ export function SkillsSettings({
 			label: connection.name,
 		})),
 	];
+	useLayoutEffect(() => {
+		if (adding) nameInput.current?.focus();
+	}, [adding]);
+
+	function clearSearch() {
+		setQuery("");
+		search.current?.focus({ preventScroll: true });
+	}
+
 	function edit(updates: Partial<WorkspaceSkill>) {
 		if (!selected) return;
 		setDrafts((previous) => ({
@@ -61,6 +95,7 @@ export function SkillsSettings({
 			[selected.id]: { ...selected, ...updates },
 		}));
 		setError("");
+		setSaveError("");
 		setNotice("");
 	}
 	function clearDraft(id: string) {
@@ -72,6 +107,7 @@ export function SkillsSettings({
 	}
 	function create() {
 		const id = crypto.randomUUID();
+		lastSelectedId.current = selectedId;
 		setSelectedId(id);
 		setDrafts((previous) => ({
 			...previous,
@@ -86,14 +122,16 @@ export function SkillsSettings({
 		}));
 		setAdding(true);
 		setError("");
+		setSaveError("");
 		setNotice("");
 	}
 	function save(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		if (!selected) return;
+		if (!selected || !dirty) return;
 		const name = selected.name.trim();
 		if (!name) {
 			setError("Enter a skill name.");
+			nameInput.current?.focus();
 			return;
 		}
 		if (
@@ -104,17 +142,48 @@ export function SkillsSettings({
 			)
 		) {
 			setError("A skill with this name already exists.");
+			nameInput.current?.focus();
 			return;
 		}
 		const next = { ...selected, name };
-		onSkillsChange(
-			saved
-				? skills.map((skill) => (skill.id === selected.id ? next : skill))
-				: [...skills, next],
-		);
-		clearDraft(selected.id);
-		setAdding(false);
-		setNotice(`Saved ${name}.`);
+		try {
+			onSkillsChange((current) =>
+				saved
+					? current.map((skill) =>
+							skill.id === selected.id
+								? { ...next, projects: skill.projects }
+								: skill,
+						)
+					: [...current, next],
+			);
+			clearDraft(selected.id);
+			setAdding(false);
+			setSaveError("");
+			setNotice(`Saved ${name}.`);
+			nameInput.current?.focus({ preventScroll: true });
+		} catch (cause) {
+			setSaveError(settingsError(cause));
+		}
+	}
+
+	function addToProject(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		const project = available.find((item) => item.id === projectId);
+		if (!saved || !project) return;
+		try {
+			onSkillsChange((current) =>
+				current.map((skill) =>
+					skill.id === saved.id && !skill.projects.includes(project.id)
+						? { ...skill, projects: [...skill.projects, project.id] }
+						: skill,
+				),
+			);
+			if (drafts[saved.id]) edit({ projects: [...saved.projects, project.id] });
+			setNotice(`Added ${saved.name} to ${project.name}.`);
+			setAssigning(false);
+		} catch (cause) {
+			setAssignmentError(settingsError(cause));
+		}
 	}
 	return (
 		<>
@@ -122,7 +191,7 @@ export function SkillsSettings({
 				title="Skills library"
 				description="Create reusable capabilities and add them to individual projects."
 				action={
-					<Button onClick={create} disabled={adding}>
+					<Button ref={createButton} onClick={create} disabled={adding}>
 						Create skill
 					</Button>
 				}
@@ -130,15 +199,33 @@ export function SkillsSettings({
 			<div className="product-settings-split">
 				<Surface className="product-settings-card product-settings-skill-list">
 					<h2>Workspace skills</h2>
-					<FormField
-						label="Find a skill"
-						showLabel={false}
-						showSupportingText={false}
-						placeholder="Find a skill..."
-						type="search"
-						value={query}
-						onChange={(event) => setQuery(event.currentTarget.value)}
-					/>
+					<div className="product-settings-search">
+						<FormField
+							ref={search}
+							label="Find a skill"
+							showLabel={false}
+							showSupportingText={false}
+							placeholder="Find a skill…"
+							type="search"
+							value={query}
+							onChange={(event) => setQuery(event.currentTarget.value)}
+							onKeyDown={(event) => {
+								if (event.key === "Escape" && query) {
+									event.preventDefault();
+									clearSearch();
+								}
+							}}
+						/>
+						{query && (
+							<Button
+								size="icon"
+								variant="ghost"
+								aria-label="Clear skill search"
+								icon={<Icon name="close" />}
+								onClick={clearSearch}
+							/>
+						)}
+					</div>
 					{filteredSkills.length ? (
 						<div className="product-settings-list-options">
 							{filteredSkills.map((skill) => {
@@ -162,27 +249,35 @@ export function SkillsSettings({
 										onClick={() => {
 											setSelectedId(skill.id);
 											setError("");
+											setSaveError("");
 											setNotice("");
+											revealDetails();
 										}}
 									/>
 								);
 							})}
 						</div>
 					) : (
-						<p className="product-settings-muted">No matching skills.</p>
+						<p className="product-settings-muted" role="status">
+							No matching skills.
+						</p>
 					)}
 				</Surface>
-				<Surface className="product-settings-card product-settings-detail product-settings-skill-detail">
+				<Surface
+					ref={detail}
+					className="product-settings-card product-settings-detail product-settings-skill-detail"
+				>
 					{selected ? (
 						<form onSubmit={save} noValidate>
 							<div className="product-settings-panel-title">
-								<h2>{saved?.name ?? "New skill"}</h2>
+								<h2 tabIndex={-1}>{saved?.name ?? "New skill"}</h2>
 								<Badge>Workspace skill</Badge>
 							</div>
 							{selected.description && (
 								<p className="product-settings-muted">{selected.description}</p>
 							)}
 							<FormField
+								ref={nameInput}
 								label="Skill name"
 								placeholder="Service recommendations"
 								required
@@ -219,7 +314,7 @@ export function SkillsSettings({
 								>{`Editing this skill can affect ${assigned(selected).length} ${assigned(selected).length === 1 ? "project" : "projects"}. Review affected projects before applying updates.`}</SettingsNote>
 							)}
 							<div className="product-settings-panel-actions product-settings-actions">
-								<Button type="submit" size="medium">
+								<Button type="submit" size="medium" disabled={!dirty}>
 									Save skill
 								</Button>
 								{adding ? (
@@ -228,31 +323,52 @@ export function SkillsSettings({
 										size="medium"
 										onClick={() => {
 											clearDraft(selected.id);
-											setSelectedId(skills[0]?.id ?? "");
+											setSelectedId(lastSelectedId.current);
 											setAdding(false);
 											setError("");
+											setSaveError("");
+											requestAnimationFrame(() =>
+												createButton.current?.focus({ preventScroll: true }),
+											);
 										}}
 									>
 										Cancel
 									</Button>
 								) : (
 									<Button
+										ref={assignButton}
 										size="medium"
 										variant="secondary"
 										onClick={() => {
 											setProjectId(available[0]?.id ?? "");
+											setAssignmentError("");
 											setAssigning(true);
 										}}
 									>
 										Add to project
 									</Button>
 								)}
-								{notice && (
-									<p role="status" className="product-settings-muted">
-										{notice}
-									</p>
+								{!adding && dirty && (
+									<Button
+										variant="ghost"
+										size="medium"
+										onClick={() => {
+											clearDraft(selected.id);
+											setError("");
+											setSaveError("");
+											setNotice("");
+											nameInput.current?.focus({ preventScroll: true });
+										}}
+									>
+										Reset changes
+									</Button>
 								)}
 							</div>
+							<SettingsFeedback
+								notice={notice}
+								error={saveError}
+								dirty={dirty && !saveError}
+							/>
 						</form>
 					) : (
 						<p className="product-settings-muted">
@@ -266,48 +382,49 @@ export function SkillsSettings({
 					title="Add skill to a project"
 					description={saved.name}
 					onClose={() => setAssigning(false)}
+					returnFocus={assignButton}
 				>
-					{available.length ? (
-						<SelectField
-							label="Project"
-							showSupportingText={false}
-							value={projectId}
-							options={available.map((project) => ({
-								value: project.id,
-								label: project.name,
-							}))}
-							onChange={(event) => setProjectId(event.currentTarget.value)}
-						/>
-					) : (
-						<p className="product-settings-muted">
-							All workspace projects already have this skill.
-						</p>
-					)}
-					<div className="product-settings-dialog-actions">
-						<Button variant="secondary" onClick={() => setAssigning(false)}>
-							Cancel
-						</Button>
-						<Button
-							disabled={!available.some((item) => item.id === projectId)}
-							onClick={() => {
-								const assignments = [...saved.projects, projectId];
-								onSkillsChange(
-									skills.map((skill) =>
-										skill.id === saved.id
-											? { ...skill, projects: assignments }
-											: skill,
-									),
-								);
-								if (drafts[saved.id]) edit({ projects: assignments });
-								setNotice(
-									`Added ${saved.name} to ${projects.find((project) => project.id === projectId)?.name}.`,
-								);
-								setAssigning(false);
-							}}
-						>
-							Add skill
-						</Button>
-					</div>
+					<form
+						className="product-settings-dialog-form"
+						onSubmit={addToProject}
+					>
+						{available.length ? (
+							<SelectField
+								data-initial-focus
+								label="Project"
+								showSupportingText={false}
+								value={projectId}
+								options={available.map((project) => ({
+									value: project.id,
+									label: project.name,
+								}))}
+								onChange={(event) => {
+									setProjectId(event.currentTarget.value);
+									setAssignmentError("");
+								}}
+							/>
+						) : (
+							<p className="product-settings-muted">
+								All workspace projects already have this skill.
+							</p>
+						)}
+						<SettingsFeedback error={assignmentError} />
+						<div className="product-settings-dialog-actions">
+							<Button
+								data-initial-focus={!available.length ? "" : undefined}
+								variant="secondary"
+								onClick={() => setAssigning(false)}
+							>
+								Cancel
+							</Button>
+							<Button
+								type="submit"
+								disabled={!available.some((item) => item.id === projectId)}
+							>
+								Add skill
+							</Button>
+						</div>
+					</form>
 				</SettingsDialog>
 			)}
 		</>

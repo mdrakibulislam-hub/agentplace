@@ -77,7 +77,9 @@ export function ModelPicker({
 					variant="ghost"
 					className="ap-model-picker-trigger"
 					aria-label={`Model: ${value}`}
-					icon={<Icon name="chevron-down" />}
+					icon={
+						<Icon name="chevron-down" className="ap-model-picker-chevron" />
+					}
 					disabled={disabled}
 				>
 					{value}

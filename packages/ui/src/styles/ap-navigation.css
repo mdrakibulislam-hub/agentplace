@@ -85,6 +85,20 @@
 	padding: 0;
 	cursor: pointer;
 }
+.ap-header-account > .ap-avatar,
+.ap-project-switch-trigger,
+.ap-header-credits {
+	transition:
+		color var(--motion-duration-fast) var(--motion-easing-standard),
+		box-shadow var(--motion-duration-fast) var(--motion-easing-standard);
+}
+.ap-header-account:is(:hover, [data-popup-open]) > .ap-avatar {
+	box-shadow: inset 0 0 0 var(--stroke-default) var(--border-strong);
+}
+.ap-project-switch-trigger:is(:hover, [data-popup-open]),
+.ap-header-credits:hover {
+	color: var(--foreground-muted);
+}
 .ap-switch.ap-theme-switch[aria-checked] {
 	width: 52px;
 	height: var(--size-control-sm);
@@ -128,6 +142,12 @@
 	outline-offset: 2px;
 }
 .ap-sidebar {
+	--nav-highlight-background: color-mix(
+		in srgb,
+		var(--background-secondary),
+		var(--muted-hover) 70%
+	);
+
 	box-sizing: border-box;
 	width: 224px;
 	height: 896px;
@@ -160,6 +180,22 @@
 	background: transparent;
 	font-weight: 510;
 }
+.ap-sidebar :is(.ap-sidebar-home, .ap-sidebar-new, .ap-sidebar-access) {
+	transition: background-color var(--motion-duration-fast)
+		var(--motion-easing-standard);
+}
+.ap-sidebar
+	:is(.ap-sidebar-home, .ap-sidebar-new, .ap-sidebar-access):is(
+		:focus-visible,
+		:active
+	) {
+	background: var(--nav-highlight-background);
+}
+@media (any-hover: hover) {
+	.ap-sidebar :is(.ap-sidebar-home, .ap-sidebar-new, .ap-sidebar-access):hover {
+		background: var(--nav-highlight-background);
+	}
+}
 .ap-sidebar-top-space {
 	height: 16px;
 	flex-shrink: 0;
@@ -187,11 +223,27 @@
 	background: transparent;
 	text-align: left;
 }
-.ap-sidebar-link:hover {
-	background: var(--muted-background);
+.ap-sidebar .ap-sidebar-link:focus-visible {
+	outline-offset: calc(-1 * var(--stroke-focus));
 }
 .ap-sidebar-link[aria-current="page"] {
+	--nav-highlight-background: var(--muted-hover);
+
 	background: var(--muted-hover);
+}
+.ap-sidebar-link,
+.ap-conversation-row,
+.ap-tab {
+	position: relative;
+	isolation: isolate;
+}
+.ap-nav-highlight {
+	position: absolute;
+	z-index: -1;
+	inset: 0;
+	border-radius: inherit;
+	background: var(--nav-highlight-background, var(--muted-background));
+	pointer-events: none;
 }
 .ap-project-sidebar {
 	gap: 0;
@@ -227,18 +279,6 @@
 .ap-project-sidebar .ap-conversation-item {
 	background: transparent;
 	border-radius: var(--radius-md);
-}
-.ap-project-sidebar
-	:is(
-		.ap-sidebar-home,
-		.ap-sidebar-new,
-		.ap-sidebar-access,
-		.ap-conversation-item
-	):hover {
-	background: var(--muted-background);
-}
-.ap-project-sidebar .ap-conversation-item[aria-current="true"] {
-	background: var(--muted-hover);
 }
 .ap-conversation-item > span {
 	display: block;
@@ -312,19 +352,25 @@
 	font-weight: 510;
 	cursor: pointer;
 }
-.ap-tab:hover,
 .ap-tab[data-state="hover"] {
 	background: var(--muted-hover);
 }
+@media (any-hover: hover) {
+	.ap-tab[data-state="default"]:not(.ap-tabs > .ap-tab):hover {
+		background: var(--muted-hover);
+	}
+}
 .ap-tab[data-state="selected"] {
-	border: 1px solid var(--border-default);
+	--nav-highlight-background: transparent;
+
+	box-shadow: inset 0 0 0 var(--stroke-default) var(--border-default);
 	background: var(--card-background);
 	color: var(--foreground-default);
 }
 .ap-tab:focus-visible,
 .ap-tab[data-state="focus"] {
-	border: 2px solid var(--focus-ring);
-	outline: none;
+	outline: var(--stroke-focus) solid var(--focus-ring);
+	outline-offset: calc(-1 * var(--stroke-focus));
 }
 .ap-tab:disabled,
 .ap-tab[data-state="disabled"] {
@@ -333,6 +379,8 @@
 	cursor: not-allowed;
 }
 .ap-tabs {
+	--nav-highlight-background: var(--muted-hover);
+
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
@@ -379,11 +427,9 @@
 	min-width: 0;
 	border-radius: var(--radius-md);
 }
-.ap-conversation-row:hover,
-.ap-conversation-row:focus-within {
-	background: var(--muted-background);
-}
 .ap-conversation-row[data-selected] {
+	--nav-highlight-background: var(--muted-hover);
+
 	background: var(--muted-hover);
 }
 .ap-conversation-row .ap-conversation-item {
@@ -398,10 +444,6 @@
 	text-align: left;
 	cursor: pointer;
 }
-.ap-conversation-row .ap-conversation-item:hover,
-.ap-conversation-row .ap-conversation-item[aria-current] {
-	background: transparent;
-}
 .ap-conversation-row .ap-conversation-delete {
 	display: grid;
 	place-items: center;
@@ -415,10 +457,16 @@
 	cursor: pointer;
 	opacity: 0;
 	pointer-events: none;
+	transition:
+		color var(--motion-duration-fast) var(--motion-easing-standard),
+		opacity var(--motion-duration-fast) var(--motion-easing-standard);
 }
 .ap-conversation-row:is(:hover, :has(:focus-visible)) .ap-conversation-delete {
 	opacity: 1;
 	pointer-events: auto;
+}
+.ap-conversation-row .ap-conversation-delete:focus-visible {
+	transition-property: color;
 }
 .ap-conversation-row .ap-conversation-delete:hover {
 	color: var(--danger-background);

@@ -36,8 +36,14 @@
 	position: relative;
 	display: grid;
 }
-.ap-source-website-field:has(.ap-spinner) .ap-input {
+.ap-source-website-field[data-has-action] .ap-input {
 	padding-inline-end: var(--space-40);
+}
+.ap-source-website-submit {
+	position: absolute;
+	inset-block: 0;
+	inset-inline-end: var(--space-4);
+	margin-block: auto;
 }
 .ap-source-website-field .ap-spinner {
 	position: absolute;
@@ -87,6 +93,12 @@
 }
 .ap-source-drop-title {
 	font-weight: 510;
+}
+.ap-source-dropzone > .ap-spinner {
+	width: 20px;
+	height: 20px;
+	align-items: center;
+	justify-content: center;
 }
 .ap-source-drop-title > span {
 	text-decoration: underline;

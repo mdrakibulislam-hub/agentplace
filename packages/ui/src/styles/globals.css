@@ -82,6 +82,26 @@
 	line-height: var(--type-body-sm-regular-line-height);
 }
 
+[data-ap-enter] {
+	animation: ap-content-enter var(--motion-duration-standard)
+		var(--motion-easing-enter);
+}
+[data-ap-enter="message"] {
+	--ap-enter-offset: 4px;
+	--ap-enter-opacity: 0.7;
+	animation-duration: var(--motion-duration-fast);
+}
+@keyframes ap-content-enter {
+	from {
+		opacity: var(--ap-enter-opacity, 0.8);
+		translate: 0 var(--ap-enter-offset, 6px);
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+	}
+}
+
 /* Storybook's reduced-motion control also covers portals mounted outside a story. */
 [data-ap-motion="reduced"] *,
 [data-ap-motion="reduced"] *::before,

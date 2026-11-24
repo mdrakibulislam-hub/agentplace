@@ -149,6 +149,7 @@ type SettingsState = [
 	WorkspaceSettings,
 	Dispatch<SetStateAction<WorkspaceSettings>>,
 	(update: MemberUpdate) => Promise<void>,
+	(update: (workspace: WorkspaceSettings) => WorkspaceSettings) => void,
 ];
 const SettingsStateContext = createContext<SettingsState | null>(null);
 const storageKey = "agentplace.prototype.settings.v1";
@@ -188,10 +189,16 @@ export function SettingsStateProvider({
 	const key = workspaceId ?? "prototype";
 	const settings = workspaces[key] ?? initialSettings;
 	const workspacesRef = useRef(workspaces);
+	const persistedWorkspaces = useRef(workspaces);
 	useEffect(() => {
-		if (workspaces !== workspacesRef.current) return;
+		if (
+			workspaces !== workspacesRef.current ||
+			workspaces === persistedWorkspaces.current
+		)
+			return;
 		try {
 			localStorage.setItem(storageKey, JSON.stringify(workspaces));
+			persistedWorkspaces.current = workspaces;
 		} catch {
 			// Keep the current workspace usable when storage is unavailable.
 		}
@@ -208,13 +215,15 @@ export function SettingsStateProvider({
 		workspacesRef.current = next;
 		setWorkspaces(next);
 	}
-	// Commit storage before showing success; a failed write leaves saved access intact.
-	async function saveMembers(update: MemberUpdate) {
+	// Commit storage before showing success so failed writes leave saved settings intact.
+	function saveSettings(
+		update: (workspace: WorkspaceSettings) => WorkspaceSettings,
+	) {
 		const previous = workspacesRef.current;
 		const workspace = previous[key] ?? initialSettings;
 		const next = {
 			...previous,
-			[key]: { ...workspace, members: update(workspace.members) },
+			[key]: update(workspace),
 		};
 		try {
 			localStorage.setItem(storageKey, JSON.stringify(next));
@@ -223,11 +232,20 @@ export function SettingsStateProvider({
 				"Your browser couldn’t save these changes. Your edits are still here. Try again.",
 			);
 		}
+		persistedWorkspaces.current = next;
 		workspacesRef.current = next;
 		setWorkspaces(next);
 	}
+	async function saveMembers(update: MemberUpdate) {
+		saveSettings((workspace) => ({
+			...workspace,
+			members: update(workspace.members),
+		}));
+	}
 	return (
-		<SettingsStateContext.Provider value={[settings, setSettings, saveMembers]}>
+		<SettingsStateContext.Provider
+			value={[settings, setSettings, saveMembers, saveSettings]}
+		>
 			{children}
 		</SettingsStateContext.Provider>
 	);
@@ -244,6 +262,7 @@ export function useSettingsState(): SettingsState {
 				const members = update(settings.members);
 				setSettings((previous) => ({ ...previous, members }));
 			},
+			setSettings,
 		]
 	);
 }

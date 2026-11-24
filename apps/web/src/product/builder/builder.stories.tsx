@@ -178,6 +178,7 @@ export const CreatingDraft: Story = {
 		await expect(
 			canvas.getByRole("button", { name: "View first draft" }),
 		).toBeVisible();
+		await expect(canvas.getByText("Ready to review")).toBeVisible();
 	},
 };
 
@@ -264,6 +265,63 @@ export const ReviewAndPublish: Story = {
 export const PublishedWithDraftChanges: Story = {
 	args: { project: published, initialManagePublish: true },
 	parameters: { design: figma("57:2270"), figmaNodeId: "57:2270" },
+};
+
+export const PublishAndUnpublish: Story = {
+	args: {
+		failSaveOnce: true,
+		initialPublishAction: "publish",
+		onPersist: fn(),
+	},
+	play: async ({ canvasElement, args }) => {
+		const canvas = within(canvasElement);
+		const publish = await canvas.findByRole("dialog", {
+			name: "Publish WhiteFrame Advisor",
+		});
+		const review = within(publish);
+		await userEvent.selectOptions(
+			review.getByLabelText("Who can open the agent?"),
+			"workspace",
+		);
+		await expect(
+			review.getByRole("switch", { name: "Require visitor sign-in" }),
+		).toBeChecked();
+		const confirm = review.getByRole("button", { name: "Publish agent" });
+		await userEvent.click(confirm);
+		await expect(await review.findByRole("alert")).toHaveTextContent(
+			"Couldn’t save",
+		);
+		await expect(args.onPersist).not.toHaveBeenCalled();
+		await userEvent.click(confirm);
+		const manage = within(canvasElement.ownerDocument.body);
+		const liveHeading = await manage.findByRole("heading", {
+			name: "Your agent is live",
+		});
+		await waitFor(() => expect(liveHeading).toBeVisible());
+		await expect(args.onPersist).toHaveBeenCalledWith(
+			expect.objectContaining({
+				status: "Published",
+				published: expect.objectContaining({
+					audience: "workspace",
+					requireSignIn: true,
+				}),
+			}),
+		);
+		await userEvent.click(
+			manage.getByRole("button", { name: "Unpublish agent" }),
+		);
+		const unpublish = within(
+			await canvas.findByRole("dialog", { name: "Unpublish this agent?" }),
+		);
+		await expect(
+			unpublish.getByRole("button", { name: "Keep published" }),
+		).toHaveFocus();
+		await userEvent.click(unpublish.getByRole("button", { name: "Unpublish" }));
+		const publishAgain = await canvas.findByRole("button", {
+			name: /^Publish$/,
+		});
+		await expect(publishAgain).toHaveFocus();
+	},
 };
 
 export const UnpublishConfirmation: Story = {
@@ -594,16 +652,13 @@ export const DeleteLastConversationWithRetry: Story = {
 	play: async ({ canvasElement, args }) => {
 		const canvas = within(canvasElement);
 		const popup = within(canvasElement.ownerDocument.body);
+		await userEvent.tab();
 		canvas
 			.getByRole("button", {
 				name: "Delete conversation “Refine conversation”",
 			})
 			.focus();
-		await userEvent.click(
-			canvas.getByRole("button", {
-				name: "Delete conversation “Refine conversation”",
-			}),
-		);
+		await userEvent.keyboard("{Enter}");
 		await userEvent.click(
 			await popup.findByRole("button", {
 				name: "Delete conversation",
@@ -630,7 +685,10 @@ export const DeleteLastConversationWithRetry: Story = {
 		});
 		await userEvent.click(canvas.getByRole("button", { name: "New chat" }));
 		await expect(
-			canvas.getAllByRole("button", { name: "New chat" })[1],
+			(await canvas.findAllByRole("button", { name: "New chat" }))[1],
 		).toBeVisible();
+		await expect(
+			canvas.getByRole("textbox", { name: "Message your agent builder" }),
+		).toHaveFocus();
 	},
 };

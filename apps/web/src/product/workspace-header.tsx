@@ -16,6 +16,8 @@ import { useTheme } from "@/components/theme-provider";
 import { demoCredits } from "./prototype-data";
 import "./workspace.css";
 
+const accountInitials = "RA";
+
 export interface WorkspaceHeaderProps {
 	projects: MenuProject[];
 	currentProjectId?: string;
@@ -55,7 +57,7 @@ export function WorkspaceHeader({
 			project={name}
 			remainingCredits={demoCredits.remaining}
 			allocatedCredits={demoCredits.allocation}
-			initials="RA"
+			initials={accountInitials}
 			onCredits={onBilling}
 			themeSwitch={
 				<ThemeSwitch
@@ -112,10 +114,10 @@ export function WorkspaceHeader({
 					trigger={
 						<button
 							type="button"
-							aria-label="Open account menu"
+							aria-label={`Open account menu for ${accountInitials}`}
 							className="ap-header-account"
 						>
-							<Avatar initials="RA" size="medium" />
+							<Avatar initials={accountInitials} size="medium" />
 						</button>
 					}
 				>

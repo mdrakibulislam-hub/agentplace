@@ -1,1 +1,9 @@
 @import "@agentplace/ui/globals.css";
+
+.ap-route-loading {
+	display: flex;
+	min-height: 50svh;
+	align-items: center;
+	justify-content: center;
+	color: var(--foreground-muted);
+}

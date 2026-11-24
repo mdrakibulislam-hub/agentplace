@@ -1,6 +1,7 @@
+import { defaultModelMode } from "@agentplace/ui/components/ap-model-picker";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { expect, fn, userEvent, waitFor, within } from "storybook/test";
+import { expect, fn, mocked, userEvent, waitFor, within } from "storybook/test";
 import { figma } from "../../stories/ap/fixtures";
 import { demoProjects, withLiveLink } from "../prototype-data";
 import { WorkspaceHeader } from "../workspace-header";
@@ -34,14 +35,14 @@ function HomeScene({ switcherOpen, onSettings, ...props }: SceneProps) {
 				{...props}
 				projects={projects}
 				focusPromptRequest={focusPromptRequest}
-				onDelete={(id) => {
-					props.onDelete(id);
+				onDelete={async (id) => {
+					await props.onDelete(id);
 					setProjects((current) =>
 						current.filter((project) => project.id !== id),
 					);
 				}}
-				onChangeCover={(id, cover) => {
-					props.onChangeCover(id, cover);
+				onChangeCover={async (id, cover) => {
+					await props.onChangeCover(id, cover);
 					setProjects((current) =>
 						current.map((project) =>
 							project.id === id ? { ...project, cover } : project,
@@ -113,7 +114,7 @@ export const AccountMenu: Story = {
 		await expect(
 			canvas.queryByRole("button", { name: "Settings" }),
 		).not.toBeInTheDocument();
-		const account = canvas.getByRole("button", { name: "Open account menu" });
+		const account = canvas.getByRole("button", { name: /Open account menu/ });
 		await userEvent.click(account);
 		const menu = within(await body.findByRole("dialog", { name: "Account" }));
 		await userEvent.click(menu.getByRole("button", { name: "Settings" }));
@@ -182,4 +183,71 @@ export const DeleteConfirmation: Story = {
 export const DeleteResult: Story = {
 	args: { projects: demoProjects.slice(1) },
 	parameters: { design: figma("140:4928") },
+};
+
+export const CreateProjectRetry: Story = {
+	args: { onCreate: fn() },
+	play: async ({ args, canvasElement }) => {
+		const canvas = within(canvasElement);
+		const create = mocked(args.onCreate)
+			.mockRejectedValueOnce(new Error("Browser storage is full."))
+			.mockResolvedValueOnce(undefined);
+		const textarea = canvas.getByRole("textbox", {
+			name: "Describe the agent you want to build",
+		});
+		const prompt = "Answer visitor questions about our office hours.";
+		await userEvent.click(textarea);
+		await userEvent.paste(prompt);
+		await userEvent.keyboard("{Enter}");
+		await expect(await canvas.findByRole("alert")).toHaveTextContent(
+			"Browser storage is full.",
+		);
+		await expect(textarea).toHaveValue(prompt);
+		await expect(textarea).toHaveFocus();
+		await userEvent.keyboard("{Enter}");
+		await expect(create).toHaveBeenNthCalledWith(
+			2,
+			prompt,
+			[],
+			defaultModelMode,
+		);
+	},
+};
+
+export const DeleteProjectRetry: Story = {
+	args: { initialDeleteId: demoProjects[0].id, onDelete: fn() },
+	play: async ({ args, canvasElement }) => {
+		const canvas = within(canvasElement);
+		const body = within(canvasElement.ownerDocument.body);
+		const remove = mocked(args.onDelete)
+			.mockRejectedValueOnce(new Error("Couldn’t save to browser storage."))
+			.mockResolvedValueOnce(undefined);
+		const project = demoProjects[0];
+		const dialog = within(
+			await body.findByRole("dialog", { name: `Delete ${project.name}?` }),
+		);
+		await userEvent.click(
+			dialog.getByRole("button", { name: "Delete project" }),
+		);
+		await expect(await dialog.findByRole("alert")).toHaveTextContent(
+			"Couldn’t save to browser storage.",
+		);
+		await expect(remove).toHaveBeenCalledTimes(1);
+		await userEvent.click(
+			dialog.getByRole("button", { name: "Delete project" }),
+		);
+		await waitFor(() =>
+			expect(
+				canvas.queryByRole("button", { name: `Open ${project.name}` }),
+			).not.toBeInTheDocument(),
+		);
+		await expect(remove).toHaveBeenNthCalledWith(2, project.id);
+		await waitFor(() =>
+			expect(
+				canvas.getByRole("button", {
+					name: `Actions for ${demoProjects[1].name}`,
+				}),
+			).toHaveFocus(),
+		);
+	},
 };

@@ -6,6 +6,10 @@ import {
 	MenuPopover,
 } from "@agentplace/ui/components/ap-menus";
 import {
+	defaultModelMode,
+	type ModelMode,
+} from "@agentplace/ui/components/ap-model-picker";
+import {
 	ConversationList,
 	ProjectNavigation,
 	type ProjectNavValue,
@@ -18,7 +22,7 @@ import { useEffect, useRef, useState } from "react";
 import { liveProjectPath, type PrototypeProject } from "../prototype-data";
 import { useSettingsState } from "../settings/settings-state";
 import { BuilderBranding } from "./builder-branding";
-import { BuilderChat, BuilderProgress } from "./builder-chat";
+import { BuilderChat, BuilderFirstDraft } from "./builder-chat";
 import {
 	BuilderHistory,
 	BuilderInstructions,
@@ -46,6 +50,16 @@ import { BuilderVisitorPreview } from "./visitor-experience";
 import "./builder.css";
 
 type PublishAction = "publish" | "unpublish";
+type SaveAction =
+	| PublishAction
+	| "first-draft"
+	| "new-chat"
+	| "instructions"
+	| "brand"
+	| "skill"
+	| "configure"
+	| "restore"
+	| "destination";
 type BuilderOverlay =
 	| { type: PublishAction | "destination" | "skills" }
 	| { type: "preview"; published: boolean }
@@ -68,6 +82,7 @@ export interface BuilderExperienceProps {
 		text: string,
 		configuration: BuilderConfiguration,
 		signal: AbortSignal,
+		mode: ModelMode,
 	) => Promise<{ configuration: BuilderConfiguration; reply: string }>;
 	visitorReply?: import("./visitor-experience").VisitorReply;
 	initialVisitorSuggestions?: string[];
@@ -93,6 +108,7 @@ export function BuilderExperience({
 	const [request, setRequest] = useState<{
 		conversationId: string;
 		message: ConversationMessage;
+		mode: ModelMode;
 		state: "working" | "error" | "stopped";
 		error?: string;
 	}>();
@@ -100,6 +116,11 @@ export function BuilderExperience({
 		Record<string, ConversationMessage[]>
 	>({});
 	const [committing, setCommitting] = useState(false);
+	const [saving, setSaving] = useState<SaveAction>();
+	const [saveError, setSaveError] = useState("");
+	const saveInFlight = useRef(false);
+	const publishButton = useRef<HTMLButtonElement>(null);
+	const restorePublishFocus = useRef(false);
 	const operation = useRef<AbortController | null>(null);
 	const latestData = useRef<BuilderData>(initialBuilderData(project));
 	useEffect(() => () => operation.current?.abort(), []);
@@ -107,22 +128,45 @@ export function BuilderExperience({
 	const [section, setSection] = useState(initialSection);
 	const [conversationId, setConversationId] = useState("build");
 	const [view, setView] = useState("editor");
+	const [previewFocus, setPreviewFocus] = useState(0);
+	const [chatToFocus, setChatToFocus] = useState<string>();
 	const [previewShare, setPreviewShare] = useState(defaultPreviewShare);
 	const [overlay, setOverlay] = useState<BuilderOverlay | undefined>(
 		initialPublishAction ? { type: initialPublishAction } : undefined,
 	);
+	const entry = useRef({ initialSection, initialPublishAction });
+	useEffect(() => {
+		if (entry.current.initialSection !== initialSection) {
+			setSection(initialSection);
+			setView("editor");
+		}
+		if (entry.current.initialPublishAction !== initialPublishAction) {
+			setOverlay(
+				initialPublishAction ? { type: initialPublishAction } : undefined,
+			);
+			setSaveError("");
+		}
+		entry.current = { initialSection, initialPublishAction };
+	}, [initialSection, initialPublishAction]);
 	const [manage, setManage] = useState(initialManagePublish);
 	const [configValue, setConfigValue] = useState("");
 	const data = initialBuilderData(project);
 	latestData.current = data;
 	const busy = request?.state === "working";
-	const working = Boolean(project.needsFirstDraft);
+	const locked = busy || Boolean(saving);
+	const needsFirstDraft = Boolean(project.needsFirstDraft);
 	const usesWebsite =
 		Boolean(project.sources?.some((source) => source.kind === "website")) ||
 		/\b(?:https?:\/\/|www\.|[a-z0-9-]+\.(?:com|org|net|agency|io|co)\b)/i.test(
 			project.prompt ?? "",
 		);
 	const live = project.status === "Published";
+	useEffect(() => {
+		if (!live && !overlay && restorePublishFocus.current) {
+			restorePublishFocus.current = false;
+			publishButton.current?.focus();
+		}
+	}, [live, overlay]);
 	const published = project.published ?? (live ? snapshot(data) : undefined);
 	const currentVersion = data.versions[0];
 	const draftChanges = live && published?.versionId !== currentVersion?.id;
@@ -148,7 +192,8 @@ export function BuilderExperience({
 	);
 
 	function showSection(next: ProjectNavValue) {
-		if (operation.current) return;
+		if (operation.current || saveInFlight.current) return;
+		setSaveError("");
 		setSection(next);
 		setView("editor");
 	}
@@ -157,15 +202,50 @@ export function BuilderExperience({
 		onProjectChange({ builder: next, published, ...updates });
 	}
 
-	function save(
+	async function persist(
+		action: SaveAction,
+		updates: Partial<PrototypeProject>,
+	) {
+		if (operation.current || saveInFlight.current)
+			throw new Error("Wait for the current update to finish.");
+		saveInFlight.current = true;
+		setSaving(action);
+		try {
+			await onSaveDraft(updates);
+		} finally {
+			saveInFlight.current = false;
+			setSaving(undefined);
+		}
+	}
+
+	async function commit(
+		action: SaveAction,
+		updates: Partial<PrototypeProject>,
+		onSaved?: () => void,
+	) {
+		if (operation.current || saveInFlight.current) return;
+		setSaveError("");
+		try {
+			await persist(action, updates);
+			onSaved?.();
+		} catch (error) {
+			setSaveError(
+				error instanceof Error ? error.message : "Couldn’t save. Try again.",
+			);
+		}
+	}
+
+	function versionUpdates(
 		next: BuilderData,
 		label: string,
 		updates?: Partial<PrototypeProject>,
 	) {
-		change(recordVersion(next, label), {
+		return {
+			builder: recordVersion(next, label),
+			published,
 			updated: "Edited just now",
 			...updates,
-		});
+		};
 	}
 
 	function stageBranding(updates: Partial<BrandingDraft>) {
@@ -184,39 +264,49 @@ export function BuilderExperience({
 			company: stagedBranding.company.trim(),
 		};
 		if (!branding.name || !branding.company) return;
-		await onSaveDraft({
-			builder: recordVersion(
+		await persist(
+			"brand",
+			versionUpdates(
 				{ ...data, branding, stagedBranding: undefined },
 				"Updated branding",
+				{
+					name: branding.name,
+					company: branding.company,
+					cover: branding.cover,
+				},
 			),
-			published,
-			updated: "Edited just now",
-			name: branding.name,
-			company: branding.company,
-			cover: branding.cover,
-		});
+		);
 	}
 
 	function selectConversation(id: string) {
+		if (operation.current || saveInFlight.current) return;
 		setConversationId(id);
 		showSection("Chat");
 	}
 
 	function newConversation() {
-		if (operation.current || committing) return;
+		if (operation.current || committing || saveInFlight.current) return;
 		const id = crypto.randomUUID();
-		change({
-			...data,
-			conversations: [
-				...data.conversations,
-				{ id, title: "New chat", messages: [] },
-			],
-		});
-		selectConversation(id);
+		void commit(
+			"new-chat",
+			{
+				builder: {
+					...data,
+					conversations: [
+						...data.conversations,
+						{ id, title: "New chat", messages: [] },
+					],
+				},
+			},
+			() => {
+				setChatToFocus(id);
+				selectConversation(id);
+			},
+		);
 	}
 
 	async function deleteConversation(id: string) {
-		if (operation.current || committing)
+		if (operation.current || committing || saveInFlight.current)
 			throw new Error(
 				"Wait for the current update to finish before deleting a conversation.",
 			);
@@ -245,10 +335,11 @@ export function BuilderExperience({
 		);
 	}
 
-	async function runChat(text: string, retry = false) {
-		if (operation.current || committing) return;
+	async function runChat(text: string, mode: ModelMode, retry = false) {
+		if (operation.current || committing || saveInFlight.current) return;
 		const current = latestData.current;
 		const existing = retry ? request : undefined;
+		const requestMode = existing?.mode ?? mode;
 		const id =
 			existing?.conversationId ??
 			activeConversation?.id ??
@@ -265,7 +356,12 @@ export function BuilderExperience({
 		setUnsavedMessages((current) => ({ ...current, [id]: pendingMessages }));
 		const controller = new AbortController();
 		operation.current = controller;
-		setRequest({ conversationId: id, message, state: "working" });
+		setRequest({
+			conversationId: id,
+			message,
+			mode: requestMode,
+			state: "working",
+		});
 		try {
 			const configuration = {
 				branding: current.branding,
@@ -275,7 +371,12 @@ export function BuilderExperience({
 				skillNotes: current.skillNotes,
 			};
 			const result = onBuild
-				? await onBuild(message.text, configuration, controller.signal)
+				? await onBuild(
+						message.text,
+						configuration,
+						controller.signal,
+						requestMode,
+					)
 				: {
 						configuration: {
 							...configuration,
@@ -328,6 +429,7 @@ export function BuilderExperience({
 				setRequest({
 					conversationId: id,
 					message,
+					mode: requestMode,
 					state: "error",
 					error:
 						error instanceof Error
@@ -342,55 +444,79 @@ export function BuilderExperience({
 		}
 	}
 
-	function submitChat(text: string) {
-		void runChat(text);
+	function submitChat(text: string, mode: ModelMode) {
+		void runChat(text, mode);
+	}
+
+	function showPreview() {
+		setView("preview");
+		setPreviewFocus((current) => current + 1);
 	}
 
 	function completeFirstDraft() {
-		bindSkills(Object.keys(data.skills), false);
-		save(data, "Created first draft", { needsFirstDraft: false });
-		setView("preview");
+		void commit(
+			"first-draft",
+			versionUpdates(data, "Created first draft", { needsFirstDraft: false }),
+			() => {
+				bindSkills(Object.keys(data.skills), false);
+				showPreview();
+			},
+		);
 	}
 
 	function saveInstructions() {
 		if (stagedInstructions === data.instructions || !stagedInstructions.trim())
 			return;
-		save(
-			{
-				...data,
-				instructions: stagedInstructions,
-				stagedInstructions: undefined,
-			},
-			"Updated agent instructions",
+		void commit(
+			"instructions",
+			versionUpdates(
+				{
+					...data,
+					instructions: stagedInstructions,
+					stagedInstructions: undefined,
+				},
+				"Updated agent instructions",
+			),
 		);
 	}
 
 	function setSkill(id: string, enabled: boolean) {
-		if (enabled) bindSkills([id], false);
-		save(
-			{ ...data, skills: { ...selectedSkills, [id]: enabled } },
-			"Updated project skills",
+		void commit(
+			"skill",
+			versionUpdates(
+				{ ...data, skills: { ...data.skills, [id]: enabled } },
+				"Updated project skills",
+			),
+			() => {
+				if (enabled) bindSkills([id], false);
+				if (overlay?.type === "skills") close();
+			},
 		);
 	}
 
 	function restore(version: BuilderVersion) {
 		const configuration = version.configuration;
-		bindSkills(Object.keys(configuration.skills), true);
-		save(
-			{
-				...data,
-				...configuration,
-				stagedBranding: undefined,
-				stagedInstructions: undefined,
-			},
-			`Restored V${version.id} to draft`,
-			{
-				name: configuration.branding.name,
-				company: configuration.branding.company,
-				cover: configuration.branding.cover,
+		void commit(
+			"restore",
+			versionUpdates(
+				{
+					...data,
+					...configuration,
+					stagedBranding: undefined,
+					stagedInstructions: undefined,
+				},
+				`Restored V${version.id} to draft`,
+				{
+					name: configuration.branding.name,
+					company: configuration.branding.company,
+					cover: configuration.branding.cover,
+				},
+			),
+			() => {
+				bindSkills(Object.keys(configuration.skills), true);
+				close();
 			},
 		);
-		setOverlay(undefined);
 	}
 
 	function bindSkills(ids: string[], replace: boolean) {
@@ -413,13 +539,19 @@ export function BuilderExperience({
 	}
 
 	function publish(audience: string, requireSignIn: boolean) {
-		if (dirty || working || busy) return;
-		change(data, {
-			status: "Published",
-			published: { ...snapshot(data), audience, requireSignIn },
-		});
-		setOverlay(undefined);
-		setManage(true);
+		if (dirty || needsFirstDraft || busy) return;
+		void commit(
+			"publish",
+			{
+				builder: data,
+				status: "Published",
+				published: { ...snapshot(data), audience, requireSignIn },
+			},
+			() => {
+				close();
+				setManage(true);
+			},
+		);
 	}
 
 	function openVisitor(isLive: boolean) {
@@ -427,12 +559,45 @@ export function BuilderExperience({
 		else setOverlay({ type: "preview", published: isLive });
 	}
 
-	const close = () => setOverlay(undefined);
+	const close = () => {
+		if (saveInFlight.current) return;
+		setSaveError("");
+		setOverlay(undefined);
+	};
+
+	function openOverlay(next: BuilderOverlay) {
+		setSaveError("");
+		setOverlay(next);
+	}
+
+	const publishChecks = [
+		{
+			label: needsFirstDraft
+				? "First draft needs review"
+				: "First draft reviewed",
+			complete: !needsFirstDraft,
+		},
+		{
+			label: dirty
+				? "Save draft changes before publishing"
+				: "Draft changes saved",
+			complete: !dirty,
+		},
+		...workspace.connections.map((connection) => {
+			const complete =
+				connection.connected && connection.access.includes(project.id);
+			return {
+				label: `${connection.name} · ${complete ? "connected" : "not connected"}`,
+				complete,
+			};
+		}),
+	];
 
 	return (
 		<div className="ap-builder-workspace">
 			<ProjectNavigation
 				active={section}
+				disabled={locked}
 				onChange={showSection}
 				onHome={onBack}
 				onNewConversation={newConversation}
@@ -450,7 +615,11 @@ export function BuilderExperience({
 				<div className="ap-builder-mobile-actions">
 					<MenuPopover
 						trigger={
-							<Button variant="ghost" icon={<Icon name="message-square" />}>
+							<Button
+								disabled={locked}
+								variant="ghost"
+								icon={<Icon name="message-square" />}
+							>
 								Conversations
 							</Button>
 						}
@@ -498,24 +667,38 @@ export function BuilderExperience({
 				</div>
 				<ProjectToolbar
 					name={project.name}
-					saved={!dirty && !busy}
+					publishButtonRef={publishButton}
+					saved={!dirty}
+					activity={
+						committing || saving
+							? "Saving changes…"
+							: busy
+								? "Updating your agent…"
+								: undefined
+					}
 					status={draftChanges ? "changes" : live ? "published" : "draft"}
-					publishDisabled={working || busy}
-					onPublish={() => setOverlay({ type: "publish" })}
+					publishDisabled={needsFirstDraft || locked}
+					onPublish={() => openOverlay({ type: "publish" })}
 					publishControl={
 						live ? (
 							<ManagePublication
+								invoker={publishButton}
 								url={url}
 								draftChanges={draftChanges}
 								open={manage}
 								onOpenChange={setManage}
-								onPublishUpdate={() => setOverlay({ type: "publish" })}
-								onUnpublish={() => setOverlay({ type: "unpublish" })}
+								onPublishUpdate={() => openOverlay({ type: "publish" })}
+								onUnpublish={() => openOverlay({ type: "unpublish" })}
 								onOpenLive={() => openVisitor(true)}
 							/>
 						) : undefined
 					}
 				/>
+				{saveError && !overlay && (
+					<p className="ap-builder-error ap-builder-action-error" role="alert">
+						{saveError}
+					</p>
+				)}
 				{splitView && (
 					<>
 						<div className="ap-builder-layout-tabs">
@@ -531,13 +714,16 @@ export function BuilderExperience({
 						</div>
 						<BuilderSplit
 							view={view}
+							previewFocus={previewFocus}
 							previewShare={previewShare}
 							onPreviewShareChange={setPreviewShare}
 							preview={
-								section === "Chat" && working ? (
-									<BuilderProgress
+								section === "Chat" && needsFirstDraft ? (
+									<BuilderFirstDraft
 										onReady={completeFirstDraft}
 										usesWebsite={usesWebsite}
+										saving={saving === "first-draft"}
+										disabled={locked}
 									/>
 								) : (
 									<BuilderVisitorPreview
@@ -555,6 +741,10 @@ export function BuilderExperience({
 							{section === "Chat" ? (
 								<BuilderChat
 									key={activeConversation?.id}
+									focusOnMount={Boolean(
+										chatToFocus && chatToFocus === activeConversation?.id,
+									)}
+									onFocusHandled={() => setChatToFocus(undefined)}
 									conversation={
 										activeConversation
 											? {
@@ -582,20 +772,21 @@ export function BuilderExperience({
 									}
 									requestError={request?.error}
 									onRetry={() => {
-										if (request) void runChat(request.message.text, true);
+										if (request)
+											void runChat(request.message.text, request.mode, true);
 									}}
-									onStop={committing ? undefined : stopChat}
-									submitting={busy}
-									onPreview={() => setView("preview")}
-									working={working}
+									onStop={busy && !committing ? stopChat : undefined}
+									submitting={locked}
+									onPreview={showPreview}
+									needsFirstDraft={needsFirstDraft}
 									usesWebsite={usesWebsite}
 									sources={project.sources}
-									defaultModelMode={project.modelMode}
+									defaultModelMode={project.modelMode ?? defaultModelMode}
 									destination={data.destination}
 									onSubmit={submitChat}
 									onDestination={() => {
 										setConfigValue("");
-										setOverlay({ type: "destination" });
+										openOverlay({ type: "destination" });
 									}}
 									onSkipDestination={completeFirstDraft}
 								/>
@@ -618,6 +809,8 @@ export function BuilderExperience({
 						value={stagedInstructions}
 						version={currentVersion}
 						skillCount={Object.values(selectedSkills).filter(Boolean).length}
+						dirty={stagedInstructions !== data.instructions}
+						saving={saving === "instructions"}
 						onChange={(next) => change({ ...data, stagedInstructions: next })}
 						onSave={saveInstructions}
 						onSkills={() => showSection("Skills")}
@@ -628,13 +821,14 @@ export function BuilderExperience({
 					<BuilderSkills
 						selected={selectedSkills}
 						catalog={catalog}
+						saving={saving === "skill"}
 						onToggle={setSkill}
 						onConfigure={(id) => {
 							setConfigValue(data.skillNotes?.[id] ?? "");
-							setOverlay({ type: "configure", id });
+							openOverlay({ type: "configure", id });
 						}}
 						onAdd={(id) => setSkill(id, true)}
-						onPick={() => setOverlay({ type: "skills" })}
+						onPick={() => openOverlay({ type: "skills" })}
 						onLibrary={() => onSettings("Skills library")}
 					/>
 				)}
@@ -643,18 +837,22 @@ export function BuilderExperience({
 						versions={data.versions}
 						conversations={data.conversations}
 						liveVersion={published?.versionId}
-						onView={(version) => setOverlay({ type: "view", version })}
-						onRestore={(version) => setOverlay({ type: "restore", version })}
+						onView={(version) => openOverlay({ type: "view", version })}
+						onRestore={(version) => openOverlay({ type: "restore", version })}
 						onConversation={selectConversation}
 					/>
 				)}
 			</main>
 			{overlay?.type === "publish" && (
 				<ReviewPublish
+					invoker={publishButton}
 					name={project.name}
 					url={url}
 					draftChanges={draftChanges}
-					ready={!dirty && !working && !busy}
+					ready={!dirty && !needsFirstDraft && !busy}
+					checks={publishChecks}
+					busy={saving === "publish"}
+					error={saveError}
 					audience={published?.audience}
 					requireSignIn={published?.requireSignIn}
 					onConfirm={publish}
@@ -663,14 +861,24 @@ export function BuilderExperience({
 			)}
 			{overlay?.type === "unpublish" && (
 				<UnpublishAgent
+					invoker={publishButton}
 					url={url}
+					busy={saving === "unpublish"}
+					error={saveError}
 					onConfirm={() => {
-						change(data, {
-							status: "Unpublished",
-							published: undefined,
-							liveUrl: undefined,
-						});
-						close();
+						void commit(
+							"unpublish",
+							{
+								builder: data,
+								status: "Unpublished",
+								published: undefined,
+								liveUrl: undefined,
+							},
+							() => {
+								restorePublishFocus.current = true;
+								close();
+							},
+						);
 					}}
 					onClose={close}
 				/>
@@ -680,6 +888,8 @@ export function BuilderExperience({
 					title="Connect a destination"
 					description="Choose where this project collects visitor enquiries."
 					onClose={close}
+					busy={saving === "destination"}
+					error={saveError}
 				>
 					<SelectField
 						label="Enquiry destination"
@@ -690,6 +900,7 @@ export function BuilderExperience({
 							{ value: "Project enquiry list", label: "Project enquiry list" },
 						]}
 						value={configValue}
+						disabled={Boolean(saving)}
 						onChange={(event) => setConfigValue(event.target.value)}
 					/>
 					<div className="ap-builder-dialog-actions">
@@ -698,18 +909,23 @@ export function BuilderExperience({
 							variant="secondary"
 							size="medium"
 							onClick={close}
+							disabled={Boolean(saving)}
 						>
 							Cancel
 						</Button>
 						<Button
 							size="medium"
 							disabled={!configValue}
+							loading={saving === "destination"}
 							onClick={() => {
-								save(
-									{ ...data, destination: configValue },
-									"Set enquiry destination",
+								void commit(
+									"destination",
+									versionUpdates(
+										{ ...data, destination: configValue },
+										"Set enquiry destination",
+									),
+									close,
 								);
-								close();
 							}}
 						>
 							Connect destination
@@ -722,6 +938,8 @@ export function BuilderExperience({
 					title="Add a project skill"
 					description="Choose a skill the agent can use in this project."
 					onClose={close}
+					busy={saving === "skill"}
+					error={saveError}
 				>
 					{catalog
 						.filter((skill) => !selectedSkills[skill.id])
@@ -729,9 +947,9 @@ export function BuilderExperience({
 							<Button
 								variant="secondary"
 								key={skill.id}
+								disabled={Boolean(saving)}
 								onClick={() => {
 									setSkill(skill.id, true);
-									close();
 								}}
 							>
 								{skill.name}
@@ -751,31 +969,44 @@ export function BuilderExperience({
 					}
 					description="Set the instructions that apply to this project."
 					onClose={close}
+					busy={saving === "configure"}
+					error={saveError}
 				>
 					<Textarea
 						label="Skill instructions"
 						showSupportingText={false}
 						value={configValue}
+						readOnly={Boolean(saving)}
 						onChange={(event) => setConfigValue(event.target.value)}
 					/>
 					<div className="ap-builder-dialog-actions">
-						<Button variant="secondary" size="medium" onClick={close}>
+						<Button
+							variant="secondary"
+							size="medium"
+							onClick={close}
+							disabled={Boolean(saving)}
+						>
 							Cancel
 						</Button>
 						<Button
 							size="medium"
+							loading={saving === "configure"}
+							disabled={configValue === (data.skillNotes?.[overlay.id] ?? "")}
 							onClick={() => {
-								save(
-									{
-										...data,
-										skillNotes: {
-											...data.skillNotes,
-											[overlay.id]: configValue,
+								void commit(
+									"configure",
+									versionUpdates(
+										{
+											...data,
+											skillNotes: {
+												...data.skillNotes,
+												[overlay.id]: configValue,
+											},
 										},
-									},
-									"Configured project skill",
+										"Configured project skill",
+									),
+									close,
 								);
-								close();
 							}}
 						>
 							Save configuration
@@ -805,19 +1036,33 @@ export function BuilderExperience({
 			{overlay?.type === "restore" && (
 				<BuilderDialog
 					title={`Restore V${overlay.version.id} to draft?`}
-					description="This creates a new draft from the saved version. Your live agent stays unchanged until you publish an update."
+					description={
+						dirty
+							? "This replaces your unsaved edits with the selected version. Your live agent stays unchanged until you publish."
+							: "This creates a new draft from the saved version. Your live agent stays unchanged until you publish an update."
+					}
 					onClose={close}
+					busy={saving === "restore"}
+					error={saveError}
 				>
+					<pre className="ap-builder-version-snapshot">
+						{overlay.version.configuration.instructions}
+					</pre>
 					<div className="ap-builder-dialog-actions">
 						<Button
 							size="medium"
 							variant="secondary"
 							data-initial-focus
 							onClick={close}
+							disabled={Boolean(saving)}
 						>
 							Cancel
 						</Button>
-						<Button size="medium" onClick={() => restore(overlay.version)}>
+						<Button
+							size="medium"
+							loading={saving === "restore"}
+							onClick={() => restore(overlay.version)}
+						>
 							Restore to draft
 						</Button>
 					</div>

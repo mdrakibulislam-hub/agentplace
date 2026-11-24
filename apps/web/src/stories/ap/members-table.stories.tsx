@@ -140,19 +140,19 @@ export const SearchEmptyBody: Story = {
 };
 export const EmptyTable: Story = {
 	parameters: { design: figma("352:2788") },
-	args: { members: [] },
+	args: { members: [], filtering: true },
 };
 export const RowActions: Story = {
 	play: async ({ canvasElement, args }) => {
 		const canvas = within(canvasElement);
-		await userEvent.click(
-			canvas.getByRole("button", { name: "Edit access for Sam" }),
-		);
-		await expect(args.onEdit).toHaveBeenCalledWith(members[2]);
-		await userEvent.click(
-			canvas.getByRole("button", { name: "Manage invitation for Nora" }),
-		);
-		await expect(args.onEdit).toHaveBeenCalledWith(members[3]);
+		const edit = canvas.getByRole("button", { name: "Edit access for Sam" });
+		await userEvent.click(edit);
+		await expect(args.onEdit).toHaveBeenCalledWith(members[2], edit);
+		const invite = canvas.getByRole("button", {
+			name: "Manage invite for Nora",
+		});
+		await userEvent.click(invite);
+		await expect(args.onEdit).toHaveBeenCalledWith(members[3], invite);
 		const remove = canvas.getByRole("button", { name: "Remove Sam" });
 		await userEvent.click(remove);
 		await expect(args.onRemove).toHaveBeenCalledWith(members[2], remove);

@@ -110,7 +110,7 @@ export const ReadOnly: Story = {
 			canvas.getByRole("button", { name: "Save changes" }),
 		).toBeDisabled();
 		await expect(
-			canvas.queryByRole("button", { name: "Change project cover" }),
+			canvas.queryByRole("button", { name: "Change cover for this project" }),
 		).not.toBeInTheDocument();
 	},
 };
@@ -165,7 +165,9 @@ export const CoverUploadError: Story = {
 	args: AddedCover.args,
 	play: async ({ canvasElement, args }) => {
 		const canvas = within(canvasElement);
-		const cover = canvas.getByRole("button", { name: "Change project cover" });
+		const cover = canvas.getByRole("button", {
+			name: "Change cover for this project",
+		});
 		await userEvent.upload(
 			canvas.getByLabelText("Choose a branding image"),
 			new File(["not a valid image"], "cover.png", { type: "image/png" }),

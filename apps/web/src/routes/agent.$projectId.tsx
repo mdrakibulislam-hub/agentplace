@@ -1,7 +1,8 @@
-import { Button } from "@agentplace/ui/components/button";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { buttonVariants } from "@agentplace/ui/components/button";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { VisitorExperience } from "@/product/builder/visitor-experience";
 import { usePrototype } from "@/product/prototype-state";
+import "@/product/workspace.css";
 
 export const Route = createFileRoute("/agent/$projectId")({
 	validateSearch: (search): { preview?: boolean } => ({
@@ -14,7 +15,6 @@ function AgentPage() {
 	const { projectId } = Route.useParams();
 	const { preview } = Route.useSearch();
 	const { store, workspace } = usePrototype();
-	const navigate = useNavigate();
 	const activeProject = workspace?.projects.find(
 		(project) => project.id === projectId,
 	);
@@ -31,36 +31,40 @@ function AgentPage() {
 		(restriction?.requireSignIn || restriction?.audience === "workspace");
 	if (project && requiresSignIn) {
 		return (
-			<main className="ap-workspace-unavailable">
+			<main className="ap-workspace-unavailable" data-ap-enter="">
 				<h1>Sign in to open this agent</h1>
 				<p>
 					{project.published?.name ?? project.name} requires a signed-in
 					visitor.
 				</p>
-				<Button
-					onClick={() =>
-						void navigate({ to: "/login", search: { agent: projectId } })
-					}
+				<Link
+					to="/login"
+					search={{ agent: projectId }}
+					className={buttonVariants()}
 				>
-					Sign in
-				</Button>
+					<span className="ap-button-contents">Sign in</span>
+				</Link>
 			</main>
 		);
 	}
 	if (!project || (restriction?.audience === "workspace" && !activeProject)) {
 		return (
-			<main className="ap-workspace-unavailable">
+			<main className="ap-workspace-unavailable" data-ap-enter="">
 				<h1>This agent is unavailable</h1>
 				<p>
 					The project may have been unpublished or removed from this browser.
 				</p>
-				<Button variant="secondary" onClick={() => void navigate({ to: "/" })}>
-					Go to Agentplace
-				</Button>
+				<Link to="/" className={buttonVariants({ variant: "secondary" })}>
+					<span className="ap-button-contents">Go to Agentplace</span>
+				</Link>
 			</main>
 		);
 	}
 	return (
-		<VisitorExperience key={projectId} project={project} published={!preview} />
+		<VisitorExperience
+			key={`${projectId}:${preview ? "draft" : "published"}`}
+			project={project}
+			published={!preview}
+		/>
 	);
 }

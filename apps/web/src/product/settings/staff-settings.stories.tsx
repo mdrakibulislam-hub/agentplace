@@ -255,7 +255,7 @@ export const InviteAndRevoke: Story = {
 			await body.findByText("Waiting for riya@whiteframe.agency to accept."),
 		).toBeVisible();
 		await userEvent.click(
-			body.getByRole("button", { name: "Manage invitation for riya" }),
+			body.getByRole("button", { name: "Manage invite for riya" }),
 		);
 		await userEvent.click(
 			body.getByRole("button", { name: "Revoke invitation" }),
@@ -279,7 +279,7 @@ export const PendingInvitation: Story = {
 	play: async ({ canvasElement }) => {
 		await userEvent.click(
 			within(canvasElement).getByRole("button", {
-				name: "Manage invitation for Nora",
+				name: "Manage invite for Nora",
 			}),
 		);
 	},

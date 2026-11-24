@@ -79,6 +79,18 @@ button.ap-project-cover {
 .ap-cover-touch-action {
 	display: none;
 }
+.ap-cover-loading {
+	position: absolute;
+	inset-block-start: var(--space-24);
+	inset-inline-end: var(--space-24);
+	z-index: 2;
+	pointer-events: none;
+	padding: var(--space-4) var(--space-8);
+	border-radius: var(--radius-full);
+	background: var(--card-background);
+	color: var(--foreground-muted);
+	font-size: var(--type-body-sm-regular-size);
+}
 .ap-project-card {
 	box-sizing: border-box;
 	position: relative;
@@ -320,6 +332,15 @@ button.ap-project-cover {
 .ap-composer-send:disabled {
 	cursor: not-allowed;
 }
+.ap-chat-composer .ap-composer-send {
+	transition: opacity var(--motion-duration-fast) var(--motion-easing-standard);
+}
+.ap-chat-composer .ap-composer-send:disabled {
+	opacity: 0.55;
+}
+.ap-chat-composer .ap-composer-send:not(:disabled):is(:hover, :focus-visible) {
+	background: var(--action-hover);
+}
 .ap-composer-icon:focus-visible,
 .ap-composer-send:focus-visible {
 	outline: 2px solid var(--focus-ring);
@@ -429,9 +450,30 @@ button.ap-project-cover {
 	font-weight: 510;
 	text-align: left;
 	cursor: pointer;
+	transition:
+		background-color var(--motion-duration-fast) var(--motion-easing-standard),
+		border-color var(--motion-duration-fast) var(--motion-easing-standard);
 }
-.ap-preview-suggestions button:hover {
+.ap-preview-suggestions button:active {
 	background: var(--muted-background);
+	border-color: var(--muted-hover);
+}
+@media (hover: hover) {
+	.ap-preview-suggestions button:hover {
+		background: var(--muted-background);
+		border-color: var(--muted-hover);
+	}
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+	:root:not([data-ap-motion="reduced"]) .ap-preview-suggestions .ap-icon {
+		transition: translate var(--motion-duration-fast) var(--motion-easing-enter);
+	}
+	:root:not([data-ap-motion="reduced"])
+		.ap-preview-suggestions
+		button:hover
+		.ap-icon {
+		translate: 2px;
+	}
 }
 .ap-preview-suggestions button:focus-visible,
 .ap-visitor-call:focus-visible {
@@ -471,7 +513,7 @@ button.ap-project-cover {
 	padding: 6px 6px 6px 16px;
 	background: var(--background-default);
 }
-.ap-visitor-input:focus-within {
+.ap-visitor-input:has(input:focus) {
 	outline: 2px solid var(--focus-ring);
 	outline-offset: 1px;
 }
@@ -505,6 +547,19 @@ button.ap-project-cover {
 	font-weight: 510;
 	color: var(--foreground-default);
 	cursor: pointer;
+	transition: background-color var(--motion-duration-fast)
+		var(--motion-easing-standard);
+}
+.ap-visitor-call:active {
+	background: var(--muted-hover);
+}
+.ap-visitor-input .ap-spinner {
+	color: inherit;
+}
+@media (hover: hover) {
+	.ap-visitor-call:hover {
+		background: var(--muted-hover);
+	}
 }
 @media (pointer: coarse) {
 	.ap-cover-touch-action {

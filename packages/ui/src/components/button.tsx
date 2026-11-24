@@ -69,6 +69,8 @@ function Button({
 	const environment = useMotionEnvironment();
 	const buttonRef = useRef<HTMLButtonElement | null>(null);
 	const pressScale = useMotionValue(1);
+	const busy = loading || state === "loading";
+	const unavailable = disabled || state === "disabled" || busy;
 	useImperativeHandle(
 		externalRef,
 		() => buttonRef.current as HTMLButtonElement,
@@ -80,13 +82,14 @@ function Button({
 		if (environment.reduced) {
 			pressScale.stop();
 			pressScale.set(1);
+		} else if (unavailable) {
+			// A disabled control can lose its keyup or pointerup after submitting.
+			animate(pressScale, 1, springs.press);
 		}
-	}, [environment.reduced, pressScale]);
+	}, [environment.reduced, pressScale, unavailable]);
 	function press(target: number) {
 		if (!environment.reduced) animate(pressScale, target, springs.press);
 	}
-	const busy = loading || state === "loading";
-	const unavailable = disabled || state === "disabled" || busy;
 	return (
 		<ButtonPrimitive
 			{...props}

@@ -1,6 +1,6 @@
 import { ProjectCover } from "@agentplace/ui/components/ap-builder";
 import { FormField, SelectField } from "@agentplace/ui/components/ap-controls";
-import { Avatar } from "@agentplace/ui/components/ap-data";
+import { Avatar, Spinner } from "@agentplace/ui/components/ap-data";
 import { Icon } from "@agentplace/ui/components/ap-icon";
 import {
 	CoverActionsMenu,
@@ -55,11 +55,14 @@ export function BuilderBranding({
 	const [isSaving, setIsSaving] = useState(false);
 	const [fileError, setFileError] = useState("");
 	const [saveError, setSaveError] = useState("");
+	const [touched, setTouched] = useState({ company: false, name: false });
 	const [coverMenu, setCoverMenu] = useState(initialCoverMenu);
 	const hasCover = Boolean(branding.cover);
 	const locked = !canEdit || isSaving;
 	const imageDisabled = locked || isReading;
 	const valid = Boolean(branding.company.trim() && branding.name.trim());
+	const companyError = touched.company && !branding.company.trim();
+	const agentError = touched.name && !branding.name.trim();
 
 	useLayoutEffect(() => {
 		latestChange.current = onChange;
@@ -161,7 +164,9 @@ export function BuilderBranding({
 		<form
 			className="ap-builder-editor ap-builder-branding"
 			aria-label="Branding"
+			data-ap-enter=""
 			onSubmit={(event) => void submit(event)}
+			noValidate
 		>
 			<BuilderTitle
 				title="Branding"
@@ -170,7 +175,8 @@ export function BuilderBranding({
 						type="submit"
 						className="ap-branding-save"
 						loading={isSaving}
-						disabled={imageDisabled || !valid}
+						disabled={imageDisabled || !valid || saved}
+						reserveLoadingSpace
 					>
 						{isSaving ? "Saving…" : "Save changes"}
 					</Button>
@@ -196,11 +202,19 @@ export function BuilderBranding({
 						<FormField
 							label="Company name"
 							showLabel={false}
-							showSupportingText={false}
+							showSupportingText={companyError}
+							state={companyError ? "error" : "default"}
+							errorMessage="Enter a company name."
 							required
 							disabled={locked}
 							value={branding.company}
-							onChange={(event) => onChange({ company: event.target.value })}
+							onBlur={() =>
+								setTouched((fields) => ({ ...fields, company: true }))
+							}
+							onChange={(event) => {
+								setSaveError("");
+								onChange({ company: event.target.value });
+							}}
 						/>
 						<Button
 							variant="secondary"
@@ -223,11 +237,17 @@ export function BuilderBranding({
 						<FormField
 							label="Agent name"
 							showLabel={false}
-							showSupportingText={false}
+							showSupportingText={agentError}
+							state={agentError ? "error" : "default"}
+							errorMessage="Enter an agent name."
 							required
 							disabled={locked}
 							value={branding.name}
-							onChange={(event) => onChange({ name: event.target.value })}
+							onBlur={() => setTouched((fields) => ({ ...fields, name: true }))}
+							onChange={(event) => {
+								setSaveError("");
+								onChange({ name: event.target.value });
+							}}
 						/>
 						<Button
 							variant="secondary"
@@ -370,6 +390,7 @@ export function BuilderBranding({
 					Back to chat
 				</Button>
 				<span className="ap-builder-small" role="status">
+					{isReading && <Spinner aria-hidden="true" />}
 					{saved && !isReading && !isSaving && <Icon name="check" />}
 					{isReading
 						? "Preparing image…"

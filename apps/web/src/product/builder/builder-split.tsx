@@ -19,16 +19,20 @@ export function BuilderSplit({
 	children,
 	preview,
 	view,
+	previewFocus,
 	previewShare,
 	onPreviewShareChange,
 }: {
 	children: ReactNode;
 	preview: ReactNode;
 	view: string;
+	previewFocus: number;
 	previewShare: number;
 	onPreviewShareChange: (share: number) => void;
 }) {
 	const split = useRef<HTMLDivElement>(null);
+	const previewPane = useRef<HTMLElement>(null);
+	const lastPreviewFocus = useRef(previewFocus);
 	const drag = useRef<{ pointer: number; x: number; width: number } | null>(
 		null,
 	);
@@ -53,6 +57,11 @@ export function BuilderSplit({
 		observer.observe(layout);
 		return () => observer.disconnect();
 	}, []);
+	useLayoutEffect(() => {
+		if (lastPreviewFocus.current === previewFocus) return;
+		lastPreviewFocus.current = previewFocus;
+		previewPane.current?.focus({ preventScroll: true });
+	}, [previewFocus]);
 
 	function resize(width: number) {
 		if (availableWidth >= minEditorWidth + minPreviewWidth) {
@@ -101,6 +110,9 @@ export function BuilderSplit({
 			case "End":
 				width = maxPreviewWidth;
 				break;
+			case "Enter":
+				width = availableWidth * defaultPreviewShare;
+				break;
 			default:
 				return;
 		}
@@ -133,14 +145,22 @@ export function BuilderSplit({
 				aria-valuemax={Math.round(maxPreviewWidth)}
 				aria-valuenow={Math.round(previewWidth)}
 				aria-valuetext={`${Math.round(previewWidth)} pixels`}
+				aria-description="Use the arrow keys to resize or press Enter to reset."
 				onPointerDown={startDrag}
 				onPointerMove={moveDrag}
 				onLostPointerCapture={stopDrag}
+				onDoubleClick={() => resize(availableWidth * defaultPreviewShare)}
 				onKeyDown={resizeWithKeyboard}
 			/>
-			<div className="ap-builder-preview-pane" id={previewId}>
+			<section
+				className="ap-builder-preview-pane"
+				id={previewId}
+				ref={previewPane}
+				tabIndex={-1}
+				aria-label="Agent preview pane"
+			>
 				{preview}
-			</div>
+			</section>
 		</div>
 	);
 }

@@ -11,7 +11,7 @@ import {
 import type { MenuProject } from "@agentplace/ui/components/ap-menus";
 import { Button } from "@agentplace/ui/components/button";
 import { useRef, useState } from "react";
-import { SettingsHeading } from "./settings-parts";
+import { SettingsHeading, useSettingsDialog } from "./settings-parts";
 import type { MemberUpdate, WorkspaceMember } from "./settings-state";
 
 export function StaffSettings({
@@ -21,6 +21,7 @@ export function StaffSettings({
 	onInvite,
 	onResend,
 	currentMemberId,
+	active = true,
 }: {
 	members: WorkspaceMember[];
 	projects: readonly MenuProject[];
@@ -28,18 +29,27 @@ export function StaffSettings({
 	onInvite?: (draft: InvitationDraft) => Promise<WorkspaceMember>;
 	onResend?: (member: WorkspaceMember) => Promise<void>;
 	currentMemberId?: string;
+	active?: boolean;
 }) {
 	const [query, setQuery] = useState("");
 	const [role, setRole] = useState("All roles");
-	const [editing, setEditing] = useState<WorkspaceMember | null>(null);
-	const [removing, setRemoving] = useState<WorkspaceMember | null>(null);
-	const [inviting, setInviting] = useState(false);
+	const [editing, setEditing] = useSettingsDialog<WorkspaceMember | null>(
+		active,
+		null,
+	);
+	const [removing, setRemoving] = useSettingsDialog<WorkspaceMember | null>(
+		active,
+		null,
+	);
+	const [inviting, setInviting] = useSettingsDialog(active, false);
 	const [notice, setNotice] = useState<{
 		title: string;
 		message: string;
 	} | null>(null);
 	const inviteButton = useRef<HTMLButtonElement>(null);
+	const search = useRef<HTMLInputElement>(null);
 	const trigger = useRef<HTMLElement | null>(null);
+	const filtering = Boolean(query.trim() || role !== "All roles");
 	const filtered = members.filter(
 		(member) =>
 			(role === "All roles" || member.role === role) &&
@@ -47,19 +57,20 @@ export function StaffSettings({
 				.toLowerCase()
 				.includes(query.trim().toLowerCase()),
 	);
-	const active = members.filter((member) => !member.invited).length;
-	const invited = members.length - active;
-	const count =
-		query.trim() || role !== "All roles"
-			? `${filtered.length} ${filtered.length === 1 ? "result" : "results"}`
-			: `${active} ${active === 1 ? "member" : "members"}${invited ? ` · ${invited} ${invited === 1 ? "invitation" : "invitations"}` : ""}`;
+	const activeMembers = members.filter((member) => !member.invited).length;
+	const invited = members.length - activeMembers;
+	const count = filtering
+		? `${filtered.length} ${filtered.length === 1 ? "result" : "results"}`
+		: `${activeMembers} ${activeMembers === 1 ? "member" : "members"}${invited ? ` · ${invited} ${invited === 1 ? "invitation" : "invitations"}` : ""}`;
 	function close() {
 		setEditing(null);
 		setRemoving(null);
 		setInviting(false);
 		requestAnimationFrame(() => {
-			if (trigger.current?.isConnected) trigger.current.focus();
-			else inviteButton.current?.focus();
+			if (trigger.current?.isConnected && !trigger.current.closest("[hidden]"))
+				trigger.current.focus({ preventScroll: true });
+			else if (!inviteButton.current?.closest("[hidden]"))
+				inviteButton.current?.focus({ preventScroll: true });
 		});
 	}
 	function canManageMembers(list: WorkspaceMember[]) {
@@ -97,6 +108,7 @@ export function StaffSettings({
 					<Button
 						ref={inviteButton}
 						size="medium"
+						disabled={!canManageMembers(members)}
 						onClick={() => {
 							trigger.current = inviteButton.current;
 							setNotice(null);
@@ -114,21 +126,29 @@ export function StaffSettings({
 					role={role}
 					onRoleChange={setRole}
 					count={count}
+					searchRef={search}
 				/>
 				<WorkspaceMembersTable
 					members={filtered}
+					totalMembers={members.length}
+					filtering={filtering}
 					projects={projects}
 					currentMemberId={currentMemberId}
 					onClear={() => {
 						setQuery("");
 						setRole("All roles");
+						search.current?.focus({ preventScroll: true });
 					}}
-					onEdit={(member) => {
-						if (member.role === "Owner") return;
-						trigger.current = document.activeElement as HTMLElement;
-						setNotice(null);
-						setEditing(member);
-					}}
+					onEdit={
+						canManageMembers(members)
+							? (member, button) => {
+									if (member.role === "Owner") return;
+									trigger.current = button;
+									setNotice(null);
+									setEditing(member);
+								}
+							: undefined
+					}
 					onRemove={
 						canManageMembers(members)
 							? (member, button) => {

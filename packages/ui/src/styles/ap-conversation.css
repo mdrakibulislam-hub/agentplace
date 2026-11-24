@@ -1,3 +1,28 @@
+.ap-conversation-scroll-area {
+	position: relative;
+	display: flex;
+	flex: 1;
+	min-height: 0;
+	flex-direction: column;
+}
+.ap-conversation-scroll-area
+	> :where([role="log"], [role="region"]):focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: -2px;
+}
+.ap-conversation-jump {
+	position: absolute;
+	z-index: 1;
+	inset-inline-end: var(--space-12);
+	inset-block-end: var(--space-8);
+	box-shadow: var(--shadow-panel);
+}
+@media (pointer: coarse) {
+	.ap-conversation-scroll-area > .ap-conversation-jump {
+		min-height: 44px;
+	}
+}
+
 .ap-chat-thread {
 	display: flex;
 	flex-direction: column;
@@ -88,8 +113,11 @@
 .ap-chat-reply-chips {
 	display: flex;
 	flex-wrap: wrap;
+	min-inline-size: 0;
+	margin: 0;
 	gap: var(--space-8);
-	padding-left: 36px;
+	padding: 0 0 0 36px;
+	border: 0;
 }
 .ap-chat-reply-chips button {
 	min-height: 32px;
@@ -102,7 +130,9 @@
 	font: inherit;
 	font-size: 14px;
 	line-height: 20px;
+	overflow-wrap: anywhere;
 	cursor: pointer;
+	transition: background-color var(--motion-duration-fast) ease-out;
 }
 .ap-chat-reply-chips button:hover {
 	background: var(--muted-hover);

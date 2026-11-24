@@ -55,6 +55,12 @@ export const demoProjects: PrototypeProject[] = [
 	},
 ];
 
+export const demoProjectUsage: Readonly<Record<string, number>> = {
+	"whiteframe-advisor": 15,
+	"customer-support": 0,
+	"booking-assistant": 0,
+};
+
 export function liveProjectPath(id: string) {
 	return `/agent/${encodeURIComponent(id)}`;
 }

@@ -5,42 +5,49 @@ import {
 	creditRatio,
 	Surface,
 } from "@agentplace/ui/components/ap-data";
-import { Icon, type IconName } from "@agentplace/ui/components/ap-icon";
+import { Icon } from "@agentplace/ui/components/ap-icon";
 import {
 	MenuItem,
 	MenuPanel,
 	MenuPopover,
 	type MenuProject,
 } from "@agentplace/ui/components/ap-menus";
+import { useScrollEntrance } from "@agentplace/ui/components/ap-motion";
 import { Button } from "@agentplace/ui/components/button";
-import { useState } from "react";
-import { SettingsDialog, SettingsHeading } from "./settings-parts";
+import { useRef, useState } from "react";
+import {
+	SettingsDialog,
+	SettingsHeading,
+	useSettingsDialog,
+} from "./settings-parts";
 
 const periods = ["This billing period", "Previous billing period"] as const;
-const projectIcons: Record<string, IconName> = {
-	"whiteframe-advisor": "briefcase-business",
-	"customer-support": "message-square",
-	"booking-assistant": "calendar",
-};
 const number = new Intl.NumberFormat("en-US");
 
 export function BillingSettings({
 	workspace,
 	projects,
 	credits,
+	projectUsage,
+	active,
 }: {
 	workspace: string;
 	projects: readonly MenuProject[];
 	credits: CreditValues;
+	projectUsage?: Readonly<Record<string, number>>;
+	active: boolean;
 }) {
+	const usage = useRef<HTMLDivElement>(null);
+	const dialogTrigger = useRef<HTMLButtonElement>(null);
+	useScrollEntrance(usage, active);
 	const [period, setPeriod] = useState<(typeof periods)[number]>(periods[0]);
-	const [dialog, setDialog] = useState<
+	const [dialog, setDialog] = useSettingsDialog<
 		| "Workspace subscription"
 		| "Payment method"
 		| "Invoices"
 		| "Usage details"
 		| null
-	>(null);
+	>(active, null);
 	const ratio = creditRatio(credits);
 	const remaining =
 		ratio === null || credits.allocation === null
@@ -54,6 +61,13 @@ export function BillingSettings({
 		remaining === null || used === null || credits.allocation === null
 			? "Credit balance unavailable"
 			: `${number.format(remaining)} of ${number.format(credits.allocation)} credits · ${number.format(used)} used this period`;
+	function openDialog(
+		next: NonNullable<typeof dialog>,
+		trigger: HTMLButtonElement,
+	) {
+		dialogTrigger.current = trigger;
+		setDialog(next);
+	}
 	return (
 		<>
 			<SettingsHeading
@@ -77,7 +91,9 @@ export function BillingSettings({
 					<div className="product-settings-panel-actions">
 						<Button
 							variant="secondary"
-							onClick={() => setDialog("Workspace subscription")}
+							onClick={(event) =>
+								openDialog("Workspace subscription", event.currentTarget)
+							}
 						>
 							Manage subscription
 						</Button>
@@ -98,14 +114,19 @@ export function BillingSettings({
 						<Button
 							variant="ghost"
 							icon={<Icon name="arrow-right" />}
-							onClick={() => setDialog("Usage details")}
+							onClick={(event) =>
+								openDialog("Usage details", event.currentTarget)
+							}
 						>
 							View usage details
 						</Button>
 					</div>
 				</Surface>
 			</div>
-			<Surface className="product-settings-card product-settings-billing-usage">
+			<Surface
+				ref={usage}
+				className="product-settings-card product-settings-billing-usage"
+			>
 				<div className="product-settings-panel-title">
 					<h2>Usage by project</h2>
 					<MenuPopover
@@ -124,6 +145,7 @@ export function BillingSettings({
 										label={choice}
 										icon={period === choice ? "check" : null}
 										state={period === choice ? "selected" : "default"}
+										aria-pressed={period === choice}
 										data-menu-choice
 										onClick={() => {
 											setPeriod(choice);
@@ -135,41 +157,46 @@ export function BillingSettings({
 						)}
 					</MenuPopover>
 				</div>
-				{period === periods[1] && (
-					<p className="product-settings-muted">
-						No usage recorded for the previous period.
-					</p>
-				)}
-				{period === periods[0] &&
-					(projects.length ? (
-						<ul className="product-settings-usage-list">
-							{projects.map((project) => (
-								<li key={project.id}>
-									<Icon
-										className="product-settings-muted"
-										name={projectIcons[project.id] ?? "briefcase-business"}
-									/>
-									<span className="product-settings-medium">
-										{project.name}
-									</span>
-									<span className="product-settings-muted">
-										{used === null
-											? "Unavailable"
-											: `${number.format(project.id === "whiteframe-advisor" ? used : 0)} credits`}
-									</span>
-								</li>
-							))}
-						</ul>
-					) : (
-						<p className="product-settings-muted">No projects to show.</p>
-					))}
+				<div role="status" className="sr-only" aria-atomic="true">
+					Showing usage for {period.toLowerCase()}.
+				</div>
+				<div key={period} data-ap-enter="message">
+					{period === periods[1] && (
+						<p className="product-settings-muted">
+							Usage data is unavailable for the previous billing period.
+						</p>
+					)}
+					{period === periods[0] &&
+						(projects.length ? (
+							<ul className="product-settings-usage-list">
+								{projects.map((project) => (
+									<li key={project.id}>
+										<Icon
+											className="product-settings-muted"
+											name={project.icon ?? "briefcase-business"}
+										/>
+										<span className="product-settings-medium">
+											{project.name}
+										</span>
+										<span className="product-settings-muted">
+											{projectUsage?.[project.id] === undefined
+												? "Unavailable"
+												: `${number.format(projectUsage[project.id])} credits`}
+										</span>
+									</li>
+								))}
+							</ul>
+						) : (
+							<p className="product-settings-muted">No projects to show.</p>
+						))}
+				</div>
 			</Surface>
 			<div className="product-settings-actions">
 				<Button
 					variant="secondary"
 					size="medium"
 					icon={<Icon name="credit-card" size={20} />}
-					onClick={() => setDialog("Payment method")}
+					onClick={(event) => openDialog("Payment method", event.currentTarget)}
 				>
 					Payment method
 				</Button>
@@ -177,13 +204,17 @@ export function BillingSettings({
 					variant="ghost"
 					size="medium"
 					icon={<Icon name="file-text" size={20} />}
-					onClick={() => setDialog("Invoices")}
+					onClick={(event) => openDialog("Invoices", event.currentTarget)}
 				>
-					Download invoices
+					Invoices
 				</Button>
 			</div>
 			{dialog && (
-				<SettingsDialog title={dialog} onClose={() => setDialog(null)}>
+				<SettingsDialog
+					title={dialog}
+					onClose={() => setDialog(null)}
+					returnFocus={dialogTrigger}
+				>
 					<p className="product-settings-muted">
 						{dialog === "Workspace subscription"
 							? "Your workspace is on the workspace subscription. Plan and renewal changes are unavailable in the prototype."

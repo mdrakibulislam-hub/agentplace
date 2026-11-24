@@ -326,14 +326,10 @@
 	display: flex;
 	gap: 12px;
 	align-items: center;
-	color: var(--foreground-muted);
-}
-
-.ap-builder-progress-card [data-complete="true"] {
 	color: var(--foreground-default);
 }
 
-.ap-builder-progress-card :where([data-complete="true"]) > .ap-icon {
+.ap-builder-progress-card :where(li) > .ap-icon {
 	color: var(--status-success-foreground);
 }
 
@@ -787,7 +783,7 @@
 	gap: var(--space-8);
 }
 
-.ap-builder-branding-footer > :where([role="status"]) .ap-icon {
+.ap-builder-branding-footer > :where([role="status"]) > .ap-icon {
 	color: var(--status-success-foreground);
 }
 
@@ -970,6 +966,12 @@
 .ap-builder-publish-checklist .ap-icon,
 .ap-builder-publish-check {
 	color: var(--status-success-foreground);
+}
+.ap-builder-publish-checklist :where([data-complete="false"]) .ap-icon {
+	color: var(--foreground-muted);
+}
+.ap-builder-action-error {
+	margin: var(--space-12) var(--space-16);
 }
 
 .ap-builder-publish-switch {

@@ -1,12 +1,13 @@
 import { AgentPreview } from "@agentplace/ui/components/ap-builder";
 import {
 	type ChatMessage,
+	ConversationJump,
 	ConversationMessage,
 	ConversationStatus,
 } from "@agentplace/ui/components/ap-conversation";
 import { Icon } from "@agentplace/ui/components/ap-icon";
-import { useMotionEnvironment } from "@agentplace/ui/components/ap-motion";
 import { Button } from "@agentplace/ui/components/button";
+import { useConversationScroll } from "@agentplace/ui/hooks/use-conversation-scroll";
 import {
 	type CSSProperties,
 	useEffect,
@@ -24,6 +25,7 @@ import {
 } from "./builder-model";
 import { BuilderDialog } from "./builder-primitives";
 import "./builder.css";
+import "./visitor-experience.css";
 
 type VisitorBranding = BrandingDraft | PublishedSnapshot;
 export type VisitorReply = (
@@ -63,8 +65,11 @@ export function BuilderVisitorPreview({
 	initialSuggestions?: string[];
 }) {
 	const [mobile, setMobile] = useState(false);
-	const [call, setCall] = useState<"setup" | "connected">();
+	const [call, setCall] = useState<"setup" | "demo">();
 	const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
+	const [initialMessageIds] = useState(
+		() => new Set(initialMessages.map(({ id }) => id)),
+	);
 	const [suggestedReplies, setSuggestedReplies] =
 		useState<string[]>(initialSuggestions);
 	const [request, setRequest] = useState<{
@@ -73,13 +78,19 @@ export function BuilderVisitorPreview({
 		error?: string;
 	}>();
 	const operation = useRef<AbortController | null>(null);
-	const transcript = useRef<HTMLDivElement>(null);
-	const { reduced } = useMotionEnvironment();
+	const composer = useRef<HTMLInputElement>(null);
+	const endCall = useRef<HTMLButtonElement>(null);
+	const latestMessage = messages.at(-1);
+	const { listRef, canScroll, onScroll, showJump, followLatest, jumpToLatest } =
+		useConversationScroll(
+			latestMessage
+				? `${latestMessage.id}:${request?.state ?? "idle"}`
+				: undefined,
+		);
 	useEffect(() => () => operation.current?.abort(), []);
 	useLayoutEffect(() => {
-		if (messages.length && transcript.current && !reduced)
-			transcript.current.scrollTop = transcript.current.scrollHeight;
-	}, [messages, reduced]);
+		if (call === "demo") endCall.current?.focus();
+	}, [call]);
 	const company = branding.company?.trim() || branding.name;
 	const displayName = company.replace(/ Creative$/, "") || branding.name;
 	const colors = {
@@ -89,6 +100,7 @@ export function BuilderVisitorPreview({
 
 	async function reply(question: string, retry = false) {
 		if (operation.current) return;
+		followLatest();
 		const message =
 			retry && request
 				? request.message
@@ -104,11 +116,16 @@ export function BuilderVisitorPreview({
 			if (controller.signal.aborted) return;
 			if (!response?.text?.trim())
 				throw new Error("The agent returned an empty reply. Try again.");
+			const suggestions = [
+				...new Set(
+					response.suggestions?.map((text) => text.trim()).filter(Boolean),
+				),
+			];
 			setMessages((current) => [
 				...current,
 				{ id: crypto.randomUUID(), role: "agent", text: response.text },
 			]);
-			setSuggestedReplies(response.suggestions ?? []);
+			setSuggestedReplies(suggestions);
 			setRequest(undefined);
 		} catch (error) {
 			if (!controller.signal.aborted)
@@ -122,7 +139,8 @@ export function BuilderVisitorPreview({
 		}
 	}
 	function stop() {
-		operation.current?.abort();
+		if (!operation.current) return;
+		operation.current.abort();
 		operation.current = null;
 		setRequest((current) =>
 			current ? { ...current, state: "stopped", error: undefined } : undefined,
@@ -131,9 +149,15 @@ export function BuilderVisitorPreview({
 	function reset() {
 		operation.current?.abort();
 		operation.current = null;
+		followLatest();
 		setMessages([]);
 		setRequest(undefined);
 		setSuggestedReplies([]);
+	}
+
+	function replyFromTranscript(question: string, retry = false) {
+		composer.current?.focus({ preventScroll: true });
+		void reply(question, retry);
 	}
 
 	return (
@@ -142,6 +166,8 @@ export function BuilderVisitorPreview({
 			data-device={mobile ? "mobile" : "desktop"}
 			data-appearance={branding.appearance ?? "light"}
 			data-typography={branding.typography ?? "SF Pro"}
+			data-conversation={Boolean(latestMessage) || undefined}
+			data-ap-enter=""
 			style={colors}
 		>
 			<AgentPreview
@@ -151,6 +177,7 @@ export function BuilderVisitorPreview({
 				onReset={reset}
 				onStop={stop}
 				submitting={request?.state === "working"}
+				inputRef={composer}
 				companyInitials={displayName.slice(0, 1).toUpperCase()}
 				companyLogo={branding.companyLogo}
 				title="What are you working on?"
@@ -166,89 +193,109 @@ export function BuilderVisitorPreview({
 				}}
 				onCall={() => setCall("setup")}
 			>
-				{messages.length > 0 && (
-					<div
-						ref={transcript}
-						className="ap-visitor-transcript"
-						role="log"
-						aria-label="Visitor conversation"
-					>
-						{messages.map((message) => (
-							<ConversationMessage
-								key={message.id}
-								{...message}
-								speaker={message.role}
-								experience="visitor"
-								name={branding.name}
-								avatar={branding.avatar}
-							/>
-						))}
-						{request?.state === "working" ? (
-							<ConversationMessage
-								speaker="agent"
-								text=""
-								experience="visitor"
-								name={branding.name}
-								avatar={branding.avatar}
-							>
-								<ConversationStatus experience="visitor" state="working" />
-							</ConversationMessage>
-						) : (
-							request && (
-								<ConversationStatus
+				{latestMessage && (
+					<div className="ap-conversation-scroll-area">
+						<div
+							ref={listRef}
+							className="ap-visitor-transcript"
+							role="log"
+							aria-label="Visitor conversation"
+							tabIndex={canScroll ? 0 : -1}
+							onScroll={onScroll}
+						>
+							{messages.map((message) => (
+								<ConversationMessage
+									key={message.id}
+									{...message}
+									speaker={message.role}
 									experience="visitor"
-									state={request.state}
-									error={request.error}
-									onRetry={() => {
-										void reply(request.message.text, true);
-									}}
+									name={branding.name}
+									avatar={branding.avatar}
+									entering={!initialMessageIds.has(message.id)}
 								/>
-							)
-						)}
-						{suggestedReplies.length > 0 && (
-							<div className="ap-chat-reply-chips">
-								{suggestedReplies.map((text) => (
-									<button
-										type="button"
-										key={text}
-										onClick={() => {
-											void reply(text);
-										}}
-									>
-										{text}
-									</button>
-								))}
-							</div>
-						)}
+							))}
+							{request?.state === "working" ? (
+								<ConversationMessage
+									speaker="agent"
+									text=""
+									experience="visitor"
+									name={branding.name}
+									avatar={branding.avatar}
+									entering
+								>
+									<ConversationStatus experience="visitor" state="working" />
+								</ConversationMessage>
+							) : (
+								request && (
+									<ConversationStatus
+										experience="visitor"
+										state={request.state}
+										error={request.error}
+										onRetry={() =>
+											replyFromTranscript(request.message.text, true)
+										}
+									/>
+								)
+							)}
+							{suggestedReplies.length > 0 && (
+								<fieldset
+									className="ap-chat-reply-chips"
+									aria-label="Suggested replies"
+									data-ap-enter="message"
+								>
+									{suggestedReplies.map((text) => (
+										<button
+											type="button"
+											key={text}
+											onClick={() => replyFromTranscript(text)}
+										>
+											{text}
+										</button>
+									))}
+								</fieldset>
+							)}
+						</div>
+						{showJump && <ConversationJump onClick={jumpToLatest} />}
 					</div>
 				)}
 			</AgentPreview>
 			{call && (
 				<BuilderDialog
 					title={
-						call === "setup" ? `Call ${branding.name}` : "Test call started"
+						published
+							? "Call unavailable"
+							: call === "setup"
+								? `Call ${branding.name}`
+								: "Test call controls"
 					}
 					description={
-						call === "setup"
-							? "Try the call controls in the visitor experience."
-							: "You’re previewing the call interface."
+						published
+							? "Voice calls are unavailable for this agent. You can continue in chat."
+							: call === "setup"
+								? "Try the controls in a simulated voice call."
+								: "You’re previewing the controls for a simulated voice call."
 					}
 					onClose={() => setCall(undefined)}
 				>
 					<div className="ap-builder-dialog-actions">
 						<Button
 							data-initial-focus
+							ref={endCall}
 							variant="secondary"
 							size="medium"
 							onClick={() => setCall(undefined)}
 						>
-							{call === "setup" ? "Cancel" : "End call"}
+							{published
+								? "Done"
+								: call === "setup"
+									? "Cancel"
+									: "End test call"}
 						</Button>
-						{call === "setup" && (
+						{!published && call === "setup" && (
 							<Button
 								size="medium"
 								icon={<Icon name="phone" />}
-								onClick={() => setCall("connected")}
+								onClick={() => setCall("demo")}
 							>
 								Start test call
 							</Button>
@@ -284,10 +331,17 @@ export function VisitorExperience({
 
 function contrastText(color?: string) {
 	if (!color || !/^#[0-9a-f]{6}$/i.test(color)) return undefined;
-	const red = Number.parseInt(color.slice(1, 3), 16);
-	const green = Number.parseInt(color.slice(3, 5), 16);
-	const blue = Number.parseInt(color.slice(5, 7), 16);
-	return (red * 299 + green * 587 + blue * 114) / 1000 > 145
-		? "#18181B"
-		: "#FFFFFF";
+	function linearChannel(hex: string) {
+		const channel = Number.parseInt(hex, 16) / 255;
+		return channel <= 0.04045
+			? channel / 12.92
+			: ((channel + 0.055) / 1.055) ** 2.4;
+	}
+	const luminance =
+		0.2126 * linearChannel(color.slice(1, 3)) +
+		0.7152 * linearChannel(color.slice(3, 5)) +
+		0.0722 * linearChannel(color.slice(5, 7));
+	return luminance >= 0.179
+		? "var(--ap-primitive-color-000000)"
+		: "var(--ap-primitive-color-ffffff)";
 }

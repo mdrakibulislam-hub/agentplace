@@ -15,6 +15,10 @@
 	color: inherit;
 	padding: 0;
 	cursor: pointer;
+	transition: opacity var(--motion-duration-fast) var(--motion-easing-standard);
+}
+.ap-workspace-logo:active {
+	opacity: 0.75;
 }
 
 .ap-workspace-header .ap-project-switch-trigger {

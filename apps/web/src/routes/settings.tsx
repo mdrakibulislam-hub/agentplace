@@ -4,7 +4,7 @@ import {
 } from "@agentplace/ui/components/ap-navigation";
 import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { ConnectedHeader } from "@/product/connected-header";
-import { demoCredits } from "@/product/prototype-data";
+import { demoCredits, demoProjectUsage } from "@/product/prototype-data";
 import { usePrototype } from "@/product/prototype-state";
 import { SettingsExperience } from "@/product/settings/settings-experience";
 import { useWorkspaceNavigation } from "@/product/workspace-navigation";
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/settings")({
 });
 
 function SettingsPage() {
-	const { workspace } = usePrototype();
+	const { workspace, store } = usePrototype();
 	const { section } = Route.useSearch();
 	const navigate = Route.useNavigate();
 	const { openProjects } = useWorkspaceNavigation();
@@ -29,6 +29,9 @@ function SettingsPage() {
 			<SettingsExperience
 				projects={workspace.projects}
 				credits={demoCredits}
+				projectUsage={
+					store.activeWorkspace === "demo" ? demoProjectUsage : undefined
+				}
 				initialSection={section}
 				onSectionChange={(next) => void navigate({ search: { section: next } })}
 				onBack={() => openProjects()}

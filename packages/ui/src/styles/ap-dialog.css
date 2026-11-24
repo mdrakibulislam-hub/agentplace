@@ -3,11 +3,28 @@
 	inset: 0;
 	background: var(--overlay-modal, rgba(0, 0, 0, 0.32));
 	z-index: 1000;
-	transition: opacity 160ms;
 }
-.ap-dialog-backdrop[data-starting-style],
-.ap-dialog-backdrop[data-ending-style] {
-	opacity: 0;
+.ap-dialog-backdrop[data-closed] {
+	pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+	html:not([data-ap-motion="reduced"])
+		:is(.ap-dialog-popup, .ap-dialog-backdrop) {
+		transition: opacity 160ms var(--motion-easing-enter);
+	}
+	html:not([data-ap-motion="reduced"])
+		:is(.ap-dialog-popup, .ap-dialog-backdrop):is(
+			[data-starting-style],
+			[data-ending-style]
+		) {
+		opacity: 0;
+	}
+	@starting-style {
+		html:not([data-ap-motion="reduced"])
+			:is(.ap-dialog-popup, .ap-dialog-backdrop) {
+			opacity: 0;
+		}
+	}
 }
 .ap-confirm-dialog {
 	position: fixed;
@@ -57,8 +74,17 @@
 	place-items: center;
 	cursor: pointer;
 }
-.ap-dialog-close:hover {
+.ap-dialog-close:not(:disabled):hover {
 	background: var(--muted-hover);
+}
+.ap-dialog-close:not(:disabled):active {
+	background: var(--action-secondary-hover);
+}
+@media (prefers-reduced-motion: no-preference) {
+	html:not([data-ap-motion="reduced"]) .ap-dialog-close {
+		transition: background-color var(--motion-duration-fast)
+			var(--motion-easing-standard);
+	}
 }
 .ap-dialog-close:focus-visible {
 	outline: 2px solid var(--focus-ring);
@@ -94,12 +120,4 @@
 	.ap-confirm-dialog {
 		left: 16px;
 	}
-}
-@media (prefers-reduced-motion: reduce) {
-	.ap-dialog-backdrop {
-		transition: none;
-	}
-}
-html[data-ap-motion="reduced"] .ap-dialog-backdrop {
-	transition: none;
 }
